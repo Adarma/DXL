@@ -1,0 +1,10 @@
+<snippet>
+	<description>For Loop</description>
+    <content><![CDATA[${5:int ${1:iIndex} = ${2:0}}
+for (${1:iIndex} = $2; $1 < ${3:iCount}; $1 += ${4:1})
+{
+	${6:/* code */}
+}]]></content>
+    <tabTrigger>for</tabTrigger>
+    <scope>source.dxl</scope>
+</snippet>

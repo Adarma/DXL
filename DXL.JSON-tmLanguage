@@ -1,0 +1,431 @@
+{
+    "fileTypes": [
+        "dxl", 
+        "inc",
+        "adxl", 
+        "ldxl", 
+        "tdxl" 
+    ], 
+    "foldingStartMarker": "(?x)\n\t\t /\\*\\*(?!\\*)\n\t\t|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))\n\t", 
+    "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*\\}", 
+    "name": "DXL", 
+    "patterns": [
+        {
+            "comment": "Error: Dunno how to get it in the build output", 
+            "match": "^(?:-?R?-[EF]- DXL: |\\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)", 
+            "name": "sublimelinter.outline.illegal.dxl"
+        }, 
+        {
+            "comment": "Warning: Dunno how to get it in the build output", 
+            "match": "^(?:-?R?-[W]- DXL: |\\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)", 
+            "name": "sublimelinter.outline.warning.dxl"
+        },
+        {
+            "include": "#comments"
+        },
+        {
+            "comment": "Flow Control: by do else elseif for if in then while", 
+            "match": "\\b(?:by|do|else(?:if)?|for|i[fn]|then|while)\\b", 
+            "name": "keyword.control.dxl"
+        }, 
+        {
+            "comment": "Flow Control Breaks", 
+            "match": "\\b(break|continue|exit_|halt|return)\\b", 
+            "name": "keyword.control.break.dxl"
+        }, 
+        {
+            "comment": "Fundamental Types", 
+            "match": "\\b(bool|char|int|real|string|void)\\b", 
+            "name": "storage.type.dxl"
+        }, 
+        {
+            "comment": "Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef", 
+            "match": "\\b(?:A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\\b", 
+            "name": "storage.type.doors.dxl"
+        }, 
+        {
+            "comment": "All Caps Custom Type Naming Idiom- MYTYPE", 
+            "match": "\\b([A-Z]+)\\b", 
+            "name": "storage.type.custom.dxl"
+        }, 
+        {
+            "comment": "Type Modifiers", 
+            "match": "\\b(const|static|struct)\\b", 
+            "name": "storage.modifier.dxl"
+        }, 
+        {
+            "comment": "Hungarian Notation Constant Naming Idiom - kConstant", 
+            "match": "\\bk[A-Z]\\w*\\b", 
+            "name": "constant.other.variable.mac-classic.dxl"
+        }, 
+        {
+            "comment": "Hungarian Notation Global Naming Idiom - gVariable", 
+            "match": "\\bg[A-Z]\\w*\\b", 
+            "name": "variable.other.readwrite.global.mac-classic.dxl"
+        }, 
+        {
+            "comment": "Hungarian Notation Variable Naming Idiom - oVariable", 
+            "match": "\\b[bcirsoa][A-Z]\\w*\\b", 
+            "name": "variable.other.readwrite.static.mac-classic.dxl"
+        }, 
+        {
+            "comment": "Logical", 
+            "match": "\\b(and|false|or|true)\\b|null[^\\(]", 
+            "name": "constant.language.dxl"
+        }, 
+        {
+            "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b", 
+            "name": "constant.numeric.dxl"
+        }, 
+        {
+            "begin": "\"", 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dxl"
+                }
+            }, 
+            "end": "\"", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dxl"
+                }
+            }, 
+            "name": "string.quoted.double.dxl", 
+            "patterns": [
+                {
+                    "include": "#string_escaped_char"
+                }, 
+                {
+                    "include": "#string_placeholder"
+                }
+            ]
+        }, 
+        {
+            "begin": "'", 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dxl"
+                }
+            }, 
+            "end": "'", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dxl"
+                }
+            }, 
+            "name": "string.quoted.single.dxl", 
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "constant.character.escape.dxl"
+                        }, 
+                        "2": {
+                            "name": "invalid.illegal.additional-character.dxl"
+                        }
+                    }, 
+                    "comment": "Only a single character", 
+                    "match": "(?<=[^\\\\]')(?:(\\\\(?:[abefnprtv'\"?]|[0-7]{1,3}))|[^\\\\])?([^']*)(?=')"
+                }
+            ]
+        }, 
+        {
+            "begin": "^\\s*#\\s*(error|print|warn)\\b", 
+            "captures": {
+                "1": {
+                    "name": "keyword.control.import.error.dxl"
+                }
+            }, 
+            "end": "$", 
+            "name": "meta.preprocessor.diagnostic.dxl", 
+            "patterns": [
+                {
+                    "match": "(?>\\\\\\s*\\n)", 
+                    "name": "punctuation.separator.continuation.dxl"
+                }
+            ]
+        }, 
+        {
+            "begin": "^\\s*#\\s*(include)\\b\\s+", 
+            "captures": {
+                "1": {
+                    "name": "keyword.control.import.include.dxl"
+                }
+            }, 
+            "end": "(?=(?://|/\\*))|$", 
+            "name": "meta.preprocessor.include.dxl", 
+            "patterns": [
+                {
+                    "match": "(?>\\\\\\s*\\n)", 
+                    "name": "punctuation.separator.continuation.dxl"
+                }, 
+                {
+                    "begin": "\"", 
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.dxl"
+                        }
+                    }, 
+                    "end": "\"", 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.dxl"
+                        }
+                    }, 
+                    "name": "string.quoted.double.include.dxl", 
+                    "patterns": [
+                        {
+                            "include": "#string_escaped_char"
+                        }
+                    ]
+                }, 
+                {
+                    "begin": "<", 
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.dxl"
+                        }
+                    }, 
+                    "end": ">", 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.dxl"
+                        }
+                    }, 
+                    "name": "string.quoted.other.lt-gt.include.dxl"
+                }
+            ]
+        }, 
+        {
+            "include": "#pragma-mark"
+        }, 
+        {
+            "include": "#xFlags"
+        }, 
+        {
+            "include": "#block"
+        }, 
+        {
+            "begin": "(?x)\t\t\t\t\t\t# Ignore whitespace and Comments\n\t\t\t(?:\t\t\t\t\t\t\t\t\t# NonCapturing Group\n\t\t\t\t^\t\t\t\t\t\t\t\t\t# Begining-of-line\n\t\t\t\t|\t\t\t\t\t\t\t\t# Or: Space before FunctionName\n\t\t\t\t(?:\t\t\t\t\t\t\t\t\t# NonCapturing Group\n\t\t\t\t\t(?= \\s )\t\t\t\t\t\t\t# Lookahead: whitespace\n\t\t\t\t\t(?<!else|return)\t\t\t\t\t# Lookbehind: NOT literal\n\t\t\t\t\t(?<=\\w)\t\t\t\t\t\t\t# Lookbehind: WordCharacter\n\t\t\t\t|\t\t\t\t\t\t\t\t\t# Or:Type modifier before name\n\t\t\t\t\t(?= \\s*[A-Za-z_] )\t\t\t\t\t# whitespace* VariableChar\n\t\t\t\t\t(?<!&&)\t\t\t\t\t# Lookbehind: Not AndAnd Literal\n\t\t\t\t\t(?<=[*&>])\t\t\t\t# Lookbehind: Literal\n\t\t\t\t)\t\t\t\t\t\t\t\t\t# CloseNonCapturing Group\n\t\t\t)\t\t\t\t\t\t\t\t\t# CloseNonCapturing Group\n\t\t\t(\\s*)\t\t\t\t\t\t\t\t# Capture: Whitespace\n\t\t\t(?!\t\t\t\t\t\t\t\t\t# Lookahead: NOT...\n\t\t\t\t(while|for|do|if|else|return)\t\t# Capture: Literal\n\t\t\t\t\\s*\\(\t\t\t\t\t\t\t\t# Whitespace* OpenBracket\n\t\t\t)\t\t\t\t\t\t\t\t\t# End Lookahead\n\t\t\t(\t\t\t\t\t\t\t\t\t# Capture: FunctionName\n\t\t\t\t(?:\t\t\t\t\t\t\t\t\n\t\t\t\t\t[A-Za-z_][A-Za-z0-9_]*+\n\t\t\t\t|\n\t\t\t\t\t::\n\t\t\t\t)++\n\t\t\t|\t\t\t\t\t\t\t\t\t# actual name\n\t\t\t\t(?: (?<=operator)\n\t\t\t\t\t(?: [-*&<>=+!]+\n\t\t\t\t\t|\n\t\t\t\t\t\t\\(\\)\n\t\t\t\t\t|\n\t\t\t\t\t\t\\[\\]\n\t\t\t\t\t)\n\t\t\t\t)\t\t\t\t\t\t\t\t# if it is a C++ operator\n\t\t\t)\n\t\t\t\\s*\n\t\t\t(?=\\()", 
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.whitespace.function.leading.dxl"
+                }, 
+                "3": {
+                    "name": "entity.name.function.dxl"
+                }, 
+                "4": {
+                    "name": "punctuation.definition.parameters.dxl"
+                }
+            }, 
+            "end": "(?<=\\})|(?=#)|(;)|$", 
+            "name": "meta.function.dxl", 
+            "patterns": [
+                {
+                    "include": "#comments"
+                }, 
+                {
+                    "include": "#parens"
+                }, 
+                {
+                    "match": "\\bconst\\b", 
+                    "name": "storage.modifier.dxl"
+                }, 
+                {
+                    "include": "#block"
+                }
+            ]
+        }
+    ], 
+    "repository": {
+        "access": {
+            "match": "\\.[a-zA-Z_][a-zA-Z_0-9]*\\b(?!\\s*\\()", 
+            "name": "variable.other.dot-access.dxl"
+        }, 
+        "block": {
+            "begin": "\\{", 
+            "end": "\\}", 
+            "name": "meta.block.dxl", 
+            "patterns": [
+                {
+                    "include": "#block_innards"
+                }
+            ]
+        }, 
+        "block_innards": {
+            "patterns": [
+                {
+                    "include": "#access"
+                }, 
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.whitespace.support.function.leading.dxl"
+                        }, 
+                        "2": {
+                            "name": "support.function.C99.dxl"
+                        }
+                    }, 
+                    "match": "(\\s*)\\b(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|charOf|characterSet|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|convertFromCodepage|convertToCodepage|copyFile|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|error|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|print|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warn|warningBox|when|who|width|win32SystemWait_|write)\\b"
+                }, 
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.whitespace.function-call.leading.dxl"
+                        }, 
+                        "2": {
+                            "name": "support.function.any-method.dxl"
+                        }, 
+                        "3": {
+                            "name": "punctuation.definition.parameters.dxl"
+                        }
+                    }, 
+                    "match": "(?x) (?: (?= \\s )  (?:(?<=else|new|return) | (?<!\\w)) (\\s+))?\n\t\t\t(\\b\n\t\t\t\t(?!(while|for|do|if|else|switch|catch|enumerate|return|r?iterate)\\s*\\()(?:(?!NS)[A-Za-z_][A-Za-z0-9_]*+\\b | :: )++                  # actual name\n\t\t\t)\n\t\t\t \\s*(\\()", 
+                    "name": "meta.function-call.dxl"
+                }, 
+                {
+                    "captures": {
+                        "1": {
+                            "name": "variable.other.dxl"
+                        }, 
+                        "2": {
+                            "name": "punctuation.definition.parameters.dxl"
+                        }
+                    }, 
+                    "match": "(?x)\n\t\t\t        (?x)\n\t\t\t(?:\n\t\t\t     (?: (?= \\s )           (?<!else|new|return) (?<=\\w)\\s+      #  or word + space before name\n\t\t\t     )\n\t\t\t)\n\t\t\t(\n\t\t\t\t(?: [A-Za-z_][A-Za-z0-9_]*+ | :: )++    |              # actual name\n\t\t\t\t(?: (?<=operator) (?: [-*&<>=+!]+ | \\(\\) | \\[\\] ) )?  # if it is a C++ operator\n\t\t\t)\n\t\t\t \\s*(\\()", 
+                    "name": "meta.initialization.dxl"
+                }, 
+                {
+                    "include": "#block"
+                }, 
+                {
+                    "include": "$base"
+                }
+            ]
+        }, 
+        "comments": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "meta.toc-list.banner.block.dxl"
+                        }
+                    }, 
+                    "match": "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?", 
+                    "name": "comment.block.dxl"
+                }, 
+                {
+                    "begin": "/\\*", 
+                    "captures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.dxl"
+                        }
+                    }, 
+                    "end": "\\*/", 
+                    "name": "comment.block.dxl"
+                }, 
+                {
+                    "match": "\\*/.*\\n", 
+                    "name": "invalid.illegal.stray-comment-end.dxl"
+                }, 
+                {
+                    "captures": {
+                        "1": {
+                            "name": "meta.toc-list.banner.line.dxl"
+                        }
+                    }, 
+                    "match": "^// =(\\s*.*?)\\s*=\\s*$\\n?", 
+                    "name": "comment.line.banner.c++"
+                }, 
+                {
+                    "begin": "//", 
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.dxl"
+                        }
+                    }, 
+                    "end": "$\\n?", 
+                    "name": "comment.line.double-slash.dxl", 
+                    "patterns": [
+                        {
+                            "match": "(?>\\\\\\s*\\n)", 
+                            "name": "punctuation.separator.continuation.dxl"
+                        }
+                    ]
+                }
+            ]
+        }, 
+        "parens": {
+            "begin": "\\(", 
+            "end": "\\)", 
+            "name": "meta.parens.dxl", 
+            "patterns": [
+                {
+                    "include": "$base"
+                }
+            ]
+        }, 
+        "pragma-mark": {
+            "captures": {
+                "1": {
+                    "name": "meta.preprocessor.dxl"
+                }, 
+                "2": {
+                    "name": "keyword.control.import.pragma.dxl"
+                }, 
+                "3": {
+                    "name": "keyword.control.import.pragma-mark.dxl"
+                }, 
+                "4": {
+                    "name": "invalid.illegal.pragma-mark.dxl"
+                }
+            }, 
+            "match": "^\\s*((pragma)\\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\\s*,)", 
+            "name": "meta.section"
+        }, 
+        "string_escaped_char": {
+            "patterns": [
+                {
+                    "match": "\\\\(\\\\|[abefnprtv'\"?]|[0-7]{1,3})", 
+                    "name": "constant.character.escape.dxl"
+                }, 
+                {
+                    "match": "\\\\.", 
+                    "name": "invalid.illegal.escape.dxl"
+                }
+            ]
+        }, 
+        "string_placeholder": {
+            "patterns": [
+                {
+                    "match": "(?x)\t\t\t# Ignore Comments\n\t\t\t\t\t\t\t%\t\t\t\t# % Escape Character\n\t\t\t\t\t\t\t[#0\\- +]*\t\t# Prefix and Alignment Flags\n\t\t\t\t\t\t\t\\d*\t\t\t\t# Minimum field width\n\t\t\t\t\t\t\t(\\.\\d+)?\t\t# Maximum precision\n\t\t\t\t\t\t\t[diouxXCcsp%]\t# Conversion type\n\t\t\t\t\t\t", 
+                    "name": "constant.other.placeholder.dxl"
+                }, 
+                {
+                    "match": "%", 
+                    "name": "invalid.illegal.placeholder.dxl"
+                }
+            ]
+        }, 
+        "xFlags": {
+            "captures": {
+                "1": {
+                    "name": "meta.preprocessor.dxl"
+                }, 
+                "2": {
+                    "name": "keyword.control.import.xflags.dxl"
+                }, 
+                "3": {
+                    "name": "keyword.control.import.xflags-mark.dxl"
+                }, 
+                "4": {
+                    "name": "invalid.illegal.xflags-mark.dxl"
+                }
+            }, 
+            "match": "^\\s*((XFLAGS_)\\s*[=&|]=\\s*~?(?:(AutoDeclare_)|(.*))\\s*$)", 
+            "name": "meta.section"
+        }
+    }, 
+    "scopeName": "source.dxl", 
+    "uuid": "B0089AB0-0986-4E05-B6A6-F2A1EE7BAA91"
+}
