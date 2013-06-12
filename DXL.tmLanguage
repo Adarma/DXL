@@ -23,6 +23,54 @@
 	<array>
 		<dict>
 			<key>include</key>
+			<string>#functionForwardDeclaration</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#functionDeclaration</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#variableDeclaration</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#fundamentalType</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#builtinDoorsType</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#customType</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#reservedKeyword</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalBoolean</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalNumeric</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalCharacter</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalString</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#logical</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#comments</string>
 		</dict>
 		<dict>
@@ -43,23 +91,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#variableDeclaration</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#literalBoolean</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#literalNumeric</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#literalCharacter</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#literalString</string>
+			<string>#diagnostic</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -79,84 +111,15 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#FunctionCallPerm</string>
+			<string>#functionCallPerm</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#functionDeclaration</string>
+			<string>#outputError</string>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>Error: Dunno how to get it in the build output</string>
-			<key>match</key>
-			<string>^(?:-?R?-[EF]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
-			<key>name</key>
-			<string>sublimelinter.outline.illegal.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Warning: Dunno how to get it in the build output</string>
-			<key>match</key>
-			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
-			<key>name</key>
-			<string>sublimelinter.outline.warning.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Reserved Keywords</string>
-			<key>match</key>
-			<string>\b(case|default|enum|switch|union)\b</string>
-			<key>name</key>
-			<string>invalid.illegal.keyword.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Fundamental Types</string>
-			<key>match</key>
-			<string>\b(bool|char|int|real|string|void)\b</string>
-			<key>name</key>
-			<string>storage.type.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef</string>
-			<key>match</key>
-			<string>\b(?:A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\b</string>
-			<key>name</key>
-			<string>storage.type.doors.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Logical</string>
-			<key>match</key>
-			<string>\b(and|or)\b]</string>
-			<key>name</key>
-			<string>constant.language.dxl</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>^\s*(error|print|warn)\b</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.control.import.error.dxl</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>$</string>
-			<key>name</key>
-			<string>meta.preprocessor.diagnostic.dxl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>(?&gt;\\\s*\n)</string>
-					<key>name</key>
-					<string>punctuation.separator.continuation.dxl</string>
-				</dict>
-			</array>
+			<key>include</key>
+			<string>#outputWarning</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -165,12 +128,65 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>FunctionCallPerm</key>
+		<key>argumentDeclaration</key>
 		<dict>
-			<key>match</key>
-			<string>\b(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|charOf|characterSet|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|convertFromCodepage|convertToCodepage|copyFile|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|error|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|print|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warn|warningBox|when|who|width|win32SystemWait_|write)\b</string>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
 			<key>name</key>
-			<string>support.function.perm.dxl</string>
+			<string>meta.parens.argumentDeclaration.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#fundamentalType</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtinDoorsType</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#customType</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\s+[A-Za-z_][A-Za-z0-9_]*\s*,?</string>
+					<key>name</key>
+					<string>meta.argument.separator.dxl</string>
+				</dict>
+			</array>
+		</dict>
+		<key>argumentForwardDeclaration</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.parens.argumentForwardDeclaration.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#fundamentalType</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#builtinDoorsType</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#customType</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\s*,\s*</string>
+					<key>name</key>
+					<string>meta.argument.separator.dxl</string>
+				</dict>
+			</array>
 		</dict>
 		<key>block</key>
 		<dict>
@@ -198,7 +214,15 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#functionDeclaration</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#functionCallPerm</string>
 				</dict>
 			</array>
 		</dict>
@@ -208,7 +232,11 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#FunctionCallPerm</string>
+					<string>#functionCallPerm</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#functionDeclaration</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -280,6 +308,15 @@
 					<string>$base</string>
 				</dict>
 			</array>
+		</dict>
+		<key>builtinDoorsType</key>
+		<dict>
+			<key>comment</key>
+			<string>Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef</string>
+			<key>match</key>
+			<string>\b(?:A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\b</string>
+			<key>name</key>
+			<string>storage.type.doors.dxl</string>
 		</dict>
 		<key>comments</key>
 		<dict>
@@ -380,6 +417,22 @@
 			<key>name</key>
 			<string>keyword.control.break.dxl</string>
 		</dict>
+		<key>customType</key>
+		<dict>
+			<key>comment</key>
+			<string>Warning: Dunno how to get it in the build output</string>
+			<key>match</key>
+			<string>\b[A-Z]+\b</string>
+			<key>name</key>
+			<string>storage.type.custom.dxl</string>
+		</dict>
+		<key>diagnostic</key>
+		<dict>
+			<key>match</key>
+			<string>\b(error|print|warn)\b</string>
+			<key>name</key>
+			<string>keyword.control.diagnostic.dxl</string>
+		</dict>
 		<key>dotPropertyAccess</key>
 		<dict>
 			<key>match</key>
@@ -396,7 +449,73 @@
 			<key>name</key>
 			<string>variable.other.dxlObjectPropertyAccess.dxl</string>
 		</dict>
+		<key>functionCallPerm</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.whitespace.function.perm.leading.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.perm.dxl</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^(\s*)\b(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|charOf|characterSet|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|convertFromCodepage|convertToCodepage|copyFile|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|error|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|print|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warn|warningBox|when|who|width|win32SystemWait_|write)\b</string>
+		</dict>
 		<key>functionDeclaration</key>
+		<dict>
+			<key>begin</key>
+			<string>(?:^|(?&lt;=[;\{]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+\b(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\b\s*(?=\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.fundimental.vd.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.doors.vd.dxl</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.custom.vd.dxl</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.keyword.dxl</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.functionDeclaration.dxl</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?&lt;=\})|(?=#)|(;)|$</string>
+			<key>name</key>
+			<string>meta.function.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#argumentDeclaration</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block</string>
+				</dict>
+			</array>
+		</dict>
+		<key>functionDeclarationOld</key>
 		<dict>
 			<key>begin</key>
 			<string>(?x)						# Ignore whitespace and Comments
@@ -415,7 +534,7 @@
 			)									# CloseNonCapturing Group
 			(\s*)								# Capture: Whitespace
 			(?!									# Lookahead: NOT...
-				(while|for|do|if|else|return)		# Capture: Literal
+				(while|for|do|if|then|else|return)		# Capture: Literal
 				\s*\(								# Whitespace* OpenBracket
 			)									# End Lookahead
 			(									# Capture: FunctionName
@@ -473,6 +592,59 @@
 					<string>#block</string>
 				</dict>
 			</array>
+		</dict>
+		<key>functionForwardDeclaration</key>
+		<dict>
+			<key>begin</key>
+			<string>(?:^|(?&lt;=[;\{]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+\b(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\b\s*(?=\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.fundimental.vd.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.doors.vd.dxl</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.custom.vd.dxl</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.keyword.dxl</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.functionForwardDeclaration.dxl</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?&lt;=\))|;|$</string>
+			<key>name</key>
+			<string>meta.function.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#argumentForwardDeclaration</string>
+				</dict>
+			</array>
+		</dict>
+		<key>fundamentalType</key>
+		<dict>
+			<key>comment</key>
+			<string>Fundamental Types</string>
+			<key>match</key>
+			<string>\b(bool|char|int|real|string|void)\b</string>
+			<key>name</key>
+			<string>storage.type.dxl</string>
 		</dict>
 		<key>include</key>
 		<dict>
@@ -551,10 +723,8 @@
 		</dict>
 		<key>literalBoolean</key>
 		<dict>
-			<key>comment</key>
-			<string>Logical</string>
 			<key>match</key>
-			<string>\b(false|true|on|off)\b|null(?!\s*\(\s*\S.*\))</string>
+			<string>\b(false|true|on|off)\b|null(?!\s*\(\s*\S.*\))\b</string>
 			<key>name</key>
 			<string>constant.language.dxl</string>
 		</dict>
@@ -608,7 +778,7 @@
 		<key>literalNumeric</key>
 		<dict>
 			<key>match</key>
-			<string>[-]?(0[xX][0-9a-fA-F]+)|([0-9]+\.?[0-9]*([eE][-]?[0-9]+)?)</string>
+			<string>\b([-]?(0[xX][0-9a-fA-F]+)|([0-9]+\.?[0-9]*([eE][-]?[0-9]+)?))\b</string>
 			<key>name</key>
 			<string>constant.numeric.dxl</string>
 		</dict>
@@ -647,6 +817,31 @@
 					<string>#stringFormatPlaceholder</string>
 				</dict>
 			</array>
+		</dict>
+		<key>logical</key>
+		<dict>
+			<key>match</key>
+			<string>\b(and|or)\b</string>
+			<key>name</key>
+			<string>keyword.language.dxl</string>
+		</dict>
+		<key>outputError</key>
+		<dict>
+			<key>comment</key>
+			<string>Error: Dunno how to get it in the build output</string>
+			<key>match</key>
+			<string>^(?:-?R?-[EF]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
+			<key>name</key>
+			<string>sublimelinter.outline.illegal.dxl</string>
+		</dict>
+		<key>outputWarning</key>
+		<dict>
+			<key>comment</key>
+			<string>Warning: Dunno how to get it in the build output</string>
+			<key>match</key>
+			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
+			<key>name</key>
+			<string>sublimelinter.outline.warning.dxl</string>
 		</dict>
 		<key>parens</key>
 		<dict>
@@ -693,6 +888,15 @@
 			<string>(?:^|(?&lt;=[;\{]))\s*((pragma)\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\s*,)</string>
 			<key>name</key>
 			<string>meta.section</string>
+		</dict>
+		<key>reservedKeyword</key>
+		<dict>
+			<key>comment</key>
+			<string>Reserved Keywords</string>
+			<key>match</key>
+			<string>\b(case|default|enum|switch|union)\b</string>
+			<key>name</key>
+			<string>invalid.illegal.keyword.dxl</string>
 		</dict>
 		<key>stringEscapedCharacters</key>
 		<dict>
@@ -768,7 +972,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.vd.dxl</string>
+					<string>storage.type.fundimental.vd.dxl</string>
 				</dict>
 				<key>3</key>
 				<dict>
@@ -783,13 +987,18 @@
 				<key>5</key>
 				<dict>
 					<key>name</key>
+					<string>invalid.illegal.keyword.dxl</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
 					<string>variable.other.variable.vd.dxl</string>
 				</dict>
 			</dict>
 			<key>comment</key>
 			<string>Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef</string>
 			<key>match</key>
-			<string>(?:^|(?&lt;=[;\{]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+\b([a-zA-Z_][a-zA-Z_0-9]*)\b\s*(?!\()</string>
+			<string>(?:^|(?&lt;=[;\{]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+\b(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\b\s*(?!\()(?=[;=\n]|//|/\*)</string>
 			<key>name</key>
 			<string>declaration.variable.dxl</string>
 		</dict>
