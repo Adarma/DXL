@@ -11,6 +11,43 @@
     "name": "DXL", 
     "patterns": [
         {
+            "include": "#comments"
+        },
+        {
+            "include": "#pragma-mark"
+        }, 
+        {
+            "include": "#xFlags"
+        }, 
+        {
+            "include": "#include"
+        }, 
+        {
+            "include": "#typeDefinition"
+        }, 
+        {
+            "include": "#variableDeclaration"
+        }, 
+        {
+            "include": "#literalBoolean"
+        }, 
+        {
+            "include": "#literalNumeric"
+        }, 
+        {
+            "include": "#literalString"
+        }, 
+        {
+            "include": "#literalCharacter"
+        }, 
+        {
+            "include": "#dotPropertyAccess"
+        }, 
+
+
+
+        
+        {
             "comment": "Error: Dunno how to get it in the build output", 
             "match": "^(?:-?R?-[EF]- DXL: |\\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)", 
             "name": "sublimelinter.outline.illegal.dxl"
@@ -19,9 +56,6 @@
             "comment": "Warning: Dunno how to get it in the build output", 
             "match": "^(?:-?R?-[W]- DXL: |\\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)", 
             "name": "sublimelinter.outline.warning.dxl"
-        },
-        {
-            "include": "#comments"
         },
         {
             "comment": "Flow Control: by do else elseif for if in then while", 
@@ -34,6 +68,11 @@
             "name": "keyword.control.break.dxl"
         }, 
         {
+            "comment": "Reserved Keywords", 
+            "match": "\\b(case|default|enum|switch|union)\\b", 
+            "name": "invalid.illegal.keyword.dxl"
+        }, 
+        {
             "comment": "Fundamental Types", 
             "match": "\\b(bool|char|int|real|string|void)\\b", 
             "name": "storage.type.dxl"
@@ -43,92 +82,18 @@
             "match": "\\b(?:A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\\b", 
             "name": "storage.type.doors.dxl"
         }, 
-        {
-            "comment": "All Caps Custom Type Naming Idiom- MYTYPE", 
-            "match": "\\b([A-Z]+)\\b", 
-            "name": "storage.type.custom.dxl"
-        }, 
-        {
-            "comment": "Type Modifiers", 
-            "match": "\\b(const|static|struct)\\b", 
-            "name": "storage.modifier.dxl"
-        }, 
-        {
-            "comment": "Hungarian Notation Constant Naming Idiom - kConstant", 
-            "match": "\\bk[A-Z]\\w*\\b", 
-            "name": "constant.other.variable.mac-classic.dxl"
-        }, 
-        {
-            "comment": "Hungarian Notation Global Naming Idiom - gVariable", 
-            "match": "\\bg[A-Z]\\w*\\b", 
-            "name": "variable.other.readwrite.global.mac-classic.dxl"
-        }, 
-        {
-            "comment": "Hungarian Notation Variable Naming Idiom - oVariable", 
-            "match": "\\b[bcirsoa][A-Z]\\w*\\b", 
-            "name": "variable.other.readwrite.static.mac-classic.dxl"
-        }, 
+
+
+
+
         {
             "comment": "Logical", 
-            "match": "\\b(and|false|or|true)\\b|null[^\\(]", 
+            "match": "\\b(and|or)\\b]", 
             "name": "constant.language.dxl"
         }, 
-        {
-            "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b", 
-            "name": "constant.numeric.dxl"
-        }, 
-        {
-            "begin": "\"", 
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.string.begin.dxl"
-                }
-            }, 
-            "end": "\"", 
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.string.end.dxl"
-                }
-            }, 
-            "name": "string.quoted.double.dxl", 
-            "patterns": [
-                {
-                    "include": "#string_escaped_char"
-                }, 
-                {
-                    "include": "#string_placeholder"
-                }
-            ]
-        }, 
-        {
-            "begin": "'", 
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.string.begin.dxl"
-                }
-            }, 
-            "end": "'", 
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.string.end.dxl"
-                }
-            }, 
-            "name": "string.quoted.single.dxl", 
-            "patterns": [
-                {
-                    "captures": {
-                        "1": {
-                            "name": "constant.character.escape.dxl"
-                        }, 
-                        "2": {
-                            "name": "invalid.illegal.additional-character.dxl"
-                        }
-                    }, 
-                    "comment": "Only a single character", 
-                    "match": "(?<=[^\\\\]')(?:(\\\\(?:[abefnprtv'\"?]|[0-7]{1,3}))|[^\\\\])?([^']*)(?=')"
-                }
-            ]
-        }, 
+
+
+
         {
             "begin": "^\\s*#\\s*(error|print|warn)\\b", 
             "captures": {
@@ -144,63 +109,6 @@
                     "name": "punctuation.separator.continuation.dxl"
                 }
             ]
-        }, 
-        {
-            "begin": "^\\s*#\\s*(include)\\b\\s+", 
-            "captures": {
-                "1": {
-                    "name": "keyword.control.import.include.dxl"
-                }
-            }, 
-            "end": "(?=(?://|/\\*))|$", 
-            "name": "meta.preprocessor.include.dxl", 
-            "patterns": [
-                {
-                    "match": "(?>\\\\\\s*\\n)", 
-                    "name": "punctuation.separator.continuation.dxl"
-                }, 
-                {
-                    "begin": "\"", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.string.begin.dxl"
-                        }
-                    }, 
-                    "end": "\"", 
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.string.end.dxl"
-                        }
-                    }, 
-                    "name": "string.quoted.double.include.dxl", 
-                    "patterns": [
-                        {
-                            "include": "#string_escaped_char"
-                        }
-                    ]
-                }, 
-                {
-                    "begin": "<", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.string.begin.dxl"
-                        }
-                    }, 
-                    "end": ">", 
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.string.end.dxl"
-                        }
-                    }, 
-                    "name": "string.quoted.other.lt-gt.include.dxl"
-                }
-            ]
-        }, 
-        {
-            "include": "#pragma-mark"
-        }, 
-        {
-            "include": "#xFlags"
         }, 
         {
             "include": "#block"
@@ -238,10 +146,253 @@
         }
     ], 
     "repository": {
-        "access": {
-            "match": "\\.[a-zA-Z_][a-zA-Z_0-9]*\\b(?!\\s*\\()", 
-            "name": "variable.other.dot-access.dxl"
+        "comments": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "meta.toc-list.banner.block.dxl"
+                        }
+                    }, 
+                    "match": "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?", 
+                    "name": "comment.block.dxl"
+                }, 
+                {
+                    "begin": "/\\*", 
+                    "captures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.dxl"
+                        }
+                    }, 
+                    "end": "\\*/", 
+                    "name": "comment.block.dxl"
+                }, 
+                {
+                    "match": "\\*/.*\\n", 
+                    "name": "invalid.illegal.stray-comment-end.dxl"
+                }, 
+                {
+                    "captures": {
+                        "1": {
+                            "name": "meta.toc-list.banner.line.dxl"
+                        }
+                    }, 
+                    "match": "^// =(\\s*.*?)\\s*=\\s*$\\n?", 
+                    "name": "comment.line.banner.c++"
+                }, 
+                {
+                    "begin": "//", 
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.dxl"
+                        }
+                    }, 
+                    "end": "$\\n?", 
+                    "name": "comment.line.double-slash.dxl", 
+                    "patterns": [
+                        {
+                            "match": "(?>\\\\\\s*\\n)", 
+                            "name": "punctuation.separator.continuation.dxl"
+                        }
+                    ]
+                }
+            ]
         }, 
+        "pragma-mark": {
+            "captures": {
+                "1": {
+                    "name": "meta.preprocessor.dxl"
+                }, 
+                "2": {
+                    "name": "keyword.control.import.pragma.dxl"
+                }, 
+                "3": {
+                    "name": "keyword.control.import.pragma-mark.dxl"
+                }, 
+                "4": {
+                    "name": "invalid.illegal.pragma-mark.dxl"
+                }
+            }, 
+            "match": "(?:^|(?<=[;\\{]))\\s*((pragma)\\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\\s*,)", 
+            "name": "meta.section"
+        }, 
+        "xFlags": {
+            "captures": {
+                "1": {
+                    "name": "meta.preprocessor.dxl"
+                }, 
+                "2": {
+                    "name": "keyword.control.import.xflags.dxl"
+                }, 
+                "3": {
+                    "name": "keyword.control.import.xflags-mark.dxl"
+                }, 
+                "4": {
+                    "name": "invalid.illegal.xflags-mark.dxl"
+                }
+            }, 
+            "match": "(?:^|(?<=[;\\{]))\\s*((XFLAGS_)\\s*[=&|]=\\s*~?(?:(AutoDeclare_)|(.*))\\s*$)", 
+            "name": "meta.section"
+        }, 
+        "include": {
+            "begin": "(?:^|(?<=[;\\{]))\\s*(#\\s*include)\\b\\s+", 
+            "captures": {
+                "1": {
+                    "name": "keyword.control.import.include.dxl"
+                }
+            }, 
+            "end": "(?=(?:;|//|/\\*))|$", 
+            "name": "meta.preprocessor.include.dxl", 
+            "patterns": [
+                {
+                    "begin": "\"", 
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.dxl"
+                        }
+                    }, 
+                    "end": "\"", 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.dxl"
+                        }
+                    }, 
+                    "name": "string.quoted.double.include.dxl", 
+                    "patterns": [
+                        {
+                            "include": "#string_escaped_char"
+                        }
+                    ]
+                }, 
+                {
+                    "begin": "<", 
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.dxl"
+                        }
+                    }, 
+                    "end": ">", 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.dxl"
+                        }
+                    }, 
+                    "name": "string.quoted.angle.include.dxl"
+                }
+            ]
+        }, 
+        "typeDefinition": {
+            "match": "(?:^|(?<=[;\\{]))\\s*\\b(struct)\\b\\s*\\b([a-zA-Z_][a-zA-Z_0-9]*\\b\\s*\\{\\s*\\})", 
+            "name": "definition.type.custom.dxl",
+            "captures": {
+                "1": {
+                    "name": "storage.modifier.dxl"
+                }, 
+                "2": {
+                    "name": "storage.type.custom.dxl"
+                }
+            }
+        }, 
+        "variableDeclaration": {
+            "comment": "Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef", 
+            "match": "(?:^|(?<=[;\\{]))\\s*\\b(const|static)?\\b\\s*\\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+\\b([a-zA-Z_][a-zA-Z_0-9]*)\\b\\s*(?!\\()", 
+            "captures": {
+                "1": {
+                    "name": "storage.modifier.vd.dxl"
+                }, 
+                "2": {
+                    "name": "storage.type.vd.dxl"
+                }, 
+                "3": {
+                    "name": "storage.type.doors.vd.dxl"
+                }, 
+                "4": {
+                    "name": "storage.type.custom.vd.dxl"
+                }, 
+                "5": {
+                    "name": "variable.other.variable.vd.dxl"
+                }
+            }, 
+            "name": "declaration.variable.dxl"
+        },
+
+
+        "literalBoolean": {
+            "comment": "Logical", 
+            "match": "\\b(false|true|on|off)\\b|null(?!\\s*\\(\\s*\\S.*\\))", 
+            "name": "constant.language.dxl"
+        }, 
+
+        "literalNumeric": {
+            "match": "[-]?(0[xX][0-9a-fA-F]+)|([0-9]+\\.?[0-9]*([eE][-]?[0-9]+)?)", 
+            "name": "constant.numeric.dxl"
+        }, 
+        "literalCharacter": {
+            "begin": "'", 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dxl"
+                }
+            }, 
+            "end": "'", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dxl"
+                }
+            }, 
+            "name": "string.quoted.single.lc.dxl", 
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "constant.character.escape.dxl"
+                        }, 
+                        "2": {
+                            "name": "invalid.illegal.additional-character.dxl"
+                        }
+                    }, 
+                    "comment": "Only a single character", 
+                    "match": "(?<!\\\\')(?<=')(?:(\\\\(?:[bfnrtv\\\\'\"]|[0-7]{1,3}))|[^\\\\])?([^']*)(?=')"
+                }
+            ]
+        }, 
+        "literalString": {
+            "begin": "\"", 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.dxl"
+                }
+            }, 
+            "end": "\"", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.dxl"
+                }
+            }, 
+            "name": "string.quoted.double.dxl", 
+            "patterns": [
+                {
+                    "include": "#string_escaped_char"
+                }, 
+                {
+                    "include": "#string_placeholder"
+                }
+            ]
+        }, 
+
+
+        "dotPropertyAccess": {
+            "match": "(?<=[a-zA-Z_0-9])\\.[a-zA-Z_][a-zA-Z_0-9]*(?!\\()", 
+            "name": "variable.other.dot-access.dpa.dxl"
+        }, 
+
+
+
+
+
+
+
+
         "block": {
             "begin": "\\{", 
             "end": "\\}", 
@@ -303,58 +454,6 @@
                 }
             ]
         }, 
-        "comments": {
-            "patterns": [
-                {
-                    "captures": {
-                        "1": {
-                            "name": "meta.toc-list.banner.block.dxl"
-                        }
-                    }, 
-                    "match": "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?", 
-                    "name": "comment.block.dxl"
-                }, 
-                {
-                    "begin": "/\\*", 
-                    "captures": {
-                        "0": {
-                            "name": "punctuation.definition.comment.dxl"
-                        }
-                    }, 
-                    "end": "\\*/", 
-                    "name": "comment.block.dxl"
-                }, 
-                {
-                    "match": "\\*/.*\\n", 
-                    "name": "invalid.illegal.stray-comment-end.dxl"
-                }, 
-                {
-                    "captures": {
-                        "1": {
-                            "name": "meta.toc-list.banner.line.dxl"
-                        }
-                    }, 
-                    "match": "^// =(\\s*.*?)\\s*=\\s*$\\n?", 
-                    "name": "comment.line.banner.c++"
-                }, 
-                {
-                    "begin": "//", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.comment.dxl"
-                        }
-                    }, 
-                    "end": "$\\n?", 
-                    "name": "comment.line.double-slash.dxl", 
-                    "patterns": [
-                        {
-                            "match": "(?>\\\\\\s*\\n)", 
-                            "name": "punctuation.separator.continuation.dxl"
-                        }
-                    ]
-                }
-            ]
-        }, 
         "parens": {
             "begin": "\\(", 
             "end": "\\)", 
@@ -365,28 +464,10 @@
                 }
             ]
         }, 
-        "pragma-mark": {
-            "captures": {
-                "1": {
-                    "name": "meta.preprocessor.dxl"
-                }, 
-                "2": {
-                    "name": "keyword.control.import.pragma.dxl"
-                }, 
-                "3": {
-                    "name": "keyword.control.import.pragma-mark.dxl"
-                }, 
-                "4": {
-                    "name": "invalid.illegal.pragma-mark.dxl"
-                }
-            }, 
-            "match": "^\\s*((pragma)\\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\\s*,)", 
-            "name": "meta.section"
-        }, 
         "string_escaped_char": {
             "patterns": [
                 {
-                    "match": "\\\\(\\\\|[abefnprtv'\"?]|[0-7]{1,3})", 
+                    "match": "\\\\([bfnrtv\\\\'\"]|[0-7]{1,3})", 
                     "name": "constant.character.escape.dxl"
                 }, 
                 {
@@ -406,24 +487,6 @@
                     "name": "invalid.illegal.placeholder.dxl"
                 }
             ]
-        }, 
-        "xFlags": {
-            "captures": {
-                "1": {
-                    "name": "meta.preprocessor.dxl"
-                }, 
-                "2": {
-                    "name": "keyword.control.import.xflags.dxl"
-                }, 
-                "3": {
-                    "name": "keyword.control.import.xflags-mark.dxl"
-                }, 
-                "4": {
-                    "name": "invalid.illegal.xflags-mark.dxl"
-                }
-            }, 
-            "match": "^\\s*((XFLAGS_)\\s*[=&|]=\\s*~?(?:(AutoDeclare_)|(.*))\\s*$)", 
-            "name": "meta.section"
         }
     }, 
     "scopeName": "source.dxl", 

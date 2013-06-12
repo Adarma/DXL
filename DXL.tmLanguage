@@ -22,6 +22,50 @@
 	<key>patterns</key>
 	<array>
 		<dict>
+			<key>include</key>
+			<string>#comments</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#pragma-mark</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#xFlags</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#include</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#typeDefinition</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#variableDeclaration</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalBoolean</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalNumeric</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalString</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#literalCharacter</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#dotPropertyAccess</string>
+		</dict>
+		<dict>
 			<key>comment</key>
 			<string>Error: Dunno how to get it in the build output</string>
 			<key>match</key>
@@ -36,10 +80,6 @@
 			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
 			<key>name</key>
 			<string>sublimelinter.outline.warning.dxl</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#comments</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -59,6 +99,14 @@
 		</dict>
 		<dict>
 			<key>comment</key>
+			<string>Reserved Keywords</string>
+			<key>match</key>
+			<string>\b(case|default|enum|switch|union)\b</string>
+			<key>name</key>
+			<string>invalid.illegal.keyword.dxl</string>
+		</dict>
+		<dict>
+			<key>comment</key>
 			<string>Fundamental Types</string>
 			<key>match</key>
 			<string>\b(bool|char|int|real|string|void)\b</string>
@@ -75,138 +123,11 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>All Caps Custom Type Naming Idiom- MYTYPE</string>
-			<key>match</key>
-			<string>\b([A-Z]+)\b</string>
-			<key>name</key>
-			<string>storage.type.custom.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Type Modifiers</string>
-			<key>match</key>
-			<string>\b(const|static|struct)\b</string>
-			<key>name</key>
-			<string>storage.modifier.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Hungarian Notation Constant Naming Idiom - kConstant</string>
-			<key>match</key>
-			<string>\bk[A-Z]\w*\b</string>
-			<key>name</key>
-			<string>constant.other.variable.mac-classic.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Hungarian Notation Global Naming Idiom - gVariable</string>
-			<key>match</key>
-			<string>\bg[A-Z]\w*\b</string>
-			<key>name</key>
-			<string>variable.other.readwrite.global.mac-classic.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Hungarian Notation Variable Naming Idiom - oVariable</string>
-			<key>match</key>
-			<string>\b[bcirsoa][A-Z]\w*\b</string>
-			<key>name</key>
-			<string>variable.other.readwrite.static.mac-classic.dxl</string>
-		</dict>
-		<dict>
-			<key>comment</key>
 			<string>Logical</string>
 			<key>match</key>
-			<string>\b(and|false|or|true)\b|null[^\(]</string>
+			<string>\b(and|or)\b]</string>
 			<key>name</key>
 			<string>constant.language.dxl</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)\b</string>
-			<key>name</key>
-			<string>constant.numeric.dxl</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>"</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.dxl</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>"</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.dxl</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.quoted.double.dxl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#string_escaped_char</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string_placeholder</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>'</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.dxl</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>'</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.dxl</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.quoted.single.dxl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>constant.character.escape.dxl</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.additional-character.dxl</string>
-						</dict>
-					</dict>
-					<key>comment</key>
-					<string>Only a single character</string>
-					<key>match</key>
-					<string>(?&lt;=[^\\]')(?:(\\(?:[abefnprtv'"?]|[0-7]{1,3}))|[^\\])?([^']*)(?=')</string>
-				</dict>
-			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -232,94 +153,6 @@
 					<string>punctuation.separator.continuation.dxl</string>
 				</dict>
 			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>^\s*#\s*(include)\b\s+</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.control.import.include.dxl</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>(?=(?://|/\*))|$</string>
-			<key>name</key>
-			<string>meta.preprocessor.include.dxl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>(?&gt;\\\s*\n)</string>
-					<key>name</key>
-					<string>punctuation.separator.continuation.dxl</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>"</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.string.begin.dxl</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>"</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.string.end.dxl</string>
-						</dict>
-					</dict>
-					<key>name</key>
-					<string>string.quoted.double.include.dxl</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#string_escaped_char</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>&lt;</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.string.begin.dxl</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>&gt;</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.string.end.dxl</string>
-						</dict>
-					</dict>
-					<key>name</key>
-					<string>string.quoted.other.lt-gt.include.dxl</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#pragma-mark</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#xFlags</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -411,13 +244,6 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>access</key>
-		<dict>
-			<key>match</key>
-			<string>\.[a-zA-Z_][a-zA-Z_0-9]*\b(?!\s*\()</string>
-			<key>name</key>
-			<string>variable.other.dot-access.dxl</string>
-		</dict>
 		<key>block</key>
 		<dict>
 			<key>begin</key>
@@ -607,6 +433,187 @@
 				</dict>
 			</array>
 		</dict>
+		<key>dotPropertyAccess</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;=[a-zA-Z_0-9])\.[a-zA-Z_][a-zA-Z_0-9]*(?!\()</string>
+			<key>name</key>
+			<string>variable.other.dot-access.dpa.dxl</string>
+		</dict>
+		<key>include</key>
+		<dict>
+			<key>begin</key>
+			<string>(?:^|(?&lt;=[;\{]))\s*(#\s*include)\b\s+</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.import.include.dxl</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=(?:;|//|/\*))|$</string>
+			<key>name</key>
+			<string>meta.preprocessor.include.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>"</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.dxl</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>"</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.dxl</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.double.include.dxl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_escaped_char</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>&lt;</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.dxl</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>&gt;</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.dxl</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.angle.include.dxl</string>
+				</dict>
+			</array>
+		</dict>
+		<key>literalBoolean</key>
+		<dict>
+			<key>comment</key>
+			<string>Logical</string>
+			<key>match</key>
+			<string>\b(false|true|on|off)\b|null(?!\s*\(\s*\S.*\))</string>
+			<key>name</key>
+			<string>constant.language.dxl</string>
+		</dict>
+		<key>literalCharacter</key>
+		<dict>
+			<key>begin</key>
+			<string>'</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.dxl</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>'</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.dxl</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.single.lc.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>constant.character.escape.dxl</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.additional-character.dxl</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Only a single character</string>
+					<key>match</key>
+					<string>(?&lt;!\\')(?&lt;=')(?:(\\(?:[bfnrtv\\'"]|[0-7]{1,3}))|[^\\])?([^']*)(?=')</string>
+				</dict>
+			</array>
+		</dict>
+		<key>literalNumeric</key>
+		<dict>
+			<key>match</key>
+			<string>[-]?(0[xX][0-9a-fA-F]+)|([0-9]+\.?[0-9]*([eE][-]?[0-9]+)?)</string>
+			<key>name</key>
+			<string>constant.numeric.dxl</string>
+		</dict>
+		<key>literalString</key>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.dxl</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>"</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.dxl</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.double.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string_escaped_char</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string_placeholder</string>
+				</dict>
+			</array>
+		</dict>
 		<key>parens</key>
 		<dict>
 			<key>begin</key>
@@ -649,7 +656,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*((pragma)\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\s*,)</string>
+			<string>(?:^|(?&lt;=[;\{]))\s*((pragma)\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\s*,)</string>
 			<key>name</key>
 			<string>meta.section</string>
 		</dict>
@@ -659,7 +666,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\\(\\|[abefnprtv'"?]|[0-7]{1,3})</string>
+					<string>\\([bfnrtv\\'"]|[0-7]{1,3})</string>
 					<key>name</key>
 					<string>constant.character.escape.dxl</string>
 				</dict>
@@ -695,6 +702,63 @@
 				</dict>
 			</array>
 		</dict>
+		<key>typeDefinition</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.custom.dxl</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?:^|(?&lt;=[;\{]))\s*\b(struct)\b\s*\b([a-zA-Z_][a-zA-Z_0-9]*\b\s*\{\s*\})</string>
+			<key>name</key>
+			<string>definition.type.custom.dxl</string>
+		</dict>
+		<key>variableDeclaration</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.vd.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.vd.dxl</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.doors.vd.dxl</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.custom.vd.dxl</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>variable.other.variable.vd.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef</string>
+			<key>match</key>
+			<string>(?:^|(?&lt;=[;\{]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+\b([a-zA-Z_][a-zA-Z_0-9]*)\b\s*(?!\()</string>
+			<key>name</key>
+			<string>declaration.variable.dxl</string>
+		</dict>
 		<key>xFlags</key>
 		<dict>
 			<key>captures</key>
@@ -721,7 +785,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*((XFLAGS_)\s*[=&amp;|]=\s*~?(?:(AutoDeclare_)|(.*))\s*$)</string>
+			<string>(?:^|(?&lt;=[;\{]))\s*((XFLAGS_)\s*[=&amp;|]=\s*~?(?:(AutoDeclare_)|(.*))\s*$)</string>
 			<key>name</key>
 			<string>meta.section</string>
 		</dict>
