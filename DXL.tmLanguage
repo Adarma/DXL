@@ -351,7 +351,7 @@
 		<key>functionDeclaration</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:^|(?&lt;=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\()</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\()</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -399,7 +399,7 @@
 		<key>functionForwardDeclaration</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:^|(?&lt;=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*&amp;?(\s*[,\)]|\s+[a-zA-Z_][a-zA-Z_0-9]*\s*\())</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*&amp;?(\s*[,\)]|\s+[a-zA-Z_][a-zA-Z_0-9]*\s*\())</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -443,7 +443,7 @@
 		<key>include</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:^|(?&lt;=[;\{]))\s*(#\s*include)\b\s+</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*(#\s*include)\b\s+</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -679,7 +679,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:^|(?&lt;=[;\{]))\s*((pragma)\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\s*,)</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*((pragma)\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\s*,)</string>
 			<key>name</key>
 			<string>meta.section</string>
 		</dict>
@@ -775,7 +775,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:^|(?&lt;=[;\{]))\s*\b(struct)\b\s*\b([a-zA-Z_][a-zA-Z_0-9]*\b\s*\{\s*\})</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(struct)\b\s*\b([a-zA-Z_][a-zA-Z_0-9]*\b\s*\{\s*\})</string>
 			<key>name</key>
 			<string>definition.type.custom.dxl</string>
 		</dict>
@@ -835,7 +835,7 @@
 			<key>comment</key>
 			<string>Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef</string>
 			<key>match</key>
-			<string>(?:^|(?&lt;=[;\{]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+\b(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\b\s*(?!\()(?=[;=\n]|//|/\*)</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+\b(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\b\s*(?!\()(?=[;=\n]|//|/\*)</string>
 			<key>name</key>
 			<string>declaration.variable.dxl</string>
 		</dict>
@@ -865,7 +865,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:^|(?&lt;=[;\{]))\s*((XFLAGS_)\s*[=&amp;|]=\s*~?(?:(AutoDeclare_)|(.*))\s*$)</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*((XFLAGS_)\s*[=&amp;|]=\s*~?(?:(AutoDeclare_)|(.*))\s*$)</string>
 			<key>name</key>
 			<string>meta.section</string>
 		</dict>
