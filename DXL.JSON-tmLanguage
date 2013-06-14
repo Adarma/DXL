@@ -165,7 +165,7 @@
                 },
                 {
                     "include": "#block"
-                }, 
+                } 
             ]
         }, 
         "block_innards": {
