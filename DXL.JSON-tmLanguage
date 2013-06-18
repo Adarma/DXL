@@ -694,7 +694,7 @@
         }, 
         "LiteralRegEx": {
             "name": "string.quoted.double.regex.dxl",
-            "begin": "((?<=regexp2\\()|(?<=Regexp =))\\s*\"",
+            "begin": "((?<=matches\\()|(?<=regexp2\\()|(?<=Regexp =))\\s*\"",
             "end": "\"",
             "patterns": [
                 {

@@ -51,7 +51,7 @@
 		<key>LiteralRegEx</key>
 		<dict>
 			<key>begin</key>
-			<string>((?&lt;=regexp2\()|(?&lt;=Regexp =))\s*"</string>
+			<string>((?&lt;=matches\()|(?&lt;=regexp2\()|(?&lt;=Regexp =))\s*"</string>
 			<key>end</key>
 			<string>"</string>
 			<key>name</key>
