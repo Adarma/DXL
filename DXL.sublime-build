@@ -7,7 +7,8 @@
     //"working_dir": "/projects/"
     //"working_dir": "${file_path}",
     //"encoding": "cp850"
-    // Set windows command line to UTF8 with 'chcp 65001'
+    // Set windows command line to UTF8 with 'chcp 65001 > nul'
+    // Set it in: HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun
     "encoding": "UTF-8",
     "variants": [
         { "cmd": ["C:\\Documents\\AutoIt\\Run Doors Include - ST2.exe", "$file", "1"],
