@@ -30,16 +30,6 @@
         }
     ], 
     "repository": {
-        "LiteralRegEx": {
-            "begin": "((?<=matches\\()|(?<=regexp2\\()|(?<=Regexp =))\\s*\"", 
-            "end": "\"", 
-            "name": "string.quoted.double.regex.dxl", 
-            "patterns": [
-                {
-                    "include": "source.escapedregexp"
-                }
-            ]
-        }, 
         "argumentDeclaration": {
             "begin": "\\(", 
             "end": "\\)", 
@@ -58,7 +48,23 @@
                     "include": "#typeCustom"
                 }, 
                 {
-                    "match": "\\s+&?[A-Za-z_][A-Za-z0-9_]*\\s*(?=[,\\)])", 
+                    "match": "\\s+&", 
+                    "name": "variable.byref.dxl"
+                },
+                {
+                    "match": "&", 
+                    "name": "invalid.illegal.byref.dxl"
+                },
+                {
+                    "match": "(?<=&)\\s+", 
+                    "name": "invalid.illegal.byref.dxl"
+                },
+                {
+                    "match": "[A-Za-z_][A-Za-z0-9_]*", 
+                    "name": "variable.parameter.dxl"
+                },
+                {
+                    "match": "\\s*,\\s*", 
                     "name": "meta.argument.separator.dxl"
                 }
             ]
@@ -79,14 +85,22 @@
                 }, 
                 {
                     "include": "#typeCustom"
-                }, 
+                },  
                 {
-                    "match": "&?\\s*,\\s*", 
+                    "match": "\\s+&", 
+                    "name": "invalid.illegal.byref.dxl"
+                },
+                {
+                    "match": "&", 
+                    "name": "variable.byref.dxl"
+                },
+                {
+                    "match": "\\s*,\\s*", 
                     "name": "meta.argument.separator.dxl"
                 }
             ]
         }, 
-        "block": {
+        "blockScope": {
             "begin": "\\{", 
             "end": "\\}", 
             "name": "meta.block.dxl", 
@@ -102,9 +116,6 @@
                     "include": "#comments"
                 }, 
                 {
-                    "include": "#LiteralRegEx"
-                }, 
-                {
                     "include": "#literalBoolean"
                 }, 
                 {
@@ -112,6 +123,9 @@
                 }, 
                 {
                     "include": "#literalCharacter"
+                }, 
+                {
+                    "include": "#literalRegEx"
                 }, 
                 {
                     "include": "#literalString"
@@ -171,7 +185,7 @@
                     "include": "#propertyAccessPtr"
                 }, 
                 {
-                    "include": "#block"
+                    "include": "#blockScope"
                 }
             ]
         }, 
@@ -406,7 +420,7 @@
         "constantCurrent": {
             "comment": "attrDXLName obj", 
             "match": "\\b(?:attrDXLName|obj|)\\b", 
-            "name": "constant.perm.permission.dxl"
+            "name": "variable.language.dxl"
         }, 
         "constantDatabase": {
             "comment": "database dbExplorer", 
@@ -565,13 +579,13 @@
             "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\()", 
             "beginCaptures": {
                 "1": {
-                    "name": "storage.type.fundimental.vd.dxl"
+                    "name": "storage.type.fundimental.dxl"
                 }, 
                 "2": {
-                    "name": "storage.type.doors.vd.dxl"
+                    "name": "support.type.doors.dxl"
                 }, 
                 "3": {
-                    "name": "storage.type.custom.vd.dxl"
+                    "name": "storage.type.custom.dxl"
                 }, 
                 "4": {
                     "name": "invalid.illegal.keyword.dxl"
@@ -587,21 +601,21 @@
                     "include": "#argumentDeclaration"
                 }, 
                 {
-                    "include": "#block"
+                    "include": "#blockScope"
                 }
             ]
         }, 
         "functionForwardDeclaration": {
-            "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*&?(\\s*[,\\)]|\\s+[a-zA-Z_][a-zA-Z_0-9]*\\s*\\())", 
+            "begin": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*&?(\\s*[,\\)]|\\s+[a-zA-Z_][a-zA-Z_0-9]*\\s*\\())", 
             "beginCaptures": {
                 "1": {
-                    "name": "storage.type.fundimental.vd.dxl"
+                    "name": "storage.type.fundimental.dxl"
                 }, 
                 "2": {
-                    "name": "storage.type.doors.vd.dxl"
+                    "name": "support.type.doors.dxl"
                 }, 
                 "3": {
-                    "name": "storage.type.custom.vd.dxl"
+                    "name": "storage.type.custom.dxl"
                 }, 
                 "4": {
                     "name": "invalid.illegal.keyword.dxl"
@@ -701,6 +715,16 @@
         "literalNumeric": {
             "match": "\\b([-]?(0[xX][0-9a-fA-F]+)|([0-9]+\\.?[0-9]*([eE][-]?[0-9]+)?))\\b", 
             "name": "constant.numeric.dxl"
+        }, 
+        "literalRegEx": {
+            "begin": "((?<=matches\\()|(?<=regexp2\\()|(?<=Regexp =))\\s*\"", 
+            "end": "\"", 
+            "name": "string.regexp.dxl", 
+            "patterns": [
+                {
+                    "include": "source.escapedregexp"
+                }
+            ]
         }, 
         "literalString": {
             "begin": "\"", 
@@ -885,7 +909,7 @@
         "typeDoors": {
             "comment": "Builtin DOORS Types: _k _x _y AccessRec ArchiveItem Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef", 
             "match": "\\b(?:A(?:ccessRec|r(?:chiveItem|ray)|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\\b", 
-            "name": "storage.type.doors.dxl"
+            "name": "support.type.doors.dxl"
         }, 
         "typeFundamental": {
             "comment": "Fundamental Types", 
@@ -895,22 +919,22 @@
         "variableDeclaration": {
             "captures": {
                 "1": {
-                    "name": "storage.modifier.vd.dxl"
+                    "name": "storage.modifier.dxl"
                 }, 
                 "2": {
-                    "name": "storage.type.fundimental.vd.dxl"
+                    "name": "storage.type.fundimental.dxl"
                 }, 
                 "3": {
-                    "name": "storage.type.doors.vd.dxl"
+                    "name": "support.type.doors.dxl"
                 }, 
                 "4": {
-                    "name": "storage.type.custom.vd.dxl"
+                    "name": "storage.type.custom.dxl"
                 }, 
                 "5": {
                     "name": "invalid.illegal.keyword.dxl"
                 }, 
                 "6": {
-                    "name": "variable.other.variable.vd.dxl"
+                    "name": "variable.dxl"
                 }
             }, 
             "comment": "Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef", 
