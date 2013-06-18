@@ -238,7 +238,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#propertyPerm</string>
+					<string>#property</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -504,7 +504,7 @@
 			<key>match</key>
 			<string>\b(?:all|no)Baselines\b</string>
 			<key>name</key>
-			<string>constant.other.archive.dxl</string>
+			<string>constant.perm.archive.dxl</string>
 		</dict>
 		<key>constantArchiveType</key>
 		<dict>
@@ -513,7 +513,7 @@
 			<key>match</key>
 			<string>\bzip(?:Module5?|Not|Pr(?:e(?:3(?:Module|Project)|5(?:Module|Project))|oject5?)|UserList5?)Archive\b</string>
 			<key>name</key>
-			<string>constant.other.archivetype.dxl</string>
+			<string>constant.perm.archivetype.dxl</string>
 		</dict>
 		<key>constantAttribute</key>
 		<dict>
@@ -522,7 +522,7 @@
 			<key>match</key>
 			<string>\b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\b</string>
 			<key>name</key>
-			<string>constant.other.attribute.dxl</string>
+			<string>constant.perm.attribute.dxl</string>
 		</dict>
 		<key>constantCharacterSet</key>
 		<dict>
@@ -531,7 +531,7 @@
 			<key>match</key>
 			<string>\bcharset(?:Ansi|EastEurope|Greek|Hebrew|Russian|Symbol|Turkish)\b</string>
 			<key>name</key>
-			<string>constant.other.characterset.dxl</string>
+			<string>constant.perm.characterset.dxl</string>
 		</dict>
 		<key>constantClipboardFormat</key>
 		<dict>
@@ -540,7 +540,7 @@
 			<key>match</key>
 			<string>\bCF_(?:BITMAP|DIB|HDROP|M(?:AX|ETAFILEPICT)|OEMTEXT)\b</string>
 			<key>name</key>
-			<string>constant.other.clipboardformat.dxl</string>
+			<string>constant.perm.clipboardformat.dxl</string>
 		</dict>
 		<key>constantClipboardType</key>
 		<dict>
@@ -549,7 +549,7 @@
 			<key>match</key>
 			<string>\bTYMED_(?:ENHMF|GDI|HGLOBAL)\b</string>
 			<key>name</key>
-			<string>constant.other.clipboardtype.dxl</string>
+			<string>constant.perm.clipboardtype.dxl</string>
 		</dict>
 		<key>constantCodePage</key>
 		<dict>
@@ -558,7 +558,7 @@
 			<key>match</key>
 			<string>\bCP_(?:CH[ST]|JAP|KOR|LATIN1|U(?:NICODE|TF(?:16_[BL]E|8)))\b</string>
 			<key>name</key>
-			<string>constant.other.codepage.dxl</string>
+			<string>constant.perm.codepage.dxl</string>
 		</dict>
 		<key>constantColourActual</key>
 		<dict>
@@ -567,7 +567,7 @@
 			<key>match</key>
 			<string>\bcolor(?:B(?:l(?:ack|ue)|rown)|Cyan|DarkTurquoise|Gre(?:en|y(?:77|82)|y)|LightBlue|M(?:a(?:genta|roon)|ediumLightBlue)|O(?:ptionsItem|range)|Pink|Red(?:Grey)?|White|Yellow)\b</string>
 			<key>name</key>
-			<string>constant.other.colour.dxl</string>
+			<string>constant.perm.colour.dxl</string>
 		</dict>
 		<key>constantColourLogical</key>
 		<dict>
@@ -576,7 +576,7 @@
 			<key>match</key>
 			<string>\blogical(?:0IndicatorColor|1(?:00|1)IndicatorColor|22IndicatorColor|33IndicatorColor|44IndicatorColor|55IndicatorColor|66IndicatorColor|77IndicatorColor|88IndicatorColor|Current(?:BackgroundColor|CellBackgroundColor|ObjectOutline)|D(?:ataTex|e(?:faul|letedTex))tColor|Gr(?:aphics(?:B(?:ackground|ox(?:Edge)?)|Current|ElideBox|Link|S(?:elected|hade)|Text)Color|idLines)|High(?:Indicator|lightURL)Color|InPlace(?:Background|Text)Color|L(?:ink(?:CurrentBackground|DataText|PageBackground|T(?:ext|itle)Background|s(?:In|Out)Indicator)|owIndicator)Color|MediumIndicatorColor|P(?:a(?:geBackground(?:Filter(?:Sort)?|Sort)?|rtition(?:In(?:Read|Write)|Out)Text)|rintPreview(?:Background|Page|Shade|Text))Color|ReadOnlyText(?:Background)?Color|SelectedTextColor|T(?:extBackground|itle(?:Background|Text))Color|U(?:nlockedTextBackground|ser[12345])Color)\b</string>
 			<key>name</key>
-			<string>constant.other.colour.dxl</string>
+			<string>constant.perm.colour.dxl</string>
 		</dict>
 		<key>constantColourReal</key>
 		<dict>
@@ -585,7 +585,7 @@
 			<key>match</key>
 			<string>\brealColor_(?:B(?:l(?:ack|ue)|rown)|Cyan|Dark_Turquoise|Firebrick|Gre(?:en|y(?:11|22|33|44|55|66|77|82))|Li(?:ght_Blue2?|me_Green)|Ma(?:genta|roon)|N(?:avy|ewGrey[1234])|Orange|P(?:eru|ink|urple)|R(?:ed(?:_Grey)?|osy_Brown)|S(?:ea_Green|plashScreenBlue)|Thistle|White|Yellow)\b</string>
 			<key>name</key>
-			<string>constant.other.colour.dxl</string>
+			<string>constant.perm.colour.dxl</string>
 		</dict>
 		<key>constantConfig</key>
 		<dict>
@@ -594,7 +594,7 @@
 			<key>match</key>
 			<string>\bconf(?:Sys(?:User|tem)|Temp|User)\b</string>
 			<key>name</key>
-			<string>constant.other.config.dxl</string>
+			<string>constant.perm.config.dxl</string>
 		</dict>
 		<key>constantCurrent</key>
 		<dict>
@@ -603,7 +603,7 @@
 			<key>match</key>
 			<string>\b(?:attrDXLName|obj|)\b</string>
 			<key>name</key>
-			<string>constant.other.permission.dxl</string>
+			<string>constant.perm.permission.dxl</string>
 		</dict>
 		<key>constantDatabase</key>
 		<dict>
@@ -612,7 +612,7 @@
 			<key>match</key>
 			<string>\bd(?:atabase|bExplorer)\b</string>
 			<key>name</key>
-			<string>constant.other.database.dxl</string>
+			<string>constant.perm.database.dxl</string>
 		</dict>
 		<key>constantExternal</key>
 		<dict>
@@ -621,7 +621,7 @@
 			<key>match</key>
 			<string>\b(?:inward|none|o(?:penAsURL|utward))\b</string>
 			<key>name</key>
-			<string>constant.other.external.dxl</string>
+			<string>constant.perm.external.dxl</string>
 		</dict>
 		<key>constantFont</key>
 		<dict>
@@ -630,7 +630,7 @@
 			<key>match</key>
 			<string>\b(?:GraphicsFont|HeadingsFont|TextFont|availableFonts)\b</string>
 			<key>name</key>
-			<string>constant.other.font.dxl</string>
+			<string>constant.perm.font.dxl</string>
 		</dict>
 		<key>constantHistory</key>
 		<dict>
@@ -639,7 +639,7 @@
 			<key>match</key>
 			<string>\b(?:acceptModule|baselineModule|c(?:hangeOLE|lip(?:C(?:opy|ut)|Move)Object|opyObject|reate(?:Attr|Link|Module|Object|Type)|utOLE)|delete(?:Attr|Link|Object|Type)|insertOLE|modify(?:Attr|Link|Object|Type)|p(?:a(?:rtitionModule|steOLE)|urgeObject)|re(?:adLocked|joinModule|moveOLE|turnModule)|un(?:DeleteObject|known))\b</string>
 			<key>name</key>
-			<string>constant.other.history.dxl</string>
+			<string>constant.perm.history.dxl</string>
 		</dict>
 		<key>constantIcon</key>
 		<dict>
@@ -648,7 +648,7 @@
 			<key>match</key>
 			<string>\bicon(?:AuthenticatingUser|D(?:atabase|escriptive(?:Cut|Deleted)?)|Fo(?:lder(?:Cut|Deleted|Open(?:Deleted)?)?|rmal(?:Cut|Deleted)?)|Group(?:Disabled)?|Link(?:Cut|Deleted)?|None|Project(?:Cut|Deleted|Open(?:Deleted)?)?|ReadOnly|User(?:Disabled)?)\b</string>
 			<key>name</key>
-			<string>constant.other.icon.dxl</string>
+			<string>constant.perm.icon.dxl</string>
 		</dict>
 		<key>constantInPlace</key>
 		<dict>
@@ -657,7 +657,7 @@
 			<key>match</key>
 			<string>\binPlace(?:Choice|String|Text(?:Change|Filled)?)\b</string>
 			<key>name</key>
-			<string>constant.other.inPlace.dxl</string>
+			<string>constant.perm.inPlace.dxl</string>
 		</dict>
 		<key>constantInfo</key>
 		<dict>
@@ -666,7 +666,7 @@
 			<key>match</key>
 			<string>\binfo(?:Build(?:Date|Number)|S(?:erverVersion|upport(?:Passwor|I)d)|Version)\b</string>
 			<key>name</key>
-			<string>constant.other.info.dxl</string>
+			<string>constant.perm.info.dxl</string>
 		</dict>
 		<key>constantLanguage</key>
 		<dict>
@@ -675,7 +675,7 @@
 			<key>match</key>
 			<string>\b(?:Afrikaans|C(?:atalan|zech)|D(?:anis|utc)h|French|G(?:erman|reek)|Italian|Norwegian(?:Bokmal|Nynorsk)|Portuguese(?:Brazil|Europe)|Russian|S(?:pan|wed)ish|U[KS]English)\b</string>
 			<key>name</key>
-			<string>constant.other.language.dxl</string>
+			<string>constant.perm.language.dxl</string>
 		</dict>
 		<key>constantLink</key>
 		<dict>
@@ -684,7 +684,7 @@
 			<key>match</key>
 			<string>\blinkFilter(?:Both|Incoming|Outgoing)\b</string>
 			<key>name</key>
-			<string>constant.other.link.dxl</string>
+			<string>constant.perm.link.dxl</string>
 		</dict>
 		<key>constantListview</key>
 		<dict>
@@ -693,7 +693,7 @@
 			<key>match</key>
 			<string>\blistViewOption(?:Checkboxes|Multiselect|SortText)\b</string>
 			<key>name</key>
-			<string>constant.other.listview.dxl</string>
+			<string>constant.perm.listview.dxl</string>
 		</dict>
 		<key>constantLocale</key>
 		<dict>
@@ -702,7 +702,7 @@
 			<key>match</key>
 			<string>\b(?:install|support)edLocales\b</string>
 			<key>name</key>
-			<string>constant.other.locale.dxl</string>
+			<string>constant.perm.locale.dxl</string>
 		</dict>
 		<key>constantMapping</key>
 		<dict>
@@ -711,7 +711,7 @@
 			<key>match</key>
 			<string>\bmenu(?:Available(?:Checked)?|Invisible|Unavailable)_\b</string>
 			<key>name</key>
-			<string>constant.other.mapping.dxl</string>
+			<string>constant.perm.mapping.dxl</string>
 		</dict>
 		<key>constantPermission</key>
 		<dict>
@@ -720,7 +720,7 @@
 			<key>match</key>
 			<string>\b(?:c(?:hange|ontrol|reate)|delete|modify|none|read|write)\b</string>
 			<key>name</key>
-			<string>constant.other.permission.dxl</string>
+			<string>constant.perm.permission.dxl</string>
 		</dict>
 		<key>constantPicture</key>
 		<dict>
@@ -729,7 +729,7 @@
 			<key>match</key>
 			<string>\bformat(?:BMP|DIB|EPSF|PNG|UNKNOWN|WMF)\b</string>
 			<key>name</key>
-			<string>constant.other.picture.dxl</string>
+			<string>constant.perm.picture.dxl</string>
 		</dict>
 		<key>constantRun</key>
 		<dict>
@@ -738,7 +738,7 @@
 			<key>match</key>
 			<string>\bsyswaitINFINITE_\b</string>
 			<key>name</key>
-			<string>constant.other.run.dxl</string>
+			<string>constant.perm.run.dxl</string>
 		</dict>
 		<key>constantSeverity</key>
 		<dict>
@@ -747,7 +747,7 @@
 			<key>match</key>
 			<string>\bmsg(?:Error|Info|Query|Warning)\b</string>
 			<key>name</key>
-			<string>constant.other.severity.dxl</string>
+			<string>constant.perm.severity.dxl</string>
 		</dict>
 		<key>constantStyle</key>
 		<dict>
@@ -756,7 +756,7 @@
 			<key>match</key>
 			<string>\bstyle(?:Autoparent|Cente?red|F(?:ixed|loating)|NoBorder|Standard|Themed)\b</string>
 			<key>name</key>
-			<string>constant.other.style.dxl</string>
+			<string>constant.perm.style.dxl</string>
 		</dict>
 		<key>constantTreeview</key>
 		<dict>
@@ -765,7 +765,7 @@
 			<key>match</key>
 			<string>\btreeViewOptionSorted\b</string>
 			<key>name</key>
-			<string>constant.other.treeview.dxl</string>
+			<string>constant.perm.treeview.dxl</string>
 		</dict>
 		<key>constantTriggerEvent</key>
 		<dict>
@@ -774,7 +774,7 @@
 			<key>match</key>
 			<string>\b(?:c(?:los|reat)e|dr(?:ag|op)|edit|modify|open|read|s(?:ave|ync)|write)\b</string>
 			<key>name</key>
-			<string>constant.other.triggerevent.dxl</string>
+			<string>constant.perm.triggerevent.dxl</string>
 		</dict>
 		<key>constantTriggerLevel</key>
 		<dict>
@@ -783,7 +783,7 @@
 			<key>match</key>
 			<string>\b(?:attribute|comment|discussion|module|object|project)\b</string>
 			<key>name</key>
-			<string>constant.other.triggerlevel.dxl</string>
+			<string>constant.perm.triggerlevel.dxl</string>
 		</dict>
 		<key>constantTriggerModifier</key>
 		<dict>
@@ -792,7 +792,7 @@
 			<key>match</key>
 			<string>\bp(?:ost|re)\b</string>
 			<key>name</key>
-			<string>constant.other.triggermodifier.dxl</string>
+			<string>constant.perm.triggermodifier.dxl</string>
 		</dict>
 		<key>constantTriggerStatus</key>
 		<dict>
@@ -801,7 +801,7 @@
 			<key>match</key>
 			<string>\btrig(?:Error|PreCon(?:Fail|Pass)|RunOK)\b</string>
 			<key>name</key>
-			<string>constant.other.triggerstatus.dxl</string>
+			<string>constant.perm.triggerstatus.dxl</string>
 		</dict>
 		<key>constantTriggerTime</key>
 		<dict>
@@ -810,7 +810,7 @@
 			<key>match</key>
 			<string>\b(?:all|descriptive|formal|link)\b</string>
 			<key>name</key>
-			<string>constant.other.triggermodifier.dxl</string>
+			<string>constant.perm.triggermodifier.dxl</string>
 		</dict>
 		<key>constantType</key>
 		<dict>
@@ -819,7 +819,7 @@
 			<key>match</key>
 			<string>\battr(?:Date|Enumeration|Integer|Real|String|Text|Username)\b</string>
 			<key>name</key>
-			<string>constant.other.type.dxl</string>
+			<string>constant.perm.type.dxl</string>
 		</dict>
 		<key>constantUser</key>
 		<dict>
@@ -828,7 +828,7 @@
 			<key>match</key>
 			<string>\b(?:group|user(?:Notify)?)List\b</string>
 			<key>name</key>
-			<string>constant.other.user.dxl</string>
+			<string>constant.perm.user.dxl</string>
 		</dict>
 		<key>constantUserClass</key>
 		<dict>
@@ -837,7 +837,7 @@
 			<key>match</key>
 			<string>\b(?:administrator|custom|databaseManager|projectManager|standard)\b</string>
 			<key>name</key>
-			<string>constant.other.userclass.dxl</string>
+			<string>constant.perm.userclass.dxl</string>
 		</dict>
 		<key>controlFlow</key>
 		<dict>
@@ -871,7 +871,7 @@
 			<key>match</key>
 			<string>\b(error|print|warn)\b</string>
 			<key>name</key>
-			<string>keyword.control.diagnostic.dxl</string>
+			<string>support.function.diagnostic.dxl</string>
 		</dict>
 		<key>functionCallPerm</key>
 		<dict>
@@ -1215,59 +1215,7 @@
 			<key>name</key>
 			<string>meta.section</string>
 		</dict>
-		<key>propertyAccessDot</key>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;=[a-zA-Z_0-9\)])\.[a-zA-Z_][a-zA-Z_0-9]*\b</string>
-			<key>name</key>
-			<string>constant.other.property.dxl</string>
-		</dict>
-		<key>propertyAccessPtr</key>
-		<dict>
-			<key>comment</key>
-			<string>TODO: Literal String</string>
-			<key>match</key>
-			<string>(?&lt;=[a-zA-Z_0-9\)])-&gt;[a-zA-Z_][a-zA-Z_0-9]*\b</string>
-			<key>name</key>
-			<string>variable.other.propertyAccessPtr.dxl</string>
-		</dict>
-		<key>propertyArchive</key>
-		<dict>
-			<key>comment</key>
-			<string>archiveItemDescription archiveItemName archiveItemSelected archiveItemSoftDeleted archiveItemType</string>
-			<key>match</key>
-			<string>(?&lt;=[a-zA-Z_0-9\)])\.archiveItem(?:Description|Name|S(?:elec|oftDele)ted|Type)\b</string>
-			<key>name</key>
-			<string>constant.other.attribute.dxl</string>
-		</dict>
-		<key>propertyAttribute</key>
-		<dict>
-			<key>comment</key>
-			<string>canWrite defval defval description dxl hidden inherit module multi name nobars nochanges nohistory object system type typeName useraccess</string>
-			<key>match</key>
-			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:canWrite|d(?:e(?:fval|scription)|xl)|hidden|inherit|m(?:odule|ulti)|n(?:ame|o(?:bars|changes|history))|object|system|type(?:Name)?|useraccess)\b</string>
-			<key>name</key>
-			<string>constant.other.attribute.dxl</string>
-		</dict>
-		<key>propertyDragDrop</key>
-		<dict>
-			<key>comment</key>
-			<string>source sourceIndex sourceIsListView sourceIsTreeView sourcePath target targetIndex targetIsListView targetIsTreeView targetPath</string>
-			<key>match</key>
-			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:source(?:I(?:ndex|s(?:List|Tree)View)|Path)?|target(?:I(?:ndex|s(?:List|Tree)View)|Path)?)\b</string>
-			<key>name</key>
-			<string>constant.other.dragdrop.dxl</string>
-		</dict>
-		<key>propertyHistory</key>
-		<dict>
-			<key>comment</key>
-			<string>absNo attrName author date linkInitialName linkVersion newPosition newValue numberOfObjects oldAbsNo oldValue plainNewUnicodeValue plainNewValue plainOldUnicodeValue plainOldValue position sessionNo sourceAbsNo targetAbsNo targetInitialName targetVersion type typeName</string>
-			<key>match</key>
-			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:a(?:bsNo|ttrName|uthor)|date|link(?:InitialName|Version)|n(?:ew(?:Position|Value)|umberOfObjects)|old(?:AbsNo|Value)|p(?:lain(?:New(?:Unicode)?|Old(?:Unicode)?)Value|osition)|s(?:ession|ourceAbs)No|t(?:arget(?:AbsNo|InitialName|Version)|ype(?:Name)?))\b</string>
-			<key>name</key>
-			<string>constant.other.history.dxl</string>
-		</dict>
-		<key>propertyPerm</key>
+		<key>property</key>
 		<dict>
 			<key>patterns</key>
 			<array>
@@ -1301,6 +1249,58 @@
 				</dict>
 			</array>
 		</dict>
+		<key>propertyAccessDot</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;=[a-zA-Z_0-9\)])\.[a-zA-Z_][a-zA-Z_0-9]*\b</string>
+			<key>name</key>
+			<string>constant.property.dot.dxl</string>
+		</dict>
+		<key>propertyAccessPtr</key>
+		<dict>
+			<key>comment</key>
+			<string>TODO: Literal String</string>
+			<key>match</key>
+			<string>(?&lt;=[a-zA-Z_0-9\)])-&gt;[a-zA-Z_][a-zA-Z_0-9]*\b</string>
+			<key>name</key>
+			<string>constant.property.ptr.dxl</string>
+		</dict>
+		<key>propertyArchive</key>
+		<dict>
+			<key>comment</key>
+			<string>archiveItemDescription archiveItemName archiveItemSelected archiveItemSoftDeleted archiveItemType</string>
+			<key>match</key>
+			<string>(?&lt;=[a-zA-Z_0-9\)])\.archiveItem(?:Description|Name|S(?:elec|oftDele)ted|Type)\b</string>
+			<key>name</key>
+			<string>constant.property.archive.dxl</string>
+		</dict>
+		<key>propertyAttribute</key>
+		<dict>
+			<key>comment</key>
+			<string>canWrite defval defval description dxl hidden inherit module multi name nobars nochanges nohistory object system type typeName useraccess</string>
+			<key>match</key>
+			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:canWrite|d(?:e(?:fval|scription)|xl)|hidden|inherit|m(?:odule|ulti)|n(?:ame|o(?:bars|changes|history))|object|system|type(?:Name)?|useraccess)\b</string>
+			<key>name</key>
+			<string>constant.property.attribute.dxl</string>
+		</dict>
+		<key>propertyDragDrop</key>
+		<dict>
+			<key>comment</key>
+			<string>source sourceIndex sourceIsListView sourceIsTreeView sourcePath target targetIndex targetIsListView targetIsTreeView targetPath</string>
+			<key>match</key>
+			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:source(?:I(?:ndex|s(?:List|Tree)View)|Path)?|target(?:I(?:ndex|s(?:List|Tree)View)|Path)?)\b</string>
+			<key>name</key>
+			<string>constant.property.dragdrop.dxl</string>
+		</dict>
+		<key>propertyHistory</key>
+		<dict>
+			<key>comment</key>
+			<string>absNo attrName author date linkInitialName linkVersion newPosition newValue numberOfObjects oldAbsNo oldValue plainNewUnicodeValue plainNewValue plainOldUnicodeValue plainOldValue position sessionNo sourceAbsNo targetAbsNo targetInitialName targetVersion type typeName</string>
+			<key>match</key>
+			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:a(?:bsNo|ttrName|uthor)|date|link(?:InitialName|Version)|n(?:ew(?:Position|Value)|umberOfObjects)|old(?:AbsNo|Value)|p(?:lain(?:New(?:Unicode)?|Old(?:Unicode)?)Value|osition)|s(?:ession|ourceAbs)No|t(?:arget(?:AbsNo|InitialName|Version)|ype(?:Name)?))\b</string>
+			<key>name</key>
+			<string>constant.property.history.dxl</string>
+		</dict>
 		<key>propertyRichtext</key>
 		<dict>
 			<key>comment</key>
@@ -1308,7 +1308,7 @@
 			<key>match</key>
 			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:b(?:old|ulletStyle)|charset|getEmbeddedOle|i(?:ndentLevel|s(?:Bullet|Ole|Url)|talic)|last|newline|s(?:trikethru|u(?:per|b)script)|text|underline)\b</string>
 			<key>name</key>
-			<string>constant.other.richtext.dxl</string>
+			<string>constant.property.richtext.dxl</string>
 		</dict>
 		<key>propertyType</key>
 		<dict>
@@ -1317,7 +1317,7 @@
 			<key>match</key>
 			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:c(?:anWrite|olou?rs)|descriptions?|m(?:ax|in)Value|name|s(?:ize|trings|ystem)|values)\b</string>
 			<key>name</key>
-			<string>constant.other.type.dxl</string>
+			<string>constant.property.type.dxl</string>
 		</dict>
 		<key>propertyUser</key>
 		<dict>
@@ -1326,7 +1326,7 @@
 			<key>match</key>
 			<string>(?&lt;=[a-zA-Z_0-9\)])\.(?:add(?:itionalAuthenticationRequired|ress)|class|d(?:escription|isabled)|email(?:CPUpdates)?|f(?:oren|ullN)ame|identifier|ldapRDN|may(?:Archive|CreateTopLevelFolders|Edit(?:DXL|GroupList|UserList)|Manage|Partition|UseCommandLinePassword)|name|password(?:Changed|Lifetime|M(?:ayChange|inimumLength))?|s(?:urn|y(?:nergyUsern|stemLoginN))ame|telephone)\b</string>
 			<key>name</key>
-			<string>constant.other.user.dxl</string>
+			<string>constant.property.user.dxl</string>
 		</dict>
 		<key>reservedKeyword</key>
 		<dict>
