@@ -146,6 +146,12 @@
                     "include": "#logical"
                 }, 
                 {
+                    "include": "#constant"
+                }, 
+                {
+                    "include": "#propertyPerm"
+                }, 
+                {
                     "include": "#propertyAccessDot"
                 }, 
                 {
@@ -208,6 +214,317 @@
                 }
             ]
         }, 
+        "constant": {
+            "patterns": [
+                {
+                    "include": "#constantArchive"
+                }, 
+                {
+                    "include": "#constantArchiveType"
+                }, 
+                {
+                    "include": "#constantAttribute"
+                }, 
+                {
+                    "include": "#constantCharacterSet"
+                }, 
+                {
+                    "include": "#constantClipboardFormat"
+                }, 
+                {
+                    "include": "#constantClipboardType"
+                }, 
+                {
+                    "include": "#constantCodePage"
+                }, 
+                {
+                    "include": "#constantColourActual"
+                }, 
+                {
+                    "include": "#constantColourLogical"
+                }, 
+                {
+                    "include": "#constantColourReal"
+                }, 
+                {
+                    "include": "#constantConfig"
+                }, 
+                {
+                    "include": "#constantCurrent"
+                }, 
+                {
+                    "include": "#constantDatabase"
+                }, 
+                {
+                    "include": "#constantExternal"
+                }, 
+                {
+                    "include": "#constantFont"
+                }, 
+                {
+                    "include": "#constantHistory"
+                }, 
+                {
+                    "include": "#constantIcon"
+                }, 
+                {
+                    "include": "#constantInfo"
+                }, 
+                {
+                    "include": "#constantInPlace"
+                }, 
+                {
+                    "include": "#constantLanguage"
+                }, 
+                {
+                    "include": "#constantLink"
+                }, 
+                {
+                    "include": "#constantListview"
+                }, 
+                {
+                    "include": "#constantLocale"
+                }, 
+                {
+                    "include": "#constantMapping"
+                }, 
+                {
+                    "include": "#constantMapping"
+                }, 
+                {
+                    "include": "#constantPermission"
+                }, 
+                {
+                    "include": "#constantPicture"
+                }, 
+                {
+                    "include": "#constantRun"
+                }, 
+                {
+                    "include": "#constantSeverity"
+                }, 
+                {
+                    "include": "#constantStyle"
+                }, 
+                {
+                    "include": "#constantTreeview"
+                }, 
+                {
+                    "include": "#constantTriggerEvent"
+                }, 
+                {
+                    "include": "#constantTriggerLevel"
+                }, 
+                {
+                    "include": "#constantTriggerModifier"
+                }, 
+                {
+                    "include": "#constantTriggerStatus"
+                }, 
+                {
+                    "include": "#constantTriggerTime"
+                }, 
+                {
+                    "include": "#constantType"
+                }, 
+                {
+                    "include": "#constantUser"
+                }, 
+                {
+                    "include": "#constantUserClass"
+                }
+            ]
+        }, 
+        "constantArchive": {
+            "comment": "allBaselines noBaselines", 
+            "match": "\\b(?:all|no)Baselines\\b", 
+            "name": "constant.other.archive.dxl"
+        }, 
+        "constantArchiveType": {
+            "comment": "zipModule5Archive zipModuleArchive zipNotArchive zipPre3ModuleArchive zipPre3ProjectArchive zipPre5ModuleArchive zipPre5ProjectArchive zipProject5Archive zipProjectArchive zipUserList5Archive zipUserListArchive", 
+            "match": "\\bzip(?:Module5?|Not|Pr(?:e(?:3(?:Module|Project)|5(?:Module|Project))|oject5?)|UserList5?)Archive\\b", 
+            "name": "constant.other.archivetype.dxl"
+        }, 
+        "constantAttribute": {
+            "comment": "changeBars date default description dxl hidden history inherit multi type", 
+            "match": "\\b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\\b", 
+            "name": "constant.other.attribute.dxl"
+        }, 
+        "constantCharacterSet": {
+            "comment": "charsetAnsi charsetEastEurope charsetGreek charsetHebrew charsetRussian charsetSymbol charsetTurkish", 
+            "match": "\\bcharset(?:Ansi|EastEurope|Greek|Hebrew|Russian|Symbol|Turkish)\\b", 
+            "name": "constant.other.characterset.dxl"
+        }, 
+        "constantClipboardFormat": {
+            "comment": "CF_BITMAP CF_DIB CF_HDROP CF_MAX CF_METAFILEPICT CF_OEMTEXT", 
+            "match": "\\bCF_(?:BITMAP|DIB|HDROP|M(?:AX|ETAFILEPICT)|OEMTEXT)\\b", 
+            "name": "constant.other.clipboardformat.dxl"
+        }, 
+        "constantClipboardType": {
+            "comment": "TYMED_ENHMF TYMED_GDI TYMED_HGLOBAL", 
+            "match": "\\bTYMED_(?:ENHMF|GDI|HGLOBAL)\\b", 
+            "name": "constant.other.clipboardtype.dxl"
+        }, 
+        "constantCodePage": {
+            "comment": "CP_CHS CP_CHT CP_JAP CP_KOR CP_LATIN1 CP_UNICODE CP_UTF16_BE CP_UTF16_LE CP_UTF8", 
+            "match": "\\bCP_(?:CH[ST]|JAP|KOR|LATIN1|U(?:NICODE|TF(?:16_[BL]E|8)))\\b", 
+            "name": "constant.other.codepage.dxl"
+        }, 
+        "constantColourActual": {
+            "comment": "colorBlack colorBlue colorBrown colorCyan colorDarkTurquoise colorGreen colorGrey colorGrey77 colorGrey82 colorLightBlue colorMagenta colorMaroon colorMediumLightBlue colorOptionsItem colorOrange colorPink colorRed colorRedGrey colorWhite colorYellow", 
+            "match": "\\bcolor(?:B(?:l(?:ack|ue)|rown)|Cyan|DarkTurquoise|Gre(?:en|y(?:77|82)|y)|LightBlue|M(?:a(?:genta|roon)|ediumLightBlue)|O(?:ptionsItem|range)|Pink|Red(?:Grey)?|White|Yellow)\\b", 
+            "name": "constant.other.colour.dxl"
+        }, 
+        "constantColourLogical": {
+            "comment": "logical0IndicatorColor logical100IndicatorColor logical11IndicatorColor logical22IndicatorColor logical33IndicatorColor logical44IndicatorColor logical55IndicatorColor logical66IndicatorColor logical77IndicatorColor logical88IndicatorColor logicalCurrentBackgroundColor logicalCurrentCellBackgroundColor logicalCurrentObjectOutline logicalDataTextColor logicalDefaultColor logicalDeletedTextColor logicalGraphicsBackgroundColor logicalGraphicsBoxColor logicalGraphicsBoxEdgeColor logicalGraphicsCurrentColor logicalGraphicsElideBoxColor logicalGraphicsLinkColor logicalGraphicsSelectedColor logicalGraphicsShadeColor logicalGraphicsTextColor logicalGridLines logicalHighIndicatorColor logicalHighlightURLColor logicalInPlaceBackgroundColor logicalInPlaceTextColor logicalLinkCurrentBackgroundColor logicalLinkDataTextColor logicalLinkPageBackgroundColor logicalLinksInIndicatorColor logicalLinksOutIndicatorColor logicalLinkTextBackgroundColor logicalLinkTitleBackgroundColor logicalLowIndicatorColor logicalMediumIndicatorColor logicalPageBackgroundColor logicalPageBackgroundFilterColor logicalPageBackgroundFilterSortColor logicalPageBackgroundSortColor logicalPartitionInReadTextColor logicalPartitionInWriteTextColor logicalPartitionOutTextColor logicalPrintPreviewBackgroundColor logicalPrintPreviewPageColor logicalPrintPreviewShadeColor logicalPrintPreviewTextColor logicalReadOnlyTextBackgroundColor logicalReadOnlyTextColor logicalSelectedTextColor logicalTextBackgroundColor logicalTitleBackgroundColor logicalTitleBackgroundColor logicalTitleTextColor logicalUnlockedTextBackgroundColor logicalUser1Color logicalUser2Color logicalUser3Color logicalUser4Color logicalUser5Color", 
+            "match": "\\blogical(?:0IndicatorColor|1(?:00|1)IndicatorColor|22IndicatorColor|33IndicatorColor|44IndicatorColor|55IndicatorColor|66IndicatorColor|77IndicatorColor|88IndicatorColor|Current(?:BackgroundColor|CellBackgroundColor|ObjectOutline)|D(?:ataTex|e(?:faul|letedTex))tColor|Gr(?:aphics(?:B(?:ackground|ox(?:Edge)?)|Current|ElideBox|Link|S(?:elected|hade)|Text)Color|idLines)|High(?:Indicator|lightURL)Color|InPlace(?:Background|Text)Color|L(?:ink(?:CurrentBackground|DataText|PageBackground|T(?:ext|itle)Background|s(?:In|Out)Indicator)|owIndicator)Color|MediumIndicatorColor|P(?:a(?:geBackground(?:Filter(?:Sort)?|Sort)?|rtition(?:In(?:Read|Write)|Out)Text)|rintPreview(?:Background|Page|Shade|Text))Color|ReadOnlyText(?:Background)?Color|SelectedTextColor|T(?:extBackground|itle(?:Background|Text))Color|U(?:nlockedTextBackground|ser[12345])Color)\\b", 
+            "name": "constant.other.colour.dxl"
+        }, 
+        "constantColourReal": {
+            "comment": "realColor_Black realColor_Blue realColor_Brown realColor_Cyan realColor_Dark_Turquoise realColor_Firebrick realColor_Green realColor_Grey11 realColor_Grey22 realColor_Grey33 realColor_Grey44 realColor_Grey55 realColor_Grey66 realColor_Grey77 realColor_Grey82 realColor_Light_Blue realColor_Light_Blue2 realColor_Lime_Green realColor_Magenta realColor_Maroon realColor_Navy realColor_NewGrey1 realColor_NewGrey2 realColor_NewGrey3 realColor_NewGrey4 realColor_Orange realColor_Peru realColor_Pink realColor_Purple realColor_Red realColor_Red_Grey realColor_Rosy_Brown realColor_Sea_Green realColor_SplashScreenBlue realColor_Thistle realColor_White realColor_Yellow", 
+            "match": "\\brealColor_(?:B(?:l(?:ack|ue)|rown)|Cyan|Dark_Turquoise|Firebrick|Gre(?:en|y(?:11|22|33|44|55|66|77|82))|Li(?:ght_Blue2?|me_Green)|Ma(?:genta|roon)|N(?:avy|ewGrey[1234])|Orange|P(?:eru|ink|urple)|R(?:ed(?:_Grey)?|osy_Brown)|S(?:ea_Green|plashScreenBlue)|Thistle|White|Yellow)\\b", 
+            "name": "constant.other.colour.dxl"
+        }, 
+        "constantConfig": {
+            "comment": "confSystem confSysUser confTemp confUser", 
+            "match": "\\bconf(?:Sys(?:User|tem)|Temp|User)\\b", 
+            "name": "constant.other.config.dxl"
+        }, 
+        "constantCurrent": {
+            "comment": "attrDXLName obj", 
+            "match": "\\b(?:attrDXLName|obj|)\\b", 
+            "name": "constant.other.permission.dxl"
+        }, 
+        "constantDatabase": {
+            "comment": "database dbExplorer", 
+            "match": "\\bd(?:atabase|bExplorer)\\b", 
+            "name": "constant.other.database.dxl"
+        }, 
+        "constantExternal": {
+            "comment": "inward none openAsURL outward", 
+            "match": "\\b(?:inward|none|o(?:penAsURL|utward))\\b", 
+            "name": "constant.other.external.dxl"
+        }, 
+        "constantFont": {
+            "comment": "availableFonts GraphicsFont HeadingsFont TextFont", 
+            "match": "\\b(?:GraphicsFont|HeadingsFont|TextFont|availableFonts)\\b", 
+            "name": "constant.other.font.dxl"
+        }, 
+        "constantHistory": {
+            "comment": "acceptModule baselineModule changeOLE clipCopyObject clipCutObject clipMoveObject copyObject createAttr createLink createModule createObject createType cutOLE deleteAttr deleteLink deleteObject deleteType insertOLE modifyAttr modifyLink modifyObject modifyType partitionModule pasteOLE purgeObject readLocked rejoinModule removeOLE returnModule unDeleteObject unknown", 
+            "match": "\\b(?:acceptModule|baselineModule|c(?:hangeOLE|lip(?:C(?:opy|ut)|Move)Object|opyObject|reate(?:Attr|Link|Module|Object|Type)|utOLE)|delete(?:Attr|Link|Object|Type)|insertOLE|modify(?:Attr|Link|Object|Type)|p(?:a(?:rtitionModule|steOLE)|urgeObject)|re(?:adLocked|joinModule|moveOLE|turnModule)|un(?:DeleteObject|known))\\b", 
+            "name": "constant.other.history.dxl"
+        }, 
+        "constantIcon": {
+            "comment": "iconAuthenticatingUser iconDatabase iconDatabase iconDescriptive iconDescriptiveCut iconDescriptiveDeleted iconFolder iconFolderCut iconFolderDeleted iconFolderOpen iconFolderOpenDeleted iconFormal iconFormalCut iconFormalDeleted iconGroup iconGroupDisabled iconLink iconLinkCut iconLinkDeleted iconNone iconProject iconProjectCut iconProjectDeleted iconProjectOpen iconProjectOpenDeleted iconReadOnly iconUser iconUserDisabled", 
+            "match": "\\bicon(?:AuthenticatingUser|D(?:atabase|escriptive(?:Cut|Deleted)?)|Fo(?:lder(?:Cut|Deleted|Open(?:Deleted)?)?|rmal(?:Cut|Deleted)?)|Group(?:Disabled)?|Link(?:Cut|Deleted)?|None|Project(?:Cut|Deleted|Open(?:Deleted)?)?|ReadOnly|User(?:Disabled)?)\\b", 
+            "name": "constant.other.icon.dxl"
+        }, 
+        "constantInPlace": {
+            "comment": "inPlaceChoice inPlaceString inPlaceText inPlaceTextChange inPlaceTextFilled", 
+            "match": "\\binPlace(?:Choice|String|Text(?:Change|Filled)?)\\b", 
+            "name": "constant.other.inPlace.dxl"
+        }, 
+        "constantInfo": {
+            "comment": "infoBuildDate infoBuildNumber infoServerVersion infoSupportId infoSupportPassword infoVersion", 
+            "match": "\\binfo(?:Build(?:Date|Number)|S(?:erverVersion|upport(?:Passwor|I)d)|Version)\\b", 
+            "name": "constant.other.info.dxl"
+        }, 
+        "constantLanguage": {
+            "comment": "Afrikaans Catalan Czech Danish Dutch French German Greek Italian NorwegianBokmal NorwegianNynorsk PortugueseBrazil PortugueseEurope Russian Spanish Swedish UKEnglish USEnglish", 
+            "match": "\\b(?:Afrikaans|C(?:atalan|zech)|D(?:anis|utc)h|French|G(?:erman|reek)|Italian|Norwegian(?:Bokmal|Nynorsk)|Portuguese(?:Brazil|Europe)|Russian|S(?:pan|wed)ish|U[KS]English)\\b", 
+            "name": "constant.other.language.dxl"
+        }, 
+        "constantLink": {
+            "comment": "linkFilterBoth linkFilterIncoming linkFilterOutgoing", 
+            "match": "\\blinkFilter(?:Both|Incoming|Outgoing)\\b", 
+            "name": "constant.other.link.dxl"
+        }, 
+        "constantListview": {
+            "comment": "listViewOptionCheckboxes listViewOptionMultiselect listViewOptionSortText", 
+            "match": "\\blistViewOption(?:Checkboxes|Multiselect|SortText)\\b", 
+            "name": "constant.other.listview.dxl"
+        }, 
+        "constantLocale": {
+            "comment": "installedLocales supportedLocales", 
+            "match": "\\b(?:install|support)edLocales\\b", 
+            "name": "constant.other.locale.dxl"
+        }, 
+        "constantMapping": {
+            "comment": "menuAvailable_ menuAvailableChecked_ menuInvisible_ menuUnavailable_", 
+            "match": "\\bmenu(?:Available(?:Checked)?|Invisible|Unavailable)_\\b", 
+            "name": "constant.other.mapping.dxl"
+        }, 
+        "constantPermission": {
+            "comment": "change control create delete modify none read write", 
+            "match": "\\b(?:c(?:hange|ontrol|reate)|delete|modify|none|read|write)\\b", 
+            "name": "constant.other.permission.dxl"
+        }, 
+        "constantPicture": {
+            "comment": "formatBMP formatDIB formatEPSF formatPNG formatUNKNOWN formatWMF", 
+            "match": "\\bformat(?:BMP|DIB|EPSF|PNG|UNKNOWN|WMF)\\b", 
+            "name": "constant.other.picture.dxl"
+        }, 
+        "constantRun": {
+            "comment": "syswaitINFINITE_", 
+            "match": "\\bsyswaitINFINITE_\\b", 
+            "name": "constant.other.run.dxl"
+        }, 
+        "constantSeverity": {
+            "comment": "msgError msgInfo msgQuery msgWarning", 
+            "match": "\\bmsg(?:Error|Info|Query|Warning)\\b", 
+            "name": "constant.other.severity.dxl"
+        }, 
+        "constantStyle": {
+            "comment": "styleAutoparent styleCentered styleCentred styleFixed styleFloating styleNoBorder styleStandard styleThemed", 
+            "match": "\\bstyle(?:Autoparent|Cente?red|F(?:ixed|loating)|NoBorder|Standard|Themed)\\b", 
+            "name": "constant.other.style.dxl"
+        }, 
+        "constantTreeview": {
+            "comment": "treeViewOptionSorted", 
+            "match": "\\btreeViewOptionSorted\\b", 
+            "name": "constant.other.treeview.dxl"
+        }, 
+        "constantTriggerEvent": {
+            "comment": "close create drag drop edit modify open read save sync write", 
+            "match": "\\b(?:c(?:los|reat)e|dr(?:ag|op)|edit|modify|open|read|s(?:ave|ync)|write)\\b", 
+            "name": "constant.other.triggerevent.dxl"
+        }, 
+        "constantTriggerLevel": {
+            "comment": "attribute comment discussion module object project", 
+            "match": "\\b(?:attribute|comment|discussion|module|object|project)\\b", 
+            "name": "constant.other.triggerlevel.dxl"
+        }, 
+        "constantTriggerModifier": {
+            "comment": "post pre", 
+            "match": "\\bp(?:ost|re)\\b", 
+            "name": "constant.other.triggermodifier.dxl"
+        }, 
+        "constantTriggerStatus": {
+            "comment": "trigError trigPreConFail trigPreConPass trigRunOK", 
+            "match": "\\btrig(?:Error|PreCon(?:Fail|Pass)|RunOK)\\b", 
+            "name": "constant.other.triggerstatus.dxl"
+        }, 
+        "constantTriggerTime": {
+            "comment": "all descriptive formal link", 
+            "match": "\\b(?:all|descriptive|formal|link)\\b", 
+            "name": "constant.other.triggermodifier.dxl"
+        }, 
+        "constantType": {
+            "comment": "attrDate attrEnumeration attrInteger attrReal attrString attrText attrUsername", 
+            "match": "\\battr(?:Date|Enumeration|Integer|Real|String|Text|Username)\\b", 
+            "name": "constant.other.type.dxl"
+        }, 
+        "constantUser": {
+            "comment": "groupList userList userNotifyList", 
+            "match": "\\b(?:group|user(?:Notify)?)List\\b", 
+            "name": "constant.other.user.dxl"
+        }, 
+        "constantUserClass": {
+            "comment": "administrator custom databaseManager projectManager standard", 
+            "match": "\\b(?:administrator|custom|databaseManager|projectManager|standard)\\b", 
+            "name": "constant.other.userclass.dxl"
+        }, 
         "controlFlow": {
             "comment": "Flow Control: by do else elseif for if in then while", 
             "match": "\\b(?:by|do|else(?:if)?|for|i[fn]|then|while)\\b", 
@@ -219,7 +536,7 @@
             "name": "keyword.control.break.dxl"
         }, 
         "functionCallCustom": {
-            "match": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*(?!(and|by|do|else(?:if)?|error|for|i[fn]|or|print|return|then|warn|while)\\b)([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?))(?=\\()", 
+            "match": "\\s*(?!(and|by|do|else(?:if)?|error|for|i[fn]|or|print|return|then|warn|while)\\b)([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?))(?=\\()", 
             "name": "support.function.custom.dxl"
         }, 
         "functionCallDiagnostic": {
@@ -228,7 +545,7 @@
             "name": "keyword.control.diagnostic.dxl"
         }, 
         "functionCallPerm": {
-            "match": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|charOf|characterSet|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|convertFromCodepage|convertToCodepage|copyFile|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warningBox|when|who|width|win32SystemWait_|write)\\b", 
+            "match": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|after|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|before|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|change|charOf|characterSet|charsetDefault|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|control|convertFromCodepage|convertToCodepage|copyFile|copyPassword|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|first|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|ldapGroupsForUser|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|loadUserRecord|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|modify|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|previous|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sibling|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warningBox|when|who|width|win32SystemWait_|write)\\b", 
             "name": "support.function.perm.dxl"
         }, 
         "functionDeclaration": {
@@ -438,17 +755,77 @@
             "name": "meta.section"
         }, 
         "propertyAccessDot": {
-            "match": "(?<=[a-zA-Z_0-9])\\.[a-zA-Z_][a-zA-Z_0-9]*(?!\\()", 
-            "name": "variable.other.propertyAccessDot.dxl"
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.[a-zA-Z_][a-zA-Z_0-9]*\\b", 
+            "name": "constant.other.property.dxl"
         }, 
         "propertyAccessPtr": {
             "comment": "TODO: Literal String", 
-            "match": "(?<=[a-zA-Z_0-9])->[a-zA-Z_][a-zA-Z_0-9]*(?!\\()", 
+            "match": "(?<=[a-zA-Z_0-9\\)])->[a-zA-Z_][a-zA-Z_0-9]*\\b", 
             "name": "variable.other.propertyAccessPtr.dxl"
+        }, 
+        "propertyArchive": {
+            "comment": "archiveItemDescription archiveItemName archiveItemSelected archiveItemSoftDeleted archiveItemType", 
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.archiveItem(?:Description|Name|S(?:elec|oftDele)ted|Type)\\b", 
+            "name": "constant.other.attribute.dxl"
+        }, 
+        "propertyAttribute": {
+            "comment": "canWrite defval defval description dxl hidden inherit module multi name nobars nochanges nohistory object system type typeName useraccess", 
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.(?:canWrite|d(?:e(?:fval|scription)|xl)|hidden|inherit|m(?:odule|ulti)|n(?:ame|o(?:bars|changes|history))|object|system|type(?:Name)?|useraccess)\\b", 
+            "name": "constant.other.attribute.dxl"
+        }, 
+        "propertyDragDrop": {
+            "comment": "source sourceIndex sourceIsListView sourceIsTreeView sourcePath target targetIndex targetIsListView targetIsTreeView targetPath", 
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.(?:source(?:I(?:ndex|s(?:List|Tree)View)|Path)?|target(?:I(?:ndex|s(?:List|Tree)View)|Path)?)\\b", 
+            "name": "constant.other.dragdrop.dxl"
+        }, 
+        "propertyHistory": {
+            "comment": "absNo attrName author date linkInitialName linkVersion newPosition newValue numberOfObjects oldAbsNo oldValue plainNewUnicodeValue plainNewValue plainOldUnicodeValue plainOldValue position sessionNo sourceAbsNo targetAbsNo targetInitialName targetVersion type typeName", 
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.(?:a(?:bsNo|ttrName|uthor)|date|link(?:InitialName|Version)|n(?:ew(?:Position|Value)|umberOfObjects)|old(?:AbsNo|Value)|p(?:lain(?:New(?:Unicode)?|Old(?:Unicode)?)Value|osition)|s(?:ession|ourceAbs)No|t(?:arget(?:AbsNo|InitialName|Version)|ype(?:Name)?))\\b", 
+            "name": "constant.other.history.dxl"
+        }, 
+        "propertyPerm": {
+            "patterns": [
+                {
+                    "include": "#propertyArchive"
+                }, 
+                {
+                    "include": "#propertyAttribute"
+                }, 
+                {
+                    "include": "#propertyDragDrop"
+                }, 
+                {
+                    "include": "#propertyHistory"
+                }, 
+                {
+                    "include": "#propertyRichtext"
+                }, 
+                {
+                    "include": "#propertyType"
+                }, 
+                {
+                    "include": "#propertyUser"
+                }
+            ]
+        }, 
+        "propertyRichtext": {
+            "comment": "bold bulletStyle charset getEmbeddedOle indentLevel isBullet isOle isUrl italic last newline strikethru subscript superscript text underline", 
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.(?:b(?:old|ulletStyle)|charset|getEmbeddedOle|i(?:ndentLevel|s(?:Bullet|Ole|Url)|talic)|last|newline|s(?:trikethru|u(?:per|b)script)|text|underline)\\b", 
+            "name": "constant.other.richtext.dxl"
+        }, 
+        "propertyType": {
+            "comment": "canWrite colors colours description descriptions maxValue minValue name size strings system values", 
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.(?:c(?:anWrite|olou?rs)|descriptions?|m(?:ax|in)Value|name|s(?:ize|trings|ystem)|values)\\b", 
+            "name": "constant.other.type.dxl"
+        }, 
+        "propertyUser": {
+            "comment": "additionalAuthenticationRequired address class description disabled email emailCPUpdates forename fullName identifier ldapRDN mayArchive mayCreateTopLevelFolders mayEditDXL mayEditGroupList mayEditUserList mayManage mayPartition mayUseCommandLinePassword name password passwordChanged passwordLifetime passwordMayChange passwordMinimumLength surname synergyUsername systemLoginName telephone", 
+            "match": "(?<=[a-zA-Z_0-9\\)])\\.(?:add(?:itionalAuthenticationRequired|ress)|class|d(?:escription|isabled)|email(?:CPUpdates)?|f(?:oren|ullN)ame|identifier|ldapRDN|may(?:Archive|CreateTopLevelFolders|Edit(?:DXL|GroupList|UserList)|Manage|Partition|UseCommandLinePassword)|name|password(?:Changed|Lifetime|M(?:ayChange|inimumLength))?|s(?:urn|y(?:nergyUsern|stemLoginN))ame|telephone)\\b", 
+            "name": "constant.other.user.dxl"
         }, 
         "reservedKeyword": {
             "comment": "Reserved Keywords", 
-            "match": "\\b(case|default|enum|switch|union)\\b", 
+            "match": "\\b(case|enum|switch|union)\\b", 
             "name": "invalid.illegal.keyword.dxl"
         }, 
         "stringEscapedCharacters": {
@@ -493,8 +870,8 @@
             "name": "definition.type.custom.dxl"
         }, 
         "typeDoors": {
-            "comment": "Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef", 
-            "match": "\\b(?:A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\\b", 
+            "comment": "Builtin DOORS Types: _k _x _y AccessRec ArchiveItem Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef", 
+            "match": "\\b(?:A(?:ccessRec|r(?:chiveItem|ray)|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\\b", 
             "name": "storage.type.doors.dxl"
         }, 
         "typeFundamental": {
