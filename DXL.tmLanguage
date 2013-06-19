@@ -48,110 +48,6 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>argumentDeclaration</key>
-		<dict>
-			<key>begin</key>
-			<string>\(</string>
-			<key>end</key>
-			<string>\)</string>
-			<key>name</key>
-			<string>meta.parens.argumentDeclaration.dxl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#functionForwardDeclaration</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typeFundamental</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typeDoors</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typeCustom</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\s+&amp;</string>
-					<key>name</key>
-					<string>variable.other.byref.dxl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>&amp;</string>
-					<key>name</key>
-					<string>invalid.illegal.byref.dxl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>(?&lt;=&amp;)\s+</string>
-					<key>name</key>
-					<string>invalid.illegal.byref.dxl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>[A-Za-z_][A-Za-z0-9_]*</string>
-					<key>name</key>
-					<string>variable.parameter.dxl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\s*,\s*</string>
-					<key>name</key>
-					<string>meta.argument.separator.dxl</string>
-				</dict>
-			</array>
-		</dict>
-		<key>argumentDefinition</key>
-		<dict>
-			<key>begin</key>
-			<string>\(</string>
-			<key>end</key>
-			<string>\)</string>
-			<key>name</key>
-			<string>meta.parens.argumentDefinition.dxl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#typeFundamental</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typeDoors</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typeCustom</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#argumentDefinition</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\s+&amp;</string>
-					<key>name</key>
-					<string>invalid.illegal.byref.dxl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>&amp;</string>
-					<key>name</key>
-					<string>variable.other.byref.dxl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\s*,\s*</string>
-					<key>name</key>
-					<string>meta.argument.separator.dxl</string>
-				</dict>
-			</array>
-		</dict>
 		<key>blockScope</key>
 		<dict>
 			<key>begin</key>
@@ -202,7 +98,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#functionForwardDeclaration</string>
+					<string>#functionDefinition</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -271,6 +167,22 @@
 				<dict>
 					<key>include</key>
 					<string>#blockScope</string>
+				</dict>
+			</array>
+		</dict>
+		<key>bracketScope</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.bracket.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#blockStatements</string>
 				</dict>
 			</array>
 		</dict>
@@ -940,7 +852,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#argumentDeclaration</string>
+					<string>#functionDeclarationArgument</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -948,7 +860,65 @@
 				</dict>
 			</array>
 		</dict>
-		<key>functionForwardDeclaration</key>
+		<key>functionDeclarationArgument</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.parens.functionDeclarationArgument.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#functionDefinition</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#typeFundamental</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#typeDoors</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#typeCustom</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\s+&amp;</string>
+					<key>name</key>
+					<string>variable.other.byref.dxl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>&amp;</string>
+					<key>name</key>
+					<string>invalid.illegal.byref.dxl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=&amp;)\s+</string>
+					<key>name</key>
+					<string>invalid.illegal.byref.dxl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[A-Za-z_][A-Za-z0-9_]*</string>
+					<key>name</key>
+					<string>variable.parameter.dxl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\s*,\s*</string>
+					<key>name</key>
+					<string>meta.argument.separator.dxl</string>
+				</dict>
+			</array>
+		</dict>
+		<key>functionDefinition</key>
 		<dict>
 			<key>begin</key>
 			<string>(?:^|(?&lt;=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*\s*&amp;?\s*[,\(\))])</string>
@@ -977,7 +947,7 @@
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.functionForwardDeclaration.dxl</string>
+					<string>entity.name.functionDefinition.dxl</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -988,7 +958,53 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#argumentDefinition</string>
+					<string>#functionDefinitionArgument</string>
+				</dict>
+			</array>
+		</dict>
+		<key>functionDefinitionArgument</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.parens.functionDefinitionArgument.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#typeFundamental</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#typeDoors</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#typeCustom</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#functionDefinitionArgument</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\s+&amp;</string>
+					<key>name</key>
+					<string>invalid.illegal.byref.dxl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>&amp;</string>
+					<key>name</key>
+					<string>variable.other.byref.dxl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\s*,\s*</string>
+					<key>name</key>
+					<string>meta.argument.separator.dxl</string>
 				</dict>
 			</array>
 		</dict>
@@ -1204,22 +1220,6 @@
 			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
 			<key>name</key>
 			<string>sublimelinter.outline.warning.dxl</string>
-		</dict>
-		<key>parens</key>
-		<dict>
-			<key>begin</key>
-			<string>\(</string>
-			<key>end</key>
-			<string>\)</string>
-			<key>name</key>
-			<string>meta.parens.dxl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>$base</string>
-				</dict>
-			</array>
 		</dict>
 		<key>pragma</key>
 		<dict>
