@@ -10,11 +10,6 @@
 		<string>ldxl</string>
 		<string>tdxl</string>
 	</array>
-	<key>foldingStartMarker</key>
-	<string>/\*|^(?![^{]*?//|[^{]*?/\*(?!.*?\*/.*?\{)).*?\{\s*($|//|/\*(?!.*?\*/.*\S))
-	</string>
-	<key>foldingStopMarker</key>
-	<string>\*/|^\s*\}</string>
 	<key>name</key>
 	<string>DXL</string>
 	<key>patterns</key>
