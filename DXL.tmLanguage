@@ -797,7 +797,7 @@
 			<key>comment</key>
 			<string>Line continuation</string>
 			<key>match</key>
-			<string>(?:[(,?\[~\\]|\.\.?|!=?|%=?|&amp;[&amp;=]?|\*=?|\+=?|-[=&gt;]?|/=?|:[:=]|\^[=^]?|\|[=|]?|=[=&gt;]?|&lt;(?:&lt;=|[-=&lt;&gt;])?|&gt;(?:&gt;=|[=&gt;])?|and|or)(?=(\s*)$\n?|\s*//$\n?|\s*//.+-$\n?)</string>
+			<string>(?:[(,?\[~\\]|\.\.?|!=?|%=?|&amp;[&amp;=]?|\*=?|(?&lt;!\+)\+=?|(?&lt;!-)-[=&gt;]?|/=?|:[:=]|\^[=^]?|\|[=|]?|=[=&gt;]?|&lt;(?:&lt;=|[-=&lt;&gt;])?|&gt;(?:&gt;=|[=&gt;])?|and|or)(?=(\s*)$\n?|\s*//$\n?|\s*//.+-$\n?)</string>
 			<key>name</key>
 			<string>comment.line.continuation.dxl</string>
 		</dict>
