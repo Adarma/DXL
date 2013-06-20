@@ -6,7 +6,7 @@
         "ldxl", 
         "tdxl"
     ], 
-    "foldingStartMarker": "(?x)\n\t\t /\\*\\*(?!\\*)\n\t\t|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))\n\t", 
+    "foldingStartMarker": "(?x)\n\t\t/\\*\\*(?!\\*)\n\t\t|\n\t\t^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))\n\t", 
     "foldingStopMarker": "(?<!\\*)\\*\\*/|^\\s*\\}", 
     "name": "DXL", 
     "patterns": [
@@ -44,6 +44,9 @@
             "patterns": [
                 {
                     "include": "#comments"
+                }, 
+                {
+                    "include": "#continuation"
                 }, 
                 {
                     "include": "#literalBoolean"
@@ -132,36 +135,30 @@
         "comments": {
             "patterns": [
                 {
-                    "captures": {
-                        "1": {
-                            "name": "meta.toc-list.banner.block.dxl"
-                        }
-                    }, 
-                    "match": "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?", 
-                    "name": "comment.block.dxl"
-                }, 
-                {
                     "begin": "/\\*", 
                     "captures": {
                         "0": {
                             "name": "punctuation.definition.comment.dxl"
                         }
                     }, 
+                    "comment": "Block Comment", 
                     "end": "\\*/", 
                     "name": "comment.block.dxl"
                 }, 
                 {
+                    "comment": "Stray Block Comment End Marker", 
                     "match": "\\*/.*\\n", 
                     "name": "invalid.illegal.stray-comment-end.dxl"
                 }, 
                 {
                     "captures": {
                         "1": {
-                            "name": "meta.toc-list.banner.line.dxl"
+                            "name": "invalid.deprecated.trailing-whitespace.dxl"
                         }
                     }, 
-                    "match": "^// =(\\s*.*?)\\s*=\\s*$\\n?", 
-                    "name": "comment.line.banner.c++"
+                    "comment": "Empty Double-slash Comment for line continuation", 
+                    "match": "//(\\s*)\\n", 
+                    "name": "comment.line.continuation.dxl"
                 }, 
                 {
                     "begin": "//", 
@@ -170,12 +167,19 @@
                             "name": "punctuation.definition.comment.dxl"
                         }
                     }, 
+                    "comment": "Double-slash Comment", 
                     "end": "$\\n?", 
                     "name": "comment.line.double-slash.dxl", 
                     "patterns": [
                         {
-                            "match": "(?>\\\\\\s*\\n)", 
-                            "name": "punctuation.separator.continuation.dxl"
+                            "captures": {
+                                "1": {
+                                    "name": "invalid.deprecated.trailing-whitespace.dxl"
+                                }
+                            }, 
+                            "comment": "Trailing dash for line continuation", 
+                            "match": "(?>-(\\s*)\\n)", 
+                            "name": "comment.line.continuation.dxl"
                         }
                     ]
                 }
@@ -494,6 +498,16 @@
             "comment": "administrator custom databaseManager projectManager standard", 
             "match": "\\b(?:administrator|custom|databaseManager|projectManager|standard)\\b", 
             "name": "constant.perm.userclass.dxl"
+        }, 
+        "continuation": {
+            "captures": {
+                "1": {
+                    "name": "invalid.deprecated.trailing-whitespace.dxl"
+                }
+            }, 
+            "comment": "Line continuation", 
+            "match": "(?:[(,?\\[~\\\\]|\\.\\.?|!=?|%=?|&[&=]?|\\*=?|\\+=?|-[=>]?|/=?|:[:=]|\\^[=^]?|\\|[=|]?|=[=>]?|<(?:<=|[-=<>])?|>(?:>=|[=>])?|and|or)(?=(\\s*)$\\n?|\\s*//$\\n?|\\s*//.+-$\\n?)", 
+            "name": "comment.line.continuation.dxl"
         }, 
         "controlFlow": {
             "comment": "Flow Control: by do else elseif for if in then while", 

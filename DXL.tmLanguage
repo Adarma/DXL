@@ -12,8 +12,9 @@
 	</array>
 	<key>foldingStartMarker</key>
 	<string>(?x)
-		 /\*\*(?!\*)
-		|^(?![^{]*?//|[^{]*?/\*(?!.*?\*/.*?\{)).*?\{\s*($|//|/\*(?!.*?\*/.*\S))
+		/\*\*(?!\*)
+		|
+		^(?![^{]*?//|[^{]*?/\*(?!.*?\*/.*?\{)).*?\{\s*($|//|/\*(?!.*?\*/.*\S))
 	</string>
 	<key>foldingStopMarker</key>
 	<string>(?&lt;!\*)\*\*/|^\s*\}</string>
@@ -71,6 +72,10 @@
 				<dict>
 					<key>include</key>
 					<string>#comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#continuation</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -191,20 +196,6 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>meta.toc-list.banner.block.dxl</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>^/\* =(\s*.*?)\s*= \*/$\n?</string>
-					<key>name</key>
-					<string>comment.block.dxl</string>
-				</dict>
-				<dict>
 					<key>begin</key>
 					<string>/\*</string>
 					<key>captures</key>
@@ -215,12 +206,16 @@
 							<string>punctuation.definition.comment.dxl</string>
 						</dict>
 					</dict>
+					<key>comment</key>
+					<string>Block Comment</string>
 					<key>end</key>
 					<string>\*/</string>
 					<key>name</key>
 					<string>comment.block.dxl</string>
 				</dict>
 				<dict>
+					<key>comment</key>
+					<string>Stray Block Comment End Marker</string>
 					<key>match</key>
 					<string>\*/.*\n</string>
 					<key>name</key>
@@ -232,13 +227,15 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>meta.toc-list.banner.line.dxl</string>
+							<string>invalid.deprecated.trailing-whitespace.dxl</string>
 						</dict>
 					</dict>
+					<key>comment</key>
+					<string>Empty Double-slash Comment for line continuation</string>
 					<key>match</key>
-					<string>^// =(\s*.*?)\s*=\s*$\n?</string>
+					<string>//(\s*)\n</string>
 					<key>name</key>
-					<string>comment.line.banner.c++</string>
+					<string>comment.line.continuation.dxl</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -251,6 +248,8 @@
 							<string>punctuation.definition.comment.dxl</string>
 						</dict>
 					</dict>
+					<key>comment</key>
+					<string>Double-slash Comment</string>
 					<key>end</key>
 					<string>$\n?</string>
 					<key>name</key>
@@ -258,10 +257,20 @@
 					<key>patterns</key>
 					<array>
 						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>invalid.deprecated.trailing-whitespace.dxl</string>
+								</dict>
+							</dict>
+							<key>comment</key>
+							<string>Trailing dash for line continuation</string>
 							<key>match</key>
-							<string>(?&gt;\\\s*\n)</string>
+							<string>(?&gt;-(\s*)\n)</string>
 							<key>name</key>
-							<string>punctuation.separator.continuation.dxl</string>
+							<string>comment.line.continuation.dxl</string>
 						</dict>
 					</array>
 				</dict>
@@ -774,6 +783,23 @@
 			<string>\b(?:administrator|custom|databaseManager|projectManager|standard)\b</string>
 			<key>name</key>
 			<string>constant.perm.userclass.dxl</string>
+		</dict>
+		<key>continuation</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.deprecated.trailing-whitespace.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Line continuation</string>
+			<key>match</key>
+			<string>(?:[(,?\[~\\]|\.\.?|!=?|%=?|&amp;[&amp;=]?|\*=?|\+=?|-[=&gt;]?|/=?|:[:=]|\^[=^]?|\|[=|]?|=[=&gt;]?|&lt;(?:&lt;=|[-=&lt;&gt;])?|&gt;(?:&gt;=|[=&gt;])?|and|or)(?=(\s*)$\n?|\s*//$\n?|\s*//.+-$\n?)</string>
+			<key>name</key>
+			<string>comment.line.continuation.dxl</string>
 		</dict>
 		<key>controlFlow</key>
 		<dict>
