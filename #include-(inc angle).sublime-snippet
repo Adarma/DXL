@@ -1,6 +1,6 @@
 <snippet>
 	<description>#include &lt;…&gt;</description>
-    <content><![CDATA[#include <${1:.inc}>]]></content>
-    <tabTrigger>inc</tabTrigger>
+    <content><![CDATA[include <${1:.inc}>]]></content>
+    <tabTrigger>include</tabTrigger>
     <scope>source.dxl</scope> 
 </snippet>
