@@ -11,13 +11,10 @@
 		<string>tdxl</string>
 	</array>
 	<key>foldingStartMarker</key>
-	<string>(?x)
-		/\*\*(?!\*)
-		|
-		^(?![^{]*?//|[^{]*?/\*(?!.*?\*/.*?\{)).*?\{\s*($|//|/\*(?!.*?\*/.*\S))
+	<string>/\*|^(?![^{]*?//|[^{]*?/\*(?!.*?\*/.*?\{)).*?\{\s*($|//|/\*(?!.*?\*/.*\S))
 	</string>
 	<key>foldingStopMarker</key>
-	<string>(?&lt;!\*)\*\*/|^\s*\}</string>
+	<string>\*/|^\s*\}</string>
 	<key>name</key>
 	<string>DXL</string>
 	<key>patterns</key>
