@@ -7,7 +7,7 @@ BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 
 
 def OpenDxlHelp(text):
-    full_path = os.path.join(BASE_PATH, "keyhh.exe") + " -#klink " + text + " " + os.path.join(BASE_PATH, "dxl.chm")
+    full_path = os.path.join(BASE_PATH, "Help\\keyhh.exe") + " -#klink " + text + " " + os.path.join(BASE_PATH, "Help\\dxl.chm")
     subprocess.Popen(full_path)
     sublime.status_message(text)
 
