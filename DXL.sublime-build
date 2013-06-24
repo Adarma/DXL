@@ -1,5 +1,5 @@
 {
-    "cmd": ["C:\\Documents\\AutoIt\\Run Doors Include - ST2.exe", "$file", "0"],
+    "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "0"],
     "selector": "source.dxl",
     "file_regex": "^(?:-?R?-[EWF]- DXL: |\\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)",
     //"shell" : true,
@@ -11,16 +11,16 @@
     // Set it in: HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun
     "encoding": "UTF-8",
     "variants": [
-        { "cmd": ["C:\\Documents\\AutoIt\\Run Doors Include - ST2.exe", "$file", "1"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "1"],
           "name": "DXL: Allocation Leak"
         },
-        { "cmd": ["C:\\Documents\\AutoIt\\Run Doors Include - ST2.exe", "$file", "2"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "2"],
           "name": "DXL: Allocation Log"
         },
-        { "cmd": ["C:\\Documents\\AutoIt\\Run Doors Include - ST2.exe", "$file", "3"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3"],
           "name": "DXL: Trace"
         },
-        { "cmd": ["C:\\Documents\\AutoIt\\DXL Lint.exe", "$file"],
+        { "cmd": ["$packages\\DXL\\Build\\Lint\\DxlLint.exe", "$file"],
           "name": "DXL: Lint"
         }
     ]

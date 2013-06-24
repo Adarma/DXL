@@ -1,0 +1,1098 @@
+// Single Comment
+/* Multiline Comment
+   Multiline Comment
+   // NestedSingle Comment
+   // NestedSingle Comment
+   Multiline Comment
+   Multiline Comment
+   */
+
+/* single line block */
+
+void Namespace_LibraryFunction(void)
+void Namespace_LibraryFunction() {}
+Namespace_LibraryFunction()
+infoBox("test")
+print("Begin")
+
+void forward1(void)
+void forward2(bool&)
+void forward3(int, string)
+void forward4(void(int,string))
+void forward5(int, void(int, string))
+void forward6(int, void   (int), int)
+void forward7(void(int), int)
+void forward8(void(void(int&, Regexp)))
+
+string ::*(char, int)
+string ::+=(char, char)
+
+void forward1() {
+	print "forward1"
+}
+
+void forward2(bool bValue) {
+	print("forward2: " bValue "\n")
+}
+
+
+forward1()
+forward4(forward3)
+
+
+void forward3(int iValue, string sValue) {
+	print("forward3:" iValue " : " sValue "\n")
+}
+
+
+void forward4(void fCallback(int, string)) {
+	print("forward4\n")
+	fCallback(1, "hi")
+}
+
+
+
+// Continuation
+int i = 0
+i++
+i--
+
+int a =
+		0 + 1 +
+		2 -
+		3
+
+int b = 1 +   // We need a trailing dash at the end -
+     2     // to prevent a syntax error between "+" and the newline 
+print //
+     "hello" // the // causes the following newline to be ignored   
+
+
+
+print("sdfgsf")
+
+void asd(void gghfgh, int fghfgh) {
+	return
+}
+
+// Regular Expressions
+Regexp oRegexp = regexp2(".*qwerty\\\\.[A-Z_0-9]+")
+bool bMatch = matches("\\s*yes|no\\s*", "yes")
+string sRegexp = "^(?<=regexp2)\\b\\s*\\(?\"$"
+
+
+string ::..(char c, int i) {
+	string s = ""
+	int iIndex = 0
+	while(iIndex < i) {
+		s = c s
+		iIndex += 1
+	}
+	return(s)
+}
+print('!' * 15)
+
+
+
+int bcase = 123
+
+// Pragmas
+pragma runLim, 0
+pragma encoding, "UTF-8"
+pragma splashMessage, "Hello"
+pragma stack, 1024
+pragma invalid , true
+
+XFLAGS_ &= ~AutoDeclare_
+
+// Includes
+#include "C:\\Documents\\DXL\\Includes\\API\\Config.inc"
+// #include "c:\\some\\thing.inc"
+// #include "c:/one/more/thing.inc"
+// #include <c:\some\thing\else.inc>
+// #include <c:/another/thing.inc>
+// #include "..\\some\\thing.inc"
+// #include "../one/more/thing.inc"
+// #include <..\some\thing\else.inc>
+// #include <../another/thing.inc>
+
+// Types Definition
+struct VIOLATE { }
+struct JSON{}; struct JSONBOOL{}
+
+// Variable Declaration
+bool var1
+char var2
+int var3
+real var4
+string var5
+Module var6
+Object var7
+
+const bool constVar1
+const char constVar2
+const int constVar3
+const real constVar4
+const string constVar5
+const Module constVar6
+const Object constVar7
+
+static bool staticVar1
+static char staticVar2
+static int staticVar3
+static real staticVar4
+static string staticVar5
+static Module staticVar6
+static Object staticVar7
+static JSON staticVar8
+
+// Array
+int array1[3] = {1,2,3}
+int array2[3] = {1,2,3}
+
+// Pointer
+real rValue = 1.23
+int iAddress = addr_(rValue)
+int *iValuePtr = addr_(iAddress)
+
+
+// Literals - Bool
+null
+null()
+on
+off
+true
+false
+
+// Literals - Numeric - Int
+12
+-12
+
+// Literals - Numeric - Hex
+0xabc
+0xABC
+0Xabc
+0XABC
+-0xdef
+-0xDEF
+-0Xdef
+-0XDEF
+
+// Literals - Numeric - Real
+1.
+-1.
+1.2
+-1.2
+
+// Literals - Numeric - Real - Exponential
+1.2e45
+1.2e-34
+-1.2e45
+-1.2e-34
+
+// Literals - Chatacter
+'c'
+'h'
+'a'
+'r'
+'1'
+'c' 'h' 'a' 'r' '1' "\n"
+
+// Literals - Chatacter - Escaped
+'\b'
+'\f'
+'\n'
+'\r'
+'\t'
+'\v'
+'\\'
+'\''
+'\"'
+
+// Literals - Chatacter - Octal
+'\012'
+'\345'
+'\67'
+
+
+// Literals - String
+"single"
+
+// Literals - String - Escaped
+"one\n\ttwo\n"
+"one\576two\n" "one\245two\n"
+
+// Literals - String - Format
+"value: %d is decimal"
+"value: %i is integer"
+"value: %o is octal"
+"value: %u is unsigned"
+"value: %x is hex"
+"value: %X is HEX"
+"value: %c is char"
+"value: %c is char"
+"value: %s is string"
+"value: %p is pointer"
+"value: %% is percent"
+
+// dxlObject property Access
+DxlObject oDxlObject = new()
+oDxlObject->"Property" = 123
+string sProperty = "prop"
+oDxlObject->sProperty
+
+// Logical
+bool bLogical = true and false or false and on or off
+
+// Function Call - Perm
+confirm("confirm?")
+warningBox("warningBox!")
+(
+	(
+	errorBox("errorBox!")
+	)
+)
+
+VIOLATE TypeCast(DxlObject aDxlObject)	{ return(addr_(aDxlObject)) VIOLATE }
+DxlObject TypeCast(VIOLATE oViolate)	{ return(addr_(oViolate)) DxlObject }
+
+// Forward Function Declarations
+JSON ForwardFunctionDeclaration1(char)
+bool ForwardFunctionDeclaration2(int, char, bool&)
+real ForwardFunctionDeclaration3(void)
+
+
+attrDXLName
+obj
+
+
+
+{
+	void ForwardDeclare(string, int)
+	ForwardDeclare(" ok\n", 123)
+	void ForwardDeclare(string s, int i) {
+		print(i s)
+	}
+}
+
+
+
+const int qwe = 123; int asdf = 456;
+
+int icase = 123
+
+// null value vs function
+const JSON oJson1 = null
+const JSON oJson2 = null()
+const bool oJson3 = null(oJson1)
+JSON oJson4
+
+// Assignment - Constants
+{const bool bBool1 = true}
+const bool bBool2 = true and false
+// const char cChar1 = '\t\t'
+// const char cChar2 = '\t1234'
+// const char cChar3 = '1234'
+const char cChar4 = '\"'
+// const char cChar5 = '\g'
+const char cChar6 = '\505'
+const int iInt1 = 69
+const int iInt2 = -69
+const real rReal1 = 78.96
+const real rReal2 = 78E2
+const real rReal3 = 78.96E6
+const real rReal4 = 78.96e-6
+const string sString1 = "Hello World!"
+const string sString2 = "kjsdf\025 intffhj"
+
+const string sString3 = "The number is %d in decimal.\n"
+const string sString4 = "The number is %x in hex.\n"
+const string sString5 = "The string is [%-10s] [%-20s].\n"
+
+print(dxlNumformat(sString3, 123))
+print(dxlStrformat(sString5, "adam", "cadamally"))
+
+// Assignment - Variables
+char cChar = null;
+string sString = "sgfg\nfhfh"
+real rReal = -78.96
+
+string sMultiline = "
+line 1
+line 2
+line 3
+"
+
+int x[] = { 0, 1, 2 }
+
+char c ='v'
+
+// DOORS Types
+Module oModule = current()
+Object oObject = current()
+Skip oSkip1 = create()
+Skip oSkip2 = createString()
+DxlObject oDxlObject2 = new()
+Buffer oBuffer = create()
+delete(oBuffer)
+
+// Include Library Function Calls
+// JSON oJson = Json_Construct()
+// JSON oJsonBool = Json_Create()
+// Json_Destruct(oJson)
+// int iValue = oJson.Json_ToInteger
+
+// Function Definitions
+int FunctionDefinition1(int i, bool &b) {
+	warningBox("Opps")
+	return(1)
+}
+
+// Conditional
+if(null(oModule)) {
+	errorBox("Run from Module")
+	// int iReturn = functionCall(123)
+	halt;
+} else if(type(oModule) != "Formal") {
+	errorBox("Run from formal Module")
+	halt
+}
+
+// Conditional
+int iWhich = 0
+if(iWhich == 0) {
+	print("0")
+} else if(iWhich == 1) {
+	print("1")
+} elseif(iWhich == 2) {
+	print("2")
+} else(iWhich == 3) { //Bad DXL Parsed
+	print("3")
+	forward1()
+}
+
+// Conditional: Logical Operators
+bool bWhich= true
+if((iWhich == 0) and (bWhich)) {
+	print("0");
+} else if((iWhich == 1) && (bWhich)) {
+	print("1");
+} elseif((iWhich == 2) or (bWhich)) {
+	print("2");
+} else((iWhich == 3) || (bWhich)) { //Bad DXL Parsed
+	print("3");
+}
+
+// Single Line
+if true then print("true")
+
+int iTeneryValue = (true) ? 1 : 0
+
+
+
+
+
+// Loops
+while(!null(oObject)) {
+	break
+}
+int iCount = 0
+int iIndex = 0
+for(iIndex = 0; iIndex < iCount; iIndex += 1) {
+	continue
+}
+for oObject in oModule do {
+
+}
+
+Skip oSkip = create()
+for iValue in oSkip do {
+	// int iReturn = functionCall(123)
+}
+
+// Function Definitions
+void CustomVoidFunction1(int iInt, bool &bBool) {
+	warningBox("CustomVoidFunction")
+}
+void CustomVoidFunction2(bool &bBool, int fCallback(char, bool&)) {
+	warningBox("CustomVoidFunction")
+}
+int CustomIntFunction3(int iInt, bool &bBool) {
+	warningBox("CustomIntFunction")
+	return(0)
+}
+
+int CustomIntFunction4(int iInt, bool &bBool) {
+	int NestedCustomIntFunction1(int iInt, bool &bBool) {
+		warningBox("CustomIntFunction")
+		return(0)
+	}
+	return(0)
+}
+
+
+
+void printHistory(History h) {
+    HistoryType ht = h.type
+    print h.author "\t" h.date "\t" ht "\t"
+    if (ht == createType ||
+        ht == modifyType ||
+        ht == deleteType)  { // attribute type
+        print h.typeName
+    } else if (ht == createAttr ||
+               ht == modifyAttr ||
+               ht == deleteAttr)  {
+      // attribute definition
+      print h.attrName
+    } else if (ht == createObject ||
+               ht == clipCopyObject  ||
+               ht == modifyObject) { // object
+        print h.absNo
+        if (ht==modifyObject) {
+        // means an attribute has changed
+            string oldV = h.oldValue
+            string newV = h.newValue
+           print " (" h.attrName ":" oldV " -> "
+                 newV ")"
+        }
+    }
+    print "\n"
+}
+
+
+
+
+// Block Scoped
+{
+	// int iReturn = functi/onCall(123)
+
+
+	// dot property access in block
+	AttrDef oAttrDef = find(oModule, "Object Text")
+	bool bDxl = oAttrDef.dxl
+
+}
+
+// Global Scope
+// int iReturn = functionCall(123)
+
+// Operator Overload
+int ::+(int, int)
+int ::+(int a, int b) {
+
+}
+
+
+// c and c++
+// int main(void);
+// int main();
+
+// int main(int argc, char **argv);
+// int main(int argc, char *argv[]);
+
+// <return-type> functionName( <parameter-list> )
+// {
+//     <statements>
+//     return <expression of type return-type>;
+// }
+
+
+
+// Output
+print("Hello World\n")
+	warn("Hello\tWorld!")
+		error("Hello World\055")
+
+halt
+
+
+// Callbacks
+string LowerCase(string sText)
+{
+	return(lower(sText))
+}
+
+string UpperCase(string sText)
+{
+	return(upper(sText))
+}
+
+
+void FormatText(string sText, string fFormatter(string))
+{
+	string sFormattedText = fFormatter(sText)
+	print("sFormattedText: " sFormattedText "\n")
+}
+
+print("before" LowerCase("UpPeR") "lower")
+print("before" UpperCase("UpPeR") "lower")
+
+FormatText("UpPeR", LowerCase)
+FormatText("UpPeR", UpperCase)
+
+
+
+// Constants
+
+// Doors Info
+infoBuildDate
+infoBuildNumber
+infoServerVersion
+infoSupportId
+infoSupportPassword
+infoVersion
+
+// Run
+syswaitINFINITE_
+
+// DB
+database
+dbExplorer
+
+// Treeview
+treeViewOptionSorted
+
+// Dxl
+obj
+attrDXLName
+
+// Permission
+change
+control
+create
+delete
+modify
+none
+read
+write
+
+// Archive
+allBaselines
+noBaselines
+
+// Archive Type
+zipModule5Archive
+zipModuleArchive
+zipNotArchive
+zipPre3ModuleArchive
+zipPre3ProjectArchive
+zipPre5ModuleArchive
+zipPre5ProjectArchive
+zipProject5Archive
+zipProjectArchive
+zipUserList5Archive
+zipUserListArchive
+
+// External
+inward
+none
+openAsURL
+outward
+
+// Listview
+listViewOptionCheckboxes
+listViewOptionMultiselect
+listViewOptionSortText
+
+// Link
+linkFilterBoth
+linkFilterIncoming
+linkFilterOutgoing
+
+// Config
+confSystem
+confSysUser
+confTemp
+confUser
+
+// Character
+charsetAnsi
+charsetEastEurope
+charsetGreek
+charsetHebrew
+charsetRussian
+charsetSymbol
+charsetTurkish
+
+// Trigger Status
+trigError
+trigPreConFail
+trigPreConPass
+trigRunOK
+
+// Trigger Level ->
+attribute
+comment
+discussion
+module
+object
+project
+
+// Trigger Modifier ->
+all
+descriptive
+formal
+link
+
+// Trigger Time
+pre
+post
+
+// Trigger Event
+close
+create
+drag
+drop
+edit
+modify
+open
+read
+save
+sync
+write
+
+// Clip Type
+TYMED_ENHMF
+TYMED_GDI
+TYMED_HGLOBAL
+
+// Picture
+formatBMP
+formatDIB
+formatEPSF
+formatPNG
+formatUNKNOWN
+formatWMF
+
+// severity
+msgError
+msgInfo
+msgQuery
+msgWarning
+
+// DB Style
+styleAutoparent
+styleCentered
+styleCentred
+styleFixed
+styleFloating
+styleNoBorder
+styleStandard
+styleThemed
+
+// User
+groupList
+userList
+userNotifyList
+
+// Type
+attrDate
+attrEnumeration
+attrInteger
+attrReal
+attrString
+attrText
+attrUsername
+
+// Atribute Create Modify constants
+changeBars
+date
+default
+description
+dxl
+hidden
+history
+inherit
+multi
+type
+
+// User class
+administrator
+custom
+databaseManager
+projectManager
+standard
+
+// ClipFormat
+iconAuthenticatingUser
+iconDatabase
+iconDatabase
+iconDescriptive
+iconDescriptiveCut
+iconDescriptiveDeleted
+iconFolder
+iconFolderCut
+iconFolderDeleted
+iconFolderOpen
+iconFolderOpenDeleted
+iconFormal
+iconFormalCut
+iconFormalDeleted
+iconGroup
+iconGroupDisabled
+iconLink
+iconLinkCut
+iconLinkDeleted
+iconNone
+iconProject
+iconProjectCut
+iconProjectDeleted
+iconProjectOpen
+iconProjectOpenDeleted
+iconReadOnly
+iconUser
+iconUserDisabled
+
+// ClipFormat
+CF_BITMAP
+CF_DIB
+CF_HDROP
+CF_MAX
+CF_METAFILEPICT
+CF_OEMTEXT
+
+// CodePage
+CP_CHS
+CP_CHT
+CP_JAP
+CP_KOR
+CP_LATIN1
+CP_UNICODE
+CP_UTF16_BE
+CP_UTF16_LE
+CP_UTF8
+
+// Logical Colours
+logical0IndicatorColor
+logical100IndicatorColor
+logical11IndicatorColor
+logical22IndicatorColor
+logical33IndicatorColor
+logical44IndicatorColor
+logical55IndicatorColor
+logical66IndicatorColor
+logical77IndicatorColor
+logical88IndicatorColor
+logicalCurrentBackgroundColor
+logicalCurrentCellBackgroundColor
+logicalCurrentObjectOutline
+logicalDataTextColor
+logicalDefaultColor
+logicalDeletedTextColor
+logicalGraphicsBackgroundColor
+logicalGraphicsBoxColor
+logicalGraphicsBoxEdgeColor
+logicalGraphicsCurrentColor
+logicalGraphicsElideBoxColor
+logicalGraphicsLinkColor
+logicalGraphicsSelectedColor
+logicalGraphicsShadeColor
+logicalGraphicsTextColor
+logicalGridLines
+logicalHighIndicatorColor
+logicalHighlightURLColor
+logicalInPlaceBackgroundColor
+logicalInPlaceTextColor
+logicalLinkCurrentBackgroundColor
+logicalLinkDataTextColor
+logicalLinkPageBackgroundColor
+logicalLinksInIndicatorColor
+logicalLinksOutIndicatorColor
+logicalLinkTextBackgroundColor
+logicalLinkTitleBackgroundColor
+logicalLowIndicatorColor
+logicalMediumIndicatorColor
+logicalPageBackgroundColor
+logicalPageBackgroundFilterColor
+logicalPageBackgroundFilterSortColor
+logicalPageBackgroundSortColor
+logicalPartitionInReadTextColor
+logicalPartitionInWriteTextColor
+logicalPartitionOutTextColor
+logicalPrintPreviewBackgroundColor
+logicalPrintPreviewPageColor
+logicalPrintPreviewShadeColor
+logicalPrintPreviewTextColor
+logicalReadOnlyTextBackgroundColor
+logicalReadOnlyTextColor
+logicalSelectedTextColor
+logicalTextBackgroundColor
+logicalTitleBackgroundColor
+logicalTitleBackgroundColor
+logicalTitleTextColor
+logicalUnlockedTextBackgroundColor
+logicalUser1Color
+logicalUser2Color
+logicalUser3Color
+logicalUser4Color
+logicalUser5Color
+
+// Actual Colours
+colorBlack
+colorBlue
+colorBrown
+colorCyan
+colorDarkTurquoise
+colorGreen
+colorGrey
+colorGrey77
+colorGrey82
+colorLightBlue
+colorMagenta
+colorMaroon
+colorMediumLightBlue
+colorOptionsItem
+colorOrange
+colorPink
+colorRed
+colorRedGrey
+colorWhite
+colorYellow
+
+// Real Colours
+realColor_Black
+realColor_Blue
+realColor_Brown
+realColor_Cyan
+realColor_Dark_Turquoise
+realColor_Firebrick
+realColor_Green
+realColor_Grey11
+realColor_Grey22
+realColor_Grey33
+realColor_Grey44
+realColor_Grey55
+realColor_Grey66
+realColor_Grey77
+realColor_Grey82
+realColor_Light_Blue
+realColor_Light_Blue2
+realColor_Lime_Green
+realColor_Magenta
+realColor_Maroon
+realColor_Navy
+realColor_NewGrey1
+realColor_NewGrey2
+realColor_NewGrey3
+realColor_NewGrey4
+realColor_Orange
+realColor_Peru
+realColor_Pink
+realColor_Purple
+realColor_Red
+realColor_Red_Grey
+realColor_Rosy_Brown
+realColor_Sea_Green
+realColor_SplashScreenBlue
+realColor_Thistle
+realColor_White
+realColor_Yellow
+
+// Menu Mapping Return Values
+menuAvailable_
+menuAvailableChecked_
+menuUnavailable_
+menuInvisible_
+
+// History Types
+unknown
+createType
+modifyType
+deleteType
+createAttr
+modifyAttr
+deleteAttr
+createObject
+copyObject
+modifyObject
+deleteObject
+unDeleteObject
+purgeObject
+clipCutObject
+clipMoveObject
+clipCopyObject
+createModule
+baselineModule
+partitionModule
+acceptModule
+returnModule
+rejoinModule
+createLink
+modifyLink
+deleteLink
+insertOLE
+removeOLE
+changeOLE
+pasteOLE
+cutOLE
+readLocked
+
+// Languages
+Swedish
+Spanish
+Russian
+PortugueseBrazil
+PortugueseEurope
+NorwegianNynorsk
+NorwegianBokmal
+Italian
+Greek
+Dutch
+Danish
+Czech
+Catalan
+Afrikaans
+German
+French
+UKEnglish
+USEnglish
+
+// Locales
+supportedLocales
+installedLocales
+
+// Fonts
+availableFonts
+GraphicsFont
+HeadingsFont
+TextFont
+
+// InPlace
+inPlaceString
+inPlaceText
+inPlaceChoice
+inPlaceTextChange
+inPlaceTextFilled
+
+// History Properties
+History oHistory = null
+oHistory.attrName
+oHistory.author
+oHistory.newPosition
+oHistory.position
+oHistory.type
+oHistory.typeName
+oHistory.targetInitialName
+oHistory.linkInitialName
+oHistory.plainOldValue
+oHistory.plainNewValue
+oHistory.plainOldUnicodeValue
+oHistory.plainNewUnicodeValue
+oHistory.date
+oHistory.absNo
+oHistory.numberOfObjects
+oHistory.oldAbsNo
+oHistory.sessionNo
+oHistory.sourceAbsNo
+oHistory.targetAbsNo
+oHistory.linkVersion
+oHistory.targetVersion
+oHistory.newValue
+oHistory.oldValue
+
+// Archive Property
+ArchiveItem oArchiveItem = null
+oArchiveItem.archiveItemDescription
+oArchiveItem.archiveItemName
+oArchiveItem.archiveItemSelected
+oArchiveItem.archiveItemSoftDeleted
+oArchiveItem.archiveItemType
+
+// DragDrop
+DropEvent oDropEvent = null
+oDropEvent.source
+oDropEvent.sourceIndex
+oDropEvent.sourceIsListView
+oDropEvent.sourceIsTreeView
+oDropEvent.sourcePath
+oDropEvent.target
+oDropEvent.targetIndex
+oDropEvent.targetIsListView
+oDropEvent.targetIsTreeView
+oDropEvent.targetPath
+
+// Richtext
+RichText oRichText = null
+oRichText.bold
+oRichText.bulletStyle
+oRichText.charset
+oRichText.getEmbeddedOle
+oRichText.indentLevel
+oRichText.isBullet
+oRichText.isOle
+oRichText.isUrl
+oRichText.italic
+oRichText.last
+oRichText.newline
+oRichText.strikethru
+oRichText.subscript
+oRichText.superscript
+oRichText.text
+oRichText.underline
+
+// Type Properties
+AttrType oAttrType = null
+oAttrType.canWrite
+oAttrType.colors
+oAttrType.colours
+oAttrType.description
+oAttrType.descriptions
+oAttrType.maxValue
+oAttrType.minValue
+oAttrType.name
+oAttrType.size
+oAttrType.strings
+oAttrType.system
+oAttrType.values
+
+// Atribute Properties
+AttrDef oAttrDef = null
+oAttrDef.canWrite
+oAttrDef.defval
+oAttrDef.description
+oAttrDef.dxl
+oAttrDef.hidden
+oAttrDef.inherit
+oAttrDef.module
+oAttrDef.multi
+oAttrDef.name
+oAttrDef.nobars
+oAttrDef.nochanges
+oAttrDef.nohistory
+oAttrDef.object
+oAttrDef.system
+oAttrDef.type
+oAttrDef.typeName
+oAttrDef.useraccess
+
+// Group and User properties
+User oUser = null
+oUser.additionalAuthenticationRequired
+oUser.address
+oUser.class
+oUser.description
+oUser.disabled
+oUser.email
+oUser.emailCPUpdates
+oUser.forename
+oUser.fullName
+oUser.identifier
+oUser.ldapRDN
+oUser.mayArchive
+oUser.mayCreateTopLevelFolders
+oUser.mayEditDXL
+oUser.mayEditGroupList
+oUser.mayEditUserList
+oUser.mayManage
+oUser.mayPartition
+oUser.mayUseCommandLinePassword
+oUser.name
+oUser.password
+oUser.passwordChanged
+oUser.passwordLifetime
+oUser.passwordMayChange
+oUser.passwordMinimumLength
+oUser.surname
+oUser.synergyUsername
+oUser.systemLoginName
+oUser.telephone

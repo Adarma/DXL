@@ -1,0 +1,4 @@
+Buffer oBuffer = create()
+Skip oSkip = create()
+delete(oSkip)
+delete(oBuffer)
