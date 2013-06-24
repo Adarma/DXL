@@ -49,7 +49,7 @@ Modified version of the Soda Dark version of Monokai to add support for the DXL 
 
 ## Unicode
 
-If you have problems with unicode characters in the Build Output, set windows to use UTF8 on the command line:
+If you have problems with unicode characters in the Build Output, set Microsoft Windows to use UTF8 on the command line:
 
 * Run `regedit`
 * Navigate to Key `HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\`
