@@ -20,7 +20,7 @@
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3"],
           "name": "DXL: Trace"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Lint\\DxlLint.exe", "$file"],
+        { "cmd": ["$packages\\DXL\\Lint\\DxlLint.exe", "$file"],
           "name": "DXL: Lint"
         }
     ]
