@@ -2,13 +2,6 @@
     "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "0"],
     "selector": "source.dxl",
     "file_regex": "^(?:-?R?-[EWF]- DXL: |\\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)",
-    //"shell" : true,
-    //"path": "/usr/local/bin",
-    //"working_dir": "/projects/"
-    //"working_dir": "${file_path}",
-    //"encoding": "cp850"
-    // Set windows command line to UTF8 with 'chcp 65001 > nul'
-    // Set it in: HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\Autorun
     "encoding": "UTF-8",
     "variants": [
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "1"],

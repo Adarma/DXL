@@ -1,9 +1,11 @@
 # DXL package for Sublime Text
 
 This package adds support for DOORS eXtension Language (DXL) to [Sublime Text] [ST2] for:
+
 * Syntax Highlighting
 * Snippets
 * Build Configuration
+* Jump to DXL Keyword in Help
 
 ## Installation
 
@@ -44,6 +46,14 @@ Plugin for [SublimeLinter] [LINT] to add support for DXL.
 ### Syntax Highlighting Colour Schemes
 
 Modified version of the Soda Dark version of Monokai to add support for the DXL Language and Lint.
+
+## Unicode
+
+If you have problems with unicode characters in the Build Output, set windows to use UTF8 on the command line:
+
+* Run `regedit`
+* Navigate to Key `HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\`
+* Set Value name `Autorun` to Value data `chcp 65001 > nul`
 
 ## Credits
 Original author: Adam Cadamally
