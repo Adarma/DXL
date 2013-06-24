@@ -1,9 +1,9 @@
 # DXL package for Sublime Text
 
 This package adds support for DOORS eXtension Language (DXL) to [Sublime Text] [ST2] for:
-- Syntax Highlighting
-- Snippets
-- Build Configuration
+* Syntax Highlighting
+* Snippets
+* Build Configuration
 
 ## Installation
 
@@ -34,7 +34,12 @@ Go to your Sublime Text `Packages` directory and clone the repository using the 
 
 ### DXL Lint
 
-Plugin for Sublime Lint to add support for DXL.
+Plugin for [SublimeLinter] [LINT] to add support for DXL.
+
+* Install [SublimeLinter] [LINT]
+* Copy `\DXL\Lint\dxl.py` to `\SublimeLinter\sublimelinter\modules\dxl.py`
+* Create `\SublimeLinter\sublimelinter\modules\libs\dxl\`
+* Copy `\DXL\Lint\DxlLint.exe` to `\SublimeLinter\sublimelinter\modules\libs\dxl\DxlLint.exe`
 
 ### Syntax Highlighting Colour Schemes
 
@@ -65,7 +70,6 @@ Original author: Adam Cadamally
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-
-
  [ST2]: http://www.sublimetext.com/
  [PC]: http://wbond.net/sublime_packages/package_control
+ [LINT]: https://github.com/SublimeLinter/SublimeLinter
