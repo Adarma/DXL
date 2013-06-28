@@ -63,9 +63,9 @@ int a =
 		3
 
 int b = 1 +   // We need a trailing dash at the end -
-     2     // to prevent a syntax error between "+" and the newline 
+     2     // to prevent a syntax error between "+" and the newline
 print //
-     "hello" // the // causes the following newline to be ignored   
+     "hello" // the // causes the following newline to be ignored
 
 
 
