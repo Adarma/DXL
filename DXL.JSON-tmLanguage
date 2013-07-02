@@ -195,6 +195,9 @@
                     "include": "#constantAttribute"
                 }, 
                 {
+                    "include": "#constantButtonArrow"
+                }, 
+                {
                     "include": "#constantCharacterSet"
                 }, 
                 {
@@ -321,6 +324,11 @@
             "comment": "changeBars date default description dxl hidden history inherit multi type", 
             "match": "\\b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\\b", 
             "name": "constant.perm.attribute.dxl"
+        }, 
+        "constantButtonArrow": {
+            "comment": "topLeftArrow upArrow topRightArrow leftArrow allWaysArrow rightArrow bottomLeftArrow downArrow bottomRightArrow leftRightArrow upDownArrow", 
+            "match": "\\b(?:allWays|bottom(?:Lef|Righ)t|down|left(?:Right)?|right|top(?:Lef|Righ)t|up(?:Down)?)Arrow\\b", 
+            "name": "constant.perm.arrow.dxl"
         }, 
         "constantCharacterSet": {
             "comment": "charsetAnsi charsetEastEurope charsetGreek charsetHebrew charsetRussian charsetSymbol charsetTurkish", 

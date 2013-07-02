@@ -286,6 +286,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#constantButtonArrow</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#constantCharacterSet</string>
 				</dict>
 				<dict>
@@ -460,6 +464,15 @@
 			<string>\b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\b</string>
 			<key>name</key>
 			<string>constant.perm.attribute.dxl</string>
+		</dict>
+		<key>constantButtonArrow</key>
+		<dict>
+			<key>comment</key>
+			<string>topLeftArrow upArrow topRightArrow leftArrow allWaysArrow rightArrow bottomLeftArrow downArrow bottomRightArrow leftRightArrow upDownArrow</string>
+			<key>match</key>
+			<string>\b(?:allWays|bottom(?:Lef|Righ)t|down|left(?:Right)?|right|top(?:Lef|Righ)t|up(?:Down)?)Arrow\b</string>
+			<key>name</key>
+			<string>constant.perm.arrow.dxl</string>
 		</dict>
 		<key>constantCharacterSet</key>
 		<dict>
