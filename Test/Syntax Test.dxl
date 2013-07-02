@@ -9,8 +9,11 @@
 
 /* single line block */
 
-void Namespace_LibraryFunction(void)
+
+void  Namespace_LibraryFunction(void)
 void Namespace_LibraryFunction() {}
+
+
 Namespace_LibraryFunction()
 infoBox("test")
 print("Begin")
@@ -64,13 +67,30 @@ void badArg2(int & i1) {
 
 }
 
-void multiArg(int i1, i2, i3) {
+void multiArg(int i1[], i2, i3) {
 
 }
 
 void multiArgByRef(int i1, &i2, i3, &i4) {
 
 }
+
+string  forwardArray(void) [ ]
+
+string  returnStringArray()[]
+{
+	string s[]
+	return s
+}
+
+// Increment the Address of a Pointer by Offset
+int *IncrementPtr(int *Ptr, int Offset)
+{
+	int *IncrementedPtr = Ptr
+	IncrementedPtr += Offset
+	return IncrementedPtr
+}
+
 
 // Continuation
 int i = 0

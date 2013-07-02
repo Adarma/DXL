@@ -539,7 +539,7 @@
             "name": "support.function.perm.dxl"
         }, 
         "functionDeclaration": {
-            "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\()", 
+            "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\()", 
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.fundimental.dxl"
@@ -551,9 +551,12 @@
                     "name": "storage.type.custom.dxl"
                 }, 
                 "4": {
-                    "name": "invalid.illegal.keyword.dxl"
+                    "name": "variable.other.pointer.keyword.dxl"
                 }, 
                 "5": {
+                    "name": "invalid.illegal.keyword.dxl"
+                }, 
+                "6": {
                     "name": "entity.name.function.functionDeclaration.dxl"
                 }
             }, 
@@ -570,7 +573,12 @@
         }, 
         "functionDeclarationArgument": {
             "begin": "\\(", 
-            "end": "\\)", 
+            "end": "\\)\\s*(\\[\\s*\\])?", 
+            "endCaptures": {
+                "1": {
+                    "name": "variable.other.array.dxl"
+                }
+            }, 
             "name": "meta.parens.functionDeclarationArgument.dxl", 
             "patterns": [
                 {
@@ -590,8 +598,16 @@
                     "name": "variable.other.byref.dxl"
                 }, 
                 {
+                    "match": "(?<=\\s)\\*(?=[A-Za-z_])", 
+                    "name": "variable.other.pointer.dxl"
+                }, 
+                {
                     "match": "&\\s*", 
                     "name": "invalid.illegal.byref.dxl"
+                }, 
+                {
+                    "match": "\\*\\s*", 
+                    "name": "invalid.illegal.pointer.dxl"
                 }, 
                 {
                     "match": "[A-Za-z_][A-Za-z0-9_]*", 
@@ -604,7 +620,7 @@
             ]
         }, 
         "functionDefinition": {
-            "begin": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*&?\\s*[,\\(\\))])", 
+            "begin": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*&?\\s*[,\\(\\)])", 
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.fundimental.dxl"
@@ -616,13 +632,21 @@
                     "name": "storage.type.custom.dxl"
                 }, 
                 "4": {
-                    "name": "invalid.illegal.keyword.dxl"
+                    "name": "variable.other.pointer.dxl"
                 }, 
                 "5": {
+                    "name": "invalid.illegal.keyword.dxl"
+                }, 
+                "6": {
                     "name": "entity.name.functionDefinition.dxl"
                 }
             }, 
-            "end": "(?<=\\))", 
+            "end": "(?<=\\))\\s*(\\[\\s*\\])?", 
+            "endCaptures": {
+                "1": {
+                    "name": "variable.other.array.dxl"
+                }
+            }, 
             "name": "meta.function.forwardDeclaration.dxl", 
             "patterns": [
                 {
