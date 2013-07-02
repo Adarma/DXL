@@ -614,13 +614,17 @@
                     "name": "variable.parameter.dxl"
                 }, 
                 {
+                    "match": "(?<=[A-Za-z0-9_])\\s*\\[\\s*\\]", 
+                    "name": "variable.other.array.dxl"
+                }, 
+                {
                     "match": "\\s*,\\s*", 
                     "name": "meta.argument.separator.dxl"
                 }
             ]
         }, 
         "functionDefinition": {
-            "begin": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*&?\\s*[,\\(\\)])", 
+            "begin": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*&?\\s*[,\\[\\(\\)])", 
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.fundimental.dxl"
@@ -678,6 +682,10 @@
                 {
                     "match": "&", 
                     "name": "variable.other.byref.dxl"
+                }, 
+                {
+                    "match": "\\s*\\[\\s*\\]", 
+                    "name": "variable.other.array.dxl"
                 }, 
                 {
                     "match": "\\s*,\\s*", 

@@ -27,6 +27,15 @@ void forward6(int, void   (int), int)
 void forward7(void(int), int)
 void forward8(void(void(int&, Regexp)))
 
+void  forwardArray(void) [ ]
+
+void  forwardArrayArg(int[], string&   )
+
+void normal(int arr[])
+{
+	print(sizeof(arr) "\n")
+}
+
 string ::*(char, int)
 string ::+=(char, char)
 
@@ -75,7 +84,6 @@ void multiArgByRef(int i1, &i2, i3, &i4) {
 
 }
 
-string  forwardArray(void) [ ]
 
 string  returnStringArray()[]
 {
