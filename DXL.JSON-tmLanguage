@@ -586,15 +586,11 @@
                     "include": "#typeCustom"
                 }, 
                 {
-                    "match": "\\s+&", 
+                    "match": "(?<=\\s)&(?=[A-Za-z_])", 
                     "name": "variable.other.byref.dxl"
                 }, 
                 {
-                    "match": "&", 
-                    "name": "invalid.illegal.byref.dxl"
-                }, 
-                {
-                    "match": "(?<=&)\\s+", 
+                    "match": "&\\s*", 
                     "name": "invalid.illegal.byref.dxl"
                 }, 
                 {

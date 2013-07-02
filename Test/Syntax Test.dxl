@@ -54,7 +54,21 @@ int this = funcCall()
 funcCall(nestedCall())
 
 
+void goodArg(int &i1) {
+
+}
+void badArg(int& i1) {
+
+}
+void badArg2(int & i1) {
+
+}
+
 void multiArg(int i1, i2, i3) {
+
+}
+
+void multiArgByRef(int i1, &i2, i3, &i4) {
 
 }
 

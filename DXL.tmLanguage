@@ -923,19 +923,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\s+&amp;</string>
+					<string>(?&lt;=\s)&amp;(?=[A-Za-z_])</string>
 					<key>name</key>
 					<string>variable.other.byref.dxl</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>&amp;</string>
-					<key>name</key>
-					<string>invalid.illegal.byref.dxl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>(?&lt;=&amp;)\s+</string>
+					<string>&amp;\s*</string>
 					<key>name</key>
 					<string>invalid.illegal.byref.dxl</string>
 				</dict>
