@@ -50,7 +50,13 @@ void forward4(void fCallback(int, string)) {
 	fCallback(1, "hi")
 }
 
+int this = funcCall()
+funcCall(nestedCall())
 
+
+void multiArg(int i1, i2, i3) {
+
+}
 
 // Continuation
 int i = 0
@@ -154,6 +160,14 @@ int array2[3] = {1,2,3}
 real rValue = 1.23
 int iAddress = addr_(rValue)
 int *iValuePtr = addr_(iAddress)
+
+// Multiple Variable Declaration
+int    *ihjkhjk1,    *i2, *i3,    *i4
+int   one[1], *two[ 2], three[ 3 ]
+
+
+int case
+int *case
 
 
 // Literals - Bool
@@ -1096,3 +1110,16 @@ oUser.surname
 oUser.synergyUsername
 oUser.systemLoginName
 oUser.telephone
+
+// Button Arrows
+topLeftArrow
+upArrow
+topRightArrow
+leftArrow
+allWaysArrow
+rightArrow
+bottomLeftArrow
+downArrow
+bottomRightArrow
+leftRightArrow
+upDownArrow

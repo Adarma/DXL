@@ -103,7 +103,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#variableDeclaration</string>
+					<string>#variablesDeclaration</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1484,9 +1484,12 @@
 			<key>name</key>
 			<string>storage.type.dxl</string>
 		</dict>
-		<key>variableDeclaration</key>
+		<key>variablesDeclaration</key>
 		<dict>
-			<key>captures</key>
+			<key>begin</key>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\s*(?=$|[,;=
+\[]|//|/\*)</string>
+			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
@@ -1511,12 +1514,12 @@
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.keyword.dxl</string>
+					<string>variable.other.pointer.dxl</string>
 				</dict>
 				<key>6</key>
 				<dict>
 					<key>name</key>
-					<string>variable.other.pointer.dxl</string>
+					<string>invalid.illegal.keyword.dxl</string>
 				</dict>
 				<key>7</key>
 				<dict>
@@ -1524,12 +1527,71 @@
 					<string>variable.dxl</string>
 				</dict>
 			</dict>
-			<key>comment</key>
-			<string>Builtin DOORS Types: _k _x _y AccessRec Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef</string>
-			<key>match</key>
-			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(?:(case|default|enum|switch|union)|(\*)?([a-zA-Z_][a-zA-Z_0-9]*))\b\s*(?!\()(?=[;=\n\[]|//|/\*)</string>
+			<key>end</key>
+			<string>(?=$|[;=
+]|//|/\*)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>declaration.variable.end.dxl</string>
+				</dict>
+			</dict>
 			<key>name</key>
 			<string>declaration.variable.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.array.dxl</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>constant.numeric.elements.dxl</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.array.dxl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\[)\s*([0-9]*)\s*(\])\s*</string>
+					<key>name</key>
+					<string>declaration.variable.array.dxl</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.pointer.dxl</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.keyword.dxl</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>variable.dxl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>,\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\s*(?=$|[,;=
+\[]|//|/\*)</string>
+					<key>name</key>
+					<string>declaration.variable.another.dxl</string>
+				</dict>
+			</array>
 		</dict>
 		<key>whitespace</key>
 		<dict>
