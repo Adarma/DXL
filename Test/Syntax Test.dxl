@@ -208,8 +208,37 @@ int    *ihjkhjk1,    *i2, *i3,    *i4
 int   one[1], *two[ 2], three[ 3 ]
 
 
+
 int case
 int *case
+
+
+
+// Array, Pointer and Reference Variables
+int arr[], *Ptr, var, *ArrOfPrt[], &Ref, (*PtrToArr)[]
+
+int (*PtrToArray)[] = &arr
+
+DxlObject aDxlObjectArg = new()
+aDxlObjectArg->"sStaticArray" = arr
+int (&sNumbersArray1)[] = (aDxlObjectArg->"sStaticArray")
+delete(aDxlObjectArg)
+
+int *ptr = &var
+int &ref = var
+
+// Multi Initialize
+string str1 = "", str2 = "", str3, str4, str5 = ""
+
+
+int aa[] = {1,2,3}
+int bb[] = {4,5,6}
+int (*cc)[]	// a pointer to an array. The braces are needed, to tell DXL its a pointer to an array and not an array of pointers.
+cc = &aa
+print (*cc)[2]
+cc = &bb
+print (*cc)[2]
+
 
 
 // Literals - Bool
