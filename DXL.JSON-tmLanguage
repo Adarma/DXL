@@ -745,7 +745,7 @@
             "name": "constant.language.dxl"
         }, 
         "literalCharacter": {
-            "begin": "'", 
+            "begin": "['`]", 
             "beginCaptures": {
                 "0": {
                     "name": "punctuation.definition.string.begin.dxl"
