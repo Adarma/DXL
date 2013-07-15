@@ -84,6 +84,7 @@ Else
 	Local $ModuleName = ""
 	Local $FolderName = ""
 	Local $ModuleFullName = ""
+	Local $ModuleType = ""
 	Local $ModuleHwnd = 0
 	
 	; They are in the order they were last activated
@@ -92,7 +93,7 @@ Else
 		If $DoorsWindows[$i][0] <> "" And IsVisible($DoorsWindows[$i][1]) Then
 			
 			; Detect Doors Explorer from the title
-			Local $DoorsExplorer = StringRegExp($DoorsWindows[$i][0], "^[^'].+: /.+ - DOORS$", 0)
+			Local $DoorsExplorer = StringRegExp($DoorsWindows[$i][0], "^[^'].+: (/|\.{3}).+ - DOORS$", 0)
 			
 			If ($DoorsExplorer) Then
 				$DoorsRunning = true
@@ -100,12 +101,13 @@ Else
 			EndIf
 			
 			; Detect Open Formal Modules from their titles
-			Local $DoorsModule = StringRegExp($DoorsWindows[$i][0], "^'(.+)' current .+ in (.+) \(Formal module\) - DOORS$", 1)
+			Local $DoorsModule = StringRegExp($DoorsWindows[$i][0], "^'(.+)' current .+ in (.+) \((Formal|Link) module\) - DOORS$", 1)
 			
-			If (UBound($DoorsModule) == 2) Then
+			If (UBound($DoorsModule) == 3) Then
 				$DoorsRunning = true
 				$ModuleName = $DoorsModule[0]
 				$FolderName = $DoorsModule[1]
+				$ModuleType = $DoorsModule[2]
 				$ModuleFullName = $FolderName & "/" & $ModuleName
 				$ModuleHwnd = $DoorsWindows[$i][1]
 				ExitLoop
@@ -134,8 +136,12 @@ Else
 			Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
 			
 			; Test the code
+			Local $ParseTime = TimerInit()
 			$ObjDoors.Result = ""
 			$ObjDoors.runStr($TestCode)
+			$ParseTime = TimerDiff($ParseTime)
+			$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
+			ConsoleWrite("DXL Code Parsed in: " & $ParseTime & " milliseconds" & @CRLF)
 			
 			Local $DXLOutputText = $ObjDoors.Result
 			If $DXLOutputText <> "" Then
@@ -159,7 +165,7 @@ Else
 				ConsoleWrite("DOORS Database: " & $DatabaseName & @CRLF)
 				
 				If $ModuleFullName <> "" Then
-				   ConsoleWrite("Running code in Module:" & @CRLF & @TAB & $ModuleFullName & @CRLF & @CRLF)
+				   ConsoleWrite("Running code in "& $ModuleType & " Module:" & @CRLF & @TAB & $ModuleFullName & @CRLF & @CRLF)
 				Else
 				   ConsoleWrite("Running code in Doors Explorer..." & @CRLF & @CRLF)
 				EndIf
@@ -172,6 +178,12 @@ Else
 					$OldCode = ControlGetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]")
 				EndIf
 				ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
+				Sleep($ParseTime + 500)
+
+				; Error Window Titles
+				Local $CppErrorWindow = "Microsoft Visual C++ Runtime Library"
+				Local $DiagnosticLogWindow = "Diagnostic Log - DOORS"
+				Local $RuntimeErrorWindow = "DOORS report"
 
 				; While running, pipe the output
 				Local $CppError = False
@@ -187,15 +199,12 @@ Else
 					EndIf
 					
 					; Possible C++ Error Window
-					Local $CppErrorWindow = "Microsoft Visual C++ Runtime Library"
 					$CppError = WinExists($CppErrorWindow)
 					
 					; Possible Diagnostic Log Window
-					Local $DiagnosticLogWindow = "Diagnostic Log - DOORS"
 					$DiagnosticLog = WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)
 					
 					; Possible Runtime Error Window
-					Local $RuntimeErrorWindow = "DOORS report"
 					$RuntimeError = WinExists($RuntimeErrorWindow)
 					
 					If $CppError Then
