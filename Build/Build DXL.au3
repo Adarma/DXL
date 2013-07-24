@@ -62,9 +62,6 @@ Else
 	Local $ScriptFile = $CmdLine[1]
 	Local $DxlMode = $CmdLine[2]
 	
-	; Make the DXL include statement
-	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
-	
 	; Find the Sublime Text Window
 	Local $Windows = WinList("[CLASS:PX_WINDOW_CLASS]")
 	Local $ActiveWindow = 0
@@ -132,6 +129,9 @@ Else
 			EndIf
 		 Else
 			
+			; Make the DXL include statement
+			Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
+	
 			Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
 			Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
 			
@@ -153,8 +153,8 @@ Else
 				If Not $LogFile Then
 					ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @CRLF)
 				EndIf
-				
-				Local $LogFileHandle = FileOpen($LogFile, 256)
+
+				Local $LogFileHandle = FileOpen($LogFile, 0)
 				Local $OldLogFileNext = FileRead($LogFileHandle)
 				FileClose($LogFileHandle)
 				
@@ -177,7 +177,7 @@ Else
 				If $DxlOpen Then
 					$OldCode = ControlGetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]")
 				EndIf
-				ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
+				ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlOpen & ' ' & $DxlMode, @ScriptDir)
 				Sleep($ParseTime + 500)
 
 				; Error Window Titles
@@ -258,18 +258,21 @@ Else
 				; Report Closed Error Popups
 				If $RuntimeError Or WinExists($RuntimeErrorWindow) Then
 					ControlClick($RuntimeErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
+					ConsoleWrite(@LF)
 					ConsoleWrite("++++++++++++++++++" & @LF)
 					ConsoleWrite("+ Runtime Error! +" & @LF)
 					ConsoleWrite("++++++++++++++++++" & @LF)
 				EndIf
 				If $DiagnosticLog Or (WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)) Then
 					ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
+					ConsoleWrite(@LF)
 					ConsoleWrite("******************" & @LF)
 					ConsoleWrite("* Diagnostic Log *" & @LF)
 					ConsoleWrite("******************" & @LF)
 				EndIf
 				If $CppError Or WinExists($CppErrorWindow) Then
 					ControlClick($CppErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
+					ConsoleWrite(@LF)
 					ConsoleWrite("##################" & @LF)
 					ConsoleWrite("# MS V C++ Error #" & @LF)
 					ConsoleWrite("##################" & @LF)
@@ -283,6 +286,11 @@ Else
 				EndIf
 				ConsoleWrite(StringTrimLeft($LogFileNext, StringLen($OldLogFileNext)))
 				FileClose($LogFileHandle)
+				
+				; Save Error log containing just the last errors
+				Local $NewLogFileHandle = FileOpen(StringTrimRight($LogFile, 4) & " Last.log", 2)
+				FileWrite($NewLogFileHandle, StringTrimLeft($LogFileNext, StringLen($OldLogFileNext)))
+				FileClose($NewLogFileHandle)
 				
 				; Reactivate selected module because errors will activate explorer 
 				; The code would then be run in DOORS Explorer the next time
@@ -307,6 +315,15 @@ EndIf
 
 
 ; ******************************************************************************************************************* ;
+
+
+Func ClearFile($sFilename)
+    If FileExists($sFilename) Then
+		FileDelete($sFilename)
+		Local $FileHandle = FileOpen($sFilename, 2)
+		FileClose($FileHandle)
+	EndIf
+EndFunc
 
 Func IsVisible($handle)
 	If BitAND(WinGetState($handle), 2) Then

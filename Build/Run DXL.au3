@@ -54,30 +54,31 @@ Func ComErrorHandler($oMyError)
 Endfunc
 
 
-
 ; Check if any Arguments were passed
-If $CmdLine[0] < 4 Then
+If $CmdLine[0] < 5 Then
 	MsgBox(0, "Wrong Parameters", "Wrong Parameters: " & $CmdLine[0])
 Else
 	; Get Arguments
 	Local $IncludeString = $CmdLine[1]
 	Local $ModuleFullName = $CmdLine[2]
 	Local $OutFile = $CmdLine[3]
-	Local $DxlMode = $CmdLine[4]
+	Local $DxlOpen = $CmdLine[4]
+	Local $DxlMode = $CmdLine[5]
 	
 ;~ 	$PrintRepurposeCode = _
 ;~ 	"#include <C:/Documents/DXL/Includes/Debug/Redirection.inc>" & @CRLF & _
 ;~ 	"Redirection_Start()"& @CRLF
 	
-	
 	Local $EscapedOutFile = StringReplace($OutFile, "\", "\\")
 	Local $PrintRepurposeCode = _
-		"Stream oSublimeText2Stream = write(""" & $EscapedOutFile & """, CP_UTF8)" & @CRLF & _
+		"Stream SublimeText2_PrintStream = write(""" & $EscapedOutFile & """, CP_UTF8)" & @CRLF & _
+		"void SublimeText2_DxlPrint(string s) { print(s) }" & @CRLF & _
 		"void print(string s)" & @CRLF & _
 		"{" & @CRLF & _
+		@TAB & "if(" & StringLower($DxlOpen) & ") { SublimeText2_DxlPrint(s) }" & @CRLF & _
 		@TAB & "if(!null(s)) {" & @CRLF & _
-		@TAB & @TAB & "oSublimeText2Stream << s" & @CRLF & _
-		@TAB & @TAB & "flush(oSublimeText2Stream)" & @CRLF & _
+		@TAB & @TAB & "SublimeText2_PrintStream << s" & @CRLF & _
+		@TAB & @TAB & "flush(SublimeText2_PrintStream)" & @CRLF & _
 		@TAB & "}" & @CRLF & _
 		"}" & @CRLF & _
 		'void print(bool b)		{ print(b "\n") }' & @CRLF & _
@@ -100,7 +101,6 @@ Else
 			@TAB & '}' & @CRLF & _
 			'}' & @CRLF
 	EndIf
-
 
 	Local $Code = $IncludeString
 	Switch $DxlMode
@@ -131,7 +131,7 @@ Else
 ;~ 	"Redirection_Stop()"
 	   
 	Local $PostfixCode = @CRLF & _
-	   "close(oSublimeText2Stream)" & @CRLF
+	   "close(SublimeText2_PrintStream)" & @CRLF
 	
 ;~ 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $IncludeString & $PostfixCode
 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $Code
