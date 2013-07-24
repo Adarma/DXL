@@ -177,6 +177,8 @@ Else
 				If $DxlOpen Then
 					$OldCode = ControlGetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]")
 				EndIf
+				
+				; Run the DXL - Invoked by a separate process so this one can pipe the output back
 				ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlOpen & ' ' & $DxlMode, @ScriptDir)
 				Sleep($ParseTime + 500)
 
