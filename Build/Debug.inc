@@ -1,6 +1,7 @@
 /*
 Author:
 	Adam Cadamally
+	Mathias Mamsch
 
 Contact:
 	adamcadamally@gmail.com
@@ -10,10 +11,13 @@ Namespaces:
 	Debug_Private_...	// For private internal use in this library
 
 Description:
-	FILL THIS IN
+	This file is included before the dxl being executed when using a debug build.
+	It calls a callback function for every line of the program.
+	The call back function logs the file & line number and any Object [de]allocations.
 
 Reason for this library:
 	To trace code execution
+	To find slow code
 	To find which line causes DOORS to crash
 	To debug Memory Leaks caused by not releasing Allocated Objects
 
