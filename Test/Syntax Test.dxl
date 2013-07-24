@@ -9,12 +9,19 @@
 
 /* single line block */
 
-void functionWithComment()
+void functionWithLineComment()
 // Here is the comment
 {
 	print("In body\n")
 }
 
+void functionWithBlockComment()
+/*	Here is the
+	block comment
+	*/
+{
+	print("In body\n")
+}
 
 void  Namespace_LibraryFunction(void)
 void Namespace_LibraryFunction() {}

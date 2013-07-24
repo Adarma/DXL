@@ -567,6 +567,9 @@
                     "include": "#functionDeclarationArgument"
                 }, 
                 {
+                    "include": "#comments"
+                }, 
+                {
                     "include": "#blockScope"
                 }
             ]
