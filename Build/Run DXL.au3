@@ -102,19 +102,21 @@ Else
 			'}' & @CRLF
 	EndIf
 
+	Local $DebugInclude = '#include <' & @ScriptDir & '\Debug.inc>;'
+	
 	Local $Code = $IncludeString
 	Switch $DxlMode
 		Case 1
 			; Check Final Allocations
 			; TODO: Overload functions: halt, show, block etc
-			$Code = '#include <C:\Documents\DXL\Includes\Debug\Debug.inc>;' & @CRLF
+			$Code = $DebugInclude & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
 			$Code = $Code & 'int iCount = Debug_GetAllocatedObjectCount();' & @CRLF
 			$Code = $Code & 'print("Final Allocated Object Count : " iCount "\n");' & @CRLF
 		Case 2
 			; Log Allocations
 			; TODO: Pipe output
-			$Code = "#include <C:\Documents\DXL\Includes\Debug\Debug.inc>;" & @CRLF
+			$Code = $DebugInclude & @CRLF
 			$Code = $Code & "Debug_Logging(true);" & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
 			$Code = $Code & "Debug_Logging(false);" & @CRLF
