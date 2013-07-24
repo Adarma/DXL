@@ -203,20 +203,16 @@ Else
 					; Possible C++ Error Window
 					$CppError = WinExists($CppErrorWindow)
 					
+					; Possible Runtime Error Window
+					$RuntimeError = WinExists($RuntimeErrorWindow)
+					
 					; Possible Diagnostic Log Window
 					$DiagnosticLog = WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)
 					
-					; Possible Runtime Error Window
-					$RuntimeError = WinExists($RuntimeErrorWindow)
 					
 					If $CppError Then
 						; Close C++ Error message box
 						ControlClick($CppErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
-					EndIf
-					
-					If $DiagnosticLog Then
-						; Close Runtime Error message box
-						ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
 					EndIf
 					
 					If $RuntimeError Then
@@ -224,14 +220,22 @@ Else
 						ControlClick($RuntimeErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
 					EndIf
 					
+					If $DiagnosticLog Then
+						; Close Runtime Error message box
+						ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
+					EndIf
+					
 					; Pipe the new output
-					Local $OutFileHandle = FileOpen($OutFile, 256)
+					Local $OutFileHandle = FileOpen($OutFile, 0)
 					Local $OutputText = FileRead($OutFileHandle)
 					ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
 					$OldOutputText = $OutputText
 					FileClose($OutFileHandle)
 					
 				WEnd
+				
+				; Make sure Debugging features are turned off when code interupted (crash, halt, show etc)
+				$ObjDoors.runStr('setDebugging_(false);stopDXLTracing_();')
 				
 				; Possible DXL Interaction Window
 				If $DxlOpen Then
@@ -244,7 +248,7 @@ Else
 				EndIf
 				
 				; Pipe the remaining output
-				Local $OutFileHandle = FileOpen($OutFile, 256)
+				Local $OutFileHandle = FileOpen($OutFile, 0)
 				If $OutFileHandle = -1 Then
 					ConsoleWrite("Unable to get DOORS Output" & @LF)
 				Else
@@ -281,7 +285,7 @@ Else
 				EndIf
 				
 				; Pipe Errors and Warnings
-				Local $LogFileHandle = FileOpen($LogFile, 256)
+				Local $LogFileHandle = FileOpen($LogFile, 0)
 				Local $LogFileNext = FileRead($LogFileHandle)
 				If StringLen($LogFileNext) > StringLen($OldLogFileNext) Then
 					ConsoleWrite(@LF & "Error Log:" & @LF)

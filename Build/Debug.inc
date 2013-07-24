@@ -186,7 +186,7 @@ int Debug_Private_GetAllocatedObjectCountForContext(int ContextAddress)
 		AllocatedObjectPtr = Debug_Private_NextAllocatedObjectPtr(AllocatedObjectPtr)
 		AllocatedObjectCount++
 	}
-	return AllocatedObjectCount-2	// Subtract 2 because of the 2 Streams
+	return AllocatedObjectCount
 }
 
 // Define A Debug CallBack - Executes before every line
@@ -209,6 +209,7 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 	if(FilePath == ThisDxlFilePath) { return }
 
 	int ContextAddress = (DebugVariablesObject->"CurrentDXLContext") int
+	int InitialAllocations = (DebugVariablesObject->"InitialAllocations") int
 
 	int PreviousCount = (DebugVariablesObject->"PreviousCount") int
 	string PreviousFilePath = (DebugVariablesObject->"PreviousFilePath") string
@@ -219,12 +220,14 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 
 	// Append to Trace Log Stream
 	if(!null(CallTraceStream)) {
-		CallTraceStream << ((getTickCount_()) "\t" FilePath ":" LineNumber "\n")
+		if(FilePath != PreviousFilePath or LineNumber != PreviousLineNumber) {
+			CallTraceStream << ((getTickCount_()) "\t" FilePath ":" LineNumber "\n")
+		}
 	}
 
 	// Append to Allocations Log Stream
 	if(!null(AllocationsStream)) {
-		int CurrentAllocatedObjectCount = Debug_Private_GetAllocatedObjectCountForContext(ContextAddress)
+		int CurrentAllocatedObjectCount = Debug_Private_GetAllocatedObjectCountForContext(ContextAddress) - InitialAllocations
 		int AllocatedObjectChange = CurrentAllocatedObjectCount - PreviousCount
 		if(AllocatedObjectChange != 0) {
 			if((PreviousCount) != -1) {
@@ -373,6 +376,7 @@ Debug_Private_VariablesObject->"PreviousFilePath" = ""
 Debug_Private_VariablesObject->"PreviousLineNumber" = -1
 Debug_Private_VariablesObject->"CallTraceStream" = Debug_Private_CallTraceStream
 Debug_Private_VariablesObject->"AllocationsStream" = Debug_Private_AllocationsStream
+Debug_Private_VariablesObject->"InitialAllocations" = Debug_Private_GetAllocatedObjectCountForContext((Debug_Private_VariablesObject->"CurrentDXLContext") int)
 
 // Set the Callback - Executes in a different Context
 setDebugCallback_(Debug_Private_Callback)
