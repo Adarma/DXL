@@ -1,5 +1,8 @@
 [
     {
         "keys": ["f1"], "command": "dxl_keyword_help"
+    },
+    {
+    	"keys": ["f6"], "command": "show_overlay", "args": {"overlay": "command_palette", "text": "Build:"}
     }
 ]

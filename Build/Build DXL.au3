@@ -150,8 +150,12 @@ Else
 				ConsoleWrite("Parse Errors:" & @CRLF & $DXLOutputText & @CRLF)
 			Else
 			
-				$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
-				Local $LogFile = $ObjDoors.Result
+				Local $LogFile = GetDoorsLogFile()
+				If $DxlMode < 4 Then
+					$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
+					$LogFile = $ObjDoors.Result
+				EndIf
+				
 				Local $LastLogFile = $LogFile
 				If Not $LogFile Then
 					ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @CRLF)
@@ -348,6 +352,23 @@ EndIf
 
 ; ******************************************************************************************************************* ;
 
+Func GetDoorsLogFile()
+	Local $baseKey = "HKEY_CURRENT_USER\SOFTWARE\Telelogic\DOORS"
+	Local $index = 1
+	While True
+		Local $doorsVersion = RegEnumKey($baseKey, $index)
+		If @error = 0 Then 
+			Local $LogFilePath = RegRead($baseKey  & "\"& $doorsVersion & "\Config", "LOGFILE")
+			If @error = 0 Then 
+				Return $LogFilePath
+			EndIf
+			$index += 1
+		Else
+			ExitLoop
+		EndIf
+	WEnd
+	Return
+EndFunc
 
 Func ClearFile($sFilename)
     If FileExists($sFilename) Then
