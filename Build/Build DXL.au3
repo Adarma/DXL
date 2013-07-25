@@ -138,10 +138,12 @@ Else
 			; Test the code
 			Local $ParseTime = TimerInit()
 			$ObjDoors.Result = ""
-			$ObjDoors.runStr($TestCode)
-			$ParseTime = TimerDiff($ParseTime)
-			$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
-			ConsoleWrite("DXL Code Parsed in: " & $ParseTime & " milliseconds" & @CRLF)
+			If $DxlMode < 4 Then
+				$ObjDoors.runStr($TestCode)
+				$ParseTime = TimerDiff($ParseTime)
+				$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
+				ConsoleWrite("DXL Code Parsed in: " & $ParseTime & " milliseconds" & @CRLF)
+			EndIf
 			
 			Local $DXLOutputText = $ObjDoors.Result
 			If $DXLOutputText <> "" Then
@@ -150,24 +152,28 @@ Else
 			
 				$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
 				Local $LogFile = $ObjDoors.Result
+				Local $LastLogFile = $LogFile
 				If Not $LogFile Then
 					ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @CRLF)
+				Else
+					$LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
 				EndIf
 
 				Local $LogFileHandle = FileOpen($LogFile, 0)
-				Local $OldLogFileNext = FileRead($LogFileHandle)
+				Local $OldLogFileText = FileRead($LogFileHandle)
 				FileClose($LogFileHandle)
 				
 				Local $OutFile = _TempFile()
-				
-				$ObjDoors.runStr('oleSetResult(getDatabaseName())')
-				Local $DatabaseName = $ObjDoors.Result
-				ConsoleWrite("DOORS Database: " & $DatabaseName & @CRLF)
-				
-				If $ModuleFullName <> "" Then
-				   ConsoleWrite("Running code in "& $ModuleType & " Module:" & @CRLF & @TAB & $ModuleFullName & @CRLF & @CRLF)
-				Else
-				   ConsoleWrite("Running code in Doors Explorer..." & @CRLF & @CRLF)
+				If $DxlMode < 4 Then
+					$ObjDoors.runStr('oleSetResult(getDatabaseName())')
+					Local $DatabaseName = $ObjDoors.Result
+					ConsoleWrite("DOORS Database: " & $DatabaseName & @CRLF)
+					
+					If $ModuleFullName <> "" Then
+					   ConsoleWrite("Running code in "& $ModuleType & " Module:" & @CRLF & @TAB & $ModuleFullName & @CRLF & @CRLF)
+					Else
+					   ConsoleWrite("Running code in Doors Explorer..." & @CRLF & @CRLF)
+					EndIf
 				EndIf
 				
 				; Remember if the DXL Interaction window is already open
@@ -179,8 +185,10 @@ Else
 				EndIf
 				
 				; Run the DXL - Invoked by a separate process so this one can pipe the output back
-				ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlOpen & ' ' & $DxlMode, @ScriptDir)
-				Sleep($ParseTime + 500)
+				If $DxlMode < 4 Then
+					ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlOpen & ' ' & $DxlMode, @ScriptDir)
+					Sleep($ParseTime + 500)
+				EndIf
 
 				; Error Window Titles
 				Local $CppErrorWindow = "Microsoft Visual C++ Runtime Library"
@@ -235,11 +243,16 @@ Else
 				WEnd
 				
 				; Make sure Debugging features are turned off when code interupted (crash, halt, show etc)
-				$ObjDoors.runStr('setDebugging_(false);stopDXLTracing_();')
+				If $DxlMode < 4 Then
+					$ObjDoors.runStr('setDebugging_(false);stopDXLTracing_();')
+				EndIf
 				
 				; Possible DXL Interaction Window
 				If $DxlOpen Then
 					ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $OldCode)
+					If $DxlMode < 4 Then
+						ConsoleWrite($OldCode)
+					EndIf
 				Else
 					Local $DxlInteractionWindow = "DXL Interaction - DOORS"
 					If WinExists($DxlInteractionWindow) Then
@@ -250,7 +263,9 @@ Else
 				; Pipe the remaining output
 				Local $OutFileHandle = FileOpen($OutFile, 0)
 				If $OutFileHandle = -1 Then
-					ConsoleWrite("Unable to get DOORS Output" & @LF)
+					If $DxlMode < 4 Then
+						ConsoleWrite("Unable to get DOORS Output" & @LF)
+					EndIf
 				Else
 					Local $OutputText = FileRead($OutFileHandle)
 					ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
@@ -285,28 +300,39 @@ Else
 				EndIf
 				
 				; Pipe Errors and Warnings
-				Local $LogFileHandle = FileOpen($LogFile, 0)
-				Local $LogFileNext = FileRead($LogFileHandle)
-				If StringLen($LogFileNext) > StringLen($OldLogFileNext) Then
-					ConsoleWrite(@LF & "Error Log:" & @LF)
-				EndIf
-				ConsoleWrite(StringTrimLeft($LogFileNext, StringLen($OldLogFileNext)))
-				FileClose($LogFileHandle)
-				
-				; Save Error log containing just the last errors
-				Local $NewLogFileHandle = FileOpen(StringTrimRight($LogFile, 4) & " Last.log", 2)
-				FileWrite($NewLogFileHandle, StringTrimLeft($LogFileNext, StringLen($OldLogFileNext)))
-				FileClose($NewLogFileHandle)
-				
-				; Reactivate selected module because errors will activate explorer 
-				; The code would then be run in DOORS Explorer the next time
-				If StringLen($LogFileNext) > StringLen($OldLogFileNext) Then
-					If $ModuleHwnd And $ActiveWindow Then
-						WinSetOnTop($ActiveWindow, "", 1)
-						WinActivate($ModuleHwnd)
-						WinSetOnTop($ActiveWindow, "", 0)	; Better to restore previous state here
-						WinActivate($ActiveWindow)
+				If $DxlMode < 4 Then
+					Local $LogFileHandle = FileOpen($LogFile, 0)
+					Local $LogFileText = FileRead($LogFileHandle)
+					If StringLen($LogFileText) > StringLen($OldLogFileText) Then
+						ConsoleWrite(@LF & "Error Log:" & @LF)
 					EndIf
+					ConsoleWrite(StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
+					FileClose($LogFileHandle)
+					
+					; Save Error log containing just the last errors
+					Local $NewLogFileHandle = FileOpen(StringTrimRight($LogFile, 4) & " Last.log", 2)
+					FileWrite($NewLogFileHandle, StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
+					FileClose($NewLogFileHandle)
+					
+					; Reactivate selected module because errors will activate explorer 
+					; The code would then be run in DOORS Explorer the next time
+					If StringLen($LogFileText) > StringLen($OldLogFileText) Then
+						If $ModuleHwnd And $ActiveWindow Then
+							WinSetOnTop($ActiveWindow, "", 1)
+							WinActivate($ModuleHwnd)
+							WinSetOnTop($ActiveWindow, "", 0)	; Better to restore previous state here
+							WinActivate($ActiveWindow)
+						EndIf
+					EndIf
+					
+				Else
+					Local $LogFileHandle = FileOpen($LastLogFile, 0)
+					Local $LogFileText = FileRead($LogFileHandle)
+					If StringLen($LogFileText) > 0 Then
+						ConsoleWrite(@LF & "Error Log:" & @LF)
+					EndIf
+					ConsoleWrite($LogFileText & @LF)
+					FileClose($LogFileHandle)
 				EndIf
 				
 			EndIf
