@@ -1,0 +1,11 @@
+{
+    "name": "Indentation Rules", 
+    "scope": "source.inc, source.dxl, source.adxl, source.ldxl, source.tdxl", 
+    "settings": {
+        "decreaseIndentPattern": "^(.*\\*/)?\\s*\\}[;\\s]*$", 
+        "increaseIndentPattern": "^.*\\{[^}\\\"']*$", 
+        "indentNextLinePattern": "^(?!.*;\\s*//).*[^\\s;{}]\\s*$", 
+        "unIndentedLinePattern": "^\\s*((/\\*|\\*/\\s*$|//).*)?$"
+    }, 
+    "uuid": "A5ADC897-C99F-476B-A784-546D73875B92"
+}

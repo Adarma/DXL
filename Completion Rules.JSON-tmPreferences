@@ -1,0 +1,6 @@
+{
+    "scope": "source.inc, source.dxl, source.adxl, source.ldxl, source.tdxl", 
+    "settings": {
+        "cancelCompletion": "^\\s*\\}?\\s*(else|do)$"
+    }
+}
