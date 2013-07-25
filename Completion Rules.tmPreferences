@@ -7,7 +7,7 @@
     <key>settings</key>
     <dict>
         <key>cancelCompletion</key>
-        <string>^\s*(\}?\s*(else|try|do)|(class|struct|enum|namespace)\s*[a-zA-Z_0-9]+*)$</string>
+        <string>^\s*\}?\s*(else|do)$</string>
     </dict>
 </dict>
 </plist>
