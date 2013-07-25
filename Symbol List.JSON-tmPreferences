@@ -1,0 +1,9 @@
+{
+    "name": "Symbol List", 
+    "scope": "entity.name.function", 
+    "settings": {
+        "showInSymbolList": 1, 
+        "symbolTransformation": "s/^\\s*/ /;  # Remove Leading Whitespace"
+    }, 
+    "uuid": "62949388-DB3E-47B2-A6F9-043F9303DD69"
+}
