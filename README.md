@@ -34,6 +34,10 @@ Go to your Sublime Text `Packages` directory and clone the repository using the 
 
 ## Bonus Features
 
+### DXL Help
+
+Use `F1` to jump to the current word in the `dxl.chm` file.
+
 ### DXL Lint
 
 Plugin for [SublimeLinter] [LINT] to add support for DXL.
