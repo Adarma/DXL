@@ -110,9 +110,10 @@ Else
 			; Check Final Allocations
 			; TODO: Overload functions: halt, show, block etc
 			$Code = $DebugInclude & @CRLF
+			$Code = $Code & 'int SublimeText2_InitialCount = Debug_GetAllocatedObjectCount();' & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & 'int iCount = Debug_GetAllocatedObjectCount();' & @CRLF
-			$Code = $Code & 'print("Final Allocated Object Count : " iCount "\n");' & @CRLF
+			$Code = $Code & 'int SublimeText2_FinalCount = Debug_GetAllocatedObjectCount() - SublimeText2_InitialCount;' & @CRLF
+			$Code = $Code & 'print("Final Allocated Object Count : " SublimeText2_FinalCount "\n");' & @CRLF
 		Case 2
 			; Log Allocations
 			; TODO: Pipe output
@@ -123,7 +124,7 @@ Else
 		Case 3
 			; Trace DXL
 			; TODO: Pipe output
-			$Code = 'startDXLTracing_("C:\\DxlVariables.txt");' & @CRLF
+			$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
 			$Code = $Code & 'stopDXLTracing_();' & @CRLF
 	EndSwitch

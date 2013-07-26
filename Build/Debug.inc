@@ -225,7 +225,7 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 	// Append to Trace Log Stream
 	if(!null(CallTraceStream)) {
 		if(FilePath != PreviousFilePath or LineNumber != PreviousLineNumber) {
-			CallTraceStream << ((getTickCount_()) "\t" FilePath ":" LineNumber "\n")
+			CallTraceStream << ("<" FilePath ":" LineNumber "> " (getTickCount_()) "\n")
 		}
 	}
 
@@ -239,7 +239,7 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 // 				for(iCharIndex = 0; iCharIndex <= CurrentAllocatedObjectCount; iCharIndex += 1) {
 // 					AllocationsStream << ','
 // 				}
-				AllocationsStream << (PreviousFilePath ":" PreviousLineNumber "\t(" )
+				AllocationsStream << ("<" PreviousFilePath ":" PreviousLineNumber "> (" )
 				if(AllocatedObjectChange > 0) {
 					AllocationsStream << ("+")
 				}
@@ -294,6 +294,10 @@ void Debug_Logging(bool LoggingEnabled)
 		// Turn Logging On
 		setDebugging_(true)
 	} else {
+
+		// Call Callback to force last allocation to be logged
+		Debug_Private_Callback("", -1)
+
 		// Clear the Debug_Private_VariablesObject Address
 		oleSetResult("0")
 

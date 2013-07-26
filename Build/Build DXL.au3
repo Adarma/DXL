@@ -199,6 +199,15 @@ Else
 				Local $DiagnosticLogWindow = "Diagnostic Log - DOORS"
 				Local $RuntimeErrorWindow = "DOORS report"
 
+				; Set File to pipe the output from
+				Local $PipeFilePath = $OutFile
+				If $DxlMode = 2 Then
+					$PipeFilePath = "C:\\DxlAllocations.log"
+				EndIf
+				If $DxlMode = 3 Then
+					$PipeFilePath = "C:\\DxlVariables.log"
+				EndIf
+				
 				; While running, pipe the output
 				Local $CppError = False
 				Local $DiagnosticLog = False
@@ -238,7 +247,7 @@ Else
 					EndIf
 					
 					; Pipe the new output
-					Local $OutFileHandle = FileOpen($OutFile, 0)
+					Local $OutFileHandle = FileOpen($PipeFilePath, 0)
 					Local $OutputText = FileRead($OutFileHandle)
 					ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
 					$OldOutputText = $OutputText
@@ -265,7 +274,7 @@ Else
 				EndIf
 				
 				; Pipe the remaining output
-				Local $OutFileHandle = FileOpen($OutFile, 0)
+				Local $OutFileHandle = FileOpen($PipeFilePath, 0)
 				If $OutFileHandle = -1 Then
 					If $DxlMode < 4 Then
 						ConsoleWrite("Unable to get DOORS Output" & @LF)

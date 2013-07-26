@@ -1,7 +1,9 @@
-print "Allocations Test"
+print "Allocation Test\n"
 Array oArray = create(1, 1)
 Buffer oBuffer = create()
 Skip oSkip = create()
+print "Deallocation Test\n"
 delete(oSkip)
 delete(oBuffer)
 delete(oArray)
+print "End Test\n"

@@ -1,7 +1,7 @@
 {
     "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "0"],
     "selector": "source.dxl",
-    "file_regex": "^(?:-?R?-[EWF]- DXL: |\\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)",
+    "file_regex": "^(?:-?R?-[EWF]- DXL: |\\s)?<(?!Line:)(.*):([0-9]+)> ?(?:.*)",
     "encoding": "UTF-8",
     "variants": [
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "1"],
