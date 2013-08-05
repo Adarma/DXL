@@ -226,6 +226,7 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 	if(!null(CallTraceStream)) {
 		if(FilePath != PreviousFilePath or LineNumber != PreviousLineNumber) {
 			CallTraceStream << ("<" FilePath ":" LineNumber "> " (getTickCount_()) "\n")
+			flush(CallTraceStream)
 		}
 	}
 
@@ -244,6 +245,7 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 					AllocationsStream << ("+")
 				}
 				AllocationsStream << (AllocatedObjectChange ") " CurrentAllocatedObjectCount "\n")
+				flush(AllocationsStream)
 			}
 			DebugVariablesObject->"PreviousCount" = CurrentAllocatedObjectCount
 		}
