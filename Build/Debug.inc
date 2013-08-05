@@ -236,10 +236,6 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 		int AllocatedObjectChange = CurrentAllocatedObjectCount - PreviousCount
 		if(AllocatedObjectChange != 0) {
 			if((PreviousCount) != -1) {
-// 				int iCharIndex = 0
-// 				for(iCharIndex = 0; iCharIndex <= CurrentAllocatedObjectCount; iCharIndex += 1) {
-// 					AllocationsStream << ','
-// 				}
 				AllocationsStream << ("<" PreviousFilePath ":" PreviousLineNumber "> (" )
 				if(AllocatedObjectChange > 0) {
 					AllocationsStream << ("+")
