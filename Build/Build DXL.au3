@@ -138,7 +138,7 @@ Else
 			; Test the code
 			Local $ParseTime = TimerInit()
 			$ObjDoors.Result = ""
-			If $DxlMode < 4 Then
+			If $DxlMode < 5 Then
 				$ObjDoors.runStr($TestCode)
 				$ParseTime = TimerDiff($ParseTime)
 				$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
@@ -151,7 +151,7 @@ Else
 			Else
 			
 				Local $LogFile = GetDoorsLogFile()
-				If $DxlMode < 4 Then
+				If $DxlMode < 5 Then
 					$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
 					$LogFile = $ObjDoors.Result
 				EndIf
@@ -168,7 +168,7 @@ Else
 				FileClose($LogFileHandle)
 				
 				Local $OutFile = _TempFile()
-				If $DxlMode < 4 Then
+				If $DxlMode < 5 Then
 					$ObjDoors.runStr('oleSetResult(getDatabaseName())')
 					Local $DatabaseName = $ObjDoors.Result
 					ConsoleWrite("DOORS Database: " & $DatabaseName & @CRLF)
@@ -189,7 +189,7 @@ Else
 				EndIf
 				
 				; Run the DXL - Invoked by a separate process so this one can pipe the output back
-				If $DxlMode < 4 Then
+				If $DxlMode < 5 Then
 					ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlOpen & ' ' & $DxlMode, @ScriptDir)
 					Sleep($ParseTime + 500)
 				EndIf
@@ -203,12 +203,15 @@ Else
 				Local $PipeFilePath = $OutFile
 				If $DxlMode = 2 Then
 					$PipeFilePath = "C:\\DxlAllocations.log"
+					ConsoleWrite("Allocations:" & @CRLF)
 				EndIf
 				If $DxlMode = 3 Then
 					$PipeFilePath = "C:\\DxlCallTrace.log"
+					ConsoleWrite("Execution:" & @CRLF)
 				EndIf
 				If $DxlMode = 4 Then
 					$PipeFilePath = "C:\\DxlVariables.log"
+					ConsoleWrite("Variables:" & @CRLF)
 				EndIf
 				
 				; While running, pipe the output
@@ -252,21 +255,35 @@ Else
 					; Pipe the new output
 					Local $OutFileHandle = FileOpen($PipeFilePath, 0)
 					Local $OutputText = FileRead($OutFileHandle)
-					ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
+					If $DxlMode = 4 Then
+						Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
+						Local $LineIndex
+						For $LineIndex = 1 To $OutputLines[0]
+							If $OutputLines[$LineIndex] <> "" Then
+								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
+									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
+										ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+									EndIf
+								EndIf
+							EndIf
+						Next
+					Else
+						ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
+					EndIf
 					$OldOutputText = $OutputText
 					FileClose($OutFileHandle)
 					
 				WEnd
 				
 				; Make sure Debugging features are turned off when code interupted (crash, halt, show etc)
-				If $DxlMode < 4 Then
+				If $DxlMode < 5 Then
 					$ObjDoors.runStr('setDebugging_(false);stopDXLTracing_();')
 				EndIf
 				
 				; Possible DXL Interaction Window
 				If $DxlOpen Then
 					ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $OldCode)
-					If $DxlMode < 4 Then
+					If $DxlMode < 5 Then
 						ConsoleWrite($OldCode)
 					EndIf
 				Else
@@ -279,12 +296,26 @@ Else
 				; Pipe the remaining output
 				Local $OutFileHandle = FileOpen($PipeFilePath, 0)
 				If $OutFileHandle = -1 Then
-					If $DxlMode < 4 Then
+					If $DxlMode < 5 Then
 						ConsoleWrite("Unable to get DOORS Output" & @LF)
 					EndIf
 				Else
 					Local $OutputText = FileRead($OutFileHandle)
-					ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
+					If $DxlMode = 4 Then
+						Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
+						Local $LineIndex
+						For $LineIndex = 1 To $OutputLines[0]
+							If $OutputLines[$LineIndex] <> "" Then
+								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
+									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
+										ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+									EndIf
+								EndIf
+							EndIf
+						Next
+					Else
+						ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
+					EndIf
 					$OldOutputText = $OutputText
 				EndIf
 				FileClose($OutFileHandle)
@@ -316,7 +347,7 @@ Else
 				EndIf
 				
 				; Pipe Errors and Warnings
-				If $DxlMode < 4 Then
+				If $DxlMode < 5 Then
 					Local $LogFileHandle = FileOpen($LogFile, 0)
 					Local $LogFileText = FileRead($LogFileHandle)
 					If StringLen($LogFileText) > StringLen($OldLogFileText) Then
