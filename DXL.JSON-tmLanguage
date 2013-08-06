@@ -621,7 +621,7 @@
                     "name": "variable.other.array.dxl"
                 }, 
                 {
-                    "match": "\\s*,\\s*", 
+                    "match": "\\s*,", 
                     "name": "meta.argument.separator.dxl"
                 }
             ]
