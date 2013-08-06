@@ -62,6 +62,8 @@ Else
 	Local $ScriptFile = $CmdLine[1]
 	Local $DxlMode = $CmdLine[2]
 	
+	Local $TraceAllLines = False
+	
 	; Find the Sublime Text Window
 	Local $Windows = WinList("[CLASS:PX_WINDOW_CLASS]")
 	Local $ActiveWindow = 0
@@ -262,7 +264,9 @@ Else
 							If $OutputLines[$LineIndex] <> "" Then
 								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
 									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
-										ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+										If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
+											ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+										EndIf
 									EndIf
 								EndIf
 							EndIf
@@ -308,7 +312,9 @@ Else
 							If $OutputLines[$LineIndex] <> "" Then
 								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
 									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
-										ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+										If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
+											ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+										EndIf
 									EndIf
 								EndIf
 							EndIf
