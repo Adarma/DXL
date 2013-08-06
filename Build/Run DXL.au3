@@ -65,10 +65,6 @@ Else
 	Local $DxlOpen = $CmdLine[4]
 	Local $DxlMode = $CmdLine[5]
 	
-;~ 	$PrintRepurposeCode = _
-;~ 	"#include <C:/Documents/DXL/Includes/Debug/Redirection.inc>" & @CRLF & _
-;~ 	"Redirection_Start()"& @CRLF
-	
 	Local $EscapedOutFile = StringReplace($OutFile, "\", "\\")
 	Local $PrintRepurposeCode = _
 		"Stream SublimeText2_PrintStream = write(""" & $EscapedOutFile & """, CP_UTF8)" & @CRLF & _
@@ -116,25 +112,24 @@ Else
 			$Code = $Code & 'print("Final Allocated Object Count : " SublimeText2_FinalCount "\n");' & @CRLF
 		Case 2
 			; Log Allocations
-			; TODO: Pipe output
 			$Code = $DebugInclude & @CRLF
-			$Code = $Code & "Debug_Logging(true);" & @CRLF
+			$Code = $Code & "Debug_Logging(false, true);" & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & "Debug_Logging(false);" & @CRLF
+			$Code = $Code & "Debug_Logging(false, false);" & @CRLF
 		Case 3
+			; Log Calls
+			$Code = $DebugInclude & @CRLF
+			$Code = $Code & "Debug_Logging(true, false);" & @CRLF
+			$Code = $Code & $IncludeString & @CRLF
+			$Code = $Code & "Debug_Logging(false, false);" & @CRLF
+		Case 4
 			; Trace DXL
-			; TODO: Pipe output
 			$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
 			$Code = $Code & 'stopDXLTracing_();' & @CRLF
 	EndSwitch
-
-;~ 	$PostfixCode = @CRLF & _
-;~ 	"Redirection_Display()" & @CRLF & _
-;~ 	"Redirection_Stop()"
-	   
-	Local $PostfixCode = @CRLF & _
-	   "close(SublimeText2_PrintStream)" & @CRLF
+	
+	Local $PostfixCode = @CRLF & "close(SublimeText2_PrintStream)" & @CRLF
 	
 ;~ 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $IncludeString & $PostfixCode
 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $Code

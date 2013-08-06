@@ -8,12 +8,15 @@
           "name": "DXL: Allocation Leak"
         },
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "2"],
-          "name": "DXL: Allocation Log"
+          "name": "DXL: Trace Allocations"
         },
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3"],
-          "name": "DXL: Trace"
+          "name": "DXL: Trace Execution"
         },
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "4"],
+          "name": "DXL: Trace Variables"
+        },
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "5"],
           "name": "DXL: Errors"
         },
         { "cmd": ["$packages\\DXL\\Lint\\DxlLint.exe", "$file"],

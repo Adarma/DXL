@@ -219,31 +219,37 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 	string PreviousFilePath = (DebugVariablesObject->"PreviousFilePath") string
 	int PreviousLineNumber = (DebugVariablesObject->"PreviousLineNumber") int
 
-	Stream CallTraceStream = (DebugVariablesObject->"CallTraceStream") Stream
-	Stream AllocationsStream = (DebugVariablesObject->"AllocationsStream") Stream
+	bool LogLines = (DebugVariablesObject->"LogLines") bool
+	bool LogAllocations = (DebugVariablesObject->"LogAllocations") bool
 
 	// Append to Trace Log Stream
-	if(!null(CallTraceStream)) {
-		if(FilePath != PreviousFilePath or LineNumber != PreviousLineNumber) {
-			CallTraceStream << ("<" FilePath ":" LineNumber "> " (getTickCount_()) "\n")
-			flush(CallTraceStream)
+	if(LogLines) {
+		Stream CallTraceStream = (DebugVariablesObject->"CallTraceStream") Stream
+		if(!null(CallTraceStream)) {
+			if(FilePath != PreviousFilePath or LineNumber != PreviousLineNumber) {
+				CallTraceStream << ("<" FilePath ":" LineNumber "> " (getTickCount_()) "\n")
+				flush(CallTraceStream)
+			}
 		}
 	}
 
 	// Append to Allocations Log Stream
-	if(!null(AllocationsStream)) {
-		int CurrentAllocatedObjectCount = Debug_Private_GetAllocatedObjectCountForContext(ContextAddress) - InitialAllocations
-		int AllocatedObjectChange = CurrentAllocatedObjectCount - PreviousCount
-		if(AllocatedObjectChange != 0) {
-			if((PreviousCount) != -1) {
-				AllocationsStream << ("<" PreviousFilePath ":" PreviousLineNumber "> (" )
-				if(AllocatedObjectChange > 0) {
-					AllocationsStream << ("+")
+	if(LogAllocations) {
+		Stream AllocationsStream = (DebugVariablesObject->"AllocationsStream") Stream
+		if(!null(AllocationsStream)) {
+			int CurrentAllocatedObjectCount = Debug_Private_GetAllocatedObjectCountForContext(ContextAddress) - InitialAllocations
+			int AllocatedObjectChange = CurrentAllocatedObjectCount - PreviousCount
+			if(AllocatedObjectChange != 0) {
+				if((PreviousCount) != -1) {
+					AllocationsStream << ("<" PreviousFilePath ":" PreviousLineNumber "> (" )
+					if(AllocatedObjectChange > 0) {
+						AllocationsStream << ("+")
+					}
+					AllocationsStream << (AllocatedObjectChange ") " CurrentAllocatedObjectCount "\n")
+					flush(AllocationsStream)
 				}
-				AllocationsStream << (AllocatedObjectChange ") " CurrentAllocatedObjectCount "\n")
-				flush(AllocationsStream)
+				DebugVariablesObject->"PreviousCount" = CurrentAllocatedObjectCount
 			}
-			DebugVariablesObject->"PreviousCount" = CurrentAllocatedObjectCount
 		}
 	}
 
@@ -274,14 +280,22 @@ void Debug_AppendToLog(string AppendText)
 }
 
 // Turn Logging on/off
-void Debug_Logging(bool LoggingEnabled)
+void Debug_Logging(bool LogLines, LogAllocations)
 {
 	// Make sure Logging is Off
 	setDebugging_(false)
 
-	if(LoggingEnabled) {
+	bool PreLogAllocations = (Debug_Private_VariablesObject->"LogAllocations") bool
+
+	Debug_Private_VariablesObject->"LogLines" = LogLines
+	Debug_Private_VariablesObject->"LogAllocations" = LogAllocations
+
+	if(LogLines or LogAllocations) {
+
 		// Reset the PreviousAllocated Object Count
-		Debug_Private_VariablesObject->"PreviousCount" = -1
+		if(!PreLogAllocations) {
+			Debug_Private_VariablesObject->"PreviousCount" = -1
+		}
 
 		// The the Debug_Private_Callback executes in a different context so can't access variables in this Context
 		// Use oleResult to store the Address of the Debug_Private_VariablesObject so it can be reteved in Debug_Private_Callback
@@ -315,7 +329,7 @@ void Debug_Logging(bool LoggingEnabled)
 void Debug_Cleanup()
 {
 	// Make sure it is off
-	Debug_Logging(false)
+	Debug_Logging(false, false)
 
 	if(!null(Debug_Private_VariablesObject)) {
 		// Clear the Debug_Private_VariablesObject Address
@@ -380,6 +394,8 @@ Debug_Private_VariablesObject->"CurrentDXLContext" = Debug_Private_GetCurrentDXL
 Debug_Private_VariablesObject->"PreviousCount" = -1
 Debug_Private_VariablesObject->"PreviousFilePath" = ""
 Debug_Private_VariablesObject->"PreviousLineNumber" = -1
+Debug_Private_VariablesObject->"LogLines" = false
+Debug_Private_VariablesObject->"LogAllocations" = false
 Debug_Private_VariablesObject->"CallTraceStream" = Debug_Private_CallTraceStream
 Debug_Private_VariablesObject->"AllocationsStream" = Debug_Private_AllocationsStream
 Debug_Private_VariablesObject->"InitialAllocations" = Debug_Private_GetAllocatedObjectCountForContext((Debug_Private_VariablesObject->"CurrentDXLContext") int)

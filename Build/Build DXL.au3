@@ -205,6 +205,9 @@ Else
 					$PipeFilePath = "C:\\DxlAllocations.log"
 				EndIf
 				If $DxlMode = 3 Then
+					$PipeFilePath = "C:\\DxlCallTrace.log"
+				EndIf
+				If $DxlMode = 4 Then
 					$PipeFilePath = "C:\\DxlVariables.log"
 				EndIf
 				
