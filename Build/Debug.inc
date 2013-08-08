@@ -28,9 +28,9 @@ Usage:
 		print "Allocated Object Count : " Count "\n"
 
 	Enable Allocated Object Logging - Surround suspect code with:
-		Debug_Logging(true)
+		Debug_Logging(true, true, "", "")
 		{CODE}
-		Debug_Logging(false)
+		Debug_Logging(false, false, "", "")
 
 Example:
 
@@ -103,13 +103,6 @@ const int Debug_Version = 1
 
 //==================================== GLOBAL VARIABLES ===================================\\
 
-// Default Log Files
-string Debug_Private_CallTraceFilePath = "c:\\DxlCallTrace.log"
-string Debug_Private_AllocationsFilePath = "c:\\DxlAllocations.log"
-
-// Create and Clear the Log Files
-Stream Debug_Private_CallTraceStream = write(Debug_Private_CallTraceFilePath)
-Stream Debug_Private_AllocationsStream = write(Debug_Private_AllocationsFilePath)
 
 // DxlObject to pass Variables between Dxl Contexts
 DxlObject Debug_Private_VariablesObject = new()
@@ -197,65 +190,130 @@ int Debug_Private_GetAllocatedObjectCountForContext(int ContextAddress)
 // Executed in it own Context so can't access global variables
 void Debug_Private_Callback(string FilePath, int LineNumber)
 {
-	if(LineNumber == 0)		{ return }
 	if(FilePath == "Line")	{ return }
+	if(LineNumber == 0)		{ return }
 
 	// Get the address of the DxlObject by oleGetResult
-	int DebugVariablesAddress = intOf(realOf(oleGetResult()))
-	if(null(DebugVariablesAddress)) {
-		setDebugging_(false)
-		return
-	}
+	int iDxlObjectAddress = intOf(realOf(oleGetResult()))
+	if(null(iDxlObjectAddress)) { return }
 
-	DxlObject DebugVariablesObject = (addr_(DebugVariablesAddress)) DxlObject
+	// Get the DxlObject
+	DxlObject oDxlObject = (addr_(iDxlObjectAddress)) DxlObject
+	if(null(oDxlObject)) { return }
 
-	string ThisDxlFilePath = (DebugVariablesObject->"ThisDxlFilePath") string
+	// Get ThisDxlFilePath
+	string ThisDxlFilePath = (oDxlObject->"ThisDxlFilePath") string
 	if(FilePath == ThisDxlFilePath) { return }
 
-	int ContextAddress = (DebugVariablesObject->"CurrentDXLContext") int
-	int InitialAllocations = (DebugVariablesObject->"InitialAllocations") int
-
-	int PreviousCount = (DebugVariablesObject->"PreviousCount") int
-	string PreviousFilePath = (DebugVariablesObject->"PreviousFilePath") string
-	int PreviousLineNumber = (DebugVariablesObject->"PreviousLineNumber") int
-
-	bool LogLines = (DebugVariablesObject->"LogLines") bool
-	bool LogAllocations = (DebugVariablesObject->"LogAllocations") bool
-
 	// Append to Trace Log Stream
+	bool LogLines = (oDxlObject->"LogLines") bool
 	if(LogLines) {
-		Stream CallTraceStream = (DebugVariablesObject->"CallTraceStream") Stream
-		if(!null(CallTraceStream)) {
-			if(FilePath != PreviousFilePath or LineNumber != PreviousLineNumber) {
-				CallTraceStream << ("<" FilePath ":" LineNumber "> " (getTickCount_()) "\n")
-				flush(CallTraceStream)
+
+		Stream TimeElapsedStream = (oDxlObject->"TimeElapsedStream") Stream
+		if(!null(TimeElapsedStream)) {
+
+			string FileFilterExecution = (oDxlObject->"FileFilterExecution") string
+			if(null(FileFilterExecution) or null(FilePath) or FilePath == FileFilterExecution)
+			{
+				string PreviousExecutionFile = (oDxlObject->"PreviousExecutionFile") string
+				int PreviousExecutionLine = (oDxlObject->"PreviousExecutionLine") int
+				if(FilePath != PreviousExecutionFile or LineNumber != PreviousExecutionLine) {
+
+					int TimeNow = getTickCount_()
+					if(PreviousExecutionLine != -1) {
+
+						int PreviousExecutionTime = (oDxlObject->"PreviousExecutionTime") int
+						int ExecutionTime = TimeNow - PreviousExecutionTime
+
+						TimeElapsedStream << ("<" PreviousExecutionFile ":" PreviousExecutionLine "> " ExecutionTime "\n")
+						flush(TimeElapsedStream)
+					}
+
+					// Store Current File, Line and Time
+					oDxlObject->"PreviousExecutionFile" = FilePath
+					oDxlObject->"PreviousExecutionLine" = LineNumber
+					oDxlObject->"PreviousExecutionTime" = TimeNow
+				}
 			}
 		}
 	}
 
 	// Append to Allocations Log Stream
+	bool LogAllocations = (oDxlObject->"LogAllocations") bool
 	if(LogAllocations) {
-		Stream AllocationsStream = (DebugVariablesObject->"AllocationsStream") Stream
+
+		Stream AllocationsStream = (oDxlObject->"AllocationsStream") Stream
 		if(!null(AllocationsStream)) {
-			int CurrentAllocatedObjectCount = Debug_Private_GetAllocatedObjectCountForContext(ContextAddress) - InitialAllocations
-			int AllocatedObjectChange = CurrentAllocatedObjectCount - PreviousCount
-			if(AllocatedObjectChange != 0) {
-				if((PreviousCount) != -1) {
-					AllocationsStream << ("<" PreviousFilePath ":" PreviousLineNumber "> (" )
-					if(AllocatedObjectChange > 0) {
-						AllocationsStream << ("+")
+
+			string FileFilterAllocation = (oDxlObject->"FileFilterAllocation") string
+			if(null(FileFilterAllocation) or null(FilePath) or FilePath == FileFilterAllocation) {
+
+				int ContextAddress = (oDxlObject->"CurrentDXLContext") int
+				int TotalAllocatedObjects = Debug_Private_GetAllocatedObjectCountForContext(ContextAddress)
+				int InitialAllocations = (oDxlObject->"InitialAllocations") int
+				int CurrentAllocatedObjectCount = TotalAllocatedObjects - InitialAllocations
+
+				int PreviousAllocationCount = (oDxlObject->"PreviousAllocationCount") int
+				if((PreviousAllocationCount) != -1) {
+
+					int AllocatedObjectChange = CurrentAllocatedObjectCount - PreviousAllocationCount
+					if(AllocatedObjectChange != 0) {
+
+						string PreviousAllocationFile = (oDxlObject->"PreviousAllocationFile") string
+						int PreviousAllocationLine = (oDxlObject->"PreviousAllocationLine") int
+
+						AllocationsStream << ("<" PreviousAllocationFile ":" PreviousAllocationLine "> (" )
+						if(AllocatedObjectChange > 0) {
+							AllocationsStream << ("+")
+						}
+						AllocationsStream << (AllocatedObjectChange ") " CurrentAllocatedObjectCount "\n")
+						flush(AllocationsStream)
 					}
-					AllocationsStream << (AllocatedObjectChange ") " CurrentAllocatedObjectCount "\n")
-					flush(AllocationsStream)
 				}
-				DebugVariablesObject->"PreviousCount" = CurrentAllocatedObjectCount
+
+				// Store Current File, Line and Count
+				oDxlObject->"PreviousAllocationFile" = FilePath
+				oDxlObject->"PreviousAllocationLine" = LineNumber
+				oDxlObject->"PreviousAllocationCount" = CurrentAllocatedObjectCount
 			}
 		}
 	}
+}
 
-	// Store Current position
-	DebugVariablesObject->"PreviousFilePath" = FilePath
-	DebugVariablesObject->"PreviousLineNumber" = LineNumber
+void Debug_Private_Initialize(DxlObject oDxlObject)
+{
+	// Make sure Debugging is off
+	setDebugging_(false)
+
+	// Default Log Files
+	string CallTraceFilePath = "c:\\DxlCallTrace.log"
+	string AllocationsFilePath = "c:\\DxlAllocations.log"
+
+	// Create and Clear the Log Files
+	Stream TimeElapsedStream = write(CallTraceFilePath)
+	Stream AllocationsStream = write(AllocationsFilePath)
+
+	int CurrentDXLContext = Debug_Private_GetCurrentDXLContextAddress()
+
+	// Store the variables in the DxlObject
+	oDxlObject->"ThisDxlFilePath" = Debug_Private_GetThisDxlFilePath()
+	oDxlObject->"CurrentDXLContext" = CurrentDXLContext
+	oDxlObject->"InitialAllocations" = Debug_Private_GetAllocatedObjectCountForContext(CurrentDXLContext)
+	oDxlObject->"TimeElapsedStream" = TimeElapsedStream
+	oDxlObject->"AllocationsStream" = AllocationsStream
+	oDxlObject->"LogLines" = false
+	oDxlObject->"LogAllocations" = false
+	oDxlObject->"PreviousExecutionFile" = ""
+	oDxlObject->"PreviousExecutionLine" = -1
+	oDxlObject->"PreviousExecutionTime" = getTickCount_()
+	oDxlObject->"PreviousAllocationFile" = ""
+	oDxlObject->"PreviousAllocationLine" = -1
+	oDxlObject->"PreviousAllocationCount" = -1
+	oDxlObject->"FileFilterAllocation" = ""
+	oDxlObject->"FileFilterExecution" = ""
+
+	// Set the Callback - Executes in a different Context
+	setDebugCallback_(Debug_Private_Callback)
 }
 
 //=================================== PUBLIC FUNCTIONS ====================================\\
@@ -263,45 +321,52 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 // Get Number of Allocated Objects
 int Debug_GetAllocatedObjectCount()
 {
-	int CurrentDXLContextAddress = (Debug_Private_VariablesObject->"CurrentDXLContext")int
-	return Debug_Private_GetAllocatedObjectCountForContext(CurrentDXLContextAddress)
+	int CurrentDXLContextAddress = (Debug_Private_VariablesObject->"CurrentDXLContext") int
+	int InitialAllocations = (Debug_Private_VariablesObject->"InitialAllocations") int
+	return Debug_Private_GetAllocatedObjectCountForContext(CurrentDXLContextAddress) - InitialAllocations
 }
 
 // Append some text to the logs
 void Debug_AppendToLog(string AppendText)
 {
-	if(!null(Debug_Private_CallTraceStream)) {
-		Debug_Private_CallTraceStream << AppendText
+	Stream TimeElapsedStream = (Debug_Private_VariablesObject->"TimeElapsedStream") Stream
+	Stream AllocationsStream = (Debug_Private_VariablesObject->"AllocationsStream") Stream
+
+	if(!null(TimeElapsedStream)) {
+		TimeElapsedStream << AppendText
 	}
 
-	if(!null(Debug_Private_AllocationsStream)) {
-		Debug_Private_AllocationsStream << AppendText
+	if(!null(AllocationsStream)) {
+		AllocationsStream << AppendText
 	}
 }
 
 // Turn Logging on/off
-void Debug_Logging(bool LogLines, LogAllocations)
+void Debug_Logging(bool LogLines, LogAllocations, string FileFilterAllocation, FileFilterExecution)
 {
 	// Make sure Logging is Off
 	setDebugging_(false)
 
+	bool PreLogLines = (Debug_Private_VariablesObject->"LogLines") bool
 	bool PreLogAllocations = (Debug_Private_VariablesObject->"LogAllocations") bool
-
-	Debug_Private_VariablesObject->"LogLines" = LogLines
-	Debug_Private_VariablesObject->"LogAllocations" = LogAllocations
 
 	if(LogLines or LogAllocations) {
 
+		// Reset the PreviousExecutionTime Object Count
+		if(!PreLogLines) {
+			Debug_Private_VariablesObject->"PreviousExecutionTime" = -1
+		}
+
 		// Reset the PreviousAllocated Object Count
 		if(!PreLogAllocations) {
-			Debug_Private_VariablesObject->"PreviousCount" = -1
+			Debug_Private_VariablesObject->"PreviousAllocationCount" = -1
 		}
 
 		// The the Debug_Private_Callback executes in a different context so can't access variables in this Context
 		// Use oleResult to store the Address of the Debug_Private_VariablesObject so it can be reteved in Debug_Private_Callback
-		oleSetResult(((addr_ Debug_Private_VariablesObject) int) "")
+		oleSetResult(((addr_(Debug_Private_VariablesObject)) int) "")
 
-		Debug_AppendToLog("Logging Enabled\n")
+		// Debug_AppendToLog("Logging Enabled\n")
 
 		// Turn Logging On
 		setDebugging_(true)
@@ -313,11 +378,17 @@ void Debug_Logging(bool LogLines, LogAllocations)
 		// Clear the Debug_Private_VariablesObject Address
 		oleSetResult("0")
 
-		Debug_AppendToLog("Logging Disabled\n")
+		// Debug_AppendToLog("Logging Disabled\n")
 
 		// Turn Logging Off
 		setDebugging_(false)
 	}
+
+	Debug_Private_VariablesObject->"LogLines" = LogLines
+	Debug_Private_VariablesObject->"LogAllocations" = LogAllocations
+
+	Debug_Private_VariablesObject->"FileFilterAllocation" = FileFilterAllocation
+	Debug_Private_VariablesObject->"FileFilterExecution" = FileFilterExecution
 }
 
 /*	Debug_Cleanup: Destroy the Global DxlObject and Streams
@@ -329,19 +400,24 @@ void Debug_Logging(bool LogLines, LogAllocations)
 void Debug_Cleanup()
 {
 	// Make sure it is off
-	Debug_Logging(false, false)
+	Debug_Logging(false, false, "", "")
 
 	if(!null(Debug_Private_VariablesObject)) {
 		// Clear the Debug_Private_VariablesObject Address
 		oleSetResult("0")
 
-		// Cleanup
+		Stream TimeElapsedStream = (Debug_Private_VariablesObject->"TimeElapsedStream") Stream
+		Stream AllocationsStream = (Debug_Private_VariablesObject->"AllocationsStream") Stream
+
+		// Cleanup Streams
+		close(TimeElapsedStream)
+		TimeElapsedStream = null
+		close(AllocationsStream)
+		AllocationsStream = null
+
+		// Cleanup DxlObject
 		delete(Debug_Private_VariablesObject)
 		Debug_Private_VariablesObject = null
-		close(Debug_Private_CallTraceStream)
-		Debug_Private_CallTraceStream = null
-		close(Debug_Private_AllocationsStream)
-		Debug_Private_AllocationsStream = null
 	}
 }
 
@@ -368,13 +444,13 @@ void Debug_Cleanup()
 // void show(DB Dialog) {
 // 	int InitialShowDB = (Debug_Private_VariablesObject->"InitialShowDB") int
 // 	if(null(InitialShowDB)) {
-// 		int Address = ((addr_ Dialog) int)
+// 		int Address = ((addr_(Dialog)) int)
 // 		Debug_Private_VariablesObject->"InitialShowDB" = Address
 // 	}
 // 	Debug_Private_OriginalShow(Dialog)
 // }
 // void destroy(DB Dialog) {
-// 	int Address = ((addr_ Dialog) int)
+// 	int Address = ((addr_(Dialog)) int)
 // 	int StoredAddress = (Debug_Private_VariablesObject->"InitialShowDB") int
 // 	if(StoredAddress == Address) {
 // 		Debug_Cleanup()
@@ -385,20 +461,5 @@ void Debug_Cleanup()
 
 //===================================== INITIALIZATION ====================================\\
 
-// Make sure Debugging is off
-setDebugging_(false)
 
-// Store the variables in the DxlObject
-Debug_Private_VariablesObject->"ThisDxlFilePath" = Debug_Private_GetThisDxlFilePath()
-Debug_Private_VariablesObject->"CurrentDXLContext" = Debug_Private_GetCurrentDXLContextAddress()
-Debug_Private_VariablesObject->"PreviousCount" = -1
-Debug_Private_VariablesObject->"PreviousFilePath" = ""
-Debug_Private_VariablesObject->"PreviousLineNumber" = -1
-Debug_Private_VariablesObject->"LogLines" = false
-Debug_Private_VariablesObject->"LogAllocations" = false
-Debug_Private_VariablesObject->"CallTraceStream" = Debug_Private_CallTraceStream
-Debug_Private_VariablesObject->"AllocationsStream" = Debug_Private_AllocationsStream
-Debug_Private_VariablesObject->"InitialAllocations" = Debug_Private_GetAllocatedObjectCountForContext((Debug_Private_VariablesObject->"CurrentDXLContext") int)
-
-// Set the Callback - Executes in a different Context
-setDebugCallback_(Debug_Private_Callback)
+Debug_Private_Initialize(Debug_Private_VariablesObject)

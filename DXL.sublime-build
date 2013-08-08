@@ -1,22 +1,28 @@
 {
-    "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "0"],
+    "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "0", "TraceFile"],
     "selector": "source.dxl",
     "file_regex": "^(?:-?R?-[EWF]- DXL: |\\s)?<(?!Line:)(.*):([0-9]+)> ?(?:.*)",
     "encoding": "UTF-8",
     "variants": [
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "1"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "1", "TraceFile"],
           "name": "DXL: Allocation Leak"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "2"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "2", "TraceFile"],
           "name": "DXL: Trace Allocations"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "2", "TraceAll"],
+          "name": "DXL: Trace Allocations Verbose"
+        },
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3", "TraceFile"],
           "name": "DXL: Trace Execution"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "4"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3", "TraceAll"],
+          "name": "DXL: Trace Execution Verbose"
+        },
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "4", "TraceAll"],
           "name": "DXL: Trace Variables"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "5"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "5", "TraceAll"],
           "name": "DXL: Errors"
         },
         { "cmd": ["$packages\\DXL\\Lint\\DxlLint.exe", "$file"],

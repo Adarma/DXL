@@ -55,14 +55,13 @@ Endfunc
 
 
 ; Check if any Arguments were passed
-If $CmdLine[0] < 2 Then
+If $CmdLine[0] < 3 Then
 	ConsoleWrite("Wrong Parameters" & @CRLF)
 Else
 	; Get Full File Path from Arguments
 	Local $ScriptFile = $CmdLine[1]
 	Local $DxlMode = $CmdLine[2]
-	
-	Local $TraceAllLines = False
+	Local $TraceAllLines = ($CmdLine[3] = "TraceAll") ; String to Boolean
 	
 	; Find the Sublime Text Window
 	Local $Windows = WinList("[CLASS:PX_WINDOW_CLASS]")
@@ -192,7 +191,7 @@ Else
 				
 				; Run the DXL - Invoked by a separate process so this one can pipe the output back
 				If $DxlMode < 5 Then
-					ShellExecute("Run DXL.exe", '"' & $IncludeString & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlOpen & ' ' & $DxlMode, @ScriptDir)
+					ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlMode & ' ' & $TraceAllLines, @ScriptDir)
 					Sleep($ParseTime + 500)
 				EndIf
 

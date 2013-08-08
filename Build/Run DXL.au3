@@ -59,11 +59,17 @@ If $CmdLine[0] < 5 Then
 	MsgBox(0, "Wrong Parameters", "Wrong Parameters: " & $CmdLine[0])
 Else
 	; Get Arguments
-	Local $IncludeString = $CmdLine[1]
+	Local $ScriptFile = $CmdLine[1]
 	Local $ModuleFullName = $CmdLine[2]
 	Local $OutFile = $CmdLine[3]
-	Local $DxlOpen = $CmdLine[4]
-	Local $DxlMode = $CmdLine[5]
+	Local $DxlMode = $CmdLine[4]
+	Local $TraceAllLines = ($CmdLine[5] == "True") ; String to Boolean
+	
+	Local $DxlInteractionWindow = "DXL Interaction - DOORS"
+	Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
+	
+	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
+	Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
 	
 	Local $EscapedOutFile = StringReplace($OutFile, "\", "\\")
 	Local $PrintRepurposeCode = _
@@ -100,28 +106,36 @@ Else
 
 	Local $DebugInclude = '#include <' & @ScriptDir & '\Debug.inc>;'
 	
+;~ 	MsgBox(0, "Script", $ScriptFile)
+	
+	Local $EscapedTraceFile = StringReplace($ScriptFile, "\", "\\")
+;~ 	MsgBox(0, "$EscapedTraceFile", $EscapedTraceFile)
+	
+	If $TraceAllLines Then
+		$EscapedTraceFile = ""
+	EndIf
+;~ 	MsgBox(0, "TraceAll: " & $TraceAllLines, $EscapedTraceFile)
+	
 	Local $Code = $IncludeString
 	Switch $DxlMode
 		Case 1
 			; Check Final Allocations
 			; TODO: Overload functions: halt, show, block etc
 			$Code = $DebugInclude & @CRLF
-			$Code = $Code & 'int SublimeText2_InitialCount = Debug_GetAllocatedObjectCount();' & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & 'int SublimeText2_FinalCount = Debug_GetAllocatedObjectCount() - SublimeText2_InitialCount;' & @CRLF
-			$Code = $Code & 'print("Final Allocated Object Count : " SublimeText2_FinalCount "\n");' & @CRLF
+			$Code = $Code & 'print("Final Allocated Object Count : " Debug_GetAllocatedObjectCount() "\n");' & @CRLF
 		Case 2
 			; Log Allocations
 			$Code = $DebugInclude & @CRLF
-			$Code = $Code & "Debug_Logging(false, true);" & @CRLF
+			$Code = $Code & 'Debug_Logging(false, true, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & "Debug_Logging(false, false);" & @CRLF
+			$Code = $Code & 'Debug_Logging(false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
 		Case 3
 			; Log Calls
 			$Code = $DebugInclude & @CRLF
-			$Code = $Code & "Debug_Logging(true, false);" & @CRLF
+			$Code = $Code & 'Debug_Logging(true, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
 			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & "Debug_Logging(false, false);" & @CRLF
+			$Code = $Code & 'Debug_Logging(false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
 		Case 4
 			; Trace DXL
 			$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @CRLF
@@ -133,9 +147,6 @@ Else
 	
 ;~ 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $IncludeString & $PostfixCode
 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $Code
-	
-	Local $DxlInteractionWindow = "DXL Interaction - DOORS"
-	Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
 
 	If $DxlOpen Then
 		

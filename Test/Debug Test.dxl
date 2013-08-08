@@ -1,0 +1,24 @@
+
+#include <C:\Portable\Sublime Text 2.0.2\Data\Packages\DXL\Test\Debug Test.inc>
+
+// print "Allocation Test\n"
+Array oArray = create(1, 1)
+Buffer oBuffer = create()
+Skip oSkip = create()
+// print "Deallocation Test\n"
+sleep_(150);sleep_(150);
+delete(oSkip)
+delete(oBuffer)
+delete(oArray)
+// print "End Test\n"
+
+Allocate();sleep_(150)
+
+
+Deallocate()
+
+
+TestAllocations()
+
+
+// print "done"
