@@ -1,28 +1,37 @@
 {
-    "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "0", "TraceFile"],
+    "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "Run"],
     "selector": "source.dxl",
     "file_regex": "^(?:-?R?-[EWF]- DXL: |\\s)?<(?!Line:)(.*):([0-9]+)> ?(?:.*)",
     "encoding": "UTF-8",
     "variants": [
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "1", "TraceFile"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "CheckAllocationLeak"],
           "name": "DXL: Allocation Leak"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "2", "TraceFile"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceAllocations"],
           "name": "DXL: Trace Allocations"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "2", "TraceAll"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceAllocationsVerbose"],
           "name": "DXL: Trace Allocations Verbose"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3", "TraceFile"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceExecution"],
           "name": "DXL: Trace Execution"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "3", "TraceAll"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceExecutionVerbose"],
           "name": "DXL: Trace Execution Verbose"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "4", "TraceAll"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceDelays"],
+          "name": "DXL: Trace Delays"
+        },
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceDelaysVerbose"],
+          "name": "DXL: Trace Delays Verbose"
+        },
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceVariables"],
           "name": "DXL: Trace Variables"
         },
-        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "5", "TraceAll"],
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "TraceVariablesVerbose"],
+          "name": "DXL: Trace Variables Verbose"
+        },
+        { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "ShowErrors"],
           "name": "DXL: Errors"
         },
         { "cmd": ["$packages\\DXL\\Lint\\DxlLint.exe", "$file"],

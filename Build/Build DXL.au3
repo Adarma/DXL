@@ -54,351 +54,317 @@ Func ComErrorHandler($oMyError)
 Endfunc
 
 
-; Check if any Arguments were passed
-If $CmdLine[0] < 3 Then
+; Check if Arguments were passed correctly
+If $CmdLine[0] < 2 Then
 	ConsoleWrite("Wrong Parameters" & @CRLF)
+	Exit
+EndIf
+
+
+; Get Full File Path from Arguments
+Local $ScriptFile = $CmdLine[1]
+Local $DxlMode = $CmdLine[2]
+	
+If $DxlMode = "ShowErrors" Then
+	
+	; We don't require DOORS to be running
+	Local $LogFile = GetDoorsLogFile()
+	Local $LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
+	
+	; Pipe the last errors from code invoked via Sublime Text
+	Local $LastLogFileHandle = FileOpen($LastLogFile, 0)
+	Local $LastLogFileText = FileRead($LastLogFileHandle)
+	If StringLen($LastLogFileText) > 0 Then
+		ConsoleWrite(@LF & "Last Error Log:" & @LF)
+	EndIf
+	ConsoleWrite($LastLogFileText & @LF)
+	FileClose($LastLogFileHandle)
+	
+	; Pipe the full error log to get errors in code not invoked via Sublime Text
+	Local $LogFileHandle = FileOpen($LogFile, 0)
+	Local $LogFileText = FileRead($LogFileHandle)
+	If StringLen($LogFileText) > 0 Then
+		ConsoleWrite(@LF & "Full Error Log:" & @LF)
+	EndIf
+	ConsoleWrite($LogFileText & @LF)
+	FileClose($LogFileHandle)
+	
 Else
-	; Get Full File Path from Arguments
-	Local $ScriptFile = $CmdLine[1]
-	Local $DxlMode = $CmdLine[2]
-	Local $TraceAllLines = ($CmdLine[3] = "TraceAll") ; String to Boolean
+	; We require DOORS to be running
 	
-	; Find the Sublime Text Window
-	Local $Windows = WinList("[CLASS:PX_WINDOW_CLASS]")
-	Local $ActiveWindow = 0
+	; Find the Active Sublime Text Window so it can be reactivated after a dxl error
+	Local $ActiveWindow = GetActiveSublimeTextWindow()
 	
-	; They are in the order they were last activated
-	For $i = 1 To $Windows[0][0]
-		; Only visble windows that have a title
-		If $Windows[$i][0] <> "" And IsVisible($Windows[$i][1]) Then
-			$ActiveWindow = $Windows[$i][1]
-			ExitLoop
-		EndIf
-	Next
+	; Use the las active DXL Interaction Window if one is open, to allow database targeting when 2+ DOORS instances are running
 	
-	; Find Last Active Formal Module
-	Local $DoorsWindows = WinList("[CLASS:DOORSWindow]")
-	Local $DoorsRunning = false
-	Local $ModuleName = ""
-	Local $FolderName = ""
+	
+	; Get Active DOORS Window details (ByRef)
 	Local $ModuleFullName = ""
 	Local $ModuleType = ""
 	Local $ModuleHwnd = 0
-	
-	; They are in the order they were last activated
-	For $i = 1 To $DoorsWindows[0][0]
-		; Only visble windows that have a title
-		If $DoorsWindows[$i][0] <> "" And IsVisible($DoorsWindows[$i][1]) Then
-			
-			; Detect Doors Explorer from the title
-			Local $DoorsExplorer = StringRegExp($DoorsWindows[$i][0], "^[^'].+: (/|\.{3}).+ - DOORS$", 0)
-			
-			If ($DoorsExplorer) Then
-				$DoorsRunning = true
-				ExitLoop
-			EndIf
-			
-			; Detect Open Formal Modules from their titles
-			Local $DoorsModule = StringRegExp($DoorsWindows[$i][0], "^'(.+)' current .+ in (.+) \((Formal|Link) module\) - DOORS$", 1)
-			
-			If (UBound($DoorsModule) == 3) Then
-				$DoorsRunning = true
-				$ModuleName = $DoorsModule[0]
-				$FolderName = $DoorsModule[1]
-				$ModuleType = $DoorsModule[2]
-				$ModuleFullName = $FolderName & "/" & $ModuleName
-				$ModuleHwnd = $DoorsWindows[$i][1]
-				ExitLoop
-			EndIf
-		EndIf
-	Next
-	
+	Local $DoorsRunning = GetActiveDoorsWindowDetails($ModuleFullName, $ModuleType, $ModuleHwnd)
 	
 	If Not $DoorsRunning Then
-		ConsoleWrite("DOORS is not running." & @CRLF)
-	Else
-		; Get Object using it's class name
-		; Doors must be running for this to be successfull
-		Local $ObjDoors = ObjCreate("DOORS.application")
-
-		If @error Then
-			ConsoleWrite("Error connecting to Doors" & @CRLF & "Error Code: " & Hex(@error, 8) & @CRLF)
-
-			If Not IsObj($ObjDoors) Then
-				ConsoleWrite("Failed to obtain DOORS windows. Error: " & @error)
-				Exit
-			EndIf
-		 Else
-			
-			; Make the DXL include statement
-			Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
+		ConsoleWrite("DOORS is not running!" & @CRLF)
+		Exit
+	EndIf
 	
-			Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
-			Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
-			
-			; Test the code
-			Local $ParseTime = TimerInit()
-			$ObjDoors.Result = ""
-			If $DxlMode < 5 Then
-				$ObjDoors.runStr($TestCode)
-				$ParseTime = TimerDiff($ParseTime)
-				$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
-				ConsoleWrite("DXL Code Parsed in: " & $ParseTime & " milliseconds" & @CRLF)
-			EndIf
-			
-			Local $DXLOutputText = $ObjDoors.Result
-			If $DXLOutputText <> "" Then
-				ConsoleWrite("Parse Errors:" & @CRLF & $DXLOutputText & @CRLF)
-			Else
-			
-				Local $LogFile = GetDoorsLogFile()
-				If $DxlMode < 5 Then
-					$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
-					$LogFile = $ObjDoors.Result
-				EndIf
-				
-				Local $LastLogFile = $LogFile
-				If Not $LogFile Then
-					ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @CRLF)
-				Else
-					$LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
-				EndIf
+	; Get the running Doors COM Object using it's class name [ObjGet() fails]
+	Local $ObjDoors = ObjCreate("DOORS.application")
 
-				Local $LogFileHandle = FileOpen($LogFile, 0)
-				Local $OldLogFileText = FileRead($LogFileHandle)
-				FileClose($LogFileHandle)
-				
-				Local $OutFile = _TempFile()
-				If $DxlMode < 5 Then
-					$ObjDoors.runStr('oleSetResult(getDatabaseName())')
-					Local $DatabaseName = $ObjDoors.Result
-					ConsoleWrite("DOORS Database: " & $DatabaseName & @CRLF)
-					
-					If $ModuleFullName <> "" Then
-					   ConsoleWrite("Running code in "& $ModuleType & " Module:" & @CRLF & @TAB & $ModuleFullName & @CRLF & @CRLF)
-					Else
-					   ConsoleWrite("Running code in Doors Explorer..." & @CRLF & @CRLF)
-					EndIf
-				EndIf
-				
-				; Remember if the DXL Interaction window is already open
-				Local $DxlInteractionWindow = "DXL Interaction - DOORS"
-				Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
-				Local $OldCode = ""
-				If $DxlOpen Then
-					$OldCode = ControlGetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]")
-				EndIf
-				
-				; Run the DXL - Invoked by a separate process so this one can pipe the output back
-				If $DxlMode < 5 Then
-					ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlMode & ' ' & $TraceAllLines, @ScriptDir)
-					Sleep($ParseTime + 500)
-				EndIf
+	If @error Then
+		ConsoleWrite("Failed to connect to DOORS." & @CRLF & "Error Code: " & Hex(@error, 8) & @CRLF)
+		Exit
+	EndIf
 
-				; Error Window Titles
-				Local $CppErrorWindow = "Microsoft Visual C++ Runtime Library"
-				Local $DiagnosticLogWindow = "Diagnostic Log - DOORS"
-				Local $RuntimeErrorWindow = "DOORS report"
+	If Not IsObj($ObjDoors) Then
+		ConsoleWrite("Failed to connect to DOORS.")
+		Exit
+	EndIf
+	
+	Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
+	
+	; Make the DXL include statement
+	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
 
-				; Set File to pipe the output from
-				Local $PipeFilePath = $OutFile
-				If $DxlMode = 2 Then
-					$PipeFilePath = "C:\\DxlAllocations.log"
-					ConsoleWrite("Allocations:" & @CRLF)
-				EndIf
-				If $DxlMode = 3 Then
-					$PipeFilePath = "C:\\DxlCallTrace.log"
-					ConsoleWrite("Execution:" & @CRLF)
-				EndIf
-				If $DxlMode = 4 Then
-					$PipeFilePath = "C:\\DxlVariables.log"
-					ConsoleWrite("Variables:" & @CRLF)
-				EndIf
-				
-				; While running, pipe the output
-				Local $CppError = False
-				Local $DiagnosticLog = False
-				Local $RuntimeError = False
-				Local $OldOutputText = ""
-				Local $StartTime = TimerInit()
-				While _FileInUse($OutFile, 1) = 1
-					Sleep(100)
-					
-					If Not FileExists($OutFile) and TimerDiff($StartTime) > 1000 Then
-						ExitLoop
-					EndIf
-					
-					; Possible C++ Error Window
-					$CppError = WinExists($CppErrorWindow)
-					
-					; Possible Runtime Error Window
-					$RuntimeError = WinExists($RuntimeErrorWindow)
-					
-					; Possible Diagnostic Log Window
-					$DiagnosticLog = WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)
-					
-					
-					If $CppError Then
-						; Close C++ Error message box
-						ControlClick($CppErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
-					EndIf
-					
-					If $RuntimeError Then
-						; Close Runtime Error message box
-						ControlClick($RuntimeErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
-					EndIf
-					
-					If $DiagnosticLog Then
-						; Close Runtime Error message box
-						ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
-					EndIf
-					
-					; Pipe the new output
-					Local $OutFileHandle = FileOpen($PipeFilePath, 0)
-					Local $OutputText = FileRead($OutFileHandle)
-					If $DxlMode = 4 Then
-						Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
-						Local $LineIndex
-						For $LineIndex = 1 To $OutputLines[0]
-							If $OutputLines[$LineIndex] <> "" Then
-								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
-									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
-										If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-											ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
-										EndIf
-									EndIf
-								EndIf
-							EndIf
-						Next
-					Else
-						ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
-					EndIf
-					$OldOutputText = $OutputText
-					FileClose($OutFileHandle)
-					
-				WEnd
-				
-				; Make sure Debugging features are turned off when code interupted (crash, halt, show etc)
-				If $DxlMode < 5 Then
-					$ObjDoors.runStr('setDebugging_(false);stopDXLTracing_();')
-				EndIf
-				
-				; Possible DXL Interaction Window
-				If $DxlOpen Then
-					ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $OldCode)
-					If $DxlMode < 5 Then
-						ConsoleWrite($OldCode)
-					EndIf
-				Else
-					Local $DxlInteractionWindow = "DXL Interaction - DOORS"
-					If WinExists($DxlInteractionWindow) Then
-						WinClose($DxlInteractionWindow)
-					EndIf
-				EndIf
-				
-				; Pipe the remaining output
-				Local $OutFileHandle = FileOpen($PipeFilePath, 0)
-				If $OutFileHandle = -1 Then
-					If $DxlMode < 5 Then
-						ConsoleWrite("Unable to get DOORS Output" & @LF)
-					EndIf
-				Else
-					Local $OutputText = FileRead($OutFileHandle)
-					If $DxlMode = 4 Then
-						Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
-						Local $LineIndex
-						For $LineIndex = 1 To $OutputLines[0]
-							If $OutputLines[$LineIndex] <> "" Then
-								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
-									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
-										If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-											ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
-										EndIf
-									EndIf
-								EndIf
-							EndIf
-						Next
-					Else
-						ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
-					EndIf
-					$OldOutputText = $OutputText
-				EndIf
-				FileClose($OutFileHandle)
+	Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
+	Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
+	
+	; Test the code
+	Local $ParseTime = TimerInit()
+	$ObjDoors.Result = ""
+	$ObjDoors.runStr($TestCode)
+	$ParseTime = TimerDiff($ParseTime)
+	$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
+	ConsoleWrite("DXL Code Parsed in: " & $ParseTime & " milliseconds" & @CRLF)
 
-				; Delete output file
-				FileDelete($OutFile)
-				
-				; Report Closed Error Popups
-				If $RuntimeError Or WinExists($RuntimeErrorWindow) Then
-					ControlClick($RuntimeErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
-					ConsoleWrite(@LF)
-					ConsoleWrite("++++++++++++++++++" & @LF)
-					ConsoleWrite("+ Runtime Error! +" & @LF)
-					ConsoleWrite("++++++++++++++++++" & @LF)
-				EndIf
-				If $DiagnosticLog Or (WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)) Then
-					ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
-					ConsoleWrite(@LF)
-					ConsoleWrite("******************" & @LF)
-					ConsoleWrite("* Diagnostic Log *" & @LF)
-					ConsoleWrite("******************" & @LF)
-				EndIf
-				If $CppError Or WinExists($CppErrorWindow) Then
-					ControlClick($CppErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
-					ConsoleWrite(@LF)
-					ConsoleWrite("##################" & @LF)
-					ConsoleWrite("# MS V C++ Error #" & @LF)
-					ConsoleWrite("##################" & @LF)
-				EndIf
-				
-				; Pipe Errors and Warnings
-				If $DxlMode < 5 Then
-					Local $LogFileHandle = FileOpen($LogFile, 0)
-					Local $LogFileText = FileRead($LogFileHandle)
-					If StringLen($LogFileText) > StringLen($OldLogFileText) Then
-						ConsoleWrite(@LF & "Error Log:" & @LF)
-					EndIf
-					ConsoleWrite(StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
-					FileClose($LogFileHandle)
-					
-					; Save Error log containing just the last errors
-					Local $NewLogFileHandle = FileOpen(StringTrimRight($LogFile, 4) & " Last.log", 2)
-					FileWrite($NewLogFileHandle, StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
-					FileClose($NewLogFileHandle)
-					
-					; Reactivate selected module because errors will activate explorer 
-					; The code would then be run in DOORS Explorer the next time
-					If StringLen($LogFileText) > StringLen($OldLogFileText) Then
-						If $ModuleHwnd And $ActiveWindow Then
-							WinSetOnTop($ActiveWindow, "", 1)
-							WinActivate($ModuleHwnd)
-							WinSetOnTop($ActiveWindow, "", 0)	; Better to restore previous state here
-							WinActivate($ActiveWindow)
-						EndIf
-					EndIf
-					
-				Else
-					Local $LogFileHandle = FileOpen($LastLogFile, 0)
-					Local $LogFileText = FileRead($LogFileHandle)
-					If StringLen($LogFileText) > 0 Then
-						ConsoleWrite(@LF & "Error Log:" & @LF)
-					EndIf
-					ConsoleWrite($LogFileText & @LF)
-					FileClose($LogFileHandle)
-				EndIf
-				
-			EndIf
-		   
+	
+	Local $DXLOutputText = $ObjDoors.Result
+	If $DXLOutputText <> "" Then
+		ConsoleWrite("Parse Errors:" & @CRLF & $DXLOutputText & @CRLF)
+	Else
+	
+		Local $LogFile = GetDoorsLogFile()
+;~ 		$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
+;~ 		$LogFile = $ObjDoors.Result
+		
+		Local $LastLogFile = $LogFile
+		If Not $LogFile Then
+			ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @CRLF)
+		Else
+			$LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
+		EndIf
+
+		Local $LogFileHandle = FileOpen($LogFile, 0)
+		Local $OldLogFileText = FileRead($LogFileHandle)
+		FileClose($LogFileHandle)
+		
+		Local $OutFile = _TempFile()
+
+		$ObjDoors.runStr('oleSetResult(getDatabaseName())')
+		Local $DatabaseName = $ObjDoors.Result
+		ConsoleWrite("DOORS Database: " & $DatabaseName & @CRLF)
+		
+		If $ModuleFullName <> "" Then
+		   ConsoleWrite("Running code in "& $ModuleType & " Module:" & @CRLF & @TAB & $ModuleFullName & @CRLF & @CRLF)
+		Else
+		   ConsoleWrite("Running code in Doors Explorer..." & @CRLF & @CRLF)
+		EndIf
+
+		; Remember if the DXL Interaction window is already open
+		Local $DxlInteractionWindow = "DXL Interaction - DOORS"
+		Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
+		
+		; Run the DXL - Invoked by a separate process so this one can pipe the output back
+		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
+		Sleep($ParseTime + 500)
+
+		; Error Window Titles
+		Local $CppErrorWindow = "Microsoft Visual C++ Runtime Library"
+		Local $DiagnosticLogWindow = "Diagnostic Log - DOORS"
+		Local $RuntimeErrorWindow = "DOORS report"
+
+		; Set File to pipe the output from
+		Local $PipeFilePath = $OutFile
+		If StringLeft($DxlMode, 16) = "TraceAllocations" Then
+			$PipeFilePath = "C:\\DxlAllocations.log"
+			ConsoleWrite("Allocations:" & @CRLF)
+		EndIf
+		If StringLeft($DxlMode, 14) = "TraceExecution" Then
+			$PipeFilePath = "C:\\DxlCallTrace.log"
+			ConsoleWrite("Execution:" & @CRLF)
+		EndIf
+		If StringLeft($DxlMode, 11) = "TraceDelays" Then
+			$PipeFilePath = "C:\\DxlCallTrace.log"
+			ConsoleWrite("Delays:" & @CRLF)
+		EndIf
+		If StringLeft($DxlMode, 14) = "TraceVariables" Then
+			$PipeFilePath = "C:\\DxlVariables.log"
+			ConsoleWrite("Variables:" & @CRLF)
 		EndIf
 		
-		$ObjDoors = 0
-		ConsoleWrite(@LF & @LF)
+		; While running, pipe the output
+		Local $CppError = False
+		Local $DiagnosticLog = False
+		Local $RuntimeError = False
+		Local $OldOutputText = ""
+		Local $StartTime = TimerInit()
+		While _FileInUse($OutFile, 1) = 1
+			Sleep(100)
+			
+			If Not FileExists($OutFile) and TimerDiff($StartTime) > 1000 Then
+				ExitLoop
+			EndIf
+			
+			; Possible C++ Error Window
+			$CppError = WinExists($CppErrorWindow)
+			
+			; Possible Runtime Error Window
+			$RuntimeError = WinExists($RuntimeErrorWindow)
+			
+			; Possible Diagnostic Log Window
+			$DiagnosticLog = WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)
+			
+			
+			If $CppError Then
+				; Close C++ Error message box
+				ControlClick($CppErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
+			EndIf
+			
+			If $RuntimeError Then
+				; Close Runtime Error message box
+				ControlClick($RuntimeErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
+			EndIf
+			
+			If $DiagnosticLog Then
+				; Close Runtime Error message box
+				ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
+			EndIf
+			
+			; Pipe the new output
+			Local $OutFileHandle = FileOpen($PipeFilePath, 0)
+			Local $OutputText = FileRead($OutFileHandle)
+			If StringLeft($DxlMode, 14) = "TraceVariables" Then
+				Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
+				Local $LineIndex
+				For $LineIndex = 1 To $OutputLines[0]
+					If $OutputLines[$LineIndex] <> "" Then
+						If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
+							If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
+								If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
+									ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+								EndIf
+							EndIf
+						EndIf
+					EndIf
+				Next
+			Else
+				ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
+			EndIf
+			$OldOutputText = $OutputText
+			FileClose($OutFileHandle)
+			
+		WEnd
+		
+		; Make sure Debugging features are turned off when code interupted (crash, halt, show etc)
+		$ObjDoors.runStr('setDebugging_(false);stopDXLTracing_();')
+		
+		; Close DXL Interaction Window if it got opened
+		If Not $DxlOpen Then
+			Local $DxlInteractionWindow = "DXL Interaction - DOORS"
+			If WinExists($DxlInteractionWindow) Then
+				WinClose($DxlInteractionWindow)
+			EndIf
+		EndIf
+		
+		; Pipe the remaining output
+		Local $OutFileHandle = FileOpen($PipeFilePath, 0)
+		If $OutFileHandle = -1 Then
+			ConsoleWrite("Unable to get DOORS Output" & @LF)
+		Else
+			Local $OutputText = FileRead($OutFileHandle)
+			If StringLeft($DxlMode, 14) = "TraceVariables" Then
+				Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
+				Local $LineIndex
+				For $LineIndex = 1 To $OutputLines[0]
+					If $OutputLines[$LineIndex] <> "" Then
+						If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
+							If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
+								If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
+									ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+								EndIf
+							EndIf
+						EndIf
+					EndIf
+				Next
+			Else
+				ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
+			EndIf
+			$OldOutputText = $OutputText
+		EndIf
+		FileClose($OutFileHandle)
+
+		; Delete output file
+		FileDelete($OutFile)
+		
+		; Report Closed Error Popups
+		If $RuntimeError Or WinExists($RuntimeErrorWindow) Then
+			ControlClick($RuntimeErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
+			ConsoleWrite(@LF)
+			ConsoleWrite("++++++++++++++++++" & @LF)
+			ConsoleWrite("+ Runtime Error! +" & @LF)
+			ConsoleWrite("++++++++++++++++++" & @LF)
+		EndIf
+		If $DiagnosticLog Or (WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)) Then
+			ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
+			ConsoleWrite(@LF)
+			ConsoleWrite("******************" & @LF)
+			ConsoleWrite("* Diagnostic Log *" & @LF)
+			ConsoleWrite("******************" & @LF)
+		EndIf
+		If $CppError Or WinExists($CppErrorWindow) Then
+			ControlClick($CppErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
+			ConsoleWrite(@LF)
+			ConsoleWrite("##################" & @LF)
+			ConsoleWrite("# MS V C++ Error #" & @LF)
+			ConsoleWrite("##################" & @LF)
+		EndIf
+		
+		; Pipe Errors and Warnings
+		Local $LogFileHandle = FileOpen($LogFile, 0)
+		Local $LogFileText = FileRead($LogFileHandle)
+		If StringLen($LogFileText) > StringLen($OldLogFileText) Then
+			ConsoleWrite(@LF & "Error Log:" & @LF)
+		EndIf
+		ConsoleWrite(StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
+		FileClose($LogFileHandle)
+		
+		; Save Error log containing just the last errors
+		Local $NewLogFileHandle = FileOpen($LastLogFile, 2)
+		FileWrite($NewLogFileHandle, StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
+		FileClose($NewLogFileHandle)
+		
+		; Reactivate selected module because errors will activate explorer 
+		; The code would then be run in DOORS Explorer the next time
+		If StringLen($LogFileText) > StringLen($OldLogFileText) Then
+			If $ModuleHwnd And $ActiveWindow Then
+				WinSetOnTop($ActiveWindow, "", 1)
+				WinActivate($ModuleHwnd)
+				WinSetOnTop($ActiveWindow, "", 0)	; Better to restore previous state here
+				WinActivate($ActiveWindow)
+			EndIf
+		EndIf
 		
 	EndIf
+	
+	$ObjDoors = 0
+	ConsoleWrite(@LF & @LF)
+	
 EndIf
 
 
 ; ******************************************************************************************************************* ;
+
 
 Func GetDoorsLogFile()
 	Local $baseKey = "HKEY_CURRENT_USER\SOFTWARE\Telelogic\DOORS"
@@ -418,6 +384,58 @@ Func GetDoorsLogFile()
 	Return
 EndFunc
 
+Func GetActiveSublimeTextWindow()
+	; Find the Sublime Text Window
+	Local $SublimeWindows = WinList("[CLASS:PX_WINDOW_CLASS]")
+	Local $ActiveSublimeWindow = 0
+	; Loop Sublime Text Windows in the order they were last activated
+	For $i = 1 To $SublimeWindows[0][0]
+		; Only visble windows that have a title
+		If $SublimeWindows[$i][0] <> "" And IsVisible($SublimeWindows[$i][1]) Then
+			$ActiveSublimeWindow = $SublimeWindows[$i][1]
+			ExitLoop
+		EndIf
+	Next
+	Return $ActiveSublimeWindow
+EndFunc
+
+Func GetActiveDoorsWindowDetails(ByRef $ModuleFullName, Byref $ModuleType, ByRef $ModuleHwnd)
+	; Find Last Active DOORS Window - Explorer or Module
+	Local $DoorsRunning = false
+	$ModuleFullName = ""
+	$ModuleType = ""
+	$ModuleHwnd = 0
+	; Loop DOORS Windows in the order they were last activated
+	Local $DoorsWindows = WinList("[CLASS:DOORSWindow]")
+	For $i = 1 To $DoorsWindows[0][0]
+		; Only visble windows that have a title
+		If $DoorsWindows[$i][0] <> "" And IsVisible($DoorsWindows[$i][1]) Then
+			
+			; Detect Doors Explorer from the title
+			Local $DoorsExplorer = StringRegExp($DoorsWindows[$i][0], "^[^'].+: (/|\.{3}).+ - DOORS$", 0)
+			
+			If ($DoorsExplorer) Then
+				$DoorsRunning = True
+				ExitLoop
+			EndIf
+			
+			; Detect Open Formal Modules from their titles
+			Local $DoorsModule = StringRegExp($DoorsWindows[$i][0], "^'(.+)' current .+ in (.+) \((Formal|Link) module\) - DOORS$", 1)
+			
+			If (UBound($DoorsModule) == 3) Then
+				$DoorsRunning = True
+				Local $ModuleName = $DoorsModule[0]
+				Local $FolderName = $DoorsModule[1]
+				$ModuleType = $DoorsModule[2]
+				$ModuleFullName = $FolderName & "/" & $ModuleName
+				$ModuleHwnd = $DoorsWindows[$i][1]
+				ExitLoop
+			EndIf
+		EndIf
+	Next
+	Return $DoorsRunning
+EndFunc
+
 Func ClearFile($sFilename)
     If FileExists($sFilename) Then
 		FileDelete($sFilename)
@@ -426,13 +444,14 @@ Func ClearFile($sFilename)
 	EndIf
 EndFunc
 
-Func IsVisible($handle)
-	If BitAND(WinGetState($handle), 2) Then
+Func IsVisible($WindowHandle)
+	If BitAND(WinGetState($WindowHandle), 2) Then
 		Return 1
 	Else
 		Return 0
 	EndIf
-EndFunc   ;==>IsVisible
+EndFunc
+
 
 ;===============================================================================
 ;

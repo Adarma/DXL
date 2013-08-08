@@ -28,9 +28,9 @@ Usage:
 		print "Allocated Object Count : " Count "\n"
 
 	Enable Allocated Object Logging - Surround suspect code with:
-		Debug_Logging(true, true, "", "")
+		Debug_Logging(true, true, true, "", "")
 		{CODE}
-		Debug_Logging(false, false, "", "")
+		Debug_Logging(false, false, false, "", "")
 
 Example:
 
@@ -42,7 +42,7 @@ Example:
 
 	Debug_AppendToLog("Begin Allocated Object Count Log:\n")
 
-	Debug_Logging(true)
+	Debug_Logging(true, true, true, "", "")
 
 	Debug_AppendToLog("Create some objects:\n")
 	Array TestArray = create(1, 1)
@@ -54,7 +54,7 @@ Example:
 	delete TestSkip
 	delete TestBuffer
 
-	Debug_Logging(false)
+	Debug_Logging(false, false, false, "", "")
 
 	int Count = Debug_GetAllocatedObjectCount()
 	print "Final Allocated Object Count : " Count "\n"
@@ -225,8 +225,12 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 						int PreviousExecutionTime = (oDxlObject->"PreviousExecutionTime") int
 						int ExecutionTime = TimeNow - PreviousExecutionTime
 
-						TimeElapsedStream << ("<" PreviousExecutionFile ":" PreviousExecutionLine "> " ExecutionTime "\n")
-						flush(TimeElapsedStream)
+						bool LogInstantLines = (oDxlObject->"LogInstantLines") bool
+
+						if(LogInstantLines or ExecutionTime > 0) {
+							TimeElapsedStream << ("<" PreviousExecutionFile ":" PreviousExecutionLine "> " ExecutionTime "\n")
+							flush(TimeElapsedStream)
+						}
 					}
 
 					// Store Current File, Line and Time
@@ -303,6 +307,7 @@ void Debug_Private_Initialize(DxlObject oDxlObject)
 	oDxlObject->"AllocationsStream" = AllocationsStream
 	oDxlObject->"LogLines" = false
 	oDxlObject->"LogAllocations" = false
+	oDxlObject->"LogInstantLines" = false
 	oDxlObject->"PreviousExecutionFile" = ""
 	oDxlObject->"PreviousExecutionLine" = -1
 	oDxlObject->"PreviousExecutionTime" = getTickCount_()
@@ -342,7 +347,7 @@ void Debug_AppendToLog(string AppendText)
 }
 
 // Turn Logging on/off
-void Debug_Logging(bool LogLines, LogAllocations, string FileFilterAllocation, FileFilterExecution)
+void Debug_Logging(bool LogLines, LogAllocations, LogInstantLines, string FileFilterAllocation, FileFilterExecution)
 {
 	// Make sure Logging is Off
 	setDebugging_(false)
@@ -386,6 +391,7 @@ void Debug_Logging(bool LogLines, LogAllocations, string FileFilterAllocation, F
 
 	Debug_Private_VariablesObject->"LogLines" = LogLines
 	Debug_Private_VariablesObject->"LogAllocations" = LogAllocations
+	Debug_Private_VariablesObject->"LogInstantLines" = LogInstantLines
 
 	Debug_Private_VariablesObject->"FileFilterAllocation" = FileFilterAllocation
 	Debug_Private_VariablesObject->"FileFilterExecution" = FileFilterExecution
@@ -400,7 +406,7 @@ void Debug_Logging(bool LogLines, LogAllocations, string FileFilterAllocation, F
 void Debug_Cleanup()
 {
 	// Make sure it is off
-	Debug_Logging(false, false, "", "")
+	Debug_Logging(false, false, false, "", "")
 
 	if(!null(Debug_Private_VariablesObject)) {
 		// Clear the Debug_Private_VariablesObject Address

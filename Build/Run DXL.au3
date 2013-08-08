@@ -55,114 +55,120 @@ Endfunc
 
 
 ; Check if any Arguments were passed
-If $CmdLine[0] < 5 Then
+If $CmdLine[0] < 4 Then
 	MsgBox(0, "Wrong Parameters", "Wrong Parameters: " & $CmdLine[0])
-Else
-	; Get Arguments
-	Local $ScriptFile = $CmdLine[1]
-	Local $ModuleFullName = $CmdLine[2]
-	Local $OutFile = $CmdLine[3]
-	Local $DxlMode = $CmdLine[4]
-	Local $TraceAllLines = ($CmdLine[5] == "True") ; String to Boolean
-	
-	Local $DxlInteractionWindow = "DXL Interaction - DOORS"
-	Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
-	
-	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
-	Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
-	
-	Local $EscapedOutFile = StringReplace($OutFile, "\", "\\")
-	Local $PrintRepurposeCode = _
-		"Stream SublimeText2_PrintStream = write(""" & $EscapedOutFile & """, CP_UTF8)" & @CRLF & _
-		"void SublimeText2_DxlPrint(string s) { print(s) }" & @CRLF & _
-		"void print(string s)" & @CRLF & _
-		"{" & @CRLF & _
-		@TAB & "if(" & StringLower($DxlOpen) & ") { SublimeText2_DxlPrint(s) }" & @CRLF & _
-		@TAB & "if(!null(s)) {" & @CRLF & _
-		@TAB & @TAB & "SublimeText2_PrintStream << s" & @CRLF & _
-		@TAB & @TAB & "flush(SublimeText2_PrintStream)" & @CRLF & _
-		@TAB & "}" & @CRLF & _
-		"}" & @CRLF & _
-		'void print(bool b)		{ print(b "\n") }' & @CRLF & _
-		'void print(char c)		{ print(c "\n") }' & @CRLF & _
-		'void print(Date d)		{ print(d "\n") }' & @CRLF & _
-		'void print(int i)		{ print(i "\n") }' & @CRLF & _
-		'void print(real r)		{ print(r "\n") }' & @CRLF
-	
-	Local $SetModuleCode = ""
-	If $ModuleFullName <> "" Then
-		; Set the current module
-		$SetModuleCode = "// Set Module" & @CRLF & _
-			'{' & @CRLF & _
-			@TAB & 'Item oItem = item("' & $ModuleFullName & '"); ' & @CRLF & _
-			@TAB & 'if(!null(oItem)) {' & @CRLF & _
-			@TAB & @TAB & 'Module oModule = module(oItem);' & @CRLF & _
-			@TAB & @TAB & 'if(!null(oModule)) {' & @CRLF & _
-			@TAB & @TAB & @TAB & '(current ModuleRef__) = oModule;' & @CRLF & _
-			@TAB & @TAB & '}' & @CRLF & _
-			@TAB & '}' & @CRLF & _
-			'}' & @CRLF
-	EndIf
+	Exit
+EndIf
 
-	Local $DebugInclude = '#include <' & @ScriptDir & '\Debug.inc>;'
-	
-;~ 	MsgBox(0, "Script", $ScriptFile)
-	
-	Local $EscapedTraceFile = StringReplace($ScriptFile, "\", "\\")
-;~ 	MsgBox(0, "$EscapedTraceFile", $EscapedTraceFile)
-	
-	If $TraceAllLines Then
-		$EscapedTraceFile = ""
-	EndIf
-;~ 	MsgBox(0, "TraceAll: " & $TraceAllLines, $EscapedTraceFile)
-	
-	Local $Code = $IncludeString
-	Switch $DxlMode
-		Case 1
-			; Check Final Allocations
-			; TODO: Overload functions: halt, show, block etc
-			$Code = $DebugInclude & @CRLF
-			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & 'print("Final Allocated Object Count : " Debug_GetAllocatedObjectCount() "\n");' & @CRLF
-		Case 2
-			; Log Allocations
-			$Code = $DebugInclude & @CRLF
-			$Code = $Code & 'Debug_Logging(false, true, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
-			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & 'Debug_Logging(false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
-		Case 3
-			; Log Calls
-			$Code = $DebugInclude & @CRLF
-			$Code = $Code & 'Debug_Logging(true, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
-			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & 'Debug_Logging(false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
-		Case 4
-			; Trace DXL
-			$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @CRLF
-			$Code = $Code & $IncludeString & @CRLF
-			$Code = $Code & 'stopDXLTracing_();' & @CRLF
-	EndSwitch
-	
-	Local $PostfixCode = @CRLF & "close(SublimeText2_PrintStream)" & @CRLF
-	
+; Get Arguments
+Local $ScriptFile = $CmdLine[1]
+Local $ModuleFullName = $CmdLine[2]
+Local $OutFile = $CmdLine[3]
+Local $DxlMode = $CmdLine[4]
+
+Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
+
+Local $DxlInteractionWindow = "DXL Interaction - DOORS"
+Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
+
+Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
+Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
+
+Local $EscapedOutFile = StringReplace($OutFile, "\", "\\")
+Local $PrintRepurposeCode = _
+	"Stream SublimeText2_PrintStream = write(""" & $EscapedOutFile & """, CP_UTF8)" & @CRLF & _
+	"void SublimeText2_DxlPrint(string s) { print(s) }" & @CRLF & _
+	"void print(string s)" & @CRLF & _
+	"{" & @CRLF & _
+	@TAB & "if(" & StringLower($DxlOpen) & ") { SublimeText2_DxlPrint(s) }" & @CRLF & _
+	@TAB & "if(!null(s)) {" & @CRLF & _
+	@TAB & @TAB & "SublimeText2_PrintStream << s" & @CRLF & _
+	@TAB & @TAB & "flush(SublimeText2_PrintStream)" & @CRLF & _
+	@TAB & "}" & @CRLF & _
+	"}" & @CRLF & _
+	'void print(bool b)		{ print(b "\n") }' & @CRLF & _
+	'void print(char c)		{ print(c "\n") }' & @CRLF & _
+	'void print(Date d)		{ print(d "\n") }' & @CRLF & _
+	'void print(int i)		{ print(i "\n") }' & @CRLF & _
+	'void print(real r)		{ print(r "\n") }' & @CRLF
+
+Local $SetModuleCode = ""
+If $ModuleFullName <> "" Then
+	; Set the current module
+	$SetModuleCode = "// Set Module" & @CRLF & _
+		'{' & @CRLF & _
+		@TAB & 'Item oItem = item("' & $ModuleFullName & '"); ' & @CRLF & _
+		@TAB & 'if(!null(oItem)) {' & @CRLF & _
+		@TAB & @TAB & 'Module oModule = module(oItem);' & @CRLF & _
+		@TAB & @TAB & 'if(!null(oModule)) {' & @CRLF & _
+		@TAB & @TAB & @TAB & '(current ModuleRef__) = oModule;' & @CRLF & _
+		@TAB & @TAB & '}' & @CRLF & _
+		@TAB & '}' & @CRLF & _
+		'}' & @CRLF
+EndIf
+
+Local $DebugInclude = '#include <' & @ScriptDir & '\Debug.inc>;'
+
+Local $EscapedTraceFile = StringReplace($ScriptFile, "\", "\\")
+If $TraceAllLines Then
+	$EscapedTraceFile = ""
+EndIf
+
+Local $Code = $IncludeString
+Switch $DxlMode
+	Case "CheckAllocationLeak"
+		; Check Final Allocations
+		; TODO: Overload functions: halt, show, block etc
+		$Code = $DebugInclude & @CRLF
+		$Code = $Code & $IncludeString & @CRLF
+		$Code = $Code & 'print("Final Allocated Object Count : " Debug_GetAllocatedObjectCount() "\n");' & @CRLF
+	Case "TraceAllocations", "TraceAllocationsVerbose"
+		; Log Allocations
+		$Code = $DebugInclude & @CRLF
+		$Code = $Code & 'Debug_Logging(false, true, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
+		$Code = $Code & $IncludeString & @CRLF
+		$Code = $Code & 'Debug_Logging(false, false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
+	Case "TraceExecution", "TraceExecutionVerbose"
+		; Log Calls
+		$Code = $DebugInclude & @CRLF
+		$Code = $Code & 'Debug_Logging(true, false, true, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
+		$Code = $Code & $IncludeString & @CRLF
+		$Code = $Code & 'Debug_Logging(false, false, true, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
+	Case "TraceDelays", "TraceDelaysVerbose"
+		; Log Calls
+		$Code = $DebugInclude & @CRLF
+		$Code = $Code & 'Debug_Logging(true, false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
+		$Code = $Code & $IncludeString & @CRLF
+		$Code = $Code & 'Debug_Logging(false, false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @CRLF
+	Case "TraceVariables", "TraceVariablesVerbose"
+		; Trace DXL
+		$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @CRLF
+		$Code = $Code & $IncludeString & @CRLF
+		$Code = $Code & 'stopDXLTracing_();' & @CRLF
+EndSwitch
+
+Local $PostfixCode = @CRLF & "close(SublimeText2_PrintStream)" & @CRLF
+
 ;~ 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $IncludeString & $PostfixCode
-	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $Code
+Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $Code
 
-	If $DxlOpen Then
-		
-		; Write the code in DOORS window
-		ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $FullCode)
-
-		; Click the Run Button
-		;WinActivate($DoorsWindow)
-		ControlClick($DxlInteractionWindow, "", "[CLASS:Button; INSTANCE:8]")
-		
-	Else
-		; Run the Code via COM
-		Local $ObjDoors = ObjCreate("DOORS.application")
-		$ObjDoors.Result = ""
-		$ObjDoors.runStr($FullCode)
-		$ObjDoors = 0
-	EndIf
+If $DxlOpen Then
 	
+	Local $OldCode = ControlGetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]")
+	
+	; Write the code in DOORS window
+	ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $FullCode)
+
+	; Click the Run Button
+	;WinActivate($DoorsWindow)
+	ControlClick($DxlInteractionWindow, "", "[CLASS:Button; INSTANCE:8]")
+	
+	ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $OldCode)
+	
+Else
+	; Run the Code via COM
+	Local $ObjDoors = ObjCreate("DOORS.application")
+	$ObjDoors.Result = ""
+	$ObjDoors.runStr($FullCode)
+	$ObjDoors = 0
 EndIf
