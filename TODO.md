@@ -9,6 +9,7 @@
 
 ## Build
 
+	Refactor AutoIt code and build to replace $DxlMode with keywords
 	Pipe Last Errors with DOORS Closed
 	Custom .log files in Debug.inc and VariablesTrace
 	Use Runtime.inc to convert relitive paths.
