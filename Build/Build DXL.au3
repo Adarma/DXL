@@ -35,28 +35,28 @@ Licence:
 Opt("WinSearchChildren", 1)   ;0=no, 1=search children also
 Opt("MustDeclareVars", 1)     ;0=no, 1=yes
 
-#include <File.au3>
+#include <File.au3>			; For: _TempFile()
 
 Local $oErrorHandler = ObjEvent("AutoIt.Error","ComErrorHandler")    ; Initialize a COM error handler
 ; This is my custom defined error handler
 Func ComErrorHandler($oMyError)
 	Return
-	ConsoleWrite("We intercepted a COM Error !"    & @CRLF  & @CRLF & _
-             "err.description is: " & @TAB & $oMyError.description  & @CRLF & _
-             "err.windescription:"   & @TAB & $oMyError.windescription & @CRLF & _
-             "err.number is: "       & @TAB & hex($oMyError.number,8)  & @CRLF & _
-             "err.lastdllerror is: "   & @TAB & $oMyError.lastdllerror   & @CRLF & _
-             "err.scriptline is: "   & @TAB & $oMyError.scriptline   & @CRLF & _
-             "err.source is: "       & @TAB & $oMyError.source       & @CRLF & _
-             "err.helpfile is: "       & @TAB & $oMyError.helpfile     & @CRLF & _
-             "err.helpcontext is: " & @TAB & $oMyError.helpcontext    & @CRLF & _
+	ConsoleWrite("We intercepted a COM Error !"    & @LF  & @LF & _
+             "err.description is: " & @TAB & $oMyError.description  & @LF & _
+             "err.windescription:"   & @TAB & $oMyError.windescription & @LF & _
+             "err.number is: "       & @TAB & hex($oMyError.number,8)  & @LF & _
+             "err.lastdllerror is: "   & @TAB & $oMyError.lastdllerror   & @LF & _
+             "err.scriptline is: "   & @TAB & $oMyError.scriptline   & @LF & _
+             "err.source is: "       & @TAB & $oMyError.source       & @LF & _
+             "err.helpfile is: "       & @TAB & $oMyError.helpfile     & @LF & _
+             "err.helpcontext is: " & @TAB & $oMyError.helpcontext    & @LF & _
             )
 Endfunc
 
 
 ; Check if Arguments were passed correctly
 If $CmdLine[0] < 2 Then
-	ConsoleWrite("Wrong Parameters" & @CRLF)
+	ConsoleWrite("Wrong Parameters" & @LF)
 	Exit
 EndIf
 
@@ -90,22 +90,38 @@ If $DxlMode = "ShowErrors" Then
 	FileClose($LogFileHandle)
 	
 Else
-	; We require DOORS to be running
 	
-	; Find the Active Sublime Text Window so it can be reactivated after a dxl error
-	Local $ActiveWindow = GetActiveSublimeTextWindow()
+	; We require 'DOORSLOGFILE' to be defined in order to pipe Errors and Warnings
+	Local $LogFile = GetDoorsLogFile()
+	If Not $LogFile Then
+		ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @LF)
+		Exit
+	EndIf
 	
-	; Use the las active DXL Interaction Window if one is open, to allow database targeting when 2+ DOORS instances are running
+	; TODO: Use getenv("DOORSLOGFILE") via COM or DXL Interaction in case multiversions of DOORS
+;~ 	$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
+;~ 	$LogFile = $ObjDoors.Result
 	
+	; Use the last active DXL Interaction Window if one is open, to allow database targeting when 2+ DOORS instances are running
 	
-	; Get Active DOORS Window details (ByRef)
+	; Remember if the DXL Interaction window is already open
+	Local $DxlInteractionWindow = "DXL Interaction - DOORS"
+	Local $DxlOpen = IsVisible($DxlInteractionWindow)
+	
+	; The 'current' Module when executing via COM
 	Local $ModuleFullName = ""
 	Local $ModuleType = ""
 	Local $ModuleHwnd = 0
-	Local $DoorsRunning = GetActiveDoorsWindowDetails($ModuleFullName, $ModuleType, $ModuleHwnd)
+	
+	; We require DOORS to be running
+	Local $DoorsRunning = $DxlOpen
+	If Not $DxlOpen Then
+		; Get Active DOORS Window details (ByRef)
+		$DoorsRunning = GetActiveDoorsWindowDetails($ModuleFullName, $ModuleType, $ModuleHwnd) ; MAKE SURE IT IS CHILD OF COM DATABASE
+	EndIf
 	
 	If Not $DoorsRunning Then
-		ConsoleWrite("DOORS is not running!" & @CRLF)
+		ConsoleWrite("DOORS is not running!" & @LF)
 		Exit
 	EndIf
 	
@@ -113,7 +129,7 @@ Else
 	Local $ObjDoors = ObjCreate("DOORS.application")
 
 	If @error Then
-		ConsoleWrite("Failed to connect to DOORS." & @CRLF & "Error Code: " & Hex(@error, 8) & @CRLF)
+		ConsoleWrite("Failed to connect to DOORS." & @LF & "Error Code: " & Hex(@error, 8) & @LF)
 		Exit
 	EndIf
 
@@ -122,11 +138,16 @@ Else
 		Exit
 	EndIf
 	
-	Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
+	If $DxlOpen Then
+		ConsoleWrite("Executing Code via: 'DXL Interaction' window" & @LF)
+	Else
+		ConsoleWrite("Executing Code via: COM" & @LF)
+	EndIf
 	
 	; Make the DXL include statement
-	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @CRLF
-
+	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @LF
+	
+	; Make the checkDXL string
 	Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
 	Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
 	
@@ -136,45 +157,27 @@ Else
 	$ObjDoors.runStr($TestCode)
 	$ParseTime = TimerDiff($ParseTime)
 	$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
-	ConsoleWrite("DXL Code Parsed in: " & $ParseTime & " milliseconds" & @CRLF)
+	ConsoleWrite("DXL Code Parsed in: " & $ParseTime & " milliseconds" & @LF & @LF)
 
-	
 	Local $DXLOutputText = $ObjDoors.Result
 	If $DXLOutputText <> "" Then
-		ConsoleWrite("Parse Errors:" & @CRLF & $DXLOutputText & @CRLF)
+		ConsoleWrite("Parse Errors:" & @LF & $DXLOutputText & @LF)
 	Else
 	
-		Local $LogFile = GetDoorsLogFile()
-;~ 		$ObjDoors.runStr('oleSetResult(getenv("DOORSLOGFILE"))')
-;~ 		$LogFile = $ObjDoors.Result
+		; Find the Active Sublime Text Window so it can be reactivated after a dxl error
+		Local $ActiveWindow = GetActiveSublimeTextWindow()
 		
-		Local $LastLogFile = $LogFile
-		If Not $LogFile Then
-			ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @CRLF)
-		Else
-			$LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
-		EndIf
+		; File to 'print' to
+		Local $OutFile = _TempFile()
+		
+		Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
+		
+		Local $LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
 
 		Local $LogFileHandle = FileOpen($LogFile, 0)
 		Local $OldLogFileText = FileRead($LogFileHandle)
 		FileClose($LogFileHandle)
-		
-		Local $OutFile = _TempFile()
 
-		$ObjDoors.runStr('oleSetResult(getDatabaseName())')
-		Local $DatabaseName = $ObjDoors.Result
-		ConsoleWrite("DOORS Database: " & $DatabaseName & @CRLF)
-		
-		If $ModuleFullName <> "" Then
-		   ConsoleWrite("Running code in "& $ModuleType & " Module:" & @CRLF & @TAB & $ModuleFullName & @CRLF & @CRLF)
-		Else
-		   ConsoleWrite("Running code in Doors Explorer..." & @CRLF & @CRLF)
-		EndIf
-
-		; Remember if the DXL Interaction window is already open
-		Local $DxlInteractionWindow = "DXL Interaction - DOORS"
-		Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
-		
 		; Run the DXL - Invoked by a separate process so this one can pipe the output back
 		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
 		Sleep($ParseTime + 500)
@@ -188,19 +191,19 @@ Else
 		Local $PipeFilePath = $OutFile
 		If StringLeft($DxlMode, 16) = "TraceAllocations" Then
 			$PipeFilePath = "C:\\DxlAllocations.log"
-			ConsoleWrite("Allocations:" & @CRLF)
+			ConsoleWrite("Allocations:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 14) = "TraceExecution" Then
 			$PipeFilePath = "C:\\DxlCallTrace.log"
-			ConsoleWrite("Execution:" & @CRLF)
+			ConsoleWrite("Execution:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 11) = "TraceDelays" Then
 			$PipeFilePath = "C:\\DxlCallTrace.log"
-			ConsoleWrite("Delays:" & @CRLF)
+			ConsoleWrite("Delays:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 14) = "TraceVariables" Then
 			$PipeFilePath = "C:\\DxlVariables.log"
-			ConsoleWrite("Variables:" & @CRLF)
+			ConsoleWrite("Variables:" & @LF)
 		EndIf
 		
 		; While running, pipe the output
@@ -252,7 +255,7 @@ Else
 						If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
 							If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
 								If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-									ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+									ConsoleWrite($OutputLines[$LineIndex] & @LF)
 								EndIf
 							EndIf
 						EndIf
@@ -291,7 +294,7 @@ Else
 						If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
 							If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
 								If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-									ConsoleWrite($OutputLines[$LineIndex] & @CRLF)
+									ConsoleWrite($OutputLines[$LineIndex] & @LF)
 								EndIf
 							EndIf
 						EndIf
@@ -358,7 +361,7 @@ Else
 	EndIf
 	
 	$ObjDoors = 0
-	ConsoleWrite(@LF & @LF)
+	ConsoleWrite(@LF)
 	
 EndIf
 
@@ -445,11 +448,7 @@ Func ClearFile($sFilename)
 EndFunc
 
 Func IsVisible($WindowHandle)
-	If BitAND(WinGetState($WindowHandle), 2) Then
-		Return 1
-	Else
-		Return 0
-	EndIf
+	Return BitAND(WinGetState($WindowHandle), 2)
 EndFunc
 
 

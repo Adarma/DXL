@@ -14,11 +14,8 @@ delete(oArray)
 
 Allocate();sleep_(150)
 
-
 Deallocate()
 
-
 TestAllocations()
-
 
 // print "done"
