@@ -195,7 +195,10 @@ void Debug_Private_Callback(string FilePath, int LineNumber)
 
 	// Get the address of the DxlObject by oleGetResult
 	int iDxlObjectAddress = intOf(realOf(oleGetResult()))
-	if(null(iDxlObjectAddress)) { return }
+	if(null(iDxlObjectAddress)) {
+		setDebugging_(false)
+		return
+	}
 
 	// Get the DxlObject
 	DxlObject oDxlObject = (addr_(iDxlObjectAddress)) DxlObject
@@ -372,9 +375,6 @@ void Debug_Logging(bool LogLines, LogAllocations, LogInstantLines, string FileFi
 		oleSetResult(((addr_(Debug_Private_VariablesObject)) int) "")
 
 		// Debug_AppendToLog("Logging Enabled\n")
-
-		// Turn Logging On
-		setDebugging_(true)
 	} else {
 
 		// Call Callback to force last allocation to be logged
@@ -384,9 +384,6 @@ void Debug_Logging(bool LogLines, LogAllocations, LogInstantLines, string FileFi
 		oleSetResult("0")
 
 		// Debug_AppendToLog("Logging Disabled\n")
-
-		// Turn Logging Off
-		setDebugging_(false)
 	}
 
 	Debug_Private_VariablesObject->"LogLines" = LogLines
@@ -395,6 +392,9 @@ void Debug_Logging(bool LogLines, LogAllocations, LogInstantLines, string FileFi
 
 	Debug_Private_VariablesObject->"FileFilterAllocation" = FileFilterAllocation
 	Debug_Private_VariablesObject->"FileFilterExecution" = FileFilterExecution
+
+	// Turn Logging On or Off
+	setDebugging_(LogLines or LogAllocations)
 }
 
 /*	Debug_Cleanup: Destroy the Global DxlObject and Streams
@@ -428,41 +428,41 @@ void Debug_Cleanup()
 }
 
 
-//================================= REPLACEMENT FUNCTIONS =================================\\
+//================================= REPURPOSED FUNCTIONS =================================\\
 
 
-// // Originals
-// void Debug_Private_OriginalHalt() {
-// 	halt
-// }
-// void Debug_Private_OriginalShow(DB Dialog) {
-// 	show(Dialog)
-// }
-// void Debug_Private_OriginalDestroy(DB Dialog) {
-// 	destroy(Dialog)
-// }
+// Originals
+void Debug_Private_OriginalHalt() {
+	halt
+}
+void Debug_Private_OriginalShow(DB Dialog) {
+	show(Dialog)
+}
+void Debug_Private_OriginalDestroy(DB Dialog) {
+	destroy(Dialog)
+}
 
-// // Replacements
-// void halt() {
-// 	Debug_Cleanup()
-// 	Debug_Private_OriginalHalt
-// }
-// void show(DB Dialog) {
-// 	int InitialShowDB = (Debug_Private_VariablesObject->"InitialShowDB") int
-// 	if(null(InitialShowDB)) {
-// 		int Address = ((addr_(Dialog)) int)
-// 		Debug_Private_VariablesObject->"InitialShowDB" = Address
-// 	}
-// 	Debug_Private_OriginalShow(Dialog)
-// }
-// void destroy(DB Dialog) {
-// 	int Address = ((addr_(Dialog)) int)
-// 	int StoredAddress = (Debug_Private_VariablesObject->"InitialShowDB") int
-// 	if(StoredAddress == Address) {
-// 		Debug_Cleanup()
-// 	}
-// 	Debug_Private_OriginalDestroy(Dialog)
-// }
+// Repurposed
+void halt() {
+	Debug_Cleanup()
+	Debug_Private_OriginalHalt
+}
+void show(DB Dialog) {
+	int InitialShowDB = (Debug_Private_VariablesObject->"InitialShowDB") int
+	if(null(InitialShowDB)) {
+		int Address = ((addr_(Dialog)) int)
+		Debug_Private_VariablesObject->"InitialShowDB" = Address
+	}
+	Debug_Private_OriginalShow(Dialog)
+}
+void destroy(DB Dialog) {
+	int Address = ((addr_(Dialog)) int)
+	int StoredAddress = (Debug_Private_VariablesObject->"InitialShowDB") int
+	if(StoredAddress == Address) {
+		Debug_Cleanup()
+	}
+	Debug_Private_OriginalDestroy(Dialog)
+}
 
 
 //===================================== INITIALIZATION ====================================\\

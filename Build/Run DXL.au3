@@ -141,19 +141,19 @@ Switch $DxlMode
 		$Code = $DebugInclude & @LF
 		$Code = $Code & 'Debug_Logging(false, true, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
-		$Code = $Code & 'Debug_Logging(false, false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
+		$Code = $Code & 'Debug_Cleanup();' & @LF
 	Case "TraceExecution", "TraceExecutionVerbose"
 		; Log Calls
 		$Code = $DebugInclude & @LF
 		$Code = $Code & 'Debug_Logging(true, false, true, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
-		$Code = $Code & 'Debug_Logging(false, false, true, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
+		$Code = $Code & 'Debug_Cleanup();' & @LF
 	Case "TraceDelays", "TraceDelaysVerbose"
 		; Log Calls
 		$Code = $DebugInclude & @LF
 		$Code = $Code & 'Debug_Logging(true, false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
-		$Code = $Code & 'Debug_Logging(false, false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
+		$Code = $Code & 'Debug_Cleanup();' & @LF
 	Case "TraceVariables", "TraceVariablesVerbose"
 		; Trace DXL
 		$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @LF

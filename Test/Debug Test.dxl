@@ -12,6 +12,8 @@ delete(oBuffer)
 delete(oArray)
 // print "End Test\n"
 
+halt
+
 Allocate();sleep_(150)
 
 Deallocate()

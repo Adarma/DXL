@@ -8,6 +8,9 @@
 	int (&sNumbersArray1)[] = (aDxlObjectArg->"sStaticArray")
 
 ## Build
-    Fix DOORS Database Name when running via Dxl Interaction Window
+    Pipe DOORS Database Name when running Debug Builds
+    Debug crashes DOORS when code invokes another context (TriggerDxl, LayoutDxl, AttributeDxl)?
+    Debug crashes DOORS on halt?
 	Custom .log files in Debug.inc and VariablesTrace
 	Use Runtime.inc to convert relitive paths.
+	Turn off logging in correct database!
