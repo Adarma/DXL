@@ -10,7 +10,7 @@
 ## Build
     Pipe DOORS Database Name when running Debug Builds
     Debug crashes DOORS when code invokes another context (TriggerDxl, LayoutDxl, AttributeDxl)?
-    Debug crashes DOORS on halt?
 	Custom .log files in Debug.inc and VariablesTrace
 	Use Runtime.inc to convert relitive paths.
+	Allocation Leak: Display result on halt and destroy
 	Turn off logging in correct database!

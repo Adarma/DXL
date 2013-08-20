@@ -1,0 +1,20 @@
+
+void GuiClose(DB oDB)
+{
+	hide(oDB)	// Required to end the dxl correctly
+	release(oDB)
+    destroy(oDB)
+    oDB = null
+}
+
+// This Function uses show, and does not return
+void ShowGui(string sTitle)
+{
+	DB oDB = create(sTitle, styleCentered | styleFloating)
+		label(oDB, "This is a test DB to check the output piping is terminated")
+		close(oDB, true, GuiClose)
+		realize(oDB)
+	show(oDB)
+}
+
+ShowGui("Hello")

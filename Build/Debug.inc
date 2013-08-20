@@ -435,33 +435,33 @@ void Debug_Cleanup()
 void Debug_Private_OriginalHalt() {
 	halt
 }
-void Debug_Private_OriginalShow(DB Dialog) {
-	show(Dialog)
+void Debug_Private_OriginalShow(DB oDB) {
+	show(oDB)
 }
-void Debug_Private_OriginalDestroy(DB Dialog) {
-	destroy(Dialog)
+void Debug_Private_OriginalDestroy(DB oDB) {
+	destroy(oDB)
 }
 
 // Repurposed
 void halt() {
 	Debug_Cleanup()
-	Debug_Private_OriginalHalt
+	Debug_Private_OriginalHalt()
 }
-void show(DB Dialog) {
+void show(DB oDB) {
 	int InitialShowDB = (Debug_Private_VariablesObject->"InitialShowDB") int
 	if(null(InitialShowDB)) {
-		int Address = ((addr_(Dialog)) int)
+		int Address = ((addr_(oDB)) int)
 		Debug_Private_VariablesObject->"InitialShowDB" = Address
 	}
-	Debug_Private_OriginalShow(Dialog)
+	Debug_Private_OriginalShow(oDB)
 }
-void destroy(DB Dialog) {
-	int Address = ((addr_(Dialog)) int)
+void destroy(DB oDB) {
+	int Address = ((addr_(oDB)) int)
 	int StoredAddress = (Debug_Private_VariablesObject->"InitialShowDB") int
 	if(StoredAddress == Address) {
 		Debug_Cleanup()
 	}
-	Debug_Private_OriginalDestroy(Dialog)
+	Debug_Private_OriginalDestroy(oDB)
 }
 
 
