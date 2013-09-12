@@ -246,6 +246,12 @@
                     "include": "#constantInPlace"
                 }, 
                 {
+                    "include": "#constantKey"
+                }, 
+                {
+                    "include": "#constantKeyModifier"
+                }, 
+                {
                     "include": "#constantLanguage"
                 }, 
                 {
@@ -261,7 +267,7 @@
                     "include": "#constantMapping"
                 }, 
                 {
-                    "include": "#constantMapping"
+                    "include": "#constantMenu"
                 }, 
                 {
                     "include": "#constantPermission"
@@ -274,6 +280,15 @@
                 }, 
                 {
                     "include": "#constantSeverity"
+                }, 
+                {
+                    "include": "#constantStandardIcon"
+                }, 
+                {
+                    "include": "#constantStandardItem"
+                }, 
+                {
+                    "include": "#constantStandardMenu"
                 }, 
                 {
                     "include": "#constantStyle"
@@ -410,6 +425,16 @@
             "match": "\\binfo(?:Build(?:Date|Number)|S(?:erverVersion|upport(?:Passwor|I)d)|Version)\\b", 
             "name": "constant.perm.info.dxl"
         }, 
+        "constantKey": {
+            "comment": "keyF12 keyF11 keyF10 keyF9 keyF8 keyF7 keyF6 keyF5 keyF4 keyF3 keyF2 keyF1 keyHelp keyRight keyLeft keyDown keyUp keyPageDown keyPageUp keyEnd keyHome keyDelete keyInsert keyEscape", 
+            "match": "\\bkey(?:D(?:elete|own)|E(?:nd|scape)|F(?:1[012]|[123456789])|H(?:elp|ome)|Insert|Left|Page(?:Down|Up)|Right|Up)\\b", 
+            "name": "constant.perm.key.dxl"
+        }, 
+        "constantKeyModifier": {
+            "comment": "modKeyNone modKeyCtrl modKeyShift", 
+            "match": "\\bmodKey(?:Ctrl|None|Shift)\\b", 
+            "name": "constant.perm.keymodifier.dxl"
+        }, 
         "constantLanguage": {
             "comment": "Afrikaans Catalan Czech Danish Dutch French German Greek Italian NorwegianBokmal NorwegianNynorsk PortugueseBrazil PortugueseEurope Russian Spanish Swedish UKEnglish USEnglish", 
             "match": "\\b(?:Afrikaans|C(?:atalan|zech)|D(?:anis|utc)h|French|G(?:erman|reek)|Italian|Norwegian(?:Bokmal|Nynorsk)|Portuguese(?:Brazil|Europe)|Russian|S(?:pan|wed)ish|U[KS]English)\\b", 
@@ -435,6 +460,11 @@
             "match": "\\bmenu(?:Available(?:Checked)?|Invisible|Unavailable)_\\b", 
             "name": "constant.perm.mapping.dxl"
         }, 
+        "constantMenu": {
+            "comment": "menu buttonbar popup linksetCombo viewCombo helpCombo", 
+            "match": "\\b(?:buttonbar|helpCombo|linksetCombo|menu|popup|viewCombo)\\b", 
+            "name": "constant.perm.menu.dxl"
+        }, 
         "constantPermission": {
             "comment": "change control create delete modify none read write", 
             "match": "\\b(?:c(?:hange|ontrol|reate)|delete|modify|none|read|write)\\b", 
@@ -454,6 +484,21 @@
             "comment": "msgError msgInfo msgQuery msgWarning", 
             "match": "\\bmsg(?:Error|Info|Query|Warning)\\b", 
             "name": "constant.perm.severity.dxl"
+        }, 
+        "constantStandardIcon": {
+            "comment": "levelAllIcon level1Icon level2Icon level3Icon level4Icon level5Icon level6Icon level7Icon level8Icon level9Icon level10Icon dispGraphicsIcon dispOutlineIcon dispFilterIcon dispSortIcon createObjSameIcon createObjDownIcon deleteObjIcon columnInsertIcon columnEditIcon columnRemoveIcon justifyLeftIcon justifyRightIcon justifyCenterIcon justifyFullIcon folderOpenIcon folderNewIcon folderCloseIcon projOpenIcon projNewIcon projCloseIcon editUsersIcon createModIcon editModIcon shareModIcon readModIcon copyModIcon deleteModIcon createLinkIcon editLinkIcon deleteLinkIcon matrixModeIcon startLinkIcon endLinkIcon createLinksetIcon createFormalModIcon createLinkModIcon deleteLinksetIcon editHeadingIcon editTextIcon extractObjIcon extractOneDownIcon showMarkedObjsIcon spellcheckIcon undeleteModIcon increaseLevelIcon decreaseLevelIcon noIcon yesIcon wordIcon projWizIcon viewWizIcon layWizIcon repWizIcon repManIcon tableCreateIcon tableInsertRowIcon tableInsertColIcon tableSetBordersIcon textBold textItalic textUnderline textStrikeThrough saveIcon printIcon propertiesIcon copyIcon cutIcon pasteIcon deleteIcon", 
+            "match": "\\b(?:c(?:o(?:lumn(?:Edit|Insert|Remove)|py(?:Mod)?)|reate(?:FormalMod|Link(?:Mod|set)?|Mod|Obj(?:Down|Same))|ut)Icon|d(?:e(?:creaseLevel|lete(?:Link(?:set)?|Mod|Obj)?)|isp(?:Filter|Graphics|Outline|Sort))Icon|e(?:dit(?:Heading|Link|Mod|Text|Users)|ndLink|xtractO(?:bj|neDown))Icon|folder(?:Close|New|Open)Icon|increaseLevelIcon|justify(?:Center|Full|Left|Right)Icon|l(?:ayWiz|evel(?:10|All|[123456789]))Icon|matrixModeIcon|noIcon|p(?:aste|r(?:int|o(?:j(?:Close|New|Open|Wiz)|perties)))Icon|re(?:adMod|p(?:Man|Wiz))Icon|s(?:ave|h(?:areMod|owMarkedObjs)|pellcheck|tartLink)Icon|t(?:able(?:Create|Insert(?:Col|Row)|SetBorders)Icon|ext(?:Bold|Italic|StrikeThrough|Underline))|undeleteModIcon|viewWizIcon|wordIcon|yesIcon)\\b", 
+            "name": "constant.perm.standardicon.dxl"
+        }, 
+        "constantStandardItem": {
+            "comment": "OLECutItem OLECopyItem OLEPasteItem OLEPasteSpecialItem OLEClearItem OLEInsertItem OLERemoveItem OLEVerbItem attrDefItem attrTypeItem clipCutItem clipCopyFlatItem clipCopyHierItem clipPasteItem clipPasteDownItem clipClearItem columnCreateItem columnEditItem columnDeleteItem columnLeftJustifyItem columnRightJustifyItem columnCenterJustifyItem columnFullJustifyItem columnUseInGraphicsItem columnUseAsToolTipsItem dispGraphicsItem dispOutlineItem dispFilterDescendantsItem dispFilteringItem dispSortingItem dispDeletionItem dispReqOnlyItem dispFilterParentsItem dispGraphicsLinksItem dispGraphicsToolTipsItem dispLevelAllItem dispLevel1Item dispLevel2Item dispLevel3Item dispLevel4Item dispLevel5Item dispLevel6Item dispLevel7Item dispLevel8Item dispLevel9Item dispLevel10Item editDXLItem editUsersItem EXIT_Item extractSetupItem extractSameItem extractDownItem filterItem helpContentsItem helpSearchItem helpIndexItem helpHelpItem helpProjManItem helpFormalItem helpDescriptiveItem helpLinkItem helpAboutItem inplaceRejectItem inplaceAcceptItem inplaceHeadingItem inplaceTextItem inplaceAttrItem inplaceResetAttrItem linkCreateItem linkEditItem linkDeleteItem linkSourceItem linkTargetItem linkMatrixItem linkGraphicsItem linksetCreateItem linksetDeleteItem linksetRefreshItem modAccessItem modAttrEditItem modBaselineItem modCloseItem modHistoryItem modLayoutItem modPrintItem modSaveItem modDowngradeItem modPrintPreviewItem objAccessItem objCompressItem objUncompressItem objCompressionItem objCopyItem objCopyDownItem objCreateItem objCreateDownItem objDeleteItem objUndeleteItem objPurgeItem objEditItem objHistoryItem objMoveItem objMoveDownItem objLockItem colorOptionsItem fontOptionsItem optionsSaveItem optionsRestoreItem optionsDefaultsItem pictureItem createProjectItem openProjectItem deleteProjectItem undeleteProjectItem purgeProjectItem duplicateProjectItem closeProjectItem projectAttrItem unlockModulesItem purgeModulesItem projectArchiveItem projectRestoreItem createFormalModuleItem createLinkModuleItem createDescriptiveModuleItem openModuleEditItem openModuleShareItem openModuleReadItem deleteModuleItem undeleteModuleItem purgeModuleItem duplicateModuleItem renameModuleItem archiveModuleItem restoreModuleItem showFormalModulesItem showLinkModulesItem showDescriptiveModulesItem showDeletedModulesItem showDeletedProjectsItem sortNameItem sortTypeItem sortDescriptionItem selectItem deselectItem sortItem spellCheckItem undoItem redoItem viewCreateItem viewShowItem viewDeleteItem", 
+            "match": "\\b(?:EXIT_|OLE(?:C(?:lear|opy|ut)|Insert|Paste(?:Special)?|Remove|Verb)|a(?:rchiveModule|ttr(?:Def|Type))|c(?:l(?:ip(?:C(?:lear|opy(?:Flat|Hier)|ut)|Paste(?:Down)?)|oseProject)|ol(?:orOptions|umn(?:C(?:enterJustify|reate)|Delete|Edit|FullJustify|LeftJustify|RightJustify|Use(?:AsToolTip|InGraphic)s))|reate(?:DescriptiveModule|FormalModule|LinkModule|Project))|d(?:e(?:lete(?:Module|Project)|select)|isp(?:Deletion|Filter(?:Descendants|Parents|ing)|Graphics(?:Links|ToolTips)?|Level(?:10|All|[123456789])|Outline|ReqOnly|Sorting)|uplicate(?:Module|Project))|e(?:dit(?:DXL|Users)|xtract(?:Down|S(?:ame|etup)))|f(?:ilter|ontOptions)|help(?:About|Contents|Descriptive|Formal|Help|Index|Link|ProjMan|Search)|inplace(?:A(?:ccept|ttr)|Heading|Re(?:ject|setAttr)|Text)|link(?:Create|Delete|Edit|Graphics|Matrix|Source|Target|set(?:Create|Delete|Refresh))|mod(?:A(?:ccess|ttrEdit)|Baseline|Close|Downgrade|History|Layout|Print(?:Preview)?|Save)|o(?:bj(?:Access|C(?:o(?:mpress(?:ion)?|py(?:Down)?)|reate(?:Down)?)|Delete|Edit|History|Lock|Move(?:Down)?|Purge|Un(?:compress|delete))|p(?:en(?:Module(?:Edit|Read|Share)|Project)|tions(?:Defaults|Restore|Save)))|p(?:icture|roject(?:A(?:rchive|ttr)|Restore)|urge(?:Modules?|Project))|re(?:do|nameModule|storeModule)|s(?:elect|how(?:De(?:leted(?:Module|Project)|scriptiveModule)|FormalModule|LinkModule)s|ort(?:Description|Name|Type)?|pellCheck)|un(?:d(?:elete(?:Module|Project)|o)|lockModules)|view(?:Create|Delete|Show))Item\\b", 
+            "name": "constant.perm.standarditem.dxl"
+        }, 
+        "constantStandardMenu": {
+            "comment": "clipCopyMenu clipPasteMenu clipboardMenu projectMenu moduleMenu editMenu oleMenu viewMenu objectMenu linkMenu linksetMenu attributeMenu columnMenu extractMenu toolsMenu usersMenu optionsMenu helpMenu objCopyMenu objCreateMenu objMoveMenu objUnlockMenu", 
+            "match": "\\b(?:attribute|c(?:lip(?:Copy|Paste|board)|olumn)|e(?:di|xtrac)t|help|link(?:set)?|module|o(?:bj(?:C(?:opy|reate)|Move|Unlock|ect)|le|ptions)|project|tools|users|view)Menu\\b", 
+            "name": "constant.perm.standardmenu.dxl"
         }, 
         "constantStyle": {
             "comment": "styleAutoparent styleCentered styleCentred styleFixed styleFloating styleNoBorder styleStandard styleThemed", 
@@ -539,7 +584,7 @@
             "name": "support.function.perm.dxl"
         }, 
         "functionDeclaration": {
-            "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\()", 
+            "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\()", 
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.fundimental.dxl"
@@ -627,7 +672,7 @@
             ]
         }, 
         "functionDefinition": {
-            "begin": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*&?\\s*[,\\[\\(\\)])", 
+            "begin": "(?:^|(?<=[;,\\{\\}\\(\\)]))\\s*\\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\b\\s+(\\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\\*=?|\\+[\\+=]?|-[-=>]?|\\.\\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\\^[=\\^]?|\\|[=\\|]?)))\\s*(?=\\(\\s*[a-zA-Z_][a-zA-Z_0-9]*\\s*&?\\s*[,\\[\\(\\)])", 
             "beginCaptures": {
                 "1": {
                     "name": "storage.type.fundimental.dxl"
@@ -962,7 +1007,7 @@
         }, 
         "typeDoors": {
             "comment": "Builtin DOORS Types: _k _x _y AccessRec ArchiveItem Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList View ViewDef", 
-            "match": "\\b(?:A(?:ccessRec|r(?:chiveItem|ray)|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\\b", 
+            "match": "\\b(?:A(?:ccessRec|r(?:chiveItem|ray)|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\\b", 
             "name": "support.type.doors.dxl"
         }, 
         "typeFundamental": {
@@ -971,7 +1016,7 @@
             "name": "storage.type.dxl"
         }, 
         "variablesDeclaration": {
-            "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(const|static)?\\b\\s*\\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\s+([\\*&])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\\s*(?=$|[,;=\n\\[]|//|/\\*)", 
+            "begin": "(?:^|(?<=[;\\{\\}]))\\s*\\b(const|static)?\\b\\s*\\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\\s+([\\*&])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\\s*(?=$|[,;=\n\\[]|//|/\\*)", 
             "beginCaptures": {
                 "1": {
                     "name": "storage.modifier.dxl"
