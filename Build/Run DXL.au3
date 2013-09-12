@@ -129,42 +129,64 @@ If $TraceAllLines Then
 EndIf
 
 Local $Code = $IncludeString
+Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 Switch $DxlMode
+	Case "RelitiveBasePaths"
+		; Print All Relitive Base Paths for the Executing Environment
+		$Code = "Buffer aBuffer = create();" & @LF
+		$Code = $Code & "aBuffer += currentDirectory();" & @LF
+		$Code = $Code & "aBuffer += ';';" & @LF
+		$Code = $Code & 'aBuffer += getenv("DOORSHOME");' & @LF
+		$Code = $Code & "if((aBuffer[length(aBuffer) - 1] != '\\') and (aBuffer[length(aBuffer) - 1] != '/')) {;" & @LF
+		$Code = $Code & "	aBuffer += '\\';" & @LF
+		$Code = $Code & "};" & @LF
+		$Code = $Code & 'aBuffer += "lib\\dxl\\;";' & @LF
+		$Code = $Code & 'aBuffer += getenv("DOORSADDINS");' & @LF
+		$Code = $Code & "aBuffer += ';';" & @LF
+		$Code = $Code & 'aBuffer += getenv("DOORSPROJECTADDINS");' & @LF
+;~ 		$Code = $Code & "aBuffer += ';';" & @LF
+		$Code = $Code & "print(tempStringOf(aBuffer));" & @LF
+		$Code = $Code & "delete(aBuffer);"
+		$FullCode = $PrintRepurposeCode & $Code
 	Case "CheckAllocationLeak"
 		; Check Final Allocations
 		; TODO: Overload functions: halt, show, block etc
 		$Code = $DebugInclude & @LF
 		$Code = $Code & $IncludeString & @LF
 		$Code = $Code & 'print("Final Allocated Object Count : " Debug_GetAllocatedObjectCount() "\n");' & @LF
+		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 	Case "TraceAllocations", "TraceAllocationsVerbose"
 		; Log Allocations
 		$Code = $DebugInclude & @LF
 		$Code = $Code & 'Debug_Logging(false, true, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
 		$Code = $Code & 'Debug_Cleanup();' & @LF
+		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 	Case "TraceExecution", "TraceExecutionVerbose"
 		; Log Calls
 		$Code = $DebugInclude & @LF
 		$Code = $Code & 'Debug_Logging(true, false, true, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
 		$Code = $Code & 'Debug_Cleanup();' & @LF
+		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 	Case "TraceDelays", "TraceDelaysVerbose"
 		; Log Calls
 		$Code = $DebugInclude & @LF
 		$Code = $Code & 'Debug_Logging(true, false, false, "' & $EscapedTraceFile & '", "' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
 		$Code = $Code & 'Debug_Cleanup();' & @LF
+		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 	Case "TraceVariables", "TraceVariablesVerbose"
 		; Trace DXL
 		$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @LF
 		$Code = $Code & $IncludeString & @LF
 		$Code = $Code & 'stopDXLTracing_();' & @LF
+		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 EndSwitch
 
-Local $PostfixCode = @LF & "close(SublimeText2_PrintStream)" & @LF
-
-;~ 	Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $IncludeString & $PostfixCode
-Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
+;~ Local $PostfixCode = @LF & "close(SublimeText2_PrintStream)" & @LF
+;~ Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $IncludeString & $PostfixCode
+;~ Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 
 If $DxlOpen Then
 	

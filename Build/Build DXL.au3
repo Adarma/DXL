@@ -53,17 +53,22 @@ Func ComErrorHandler($oMyError)
             )
 Endfunc
 
+; Debugging Arguments
+Local $ScriptFile = _PathFull("../Test/Debug Test.dxl", @ScriptDir & "\")
+Local $DxlMode = "Run"
 
-; Check if Arguments were passed correctly
-If $CmdLine[0] < 2 Then
-	ConsoleWrite("Wrong Parameters" & @LF)
-	Exit
+; Real Arguments
+If @Compiled Then
+	; Check if Arguments were passed correctly
+	If $CmdLine[0] < 2 Then
+		ConsoleWrite("Wrong Parameters" & @LF)
+		Exit
+	EndIf
+
+	; Get Full File Path from Arguments
+	$ScriptFile = $CmdLine[1]
+	$DxlMode = $CmdLine[2]
 EndIf
-
-
-; Get Full File Path from Arguments
-Local $ScriptFile = $CmdLine[1]
-Local $DxlMode = $CmdLine[2]
 	
 If $DxlMode = "ShowErrors" Then
 	
@@ -76,8 +81,8 @@ If $DxlMode = "ShowErrors" Then
 	Local $LastLogFileText = FileRead($LastLogFileHandle)
 	If StringLen($LastLogFileText) > 0 Then
 		ConsoleWrite(@LF & "Last Error Log:" & @LF)
+		ConsoleWrite($LastLogFileText & @LF)
 	EndIf
-	ConsoleWrite($LastLogFileText & @LF)
 	FileClose($LastLogFileHandle)
 	
 	; Pipe the full error log to get errors in code not invoked via Sublime Text
@@ -85,8 +90,8 @@ If $DxlMode = "ShowErrors" Then
 	Local $LogFileText = FileRead($LogFileHandle)
 	If StringLen($LogFileText) > 0 Then
 		ConsoleWrite(@LF & "Full Error Log:" & @LF)
+		ConsoleWrite($LogFileText & @LF)
 	EndIf
-	ConsoleWrite($LogFileText & @LF)
 	FileClose($LogFileHandle)
 	
 Else
@@ -170,6 +175,24 @@ Else
 		; File to 'print' to
 		Local $OutFile = _TempFile()
 		
+		; Find the Relitive Base Paths for DOORS
+		Local $BasePathsString = ""
+		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
+		Sleep(100)
+		While _FileInUse($OutFile, 1) = 1
+			Sleep(50)
+		WEnd
+		Local $OutFileHandle = FileOpen($OutFile, 0)
+		If $OutFileHandle = -1 Then
+			ConsoleWrite("Relitive Paths: " & "Failed to get Base Paths" & @LF)
+		Else
+			Local $BasePathsString = StringReplace(FileRead($OutFileHandle), "/", "\")
+			ConsoleWrite("Relitive Paths: " & $BasePathsString & @LF)
+		EndIf
+		FileClose($OutFileHandle)
+		Local $BasePathsArray = StringSplit($BasePathsString, ';', 1)
+		
+		; Initialize
 		Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
 		
 		Local $LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
@@ -246,23 +269,38 @@ Else
 			
 			; Pipe the new output
 			Local $OutFileHandle = FileOpen($PipeFilePath, 0)
-			Local $OutputText = FileRead($OutFileHandle)
-			If StringLeft($DxlMode, 14) = "TraceVariables" Then
-				Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
-				Local $LineIndex
-				For $LineIndex = 1 To $OutputLines[0]
-					If $OutputLines[$LineIndex] <> "" Then
-						If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
-							If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
-								If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-									ConsoleWrite($OutputLines[$LineIndex] & @LF)
+			If $OutFileHandle = -1 Then
+				ConsoleWrite("Unable to get DOORS Output" & @LF)
+				ExitLoop
+			Else
+				Local $OutputText = FileRead($OutFileHandle)
+				Local $NewText = StringTrimLeft($OutputText, StringLen($OldOutputText))
+				If $NewText <> "" Then
+;~ 					ConsoleWrite("{" & $NewText & "}" & @LF)
+					Local $OutputLines = stringsplit($NewText, @CRLF, 1)
+					Local $LineIndex
+					For $LineIndex = 1 To $OutputLines[0]
+						If $OutputLines[$LineIndex] = "" Then
+							; Don't pipe empty line from Trace
+							If StringLeft($DxlMode, 5) <> "Trace" and $LineIndex < $OutputLines[0] Then
+								ConsoleWrite($OutputLines[$LineIndex] & @LF)
+							EndIf
+						Else
+							If StringLeft($DxlMode, 5) = "Trace" Then
+								; Don't pipe <Line:...> from Trace
+								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
+									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
+										If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
+											ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+										EndIf
+									EndIf
 								EndIf
+							Else
+								ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
 							EndIf
 						EndIf
-					EndIf
-				Next
-			Else
-				ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
+					Next
+				EndIf
 			EndIf
 			$OldOutputText = $OutputText
 			FileClose($OutFileHandle)
@@ -286,22 +324,31 @@ Else
 			ConsoleWrite("Unable to get DOORS Output" & @LF)
 		Else
 			Local $OutputText = FileRead($OutFileHandle)
-			If StringLeft($DxlMode, 14) = "TraceVariables" Then
-				Local $OutputLines = stringsplit(StringTrimLeft($OutputText, StringLen($OldOutputText)), @CRLF, 1)
+			Local $NewText = StringTrimLeft($OutputText, StringLen($OldOutputText))
+			If $NewText <> "" Then
+				Local $OutputLines = stringsplit($NewText, @CRLF, 1)
 				Local $LineIndex
 				For $LineIndex = 1 To $OutputLines[0]
-					If $OutputLines[$LineIndex] <> "" Then
-						If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
-							If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
-								If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-									ConsoleWrite($OutputLines[$LineIndex] & @LF)
+					If $OutputLines[$LineIndex] = "" Then
+						; Don't pipe empty line from Trace
+						If StringLeft($DxlMode, 5) <> "Trace" Then
+							ConsoleWrite($OutputLines[$LineIndex] & @LF)
+						EndIf
+					Else
+						If StringLeft($DxlMode, 5) = "Trace" Then
+							; Don't pipe <Line:...> from Trace
+							If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
+								If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
+									If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
+										ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+									EndIf
 								EndIf
 							EndIf
+						Else
+							ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
 						EndIf
 					EndIf
 				Next
-			Else
-				ConsoleWrite(StringTrimLeft($OutputText, StringLen($OldOutputText)))
 			EndIf
 			$OldOutputText = $OutputText
 		EndIf
@@ -451,6 +498,25 @@ Func IsVisible($WindowHandle)
 	Return BitAND(WinGetState($WindowHandle), 2)
 EndFunc
 
+Func AbsolutePath($BasePathsArray, $RelativePath)
+	For $PathIndex = 1 To $BasePathsArray[0]
+		Local $AbsolutePath = _PathFull($RelativePath, $BasePathsArray[$PathIndex])
+		If FileExists($AbsolutePath) Then
+			Return $AbsolutePath
+		EndIf
+	Next
+	Return $RelativePath
+EndFunc
+
+Func AbsoluteLine($BasePathsArray, $Line)
+	Local $LineRegExp = "^((?:-?R?-[EWF]- DXL: |\\s)?<(?!Line:))(.*)(:(?:[0-9]+)> ?(?:.*))"
+	Local $Matches = StringRegExp($Line, $LineRegExp, 1, 1)
+	If @error = 0 Then
+		Local $AbsolutePath = AbsolutePath($BasePathsArray, $Matches[1])
+		Return $Matches[0] &  $AbsolutePath & $Matches[2]
+	EndIf
+	Return $Line
+EndFunc
 
 ;===============================================================================
 ;
