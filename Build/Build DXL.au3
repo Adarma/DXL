@@ -149,6 +149,26 @@ Else
 		ConsoleWrite("Executing Code via: COM" & @LF)
 	EndIf
 	
+	; File to 'print' to
+	Local $OutFile = _TempFile()
+	
+	; Find the Relitive Base Paths for DOORS
+	Local $BasePathsString = ""
+	ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
+	Sleep(100)
+	While _FileInUse($OutFile, 1) = 1
+		Sleep(50)
+	WEnd
+	Local $OutFileHandle = FileOpen($OutFile, 0)
+	If $OutFileHandle = -1 Then
+		ConsoleWrite("Relitive Paths: " & "Failed to get Base Paths" & @LF)
+	Else
+		Local $BasePathsString = StringReplace(FileRead($OutFileHandle), "/", "\")
+		ConsoleWrite("Relitive Paths: " & $BasePathsString & @LF)
+	EndIf
+	FileClose($OutFileHandle)
+	Local $BasePathsArray = StringSplit($BasePathsString, ';', 1)
+	
 	; Make the DXL include statement
 	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @LF
 	
@@ -166,32 +186,23 @@ Else
 
 	Local $DXLOutputText = $ObjDoors.Result
 	If $DXLOutputText <> "" Then
-		ConsoleWrite("Parse Errors:" & @LF & $DXLOutputText & @LF)
+		ConsoleWrite("Parse Errors:" & @LF)
+		Local $OutputLines = stringsplit($DXLOutputText, @CRLF, 0)
+		Local $LineIndex
+		For $LineIndex = 1 To $OutputLines[0]
+			If $OutputLines[$LineIndex] = "" Then
+				; Don't pipe last empty line
+				If $LineIndex < $OutputLines[0] Then
+					ConsoleWrite($OutputLines[$LineIndex] & @LF)
+				EndIf
+			Else
+				ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+			EndIf
+		Next
 	Else
-	
 		; Find the Active Sublime Text Window so it can be reactivated after a dxl error
 		Local $ActiveWindow = GetActiveSublimeTextWindow()
-		
-		; File to 'print' to
-		Local $OutFile = _TempFile()
-		
-		; Find the Relitive Base Paths for DOORS
-		Local $BasePathsString = ""
-		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
-		Sleep(100)
-		While _FileInUse($OutFile, 1) = 1
-			Sleep(50)
-		WEnd
-		Local $OutFileHandle = FileOpen($OutFile, 0)
-		If $OutFileHandle = -1 Then
-			ConsoleWrite("Relitive Paths: " & "Failed to get Base Paths" & @LF)
-		Else
-			Local $BasePathsString = StringReplace(FileRead($OutFileHandle), "/", "\")
-			ConsoleWrite("Relitive Paths: " & $BasePathsString & @LF)
-		EndIf
-		FileClose($OutFileHandle)
-		Local $BasePathsArray = StringSplit($BasePathsString, ';', 1)
-		
+
 		; Initialize
 		Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
 		
@@ -276,7 +287,6 @@ Else
 				Local $OutputText = FileRead($OutFileHandle)
 				Local $NewText = StringTrimLeft($OutputText, StringLen($OldOutputText))
 				If $NewText <> "" Then
-;~ 					ConsoleWrite("{" & $NewText & "}" & @LF)
 					Local $OutputLines = stringsplit($NewText, @CRLF, 1)
 					Local $LineIndex
 					For $LineIndex = 1 To $OutputLines[0]
@@ -353,9 +363,6 @@ Else
 			$OldOutputText = $OutputText
 		EndIf
 		FileClose($OutFileHandle)
-
-		; Delete output file
-		FileDelete($OutFile)
 		
 		; Report Closed Error Popups
 		If $RuntimeError Or WinExists($RuntimeErrorWindow) Then
@@ -415,6 +422,9 @@ Else
 		EndIf
 		
 	EndIf
+	
+	; Delete output file
+	FileDelete($OutFile)
 	
 	$ObjDoors = 0
 	ConsoleWrite(@LF)
