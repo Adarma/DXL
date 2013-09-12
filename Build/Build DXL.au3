@@ -382,17 +382,26 @@ Else
 		
 		; Pipe Errors and Warnings
 		Local $LogFileHandle = FileOpen($LogFile, 0)
-		Local $LogFileText = FileRead($LogFileHandle)
-		If StringLen($LogFileText) > StringLen($OldLogFileText) Then
-			ConsoleWrite(@LF & "Error Log:" & @LF)
+		If $LogFileHandle = -1 Then
+			ConsoleWrite("Unable to get DOORS Errors" & @LF)
+		Else
+			Local $LogFileText = FileRead($LogFileHandle)
+			Local $NewText = StringTrimLeft($LogFileText, StringLen($OldLogFileText))
+			If $NewText <> "" Then
+				; Save Error log containing just the last errors
+				Local $NewLogFileHandle = FileOpen($LastLogFile, 2)
+				ConsoleWrite(@LF & "Error Log:" & @LF)
+				Local $OutputLines = stringsplit($NewText, @CRLF, 1)
+				Local $LineIndex
+				For $LineIndex = 1 To $OutputLines[0]
+					Local $AbsoluteLine = AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex])
+					ConsoleWrite($AbsoluteLine & @LF)
+					FileWrite($NewLogFileHandle, $AbsoluteLine)
+				Next
+				FileClose($NewLogFileHandle)
+			EndIf
 		EndIf
-		ConsoleWrite(StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
 		FileClose($LogFileHandle)
-		
-		; Save Error log containing just the last errors
-		Local $NewLogFileHandle = FileOpen($LastLogFile, 2)
-		FileWrite($NewLogFileHandle, StringTrimLeft($LogFileText, StringLen($OldLogFileText)))
-		FileClose($NewLogFileHandle)
 		
 		; Reactivate selected module because errors will activate explorer 
 		; The code would then be run in DOORS Explorer the next time
@@ -509,7 +518,7 @@ Func AbsolutePath($BasePathsArray, $RelativePath)
 EndFunc
 
 Func AbsoluteLine($BasePathsArray, $Line)
-	Local $LineRegExp = "^((?:-?R?-[EWF]- DXL: |\\s)?<(?!Line:))(.*)(:(?:[0-9]+)> ?(?:.*))"
+	Local $LineRegExp = "^((?:-?R?-[EWF]- DXL: |\s)?<(?!Line:))(.*)(:(?:[0-9]+)> ?(?:.*))"
 	Local $Matches = StringRegExp($Line, $LineRegExp, 1, 1)
 	If @error = 0 Then
 		Local $AbsolutePath = AbsolutePath($BasePathsArray, $Matches[1])
