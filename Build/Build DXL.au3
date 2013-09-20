@@ -324,7 +324,9 @@ Else
 		If Not $DxlOpen Then
 			Local $DxlInteractionWindow = "DXL Interaction - DOORS"
 			If WinExists($DxlInteractionWindow) Then
-				WinClose($DxlInteractionWindow)
+				If IsVisible($DxlInteractionWindow) Then
+					WinClose($DxlInteractionWindow)
+				EndIf
 			EndIf
 		EndIf
 		
