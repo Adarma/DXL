@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Goto Symbol</string>
+	<key>scope</key>
+	<string>variable.dxl, variable.parameter.dxl, meta.parens.functionDeclarationArgument.dxl meta.function.forwardDeclaration.dxl entity.name.functionDefinition.dxl</string>
+	<key>settings</key>
+	<dict>
+
+		<key>showInSymbolList</key>
+		<integer>0</integer>
+		<key>symbolTransformation</key>
+		<string>s/^\s*/ /;  # Remove Leading Whitespace</string>
+		<key>showInIndexedSymbolList</key>
+		<integer>1</integer>
+		<key>symbolIndexTransformation</key>
+		<string>s/^\s*/ /;  # Remove Leading Whitespace</string>
+	</dict>
+	<key>uuid</key>
+	<string>4200C35A-B926-44FF-9DAD-D23524C0DEF2</string>
+</dict>
+</plist>
