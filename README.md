@@ -16,7 +16,7 @@ There are several ways to install this package.
 The easiest way to install this package is through [Package Control] [PC].
 
 * Install [Package Control] [PC]
-* Open the `Command Palette` (`Tools >> Command Palette` or `Ctrl+Shift+P` or `Cmd+Shift+P`).
+* Open the `Command Palette` (`Tools >> Command Palette`).
 * Type `Install Package` and hit return.
 * Type `DXL` and hit return.
 
@@ -59,31 +59,11 @@ If you have problems with unicode characters in the Build Output, set Microsoft 
 * Navigate to Key `HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\`
 * Set Value name `Autorun` to Value data `chcp 65001 > nul`
 
-## Credits
-Original author: Adam Cadamally
+## Say Thanks
 
-## Licence
-
-	Copyright (c) 2013 Adam Cadamally
-
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
-
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	THE SOFTWARE.
+Donate: [GitTip] [TIP] 
 
  [ST2]: http://www.sublimetext.com/
  [PC]: http://wbond.net/sublime_packages/package_control
  [LINT]: https://github.com/SublimeLinter/SublimeLinter
+ [TIP]: https://www.gittip.com/Adarma/
