@@ -1,0 +1,780 @@
+fileTypes:
+- dxl
+- inc
+- adxl
+- ldxl
+- tdxl
+name: DXL
+patterns:
+- include: '#pragma'
+- include: '#xFlags'
+- include: '#include'
+- include: '#blockStatements'
+- include: '#outputError'
+- include: '#outputWarning'
+repository:
+  blockScope:
+    begin: \{
+    end: \}
+    name: meta.block.dxl
+    patterns:
+    - include: '#blockStatements'
+  blockStatements:
+    patterns:
+    - include: '#comments'
+    - include: '#continuation'
+    - include: '#literalBoolean'
+    - include: '#literalNumeric'
+    - include: '#literalCharacter'
+    - include: '#literalRegEx'
+    - include: '#literalString'
+    - include: '#typeDefinition'
+    - include: '#functionDefinition'
+    - include: '#functionDeclaration'
+    - include: '#variablesDeclaration'
+    - include: '#functionCallDiagnostic'
+    - include: '#functionCallPerm'
+    - include: '#functionCallCustom'
+    - include: '#typeFundamental'
+    - include: '#typeDoors'
+    - include: '#typeCustom'
+    - include: '#controlFlow'
+    - include: '#controlFlowBreak'
+    - include: '#reservedKeyword'
+    - include: '#logical'
+    - include: '#constant'
+    - include: '#property'
+    - include: '#propertyAccessDot'
+    - include: '#propertyAccessPtr'
+    - include: '#blockScope'
+  bracketScope:
+    begin: \(
+    end: \)
+    name: meta.bracket.dxl
+    patterns:
+    - include: '#blockStatements'
+  comments:
+    patterns:
+    - begin: /\*
+      captures:
+        '0':
+          name: punctuation.definition.comment.dxl
+      comment: Block Comment
+      end: \*/
+      name: comment.block.dxl
+    - comment: Stray Block Comment End Marker
+      match: \*/.*\n
+      name: invalid.illegal.stray-comment-end.dxl
+    - captures:
+        '1':
+          name: invalid.deprecated.trailing-whitespace.dxl
+      comment: Empty Double-slash Comment for line continuation
+      match: //(\s*)\n
+      name: comment.line.continuation.dxl
+    - begin: //
+      beginCaptures:
+        '0':
+          name: punctuation.definition.comment.dxl
+      comment: Double-slash Comment
+      end: $\n?
+      name: comment.line.double-slash.dxl
+      patterns:
+      - captures:
+          '1':
+            name: invalid.deprecated.trailing-whitespace.dxl
+        comment: Trailing dash for line continuation
+        match: (?>-(\s*)\n)
+        name: comment.line.continuation.dxl
+  constant:
+    patterns:
+    - include: '#constantArchive'
+    - include: '#constantArchiveType'
+    - include: '#constantAttribute'
+    - include: '#constantButtonArrow'
+    - include: '#constantCharacterSet'
+    - include: '#constantClipboardFormat'
+    - include: '#constantClipboardType'
+    - include: '#constantCodePage'
+    - include: '#constantColourActual'
+    - include: '#constantColourLogical'
+    - include: '#constantColourReal'
+    - include: '#constantConfig'
+    - include: '#constantCurrent'
+    - include: '#constantDatabase'
+    - include: '#constantExternal'
+    - include: '#constantFont'
+    - include: '#constantHistory'
+    - include: '#constantIcon'
+    - include: '#constantInfo'
+    - include: '#constantInPlace'
+    - include: '#constantKey'
+    - include: '#constantKeyModifier'
+    - include: '#constantLanguage'
+    - include: '#constantLink'
+    - include: '#constantListview'
+    - include: '#constantLocale'
+    - include: '#constantMapping'
+    - include: '#constantMenu'
+    - include: '#constantPermission'
+    - include: '#constantPicture'
+    - include: '#constantRun'
+    - include: '#constantSeverity'
+    - include: '#constantStandardIcon'
+    - include: '#constantStandardItem'
+    - include: '#constantStandardMenu'
+    - include: '#constantStyle'
+    - include: '#constantTreeview'
+    - include: '#constantTriggerEvent'
+    - include: '#constantTriggerLevel'
+    - include: '#constantTriggerModifier'
+    - include: '#constantTriggerStatus'
+    - include: '#constantTriggerTime'
+    - include: '#constantType'
+    - include: '#constantUser'
+    - include: '#constantUserClass'
+    - include: '#whitespace'
+  constantArchive:
+    comment: allBaselines noBaselines
+    match: \b(?:all|no)Baselines\b
+    name: constant.perm.archive.dxl
+  constantArchiveType:
+    comment: zipModule5Archive zipModuleArchive zipNotArchive zipPre3ModuleArchive
+      zipPre3ProjectArchive zipPre5ModuleArchive zipPre5ProjectArchive zipProject5Archive
+      zipProjectArchive zipUserList5Archive zipUserListArchive
+    match: \bzip(?:Module5?|Not|Pr(?:e(?:3(?:Module|Project)|5(?:Module|Project))|oject5?)|UserList5?)Archive\b
+    name: constant.perm.archivetype.dxl
+  constantAttribute:
+    comment: changeBars date default description dxl hidden history inherit multi
+      type
+    match: \b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\b
+    name: constant.perm.attribute.dxl
+  constantButtonArrow:
+    comment: topLeftArrow upArrow topRightArrow leftArrow allWaysArrow rightArrow
+      bottomLeftArrow downArrow bottomRightArrow leftRightArrow upDownArrow
+    match: \b(?:allWays|bottom(?:Lef|Righ)t|down|left(?:Right)?|right|top(?:Lef|Righ)t|up(?:Down)?)Arrow\b
+    name: constant.perm.arrow.dxl
+  constantCharacterSet:
+    comment: charsetAnsi charsetEastEurope charsetGreek charsetHebrew charsetRussian
+      charsetSymbol charsetTurkish
+    match: \bcharset(?:Ansi|EastEurope|Greek|Hebrew|Russian|Symbol|Turkish)\b
+    name: constant.perm.characterset.dxl
+  constantClipboardFormat:
+    comment: CF_BITMAP CF_DIB CF_HDROP CF_MAX CF_METAFILEPICT CF_OEMTEXT
+    match: \bCF_(?:BITMAP|DIB|HDROP|M(?:AX|ETAFILEPICT)|OEMTEXT)\b
+    name: constant.perm.clipboardformat.dxl
+  constantClipboardType:
+    comment: TYMED_ENHMF TYMED_GDI TYMED_HGLOBAL
+    match: \bTYMED_(?:ENHMF|GDI|HGLOBAL)\b
+    name: constant.perm.clipboardtype.dxl
+  constantCodePage:
+    comment: CP_CHS CP_CHT CP_JAP CP_KOR CP_LATIN1 CP_UNICODE CP_UTF16_BE CP_UTF16_LE
+      CP_UTF8
+    match: \bCP_(?:CH[ST]|JAP|KOR|LATIN1|U(?:NICODE|TF(?:16_[BL]E|8)))\b
+    name: constant.perm.codepage.dxl
+  constantColourActual:
+    comment: colorBlack colorBlue colorBrown colorCyan colorDarkTurquoise colorGreen
+      colorGrey colorGrey77 colorGrey82 colorLightBlue colorMagenta colorMaroon colorMediumLightBlue
+      colorOptionsItem colorOrange colorPink colorRed colorRedGrey colorWhite colorYellow
+    match: \bcolor(?:B(?:l(?:ack|ue)|rown)|Cyan|DarkTurquoise|Gre(?:en|y(?:77|82)|y)|LightBlue|M(?:a(?:genta|roon)|ediumLightBlue)|O(?:ptionsItem|range)|Pink|Red(?:Grey)?|White|Yellow)\b
+    name: constant.perm.colour.dxl
+  constantColourLogical:
+    comment: logical0IndicatorColor logical100IndicatorColor logical11IndicatorColor
+      logical22IndicatorColor logical33IndicatorColor logical44IndicatorColor logical55IndicatorColor
+      logical66IndicatorColor logical77IndicatorColor logical88IndicatorColor logicalCurrentBackgroundColor
+      logicalCurrentCellBackgroundColor logicalCurrentObjectOutline logicalDataTextColor
+      logicalDefaultColor logicalDeletedTextColor logicalGraphicsBackgroundColor logicalGraphicsBoxColor
+      logicalGraphicsBoxEdgeColor logicalGraphicsCurrentColor logicalGraphicsElideBoxColor
+      logicalGraphicsLinkColor logicalGraphicsSelectedColor logicalGraphicsShadeColor
+      logicalGraphicsTextColor logicalGridLines logicalHighIndicatorColor logicalHighlightURLColor
+      logicalInPlaceBackgroundColor logicalInPlaceTextColor logicalLinkCurrentBackgroundColor
+      logicalLinkDataTextColor logicalLinkPageBackgroundColor logicalLinksInIndicatorColor
+      logicalLinksOutIndicatorColor logicalLinkTextBackgroundColor logicalLinkTitleBackgroundColor
+      logicalLowIndicatorColor logicalMediumIndicatorColor logicalPageBackgroundColor
+      logicalPageBackgroundFilterColor logicalPageBackgroundFilterSortColor logicalPageBackgroundSortColor
+      logicalPartitionInReadTextColor logicalPartitionInWriteTextColor logicalPartitionOutTextColor
+      logicalPrintPreviewBackgroundColor logicalPrintPreviewPageColor logicalPrintPreviewShadeColor
+      logicalPrintPreviewTextColor logicalReadOnlyTextBackgroundColor logicalReadOnlyTextColor
+      logicalSelectedTextColor logicalTextBackgroundColor logicalTitleBackgroundColor
+      logicalTitleBackgroundColor logicalTitleTextColor logicalUnlockedTextBackgroundColor
+      logicalUser1Color logicalUser2Color logicalUser3Color logicalUser4Color logicalUser5Color
+    match: \blogical(?:0IndicatorColor|1(?:00|1)IndicatorColor|22IndicatorColor|33IndicatorColor|44IndicatorColor|55IndicatorColor|66IndicatorColor|77IndicatorColor|88IndicatorColor|Current(?:BackgroundColor|CellBackgroundColor|ObjectOutline)|D(?:ataTex|e(?:faul|letedTex))tColor|Gr(?:aphics(?:B(?:ackground|ox(?:Edge)?)|Current|ElideBox|Link|S(?:elected|hade)|Text)Color|idLines)|High(?:Indicator|lightURL)Color|InPlace(?:Background|Text)Color|L(?:ink(?:CurrentBackground|DataText|PageBackground|T(?:ext|itle)Background|s(?:In|Out)Indicator)|owIndicator)Color|MediumIndicatorColor|P(?:a(?:geBackground(?:Filter(?:Sort)?|Sort)?|rtition(?:In(?:Read|Write)|Out)Text)|rintPreview(?:Background|Page|Shade|Text))Color|ReadOnlyText(?:Background)?Color|SelectedTextColor|T(?:extBackground|itle(?:Background|Text))Color|U(?:nlockedTextBackground|ser[12345])Color)\b
+    name: constant.perm.colour.dxl
+  constantColourReal:
+    comment: realColor_Black realColor_Blue realColor_Brown realColor_Cyan realColor_Dark_Turquoise
+      realColor_Firebrick realColor_Green realColor_Grey11 realColor_Grey22 realColor_Grey33
+      realColor_Grey44 realColor_Grey55 realColor_Grey66 realColor_Grey77 realColor_Grey82
+      realColor_Light_Blue realColor_Light_Blue2 realColor_Lime_Green realColor_Magenta
+      realColor_Maroon realColor_Navy realColor_NewGrey1 realColor_NewGrey2 realColor_NewGrey3
+      realColor_NewGrey4 realColor_Orange realColor_Peru realColor_Pink realColor_Purple
+      realColor_Red realColor_Red_Grey realColor_Rosy_Brown realColor_Sea_Green realColor_SplashScreenBlue
+      realColor_Thistle realColor_White realColor_Yellow
+    match: \brealColor_(?:B(?:l(?:ack|ue)|rown)|Cyan|Dark_Turquoise|Firebrick|Gre(?:en|y(?:11|22|33|44|55|66|77|82))|Li(?:ght_Blue2?|me_Green)|Ma(?:genta|roon)|N(?:avy|ewGrey[1234])|Orange|P(?:eru|ink|urple)|R(?:ed(?:_Grey)?|osy_Brown)|S(?:ea_Green|plashScreenBlue)|Thistle|White|Yellow)\b
+    name: constant.perm.colour.dxl
+  constantConfig:
+    comment: confSystem confSysUser confTemp confUser
+    match: \bconf(?:Sys(?:User|tem)|Temp|User)\b
+    name: constant.perm.config.dxl
+  constantCurrent:
+    comment: attrDXLName obj
+    match: \b(?:attrDXLName|obj|)\b
+    name: variable.language.dxl
+  constantDatabase:
+    comment: database dbExplorer
+    match: \bd(?:atabase|bExplorer)\b
+    name: constant.perm.database.dxl
+  constantExternal:
+    comment: inward none openAsURL outward
+    match: \b(?:inward|none|o(?:penAsURL|utward))\b
+    name: constant.perm.external.dxl
+  constantFont:
+    comment: availableFonts GraphicsFont HeadingsFont TextFont
+    match: \b(?:GraphicsFont|HeadingsFont|TextFont|availableFonts)\b
+    name: constant.perm.font.dxl
+  constantHistory:
+    comment: acceptModule baselineModule changeOLE clipCopyObject clipCutObject clipMoveObject
+      copyObject createAttr createLink createModule createObject createType cutOLE
+      deleteAttr deleteLink deleteObject deleteType insertOLE modifyAttr modifyLink
+      modifyObject modifyType partitionModule pasteOLE purgeObject readLocked rejoinModule
+      removeOLE returnModule unDeleteObject unknown
+    match: \b(?:acceptModule|baselineModule|c(?:hangeOLE|lip(?:C(?:opy|ut)|Move)Object|opyObject|reate(?:Attr|Link|Module|Object|Type)|utOLE)|delete(?:Attr|Link|Object|Type)|insertOLE|modify(?:Attr|Link|Object|Type)|p(?:a(?:rtitionModule|steOLE)|urgeObject)|re(?:adLocked|joinModule|moveOLE|turnModule)|un(?:DeleteObject|known))\b
+    name: constant.perm.history.dxl
+  constantIcon:
+    comment: iconAuthenticatingUser iconDatabase iconDatabase iconDescriptive iconDescriptiveCut
+      iconDescriptiveDeleted iconFolder iconFolderCut iconFolderDeleted iconFolderOpen
+      iconFolderOpenDeleted iconFormal iconFormalCut iconFormalDeleted iconGroup iconGroupDisabled
+      iconLink iconLinkCut iconLinkDeleted iconNone iconProject iconProjectCut iconProjectDeleted
+      iconProjectOpen iconProjectOpenDeleted iconReadOnly iconUser iconUserDisabled
+    match: \bicon(?:AuthenticatingUser|D(?:atabase|escriptive(?:Cut|Deleted)?)|Fo(?:lder(?:Cut|Deleted|Open(?:Deleted)?)?|rmal(?:Cut|Deleted)?)|Group(?:Disabled)?|Link(?:Cut|Deleted)?|None|Project(?:Cut|Deleted|Open(?:Deleted)?)?|ReadOnly|User(?:Disabled)?)\b
+    name: constant.perm.icon.dxl
+  constantInPlace:
+    comment: inPlaceChoice inPlaceString inPlaceText inPlaceTextChange inPlaceTextFilled
+    match: \binPlace(?:Choice|String|Text(?:Change|Filled)?)\b
+    name: constant.perm.inPlace.dxl
+  constantInfo:
+    comment: infoBuildDate infoBuildNumber infoServerVersion infoSupportId infoSupportPassword
+      infoVersion
+    match: \binfo(?:Build(?:Date|Number)|S(?:erverVersion|upport(?:Passwor|I)d)|Version)\b
+    name: constant.perm.info.dxl
+  constantKey:
+    comment: keyF12 keyF11 keyF10 keyF9 keyF8 keyF7 keyF6 keyF5 keyF4 keyF3 keyF2
+      keyF1 keyHelp keyRight keyLeft keyDown keyUp keyPageDown keyPageUp keyEnd keyHome
+      keyDelete keyInsert keyEscape
+    match: \bkey(?:D(?:elete|own)|E(?:nd|scape)|F(?:1[012]|[123456789])|H(?:elp|ome)|Insert|Left|Page(?:Down|Up)|Right|Up)\b
+    name: constant.perm.key.dxl
+  constantKeyModifier:
+    comment: modKeyNone modKeyCtrl modKeyShift
+    match: \bmodKey(?:Ctrl|None|Shift)\b
+    name: constant.perm.keymodifier.dxl
+  constantLanguage:
+    comment: Afrikaans Catalan Czech Danish Dutch French German Greek Italian NorwegianBokmal
+      NorwegianNynorsk PortugueseBrazil PortugueseEurope Russian Spanish Swedish UKEnglish
+      USEnglish
+    match: \b(?:Afrikaans|C(?:atalan|zech)|D(?:anis|utc)h|French|G(?:erman|reek)|Italian|Norwegian(?:Bokmal|Nynorsk)|Portuguese(?:Brazil|Europe)|Russian|S(?:pan|wed)ish|U[KS]English)\b
+    name: constant.perm.language.dxl
+  constantLink:
+    comment: linkFilterBoth linkFilterIncoming linkFilterOutgoing
+    match: \blinkFilter(?:Both|Incoming|Outgoing)\b
+    name: constant.perm.link.dxl
+  constantListview:
+    comment: listViewOptionCheckboxes listViewOptionMultiselect listViewOptionSortText
+    match: \blistViewOption(?:Checkboxes|Multiselect|SortText)\b
+    name: constant.perm.listview.dxl
+  constantLocale:
+    comment: installedLocales supportedLocales
+    match: \b(?:install|support)edLocales\b
+    name: constant.perm.locale.dxl
+  constantMapping:
+    comment: menuAvailable_ menuAvailableChecked_ menuInvisible_ menuUnavailable_
+    match: \bmenu(?:Available(?:Checked)?|Invisible|Unavailable)_\b
+    name: constant.perm.mapping.dxl
+  constantMenu:
+    comment: menu buttonbar popup linksetCombo viewCombo helpCombo
+    match: \b(?:buttonbar|helpCombo|linksetCombo|menu|popup|viewCombo)\b
+    name: constant.perm.menu.dxl
+  constantPermission:
+    comment: change control create delete modify none read write
+    match: \b(?:c(?:hange|ontrol|reate)|delete|modify|none|read|write)\b
+    name: constant.perm.permission.dxl
+  constantPicture:
+    comment: formatBMP formatDIB formatEPSF formatPNG formatUNKNOWN formatWMF
+    match: \bformat(?:BMP|DIB|EPSF|PNG|UNKNOWN|WMF)\b
+    name: constant.perm.picture.dxl
+  constantRun:
+    comment: syswaitINFINITE_
+    match: \bsyswaitINFINITE_\b
+    name: constant.perm.run.dxl
+  constantSeverity:
+    comment: msgError msgInfo msgQuery msgWarning
+    match: \bmsg(?:Error|Info|Query|Warning)\b
+    name: constant.perm.severity.dxl
+  constantStandardIcon:
+    comment: levelAllIcon level1Icon level2Icon level3Icon level4Icon level5Icon level6Icon
+      level7Icon level8Icon level9Icon level10Icon dispGraphicsIcon dispOutlineIcon
+      dispFilterIcon dispSortIcon createObjSameIcon createObjDownIcon deleteObjIcon
+      columnInsertIcon columnEditIcon columnRemoveIcon justifyLeftIcon justifyRightIcon
+      justifyCenterIcon justifyFullIcon folderOpenIcon folderNewIcon folderCloseIcon
+      projOpenIcon projNewIcon projCloseIcon editUsersIcon createModIcon editModIcon
+      shareModIcon readModIcon copyModIcon deleteModIcon createLinkIcon editLinkIcon
+      deleteLinkIcon matrixModeIcon startLinkIcon endLinkIcon createLinksetIcon createFormalModIcon
+      createLinkModIcon deleteLinksetIcon editHeadingIcon editTextIcon extractObjIcon
+      extractOneDownIcon showMarkedObjsIcon spellcheckIcon undeleteModIcon increaseLevelIcon
+      decreaseLevelIcon noIcon yesIcon wordIcon projWizIcon viewWizIcon layWizIcon
+      repWizIcon repManIcon tableCreateIcon tableInsertRowIcon tableInsertColIcon
+      tableSetBordersIcon textBold textItalic textUnderline textStrikeThrough saveIcon
+      printIcon propertiesIcon copyIcon cutIcon pasteIcon deleteIcon
+    match: \b(?:c(?:o(?:lumn(?:Edit|Insert|Remove)|py(?:Mod)?)|reate(?:FormalMod|Link(?:Mod|set)?|Mod|Obj(?:Down|Same))|ut)Icon|d(?:e(?:creaseLevel|lete(?:Link(?:set)?|Mod|Obj)?)|isp(?:Filter|Graphics|Outline|Sort))Icon|e(?:dit(?:Heading|Link|Mod|Text|Users)|ndLink|xtractO(?:bj|neDown))Icon|folder(?:Close|New|Open)Icon|increaseLevelIcon|justify(?:Center|Full|Left|Right)Icon|l(?:ayWiz|evel(?:10|All|[123456789]))Icon|matrixModeIcon|noIcon|p(?:aste|r(?:int|o(?:j(?:Close|New|Open|Wiz)|perties)))Icon|re(?:adMod|p(?:Man|Wiz))Icon|s(?:ave|h(?:areMod|owMarkedObjs)|pellcheck|tartLink)Icon|t(?:able(?:Create|Insert(?:Col|Row)|SetBorders)Icon|ext(?:Bold|Italic|StrikeThrough|Underline))|undeleteModIcon|viewWizIcon|wordIcon|yesIcon)\b
+    name: constant.perm.standardicon.dxl
+  constantStandardItem:
+    comment: OLECutItem OLECopyItem OLEPasteItem OLEPasteSpecialItem OLEClearItem
+      OLEInsertItem OLERemoveItem OLEVerbItem attrDefItem attrTypeItem clipCutItem
+      clipCopyFlatItem clipCopyHierItem clipPasteItem clipPasteDownItem clipClearItem
+      columnCreateItem columnEditItem columnDeleteItem columnLeftJustifyItem columnRightJustifyItem
+      columnCenterJustifyItem columnFullJustifyItem columnUseInGraphicsItem columnUseAsToolTipsItem
+      dispGraphicsItem dispOutlineItem dispFilterDescendantsItem dispFilteringItem
+      dispSortingItem dispDeletionItem dispReqOnlyItem dispFilterParentsItem dispGraphicsLinksItem
+      dispGraphicsToolTipsItem dispLevelAllItem dispLevel1Item dispLevel2Item dispLevel3Item
+      dispLevel4Item dispLevel5Item dispLevel6Item dispLevel7Item dispLevel8Item dispLevel9Item
+      dispLevel10Item editDXLItem editUsersItem EXIT_Item extractSetupItem extractSameItem
+      extractDownItem filterItem helpContentsItem helpSearchItem helpIndexItem helpHelpItem
+      helpProjManItem helpFormalItem helpDescriptiveItem helpLinkItem helpAboutItem
+      inplaceRejectItem inplaceAcceptItem inplaceHeadingItem inplaceTextItem inplaceAttrItem
+      inplaceResetAttrItem linkCreateItem linkEditItem linkDeleteItem linkSourceItem
+      linkTargetItem linkMatrixItem linkGraphicsItem linksetCreateItem linksetDeleteItem
+      linksetRefreshItem modAccessItem modAttrEditItem modBaselineItem modCloseItem
+      modHistoryItem modLayoutItem modPrintItem modSaveItem modDowngradeItem modPrintPreviewItem
+      objAccessItem objCompressItem objUncompressItem objCompressionItem objCopyItem
+      objCopyDownItem objCreateItem objCreateDownItem objDeleteItem objUndeleteItem
+      objPurgeItem objEditItem objHistoryItem objMoveItem objMoveDownItem objLockItem
+      colorOptionsItem fontOptionsItem optionsSaveItem optionsRestoreItem optionsDefaultsItem
+      pictureItem createProjectItem openProjectItem deleteProjectItem undeleteProjectItem
+      purgeProjectItem duplicateProjectItem closeProjectItem projectAttrItem unlockModulesItem
+      purgeModulesItem projectArchiveItem projectRestoreItem createFormalModuleItem
+      createLinkModuleItem createDescriptiveModuleItem openModuleEditItem openModuleShareItem
+      openModuleReadItem deleteModuleItem undeleteModuleItem purgeModuleItem duplicateModuleItem
+      renameModuleItem archiveModuleItem restoreModuleItem showFormalModulesItem showLinkModulesItem
+      showDescriptiveModulesItem showDeletedModulesItem showDeletedProjectsItem sortNameItem
+      sortTypeItem sortDescriptionItem selectItem deselectItem sortItem spellCheckItem
+      undoItem redoItem viewCreateItem viewShowItem viewDeleteItem
+    match: \b(?:EXIT_|OLE(?:C(?:lear|opy|ut)|Insert|Paste(?:Special)?|Remove|Verb)|a(?:rchiveModule|ttr(?:Def|Type))|c(?:l(?:ip(?:C(?:lear|opy(?:Flat|Hier)|ut)|Paste(?:Down)?)|oseProject)|ol(?:orOptions|umn(?:C(?:enterJustify|reate)|Delete|Edit|FullJustify|LeftJustify|RightJustify|Use(?:AsToolTip|InGraphic)s))|reate(?:DescriptiveModule|FormalModule|LinkModule|Project))|d(?:e(?:lete(?:Module|Project)|select)|isp(?:Deletion|Filter(?:Descendants|Parents|ing)|Graphics(?:Links|ToolTips)?|Level(?:10|All|[123456789])|Outline|ReqOnly|Sorting)|uplicate(?:Module|Project))|e(?:dit(?:DXL|Users)|xtract(?:Down|S(?:ame|etup)))|f(?:ilter|ontOptions)|help(?:About|Contents|Descriptive|Formal|Help|Index|Link|ProjMan|Search)|inplace(?:A(?:ccept|ttr)|Heading|Re(?:ject|setAttr)|Text)|link(?:Create|Delete|Edit|Graphics|Matrix|Source|Target|set(?:Create|Delete|Refresh))|mod(?:A(?:ccess|ttrEdit)|Baseline|Close|Downgrade|History|Layout|Print(?:Preview)?|Save)|o(?:bj(?:Access|C(?:o(?:mpress(?:ion)?|py(?:Down)?)|reate(?:Down)?)|Delete|Edit|History|Lock|Move(?:Down)?|Purge|Un(?:compress|delete))|p(?:en(?:Module(?:Edit|Read|Share)|Project)|tions(?:Defaults|Restore|Save)))|p(?:icture|roject(?:A(?:rchive|ttr)|Restore)|urge(?:Modules?|Project))|re(?:do|nameModule|storeModule)|s(?:elect|how(?:De(?:leted(?:Module|Project)|scriptiveModule)|FormalModule|LinkModule)s|ort(?:Description|Name|Type)?|pellCheck)|un(?:d(?:elete(?:Module|Project)|o)|lockModules)|view(?:Create|Delete|Show))Item\b
+    name: constant.perm.standarditem.dxl
+  constantStandardMenu:
+    comment: clipCopyMenu clipPasteMenu clipboardMenu projectMenu moduleMenu editMenu
+      oleMenu viewMenu objectMenu linkMenu linksetMenu attributeMenu columnMenu extractMenu
+      toolsMenu usersMenu optionsMenu helpMenu objCopyMenu objCreateMenu objMoveMenu
+      objUnlockMenu
+    match: \b(?:attribute|c(?:lip(?:Copy|Paste|board)|olumn)|e(?:di|xtrac)t|help|link(?:set)?|module|o(?:bj(?:C(?:opy|reate)|Move|Unlock|ect)|le|ptions)|project|tools|users|view)Menu\b
+    name: constant.perm.standardmenu.dxl
+  constantStyle:
+    comment: styleAutoparent styleCentered styleCentred styleFixed styleFloating styleNoBorder
+      styleStandard styleThemed
+    match: \bstyle(?:Autoparent|Cente?red|F(?:ixed|loating)|NoBorder|Standard|Themed)\b
+    name: constant.perm.style.dxl
+  constantTreeview:
+    comment: treeViewOptionSorted
+    match: \btreeViewOptionSorted\b
+    name: constant.perm.treeview.dxl
+  constantTriggerEvent:
+    comment: close create drag drop edit modify open read save sync write
+    match: \b(?:c(?:los|reat)e|dr(?:ag|op)|edit|modify|open|read|s(?:ave|ync)|write)\b
+    name: constant.perm.triggerevent.dxl
+  constantTriggerLevel:
+    comment: attribute comment discussion module object project
+    match: \b(?:attribute|comment|discussion|module|object|project)\b
+    name: constant.perm.triggerlevel.dxl
+  constantTriggerModifier:
+    comment: post pre
+    match: \bp(?:ost|re)\b
+    name: constant.perm.triggermodifier.dxl
+  constantTriggerStatus:
+    comment: trigError trigPreConFail trigPreConPass trigRunOK
+    match: \btrig(?:Error|PreCon(?:Fail|Pass)|RunOK)\b
+    name: constant.perm.triggerstatus.dxl
+  constantTriggerTime:
+    comment: all descriptive formal link
+    match: \b(?:all|descriptive|formal|link)\b
+    name: constant.perm.triggermodifier.dxl
+  constantType:
+    comment: attrDate attrEnumeration attrInteger attrReal attrString attrText attrUsername
+    match: \battr(?:Date|Enumeration|Integer|Real|String|Text|Username)\b
+    name: constant.perm.type.dxl
+  constantUser:
+    comment: groupList userList userNotifyList
+    match: \b(?:group|user(?:Notify)?)List\b
+    name: constant.perm.user.dxl
+  constantUserClass:
+    comment: administrator custom databaseManager projectManager standard
+    match: \b(?:administrator|custom|databaseManager|projectManager|standard)\b
+    name: constant.perm.userclass.dxl
+  continuation:
+    captures:
+      '1':
+        name: invalid.deprecated.trailing-whitespace.dxl
+    comment: Line continuation
+    match: (?:[(,?\[~\\]|\.\.?|!=?|%=?|&[&=]?|\*=?|(?<!\+)\+=?|(?<!-)-[=>]?|/=?|:[:=]|\^[=^]?|\|[=|]?|=[=>]?|<(?:<=|[-=<>])?|>(?:>=|[=>])?|\band|\bor)(?=(\s*)$\n?|\s*//$\n?|\s*//.+-$\n?)
+    name: comment.line.continuation.dxl
+  controlFlow:
+    comment: 'Flow Control: by do else elseif for if in then while'
+    match: \b(?:by|do|else(?:if)?|for|i[fn]|then|while)\b
+    name: keyword.control.dxl
+  controlFlowBreak:
+    comment: Flow Control Breaks
+    match: \b(break|continue|exit_|halt|return)\b
+    name: keyword.control.break.dxl
+  functionCallCustom:
+    match: \s*(?!(and|by|do|else(?:if)?|error|for|i[fn]|or|print|return|then|warn|while)\b)([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\*=?|\+[\+=]?|-[-=>]?|\.\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\^[=\^]?|\|[=\|]?))(?=\()
+    name: support.function.custom.dxl
+  functionCallDiagnostic:
+    comment: These cause the DXL Interaction window to open
+    match: \b(error|print|warn)\b
+    name: support.function.diagnostic.dxl
+  functionCallPerm:
+    match: \s*\b(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|after|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|before|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|change|charOf|characterSet|charsetDefault|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|codepointOf|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|control|convertFromCodepage|convertToCodepage|copyFile|copyPassword|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|first|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|ldapGroupsForUser|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|loadUserRecord|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|modify|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|previous|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|purgeObjects_|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|sectionNeedsSaved|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sibling|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undelete|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|values|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warningBox|wcharOf|when|who|width|win32SystemWait_|write)(?=\()
+    name: support.function.perm.dxl
+  functionDeclaration:
+    begin: (?:^|(?<=[;\{\}]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\*=?|\+[\+=]?|-[-=>]?|\.\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\()
+    beginCaptures:
+      '1':
+        name: storage.type.fundimental.dxl
+      '2':
+        name: support.type.doors.dxl
+      '3':
+        name: storage.type.custom.dxl
+      '4':
+        name: variable.other.pointer.keyword.dxl
+      '5':
+        name: invalid.illegal.keyword.dxl
+      '6':
+        name: entity.name.function.functionDeclaration.dxl
+    end: (?<=\})
+    name: meta.function.dxl
+    patterns:
+    - include: '#functionDeclarationArgument'
+    - include: '#comments'
+    - include: '#blockScope'
+  functionDeclarationArgument:
+    begin: \(
+    end: \)\s*(\[\s*\])?
+    endCaptures:
+      '1':
+        name: variable.other.array.dxl
+    name: meta.parens.functionDeclarationArgument.dxl
+    patterns:
+    - include: '#functionDefinition'
+    - include: '#typeFundamental'
+    - include: '#typeDoors'
+    - include: '#typeCustom'
+    - match: (?<=\s)&(?=[A-Za-z_])
+      name: variable.other.byref.dxl
+    - match: (?<=\s)\*(?=[A-Za-z_])
+      name: variable.other.pointer.dxl
+    - match: '&\s*'
+      name: invalid.illegal.byref.dxl
+    - match: \*\s*
+      name: invalid.illegal.pointer.dxl
+    - match: '[A-Za-z_][A-Za-z0-9_]*'
+      name: variable.parameter.dxl
+    - match: (?<=[A-Za-z0-9_])\s*\[\s*\]
+      name: variable.other.array.dxl
+    - match: \s*,
+      name: meta.argument.separator.dxl
+  functionDefinition:
+    begin: (?:^|(?<=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\b\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\*=?|\+[\+=]?|-[-=>]?|\.\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*\s*&?\s*[,\[\(\)])
+    beginCaptures:
+      '1':
+        name: storage.type.fundimental.dxl
+      '2':
+        name: support.type.doors.dxl
+      '3':
+        name: storage.type.custom.dxl
+      '4':
+        name: variable.other.pointer.dxl
+      '5':
+        name: invalid.illegal.keyword.dxl
+      '6':
+        name: entity.name.functionDefinition.dxl
+    end: (?<=\))\s*(\[\s*\])?
+    endCaptures:
+      '1':
+        name: variable.other.array.dxl
+    name: meta.function.forwardDeclaration.dxl
+    patterns:
+    - include: '#functionDefinitionArgument'
+  functionDefinitionArgument:
+    begin: \(
+    end: \)
+    name: meta.parens.functionDefinitionArgument.dxl
+    patterns:
+    - include: '#typeFundamental'
+    - include: '#typeDoors'
+    - include: '#typeCustom'
+    - include: '#functionDefinitionArgument'
+    - match: \s+&
+      name: invalid.illegal.byref.dxl
+    - match: '&'
+      name: variable.other.byref.dxl
+    - match: \s*\[\s*\]
+      name: variable.other.array.dxl
+    - match: \s*,\s*
+      name: meta.argument.separator.dxl
+  include:
+    begin: (?:^|(?<=[;\{\}]))\s*(#\s*include)\b\s+
+    captures:
+      '1':
+        name: keyword.control.import.include.dxl
+    end: (?=(?:;|//|/\*))|$
+    name: meta.preprocessor.include.dxl
+    patterns:
+    - begin: '"'
+      beginCaptures:
+        '0':
+          name: punctuation.definition.string.begin.dxl
+      end: '"'
+      endCaptures:
+        '0':
+          name: punctuation.definition.string.end.dxl
+      name: string.quoted.double.include.dxl
+      patterns:
+      - include: '#stringEscapedCharacters'
+    - begin: <
+      beginCaptures:
+        '0':
+          name: punctuation.definition.string.begin.dxl
+      end: '>'
+      endCaptures:
+        '0':
+          name: punctuation.definition.string.end.dxl
+      name: string.quoted.angle.include.dxl
+  literalBoolean:
+    match: \b(false|true|on|off)\b|null(?!\s*\(\s*\S.*\))\b
+    name: constant.language.dxl
+  literalCharacter:
+    begin: '[''`]'
+    beginCaptures:
+      '0':
+        name: punctuation.definition.string.begin.dxl
+    end: ''''
+    endCaptures:
+      '0':
+        name: punctuation.definition.string.end.dxl
+    name: string.quoted.single.lc.dxl
+    patterns:
+    - captures:
+        '1':
+          name: constant.character.escape.dxl
+        '2':
+          name: invalid.illegal.additional-character.dxl
+      comment: Only a single character
+      match: (?<!\\')(?<=')(?:(\\(?:[bfnrtv\\'"]|[0-7]{1,3}))|[^\\])?([^']*)(?=')
+  literalNumeric:
+    match: \b([-]?(0[xX][0-9a-fA-F]+)|([0-9]+\.?[0-9]*([eE][-]?[0-9]+)?))\b
+    name: constant.numeric.dxl
+  literalRegEx:
+    begin: ((?<=matches\()|(?<=regexp2\()|(?<=Regexp =))\s*"
+    end: '"'
+    name: string.regexp.dxl
+    patterns:
+    - include: source.escapedregexp
+  literalString:
+    begin: '"'
+    beginCaptures:
+      '0':
+        name: punctuation.definition.string.begin.dxl
+    end: '"'
+    endCaptures:
+      '0':
+        name: punctuation.definition.string.end.dxl
+    name: string.quoted.double.dxl
+    patterns:
+    - include: '#stringEscapedCharacters'
+    - include: '#stringFormatPlaceholder'
+  logical:
+    match: \b(and|or)\b
+    name: keyword.language.dxl
+  outputError:
+    comment: 'Error: Dunno how to get it in the build output'
+    match: '^(?:-?R?-[EF]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
+    name: sublimelinter.outline.illegal.dxl
+  outputWarning:
+    comment: 'Warning: Dunno how to get it in the build output'
+    match: '^(?:-?R?-[W]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
+    name: sublimelinter.outline.warning.dxl
+  pragma:
+    captures:
+      '1':
+        name: meta.preprocessor.dxl
+      '2':
+        name: keyword.control.import.pragma.dxl
+      '3':
+        name: keyword.control.import.pragma.dxl
+      '4':
+        name: invalid.illegal.pragma.dxl
+    match: (?:^|(?<=[;\{\}]))\s*((pragma)\s+(?:(encoding|runLim|splashMessage|stack)|(.*))\s*,)
+    name: meta.section
+  property:
+    patterns:
+    - include: '#propertyArchive'
+    - include: '#propertyAttribute'
+    - include: '#propertyDragDrop'
+    - include: '#propertyHistory'
+    - include: '#propertyRichtext'
+    - include: '#propertyType'
+    - include: '#propertyUser'
+  propertyAccessDot:
+    match: (?<=[a-zA-Z_0-9\)])\.[a-zA-Z_][a-zA-Z_0-9]*\b
+    name: constant.property.dot.dxl
+  propertyAccessPtr:
+    comment: 'TODO: Literal String'
+    match: (?<=[a-zA-Z_0-9\)])->[a-zA-Z_][a-zA-Z_0-9]*\b
+    name: constant.property.ptr.dxl
+  propertyArchive:
+    comment: archiveItemDescription archiveItemName archiveItemSelected archiveItemSoftDeleted
+      archiveItemType
+    match: (?<=[a-zA-Z_0-9\)])\.archiveItem(?:Description|Name|S(?:elec|oftDele)ted|Type)\b
+    name: constant.property.archive.dxl
+  propertyAttribute:
+    comment: canWrite defval defval description dxl hidden inherit module multi name
+      nobars nochanges nohistory object system type typeName useraccess
+    match: (?<=[a-zA-Z_0-9\)])\.(?:canWrite|d(?:e(?:fval|scription)|xl)|hidden|inherit|m(?:odule|ulti)|n(?:ame|o(?:bars|changes|history))|object|system|type(?:Name)?|useraccess)\b
+    name: constant.property.attribute.dxl
+  propertyDragDrop:
+    comment: source sourceIndex sourceIsListView sourceIsTreeView sourcePath target
+      targetIndex targetIsListView targetIsTreeView targetPath
+    match: (?<=[a-zA-Z_0-9\)])\.(?:source(?:I(?:ndex|s(?:List|Tree)View)|Path)?|target(?:I(?:ndex|s(?:List|Tree)View)|Path)?)\b
+    name: constant.property.dragdrop.dxl
+  propertyHistory:
+    comment: absNo attrName author date linkInitialName linkVersion newPosition newValue
+      numberOfObjects oldAbsNo oldValue plainNewUnicodeValue plainNewValue plainOldUnicodeValue
+      plainOldValue position sessionNo sourceAbsNo targetAbsNo targetInitialName targetVersion
+      type typeName
+    match: (?<=[a-zA-Z_0-9\)])\.(?:a(?:bsNo|ttrName|uthor)|date|link(?:InitialName|Version)|n(?:ew(?:Position|Value)|umberOfObjects)|old(?:AbsNo|Value)|p(?:lain(?:New(?:Unicode)?|Old(?:Unicode)?)Value|osition)|s(?:ession|ourceAbs)No|t(?:arget(?:AbsNo|InitialName|Version)|ype(?:Name)?))\b
+    name: constant.property.history.dxl
+  propertyRichtext:
+    comment: bold bulletStyle charset getEmbeddedOle indentLevel isBullet isOle isUrl
+      italic last newline strikethru subscript superscript text underline
+    match: (?<=[a-zA-Z_0-9\)])\.(?:b(?:old|ulletStyle)|charset|getEmbeddedOle|i(?:ndentLevel|s(?:Bullet|Ole|Url)|talic)|last|newline|s(?:trikethru|u(?:per|b)script)|text|underline)\b
+    name: constant.property.richtext.dxl
+  propertyType:
+    comment: canWrite colors colours description descriptions maxValue minValue name
+      size strings system values
+    match: (?<=[a-zA-Z_0-9\)])\.(?:c(?:anWrite|olou?rs)|descriptions?|m(?:ax|in)Value|name|s(?:ize|trings|ystem)|values)\b
+    name: constant.property.type.dxl
+  propertyUser:
+    comment: additionalAuthenticationRequired address class description disabled email
+      emailCPUpdates forename fullName identifier ldapRDN mayArchive mayCreateTopLevelFolders
+      mayEditDXL mayEditGroupList mayEditUserList mayManage mayPartition mayUseCommandLinePassword
+      name password passwordChanged passwordLifetime passwordMayChange passwordMinimumLength
+      surname synergyUsername systemLoginName telephone
+    match: (?<=[a-zA-Z_0-9\)])\.(?:add(?:itionalAuthenticationRequired|ress)|class|d(?:escription|isabled)|email(?:CPUpdates)?|f(?:oren|ullN)ame|identifier|ldapRDN|may(?:Archive|CreateTopLevelFolders|Edit(?:DXL|GroupList|UserList)|Manage|Partition|UseCommandLinePassword)|name|password(?:Changed|Lifetime|M(?:ayChange|inimumLength))?|s(?:urn|y(?:nergyUsern|stemLoginN))ame|telephone)\b
+    name: constant.property.user.dxl
+  reservedKeyword:
+    comment: Reserved Keywords
+    match: \b(case|enum|switch|union)\b
+    name: invalid.illegal.keyword.dxl
+  stringEscapedCharacters:
+    patterns:
+    - match: \\([bfnrtv\\'"]|[0-7]{1,3})
+      name: constant.character.escape.dxl
+    - match: \\.
+      name: invalid.illegal.escape.dxl
+  stringFormatPlaceholder:
+    patterns:
+    - match: "(?x)\t\t\t# Ignore Comments\n\t\t\t\t\t\t\t%\t\t\t\t# % Escape Character\n\
+        \t\t\t\t\t\t\t[#0\\- +]*\t\t# Prefix and Alignment Flags\n\t\t\t\t\t\t\t\\\
+        d*\t\t\t\t# Minimum field width\n\t\t\t\t\t\t\t(\\.\\d+)?\t\t# Maximum precision\n\
+        \t\t\t\t\t\t\t[diouxXCcsp%]\t# Conversion type\n\t\t\t\t\t\t"
+      name: constant.other.placeholder.dxl
+    - match: '%'
+      name: invalid.illegal.placeholder.dxl
+  typeCustom:
+    comment: ALL CAPS for Custom Types
+    match: \b[A-Z]+\b
+    name: storage.type.custom.dxl
+  typeDefinition:
+    captures:
+      '1':
+        name: storage.modifier.dxl
+      '2':
+        name: storage.type.custom.dxl
+    match: (?:^|(?<=[;\{\}]))\s*\b(struct)\b\s*\b([a-zA-Z_][a-zA-Z_0-9]*\b\s*\{\s*\})
+    name: definition.type.custom.dxl
+  typeDoors:
+    comment: 'Builtin DOORS Types: _k _x _y AccessRec ArchiveItem Array Attr__ AttrBaseType
+      AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer
+      ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_
+      DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder
+      Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent
+      Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__
+      ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object ObjectRef__
+      OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph
+      Sensitivity Skip Sort Stat Stream Trigger User UserClass UserList UserNotifyList
+      View ViewDef'
+    match: \b(?:A(?:ccessRec|r(?:chiveItem|ray)|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_StdItem__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])\b
+    name: support.type.doors.dxl
+  typeFundamental:
+    comment: Fundamental Types
+    match: \b(bool|char|int|real|string|void)\b
+    name: storage.type.dxl
+  variablesDeclaration:
+    begin: '(?:^|(?<=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|rray|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy])|([A-Z]+))\s+([\*&])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\s*(?=$|[,;=
+
+      \[]|//|/\*)'
+    beginCaptures:
+      '1':
+        name: storage.modifier.dxl
+      '2':
+        name: storage.type.fundimental.dxl
+      '3':
+        name: support.type.doors.dxl
+      '4':
+        name: storage.type.custom.dxl
+      '5':
+        name: variable.other.pointer.dxl
+      '6':
+        name: invalid.illegal.keyword.dxl
+      '7':
+        name: variable.dxl
+    end: '(?=$|[;=
+
+      ]|//|/\*)'
+    endCaptures:
+      '0':
+        name: declaration.variable.end.dxl
+    name: declaration.variable.dxl
+    patterns:
+    - captures:
+        '1':
+          name: variable.other.array.dxl
+        '2':
+          name: constant.numeric.elements.dxl
+        '3':
+          name: variable.other.array.dxl
+      match: (\[)\s*([0-9]*)\s*(\])\s*
+      name: declaration.variable.array.dxl
+    - captures:
+        '1':
+          name: variable.other.pointer.dxl
+        '2':
+          name: invalid.illegal.keyword.dxl
+        '3':
+          name: variable.dxl
+      match: ',\s+([\*&])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\s*(?=$|[,;=
+
+        \[]|//|/\*)'
+      name: declaration.variable.another.dxl
+  whitespace:
+    match: "[ \t]+$"
+    name: invalid.deprecated.trailing-whitespace.dxl
+  xFlags:
+    captures:
+      '1':
+        name: meta.preprocessor.dxl
+      '2':
+        name: keyword.control.import.xflags.dxl
+      '3':
+        name: keyword.control.import.xflags-mark.dxl
+      '4':
+        name: invalid.illegal.xflags-mark.dxl
+    match: (?:^|(?<=[;\{\}]))\s*((XFLAGS_)\s*[=&|]=\s*~?(?:(AutoDeclare_)|(.*))\s*$)
+    name: meta.section
+scopeName: source.dxl
+uuid: B0089AB0-0986-4E05-B6A6-F2A1EE7BAA91
