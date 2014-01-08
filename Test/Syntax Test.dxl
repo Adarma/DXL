@@ -9,6 +9,9 @@
 
 /* single line block */
 
+trigLevelMod_
+trigLevel_
+
 void functionWithLineComment()
 // Here is the comment
 {
