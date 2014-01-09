@@ -24,7 +24,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#include</string>
+			<string>#includes</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -883,7 +883,7 @@
 		<key>controlFlow</key>
 		<dict>
 			<key>comment</key>
-			<string>Flow Control: by do else elseif for if in then while</string>
+			<string>by do else elseif for if in then while</string>
 			<key>match</key>
 			<string>\b(?:by|do|else(?:if)?|for|i[fn]|then|while)\b</string>
 			<key>name</key>
@@ -1165,7 +1165,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>include</key>
+		<key>includes</key>
 		<dict>
 			<key>begin</key>
 			<string>(?:^|(?&lt;=[;\{\}]))\s*(#\s*include)\b\s+</string>
@@ -1363,7 +1363,7 @@
 		<key>outputError</key>
 		<dict>
 			<key>comment</key>
-			<string>Error: Dunno how to get it in the build output</string>
+			<string>Error in the build output</string>
 			<key>match</key>
 			<string>^(?:-?R?-[EF]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
 			<key>name</key>
@@ -1372,7 +1372,7 @@
 		<key>outputWarning</key>
 		<dict>
 			<key>comment</key>
-			<string>Warning: Dunno how to get it in the build output</string>
+			<string>Warning in the build output</string>
 			<key>match</key>
 			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
 			<key>name</key>
@@ -1554,13 +1554,13 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?x)			# Ignore Comments
-							%				# % Escape Character
-							[#0\- +]*		# Prefix and Alignment Flags
-							\d*				# Minimum field width
-							(\.\d+)?		# Maximum precision
-							[diouxXCcsp%]	# Conversion type
-						</string>
+					<string>(?x)
+%             # % Escape Character
+[#0\- +]*     # Prefix and Alignment Flags
+\d*           # Minimum field width
+(\.\d+)?      # Maximum precision
+[diouxXCcsp%] # Conversion type
+</string>
 					<key>name</key>
 					<string>constant.other.placeholder.dxl</string>
 				</dict>
@@ -1604,7 +1604,7 @@
 		<key>typeDoors</key>
 		<dict>
 			<key>comment</key>
-			<string>Builtin DOORS Types: _k _x _y AccessRec ArchiveItem Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ MA_StdMenu__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object ObjectRef__ OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream trigEvent_ Trigger trigLevel_ trigLevelDesc_ trigLevelMod_ trigType_ User UserClass UserList UserNotifyList View ViewDef</string>
+			<string>_k _x _y AccessRec ArchiveItem Array Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent Item Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList MA_StdItem__ MA_StdMenu__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object ObjectRef__ OleAutoArgs OleAutoObj Permission Project Regexp RichText RichTextParagraph Sensitivity Skip Sort Stat Stream trigEvent_ Trigger trigLevel_ trigLevelDesc_ trigLevelMod_ trigType_ User UserClass UserList UserNotifyList View ViewDef</string>
 			<key>match</key>
 			<string>\b(?:A(?:ccessRec|r(?:chiveItem|ray)|ttr(?:BaseType|Def(?:__)?|Type|__))|B(?:aseline(?:Set(?:Definition)?)?|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|nPlaceEditEvent|tem)|L(?:ink(?:ModuleDescriptor|Ref|set)?|oc(?:ale|kList|k))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:ermission|roject)|R(?:egexp|ichText(?:Paragraph)?)|S(?:ensitivity|kip|ort|t(?:at|ream))|Trigger|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)\b</string>
 			<key>name</key>
