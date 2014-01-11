@@ -2,7 +2,13 @@ import sublime
 import sublime_plugin
 import subprocess
 import os.path
-import winreg
+
+try:
+    # try python3 import
+    import winreg
+except ImportError:
+    # fall back to python2 import
+    import _winreg as winreg
 
 
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
