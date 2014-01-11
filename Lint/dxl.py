@@ -12,7 +12,7 @@ class Linter(BaseLinter):
     STACK_RE = re.compile(r'\s*<(?P<path>.*):(?P<line>[0-9]+)>\s*$')
 
     def get_executable(self, view):
-        return (True, os.path.join(self.LIB_PATH, 'dxl', "DxlLint.exe"), "")
+        return (True, os.path.join(self.LIB_PATH, 'dxl', "Dxl.exe"), "")
 
     def parse_errors(self, view, errors, lines, errorUnderlines,
                      violationUnderlines, warningUnderlines,

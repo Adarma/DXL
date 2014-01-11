@@ -38,26 +38,16 @@ Go to your Sublime Text `Packages` directory and clone the repository using the 
 
 Use `F1` to jump to the current word in the `dxl.chm` file.
 
-### DXL Lint
+### DXL Linter
 
-Plugin for [SublimeLinter] [LINT] to add support for DXL.
+Linter for [SublimeLinter3] [LINT] to add support for DXL.
 
-* Install [SublimeLinter] [LINT]
-* Copy `\DXL\Lint\dxl.py` to `\SublimeLinter\sublimelinter\modules\dxl.py`
-* Create `\SublimeLinter\sublimelinter\modules\libs\dxl\`
-* Copy `\DXL\Lint\DxlLint.exe` to `\SublimeLinter\sublimelinter\modules\libs\dxl\DxlLint.exe`
+* Install [SublimeLinter3] [LINT]
+* Install [SublimeLinter-contrib-dxl] [LINTDXL]
 
-### Syntax Highlighting Colour Schemes
+### DXL Colour Scheme
 
-Modified version of the Soda Dark version of Monokai to add support for the DXL Language and Lint.
-
-## Unicode
-
-If you have problems with unicode characters in the Build Output, set Microsoft Windows to use UTF8 on the command line:
-
-* Run `regedit`
-* Navigate to Key `HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor\`
-* Set Value name `Autorun` to Value data `chcp 65001 > nul`
+Modified version of the Soda Dark version of Monokai to add support for the DXL Language.
 
 ## Say Thanks
 
@@ -65,5 +55,6 @@ Donate: [GitTip] [TIP]
 
  [ST2]: http://www.sublimetext.com/
  [PC]: http://wbond.net/sublime_packages/package_control
- [LINT]: https://github.com/SublimeLinter/SublimeLinter
+ [LINT]: https://github.com/SublimeLinter/SublimeLinter3
+ [LINTDXL]: https://github.com/Adarma/SublimeLinter-contrib-dxl
  [TIP]: https://www.gittip.com/Adarma/
