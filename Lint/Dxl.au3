@@ -168,18 +168,18 @@ Func GetNextRequire($FileHandle, ByRef $LineNo)
 		If @error = -1 Then ExitLoop
 		$LineNo += 1
 
-		Local $MatchArray = StringRegExp ($FileLine, $Regexp, 1)
+		Local $MatchArray = StringRegExp($FileLine, $Regexp, 1)
 		If @error Then ExitLoop
 
-		If $MatchArray[0] == "Requires" Then
-			If StringLeft($MatchArray[1], 9) == "#include " Then
-				$Require = $MatchArray[1]
-				ExitLoop
-			Else
+		 If $MatchArray[0] == "Requires" Then
+		   Local $IncludeMatchArray = StringRegExp($MatchArray[1], '^(#include ["<][^">]+[">])\s*(.*)$', 1)
+		   If @error Then
 				ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> Invaild '//<Requires>' syntax: Expected '#include ' (" & $MatchArray[1] & ")" & @CRLF)
+			Else
+				$Require = $IncludeMatchArray[0]
+				ExitLoop
 			EndIf
-		EndIf
-
+		 EndIf
 	Wend
 
 	Return $Require
