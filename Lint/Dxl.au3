@@ -34,6 +34,9 @@ Licence:
 
 Opt("MustDeclareVars", 1)		;0=no, 1=yes
 
+#include <File.au3>			; For: _PathFull()
+#include <Array.au3>		; For:	_ArraySort(), _ArrayUnique()
+
 Local $oErrorHandler = ObjEvent("AutoIt.Error","ComErrorHandler")    ; Initialize a COM error handler
 ; This is my custom defined error handler
 Func ComErrorHandler($oMyError)
@@ -50,71 +53,250 @@ Func ComErrorHandler($oMyError)
             )
 Endfunc
 
-; Check if any Arguments were passed
-If $CmdLine[0] < 1 Then
-	ConsoleWrite("Wrong Parameters" & @CRLF)
-Else	
+
+; Debugging Arguments
+Local $ScriptFile = _PathFull("../Test/Lint Test.dxl", @ScriptDir & "\")
+
+; Real Arguments
+If @Compiled Then
+	; Check if Arguments were passed correctly
+	If $CmdLine[0] < 1 Then
+		ConsoleWrite("Wrong Parameters" & @LF)
+		Exit
+	EndIf
+
 	; Get Full File Path from Arguments
-	Local $Switch = $CmdLine[1]
-	
-	; Get Doors Process Properties
-	Local $DoorsProcess = _ProcessListProperties("doors.exe")
-	Local $DoorsRunning = $DoorsProcess[0][0] > 0
-	
-	If $DoorsRunning Then
+	$ScriptFile = $CmdLine[1]
+EndIf
 
-		ConsoleWrite("DOORS Process Running"& @CRLF)
+; Get Doors Process Properties
+Local $DoorsProcess = _ProcessListProperties("doors.exe")
+Local $DoorsRunning = $DoorsProcess[0][0] > 0
 
-		; Get Doors CPU usage
-		Local $DoorsCPU = $DoorsProcess[1][6]
-		Local $DoorsIdle = $DoorsCPU < 5
-		
-		ConsoleWrite("DOORS CPU: " & $DoorsCPU & @CRLF)
-		If $DoorsIdle Then
-			
-			ConsoleWrite("DOORS is Idle"& @CRLF)
-			
-			If $Switch = "-v" Then
-				ConsoleWrite("DOORS is Idle")
+If $DoorsRunning Then
+
+	ConsoleWrite("DOORS Process Running"& @CRLF)
+
+	; Get Doors CPU usage
+	Local $DoorsCPU = $DoorsProcess[1][6]
+	Local $DoorsIdle = $DoorsCPU < 5
+
+	ConsoleWrite("DOORS CPU: " & $DoorsCPU & @CRLF)
+	If $DoorsIdle Then
+
+		ConsoleWrite("DOORS is Idle"& @CRLF)
+
+		; Connect to DOORS via COM
+		Local $ObjDoors = ObjCreate("DOORS.application")
+		If @error Then
+			ConsoleWrite("Error connecting to Doors" & @CRLF & "Error Code: " & Hex(@error, 8) & @CRLF)
+
+			If Not IsObj($ObjDoors) Then
+				ConsoleWrite("Failed to obtain DOORS windows. Error: " & @error)
+				Exit
+			EndIf
+		 Else
+			; Make the DXL include statement
+			Local $Requires = LintRequires($ObjDoors, $ScriptFile)
+			Local $IncludeString = $Requires & "#include <" & $ScriptFile & ">"
+
+			ConsoleWrite("Linting Code" & @CRLF)
+			Local $DXLOutputText = LintCode($ObjDoors, $IncludeString)
+			If $DXLOutputText <> "" Then
+				$DXLOutputText = CleanLintOutput($DXLOutputText, $ScriptFile)
+				ConsoleWrite($DXLOutputText)
+			EndIf
+
+		EndIf
+
+	Else
+		ConsoleWrite("DOORS is Busy: " & @CRLF)
+	EndIf
+Else
+	ConsoleWrite("DOORS is not Running"& @CRLF)
+EndIf
+
+Func LintRequires($ObjDoors, $sFilePath)
+
+	ConsoleWrite("Linting Requires" & @CRLF)
+	Local $Requires = ''
+
+	; Open the file for reading and store the handle to a variable.
+	Local $FileHandle = FileOpen($sFilePath, 0)
+	If $FileHandle <> -1 Then
+
+		Local $LineNo = 0
+		While 1
+			Local $Require = GetNextRequire($FileHandle, $LineNo)
+			If $Require == '' Then ExitLoop
+
+			Local $DXLOutputText = LintCode($ObjDoors, $Requires & $Require)
+			If $DXLOutputText == '' Then
+				$Requires &= $Require & ";" & @CRLF
+			 Else
+
+			   ; Check if file was found
+			   Local $Match = StringRegExp($DXLOutputText, "^-E- DXL: <Line:[0-9]+> (.*)" , 1)
+
+			   If @Error == 0 Then
+				  ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> " & $Match[0] & @CRLF)
+			   Else
+				  Local $IncludeFile = StringMid($Require, 11, StringLen($Require) - 11)
+				  ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> could not run include file (" & $IncludeFile & ") (Syntax errors in file)" & @CRLF)
+			   EndIf
+			EndIf
+		Wend
+
+		; Close the handle returned by FileOpen.
+		FileClose($FileHandle)
+
+	EndIf
+
+	Return $Requires
+
+EndFunc
+
+Func GetNextRequire($FileHandle, ByRef $LineNo)
+
+    Local $Regexp = '^//<([^>]+)>\s*(.*)$'
+	Local $Require = ''
+
+	While 1
+		; Read the fist line of the file using the handle returned by FileOpen.
+		Local $FileLine = FileReadLine($FileHandle)
+
+		If @error = -1 Then ExitLoop
+		$LineNo += 1
+
+		Local $MatchArray = StringRegExp ($FileLine, $Regexp, 1)
+		If @error Then ExitLoop
+
+		If $MatchArray[0] == "Requires" Then
+			If StringLeft($MatchArray[1], 9) == "#include " Then
+				$Require = $MatchArray[1]
+				ExitLoop
 			Else
-				Local $ScriptFile = $Switch
-				
-				; Connect to DOORS via COM
-				Local $ObjDoors = ObjCreate("DOORS.application")
-				If @error Then
-					ConsoleWrite("Error connecting to Doors" & @CRLF & "Error Code: " & Hex(@error, 8) & @CRLF)
+				ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> Invaild '//<Requires>' syntax: Expected '#include ' (" & $MatchArray[1] & ")" & @CRLF)
+			EndIf
+		EndIf
 
-					If Not IsObj($ObjDoors) Then
-						ConsoleWrite("Failed to obtain DOORS windows. Error: " & @error)
-						Exit
-					EndIf
-				 Else
-					; Get Full File Path from Arguments
-					Local $ScriptFile = $CmdLine[1]
-					
-					; Make the DXL include statement
-					Local $IncludeString = "#include <" & $ScriptFile & ">"
-					
-					Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
-					Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
-					
-					; Test the code
-					$ObjDoors.Result = ""
-					$ObjDoors.runStr($TestCode)
-					
-					Local $DXLOutputText = $ObjDoors.Result
-					If $DXLOutputText <> "" Then
-						ConsoleWrite($DXLOutputText)
+	Wend
+
+	Return $Require
+
+EndFunc
+
+Func LintCode($ObjDoors, $Include)
+
+	Local $EscapedInclude = StringReplace($Include, "\", "\\")
+	Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
+
+	; Test the code
+	$ObjDoors.Result = ""
+	$ObjDoors.runStr($TestCode)
+
+	Local $DXLOutputText = $ObjDoors.Result
+	Return $DXLOutputText
+
+EndFunc
+
+Func CleanLintOutput($DXLOutputText, $FilePath)
+
+	Local $LintErrors = ''
+
+	; Get Error Lines
+	Local $DXLOutputLines = StringSplit($DXLOutputText, @CRLF)
+	local $Length = 11 + StringLen($FilePath)
+	For $i = 1 To $DXLOutputLines[0]
+		If StringLeft($DXLOutputLines[$i], $Length) == "-E- DXL: <" & $FilePath & ":" Then
+			If $LintErrors <> '' Then
+			   $LintErrors &= @LF
+			EndIf
+			$LintErrors &= $DXLOutputLines[$i]
+		EndIf
+	Next
+
+	; Sort and remove duplicates
+	Local $LintErrorLines = StringSplit($LintErrors, @CRLF, 2)
+	_ArraySort($LintErrorLines)
+	Local $UniqueLintErrorLines = _ArrayUnique($LintErrorLines)
+	$LintErrors = ''
+
+	; Remove 'incorrectly concatenated tokens' if another error on same line
+	For $i = 1 To $UniqueLintErrorLines[0]
+
+		Local $RemoveLine = false
+
+		If StringRight($UniqueLintErrorLines[$i], 31) == "incorrectly concatenated tokens" Then
+
+			; Get Line Number
+			Local $LineNumber = Int(StringTrimLeft($UniqueLintErrorLines[$i], $Length))
+
+			; Check Previous Line Number
+			If $i > 1 Then
+				If StringLeft($UniqueLintErrorLines[$i-1], $Length + StringLen($LineNumber) + 2) == "-E- DXL: <" & $FilePath & ":" & $LineNumber & "> " Then
+					If StringTrimLeft($UniqueLintErrorLines[$i-1], $Length + StringLen($LineNumber) + 2) <> "incorrectly concatenated tokens" Then
+						$RemoveLine = true
 					EndIf
 				EndIf
 			EndIf
-		Else
-			ConsoleWrite("DOORS is Busy: " & @CRLF)
+
+			If Not $RemoveLine Then
+				; Check Next Line Number
+				If $i < $UniqueLintErrorLines[0] Then
+					If StringLeft($UniqueLintErrorLines[$i+1], $Length + StringLen($LineNumber) + 2) == "-E- DXL: <" & $FilePath & ":" & $LineNumber & "> " Then
+						If StringTrimLeft($UniqueLintErrorLines[$i+1], $Length + StringLen($LineNumber) + 2) <> "incorrectly concatenated tokens" Then
+							$RemoveLine = true
+						EndIf
+					EndIf
+				EndIf
+			EndIf
+		Endif
+
+		If Not $RemoveLine Then
+			$LintErrors &= $UniqueLintErrorLines[$i] & @CRLF
 		EndIf
-	Else
-		ConsoleWrite("DOORS is not Running"& @CRLF)
-	EndIf
-EndIf
+
+	Next
+
+	Return $LintErrors
+
+EndFunc
+
+Func GetRequires($sFilePath)
+
+	Local $Requires = ""
+
+    ; Open the file for reading and store the handle to a variable.
+    Local $FileHandle = FileOpen($sFilePath, 0)
+    If $FileHandle = -1 Then
+        Return $Requires
+    EndIf
+
+    Local $Regexp = '^//<([^>]+)>\s*(.*)$'
+	Local $LineNo = 0
+
+	While 1
+		; Read the fist line of the file using the handle returned by FileOpen.
+		Local $FileLine = FileReadLine($FileHandle)
+		If @error = -1 Then ExitLoop
+		$LineNo += 1
+
+		Local $MatchArray = StringRegExp ($FileLine, $Regexp, 1)
+		If @error Then ExitLoop
+
+		If $MatchArray[0] == "Requires" Then
+			$Requires &= $MatchArray[1] & ";" & @CRLF
+		EndIf
+
+	Wend
+
+    ; Close the handle returned by FileOpen.
+    FileClose($FileHandle)
+
+	Return $Requires
+
+EndFunc
 
 ;===============================================================================
 ; Function Name:    _ProcessListProperties()
@@ -191,14 +373,14 @@ Func _ProcessListProperties($Process = "", $sComputer = ".")
         Local $oRefresher = ObjCreate("WbemScripting.SWbemRefresher")
         $colProcs = $oRefresher.AddEnum ($oWMI, "Win32_PerfFormattedData_PerfProc_Process" ).objectSet
         $oRefresher.Refresh
-        
+
         ; Time delay before calling refresher
         Local $iTime = TimerInit()
         Do
             Sleep(10)
         Until TimerDiff($iTime) > 100
         $oRefresher.Refresh
-        
+
         ; Get PerfProc data
         For $oProc In $colProcs
             ; Find it in the array
