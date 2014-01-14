@@ -173,11 +173,11 @@ Func GetNextRequire($FileHandle, ByRef $LineNo)
 
 		 If $MatchArray[0] == "Requires" Then
 		   Local $IncludeMatchArray = StringRegExp($MatchArray[1], '^(#include ["<][^">]+[">])\s*(.*)$', 1)
-		   If @error Then
-				ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> Invaild '//<Requires>' syntax: Expected '#include ' (" & $MatchArray[1] & ")" & @CRLF)
+			If @error Then
+			   ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> Invaild '//<Requires>' syntax: Expected '#include ' (" & $MatchArray[1] & ")" & @CRLF)
 			Else
-				$Require = $IncludeMatchArray[0]
-				ExitLoop
+			   $Require = $IncludeMatchArray[0]
+			   ExitLoop
 			EndIf
 		 EndIf
 	Wend
@@ -189,6 +189,7 @@ EndFunc
 Func LintCode($ObjDoors, $Include)
 
 	Local $EscapedInclude = StringReplace($Include, "\", "\\")
+	$EscapedInclude = StringReplace($EscapedInclude, '"', '\"')
 	Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
 
 	; Test the code
@@ -206,13 +207,18 @@ Func CleanLintOutput($DXLOutputText, $FilePath)
 
 	; Get Error Lines
 	Local $DXLOutputLines = StringSplit($DXLOutputText, @CRLF)
-	local $Length = 11 + StringLen($FilePath)
+	local $Length = StringLen($FilePath)
 	For $i = 1 To $DXLOutputLines[0]
-		If StringLeft($DXLOutputLines[$i], $Length) == "-E- DXL: <" & $FilePath & ":" Then
+		If StringLeft($DXLOutputLines[$i], $Length + 11) == "-E- DXL: <" & $FilePath & ":" Then
 			If $LintErrors <> '' Then
 			   $LintErrors &= @LF
 			EndIf
 			$LintErrors &= $DXLOutputLines[$i]
+		 ElseIf StringLeft($DXLOutputLines[$i], $Length + 3) == @TAB & "<" & $FilePath & ":" Then
+			If $LintErrors <> '' Then
+			   $LintErrors &= @LF
+			EndIf
+			$LintErrors &= "-W- DXL: " & StringTrimLeft($DXLOutputLines[$i], 1) & "could not run include file (Syntax errors in file)"
 		EndIf
 	Next
 
