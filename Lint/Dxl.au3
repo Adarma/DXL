@@ -174,7 +174,7 @@ Func GetNextRequire($FileHandle, ByRef $LineNo)
 		 If $MatchArray[0] == "Requires" Then
 		   Local $IncludeMatchArray = StringRegExp($MatchArray[1], '^(#include ["<][^">]+[">])\s*(.*)$', 1)
 			If @error Then
-			   ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> Invaild '//<Requires>' syntax: Expected '#include ' (" & $MatchArray[1] & ")" & @CRLF)
+			   ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> Invalid '//<Requires>' syntax: Expected '#include ' (" & $MatchArray[1] & ")" & @CRLF)
 			Else
 			   $Require = $IncludeMatchArray[0]
 			   ExitLoop
