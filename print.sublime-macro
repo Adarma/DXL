@@ -1,0 +1,106 @@
+[
+	{
+		"args": null,
+		"command": "copy"
+	},
+	{
+		"args":
+		{
+			"file": "res://Packages/Default/Add Line.sublime-macro"
+		},
+		"command": "run_macro_file"
+	},
+	{
+		"args":
+		{
+			"characters": "prin"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "t"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"contents": "($0)"
+		},
+		"command": "insert_snippet"
+	},
+	{
+		"args":
+		{
+			"contents": "\"$0\""
+		},
+		"command": "insert_snippet"
+	},
+	{
+		"args": null,
+		"command": "paste"
+	},
+	{
+		"args":
+		{
+			"characters": ":"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": " "
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"characters": " "
+		},
+		"command": "insert"
+	},
+	{
+		"args": null,
+		"command": "paste"
+	},
+	{
+		"args":
+		{
+			"characters": " "
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"contents": "\"$0\""
+		},
+		"command": "insert_snippet"
+	},
+	{
+		"args":
+		{
+			"characters": "\\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"file": "res://Packages/Default/Add Line.sublime-macro"
+		},
+		"command": "run_macro_file"
+	}
+]
