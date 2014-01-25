@@ -1,286 +1,287 @@
 {
+    "uuid": "D8D5E82E-3D5B-46B5-B38E-8C841C21347D", 
     "name": "Monokai", 
     "settings": [
         {
             "settings": {
-                "activeGuide": "#9D550FB0", 
-                "background": "#272822", 
-                "bracketContentsForeground": "#F8F8F2A5", 
-                "bracketContentsOptions": "underline", 
-                "bracketsForeground": "#F8F8F2A5", 
-                "bracketsOptions": "underline", 
-                "caret": "#F8F8F0", 
-                "findHighlight": "#FFE792", 
-                "findHighlightForeground": "#000000", 
-                "foreground": "#F8F8F2", 
-                "invisibles": "#3B3A32", 
-                "lineHighlight": "#3E3D32", 
-                "selection": "#49483E", 
                 "selectionBorder": "#222218", 
-                "tagsOptions": "stippled_underline"
+                "selection": "#363636", 
+                "bracketsOptions": "underline", 
+                "bracketsForeground": "#F8F8F2A5", 
+                "findHighlight": "#FFE792", 
+                "activeGuide": "#9D550FB0", 
+                "bracketContentsForeground": "#F8F8F2A5", 
+                "invisibles": "#3B3A32", 
+                "background": "#1E1E1E", 
+                "tagsOptions": "stippled_underline", 
+                "lineHighlight": "#282828", 
+                "caret": "#F8F8F0", 
+                "foreground": "#F8F8F2", 
+                "findHighlightForeground": "#000000", 
+                "bracketContentsOptions": "underline"
             }
         }, 
         {
-            "name": "Comment", 
             "scope": "comment", 
+            "name": "Comment", 
             "settings": {
-                "foreground": "#75715E"
+                "foreground": "#7D7D7D"
             }
         }, 
         {
-            "name": "Comment Continuation", 
             "scope": "comment.line.continuation", 
+            "name": "Comment Continuation", 
             "settings": {
-                "fontStyle": "bold", 
-                "foreground": "#FF8000"
+                "foreground": "#FF8000", 
+                "fontStyle": "bold"
             }
         }, 
         {
-            "name": "String", 
             "scope": "string", 
+            "name": "String", 
             "settings": {
                 "foreground": "#E6DB74"
             }
         }, 
         {
-            "name": "Number", 
             "scope": "constant.numeric", 
+            "name": "Number", 
             "settings": {
                 "foreground": "#AE81FF"
             }
         }, 
         {
-            "name": "Built-in constant", 
             "scope": "constant.language", 
+            "name": "Built-in constant", 
             "settings": {
                 "foreground": "#AE81FF"
             }
         }, 
         {
-            "name": "User-defined constant", 
             "scope": "constant.character, constant.other", 
+            "name": "User-defined constant", 
             "settings": {
                 "foreground": "#AE81FF"
             }
         }, 
         {
-            "name": "Builtin constant", 
             "scope": "constant.perm", 
+            "name": "Builtin constant", 
             "settings": {
                 "foreground": "#AE81FF"
             }
         }, 
         {
-            "name": "Property", 
             "scope": "constant.property", 
+            "name": "Property", 
             "settings": {
                 "foreground": "#D8B1FF"
             }
         }, 
         {
-            "name": "Variable", 
             "scope": "variable", 
+            "name": "Variable", 
             "settings": {
                 "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Keyword", 
             "scope": "keyword", 
+            "name": "Keyword", 
             "settings": {
                 "foreground": "#F92672"
             }
         }, 
         {
-            "name": "KeywordBreak", 
             "scope": "keyword.control.break", 
+            "name": "KeywordBreak", 
             "settings": {
                 "foreground": "#FF32E8"
             }
         }, 
         {
-            "name": "Storage", 
             "scope": "storage", 
+            "name": "Storage", 
             "settings": {
-                "fontStyle": "", 
-                "foreground": "#3F92D2"
+                "foreground": "#3F92D2", 
+                "fontStyle": ""
             }
         }, 
         {
-            "name": "Storage type", 
             "scope": "storage.type", 
+            "name": "Storage type", 
             "settings": {
-                "fontStyle": "italic", 
-                "foreground": "#66D9EF"
+                "foreground": "#66D9EF", 
+                "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Storage type doors", 
             "scope": "support.type.doors", 
+            "name": "Storage type doors", 
             "settings": {
-                "fontStyle": "italic", 
-                "foreground": "#1BA9C4"
+                "foreground": "#1BA9C4", 
+                "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Storage type custom", 
             "scope": "storage.type.custom", 
+            "name": "Storage type custom", 
             "settings": {
-                "fontStyle": "italic", 
-                "foreground": "#00C0FF"
+                "foreground": "#00C0FF", 
+                "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Class name", 
             "scope": "entity.name.class", 
+            "name": "Class name", 
             "settings": {
-                "fontStyle": "underline", 
-                "foreground": "#A6E22E"
+                "foreground": "#A6E22E", 
+                "fontStyle": "underline"
             }
         }, 
         {
-            "name": "Inherited class", 
             "scope": "entity.other.inherited-class", 
+            "name": "Inherited class", 
             "settings": {
-                "fontStyle": "italic underline", 
-                "foreground": "#A6E22E"
+                "foreground": "#A6E22E", 
+                "fontStyle": "italic underline"
             }
         }, 
         {
-            "name": "Function name", 
             "scope": "entity.name.function", 
+            "name": "Function name", 
             "settings": {
-                "fontStyle": "italic", 
-                "foreground": "#A6E22E"
+                "foreground": "#A6E22E", 
+                "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Function Forward Declaration Name", 
             "scope": "entity.name.functionDefinition", 
+            "name": "Function Forward Declaration Name", 
             "settings": {
-                "fontStyle": "italic", 
-                "foreground": "#67E300"
+                "foreground": "#67E300", 
+                "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Function argument", 
             "scope": "variable.other", 
+            "name": "Function argument", 
             "settings": {
-                "fontStyle": "italic", 
-                "foreground": "#FD971F"
+                "foreground": "#FD971F", 
+                "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Tag name", 
             "scope": "entity.name.tag", 
+            "name": "Tag name", 
             "settings": {
-                "fontStyle": "", 
-                "foreground": "#F92672"
+                "foreground": "#F92672", 
+                "fontStyle": ""
             }
         }, 
         {
-            "name": "Tag attribute", 
             "scope": "entity.other.attribute-name", 
+            "name": "Tag attribute", 
             "settings": {
-                "fontStyle": "", 
-                "foreground": "#A6E22E"
+                "foreground": "#A6E22E", 
+                "fontStyle": ""
             }
         }, 
         {
-            "name": "Function", 
             "scope": "support.function", 
+            "name": "Function", 
             "settings": {
-                "fontStyle": "", 
-                "foreground": "#4ABA49"
+                "foreground": "#4ABA49", 
+                "fontStyle": ""
             }
         }, 
         {
-            "name": "Function Perm", 
             "scope": "support.function.perm", 
+            "name": "Function Perm", 
             "settings": {
-                "fontStyle": "", 
-                "foreground": "#55993B"
+                "foreground": "#55993B", 
+                "fontStyle": ""
             }
         }, 
         {
-            "name": "Function Diagnostic", 
             "scope": "support.function.diagnostic", 
+            "name": "Function Diagnostic", 
             "settings": {
-                "fontStyle": "", 
-                "foreground": "#00FF40"
+                "foreground": "#00FF40", 
+                "fontStyle": ""
             }
         }, 
         {
-            "name": "Library constant", 
             "scope": "support.constant", 
+            "name": "Library constant", 
             "settings": {
-                "fontStyle": "", 
-                "foreground": "#66D9EF"
+                "foreground": "#66D9EF", 
+                "fontStyle": ""
             }
         }, 
         {
-            "name": "Library class/type", 
             "scope": "support.type, support.class", 
+            "name": "Library class/type", 
             "settings": {
-                "fontStyle": "italic", 
-                "foreground": "#66D9EF"
+                "foreground": "#66D9EF", 
+                "fontStyle": "italic"
             }
         }, 
         {
-            "name": "Library variable", 
             "scope": "support.other.variable", 
+            "name": "Library variable", 
             "settings": {
                 "fontStyle": ""
             }
         }, 
         {
-            "name": "Invalid", 
             "scope": "invalid", 
+            "name": "Invalid", 
             "settings": {
-                "background": "#F92672", 
+                "foreground": "#F8F8F0", 
                 "fontStyle": "", 
-                "foreground": "#F8F8F0"
+                "background": "#F92672"
             }
         }, 
         {
-            "name": "Invalid deprecated", 
             "scope": "invalid.deprecated", 
+            "name": "Invalid deprecated", 
             "settings": {
-                "background": "#800000", 
-                "foreground": "#F8F8F0"
+                "foreground": "#F8F8F0", 
+                "background": "#800000"
             }
         }, 
         {
-            "name": "JSON String", 
             "scope": "meta.structure.dictionary.json string.quoted.double.json", 
+            "name": "JSON String", 
             "settings": {
                 "foreground": "#CFCFC2"
             }
         }, 
         {
-            "name": "diff.header", 
             "scope": "meta.diff, meta.diff.header", 
+            "name": "diff.header", 
             "settings": {
                 "foreground": "#75715E"
             }
         }, 
         {
-            "name": "diff.deleted", 
             "scope": "markup.deleted", 
+            "name": "diff.deleted", 
             "settings": {
                 "foreground": "#F92672"
             }
         }, 
         {
-            "name": "diff.inserted", 
             "scope": "markup.inserted", 
+            "name": "diff.inserted", 
             "settings": {
                 "foreground": "#A6E22E"
             }
         }, 
         {
-            "name": "diff.changed", 
             "scope": "markup.changed", 
+            "name": "diff.changed", 
             "settings": {
                 "foreground": "#E6DB74"
             }
@@ -298,58 +299,57 @@
             }
         }, 
         {
-            "name": "SublimeLinter Annotations", 
             "scope": "sublimelinter.annotations", 
+            "name": "SublimeLinter Annotations", 
             "settings": {
-                "background": "#FFFFAA", 
-                "foreground": "#FFFFFF"
+                "foreground": "#FFFFFF", 
+                "background": "#FFFFAA"
             }
         }, 
         {
-            "name": "SublimeLinter Error Outline", 
             "scope": "sublimelinter.outline.illegal", 
+            "name": "SublimeLinter Error Outline", 
             "settings": {
-                "background": "#FF4A52", 
-                "foreground": "#FFFFFF"
+                "foreground": "#FFFFFF", 
+                "background": "#FF4A52"
             }
         }, 
         {
-            "name": "SublimeLinter Error Underline", 
             "scope": "sublimelinter.underline.illegal", 
+            "name": "SublimeLinter Error Underline", 
             "settings": {
                 "background": "#FF0000"
             }
         }, 
         {
-            "name": "SublimeLinter Warning Outline", 
             "scope": "sublimelinter.outline.warning", 
+            "name": "SublimeLinter Warning Outline", 
             "settings": {
-                "background": "#DF9400", 
-                "foreground": "#FFFFFF"
+                "foreground": "#FFFFFF", 
+                "background": "#DF9400"
             }
         }, 
         {
-            "name": "SublimeLinter Warning Underline", 
             "scope": "sublimelinter.underline.warning", 
+            "name": "SublimeLinter Warning Underline", 
             "settings": {
                 "background": "#FF0000"
             }
         }, 
         {
-            "name": "SublimeLinter Violation Outline", 
             "scope": "sublimelinter.outline.violation", 
+            "name": "SublimeLinter Violation Outline", 
             "settings": {
-                "background": "#ffffff33", 
-                "foreground": "#FFFFFF"
+                "foreground": "#FFFFFF", 
+                "background": "#ffffff33"
             }
         }, 
         {
-            "name": "SublimeLinter Violation Underline", 
             "scope": "sublimelinter.underline.violation", 
+            "name": "SublimeLinter Violation Underline", 
             "settings": {
                 "background": "#FF0000"
             }
         }
-    ], 
-    "uuid": "D8D5E82E-3D5B-46B5-B38E-8C841C21347D"
+    ]
 }
