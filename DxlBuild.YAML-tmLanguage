@@ -1,0 +1,33 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: DxlBuild
+scopeName: build.dxl
+uuid: 2E90FEC0-85C6-11E3-BAA7-0800200C9A66
+
+patterns:
+- include: '#buildAbandoned'
+- include: '#buildTime'
+- include: '#outputError'
+- include: '#outputWarning'
+
+repository:
+  buildAbandoned:
+    comment: Error in the build output
+    name: sublimelinter.outline.illegal.dxl
+    match: ^'DOORSLOGFILE'.*
+
+  buildTime:
+    comment: Sublime build time suffix
+    name: string
+    match: '^\[Finished in ([0-9]+\.[0-9]+)s\]$'
+    captures:
+      '1': {name: constant.numeric}
+
+  outputError:
+    comment: Error in the build output
+    name: sublimelinter.outline.illegal.dxl
+    match: '^(?:-?R?-[EF]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
+
+  outputWarning:
+    comment: Warning in the build output
+    name: sublimelinter.outline.warning.dxl
+    match: '^(?:-?R?-[W]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'

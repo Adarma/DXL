@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>DxlBuild</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>include</key>
+			<string>#buildAbandoned</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#buildTime</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#outputError</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#outputWarning</string>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>buildAbandoned</key>
+		<dict>
+			<key>comment</key>
+			<string>Error in the build output</string>
+			<key>match</key>
+			<string>^'DOORSLOGFILE'.*</string>
+			<key>name</key>
+			<string>sublimelinter.outline.illegal.dxl</string>
+		</dict>
+		<key>buildTime</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Sublime build time suffix</string>
+			<key>match</key>
+			<string>^\[Finished in ([0-9]+\.[0-9]+)s\]$</string>
+			<key>name</key>
+			<string>string</string>
+		</dict>
+		<key>outputError</key>
+		<dict>
+			<key>comment</key>
+			<string>Error in the build output</string>
+			<key>match</key>
+			<string>^(?:-?R?-[EF]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
+			<key>name</key>
+			<string>sublimelinter.outline.illegal.dxl</string>
+		</dict>
+		<key>outputWarning</key>
+		<dict>
+			<key>comment</key>
+			<string>Warning in the build output</string>
+			<key>match</key>
+			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
+			<key>name</key>
+			<string>sublimelinter.outline.warning.dxl</string>
+		</dict>
+	</dict>
+	<key>scopeName</key>
+	<string>build.dxl</string>
+	<key>uuid</key>
+	<string>2E90FEC0-85C6-11E3-BAA7-0800200C9A66</string>
+</dict>
+</plist>

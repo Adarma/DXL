@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
@@ -29,14 +29,6 @@
 		<dict>
 			<key>include</key>
 			<string>#blockStatements</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#outputError</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#outputWarning</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -1359,24 +1351,6 @@
 			<string>\b(and|or)\b</string>
 			<key>name</key>
 			<string>keyword.language.dxl</string>
-		</dict>
-		<key>outputError</key>
-		<dict>
-			<key>comment</key>
-			<string>Error in the build output</string>
-			<key>match</key>
-			<string>^(?:-?R?-[EF]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
-			<key>name</key>
-			<string>sublimelinter.outline.illegal.dxl</string>
-		</dict>
-		<key>outputWarning</key>
-		<dict>
-			<key>comment</key>
-			<string>Warning in the build output</string>
-			<key>match</key>
-			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
-			<key>name</key>
-			<string>sublimelinter.outline.warning.dxl</string>
 		</dict>
 		<key>pragma</key>
 		<dict>

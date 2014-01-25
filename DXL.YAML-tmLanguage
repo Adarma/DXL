@@ -9,8 +9,6 @@ patterns:
 - include: '#xFlags'
 - include: '#includes'
 - include: '#blockStatements'
-- include: '#outputError'
-- include: '#outputWarning'
 
 repository:
   blockScope:
@@ -626,16 +624,6 @@ repository:
   logical:
     name: keyword.language.dxl
     match: \b(and|or)\b
-
-  outputError:
-    comment: Error in the build output
-    name: sublimelinter.outline.illegal.dxl
-    match: '^(?:-?R?-[EF]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
-
-  outputWarning:
-    comment: Warning in the build output
-    name: sublimelinter.outline.warning.dxl
-    match: '^(?:-?R?-[W]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
 
   pragma:
     name: meta.section

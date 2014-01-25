@@ -3,6 +3,7 @@
     "selector": "source.dxl",
     "file_regex": "^(?:-?R?-[EWF]- DXL: |\\s)?<(?!Line:)(.*):([0-9]+)> ?(?:.*)",
     "encoding": "UTF-8",
+    "syntax": "Packages/DXL/DxlBuild.tmLanguage",
     "variants": [
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "CheckAllocationLeak"],
           "name": "DXL: Allocation Leak"
