@@ -12,7 +12,11 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#buildTime</string>
+			<string>#buildHeader</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#runDuration</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -34,22 +38,168 @@
 			<key>name</key>
 			<string>sublimelinter.outline.illegal.dxl</string>
 		</dict>
-		<key>buildTime</key>
+		<key>buildHeader</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderExecution</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderParse</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderPaths</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderDatabase</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderModule</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderUser</string>
+				</dict>
+			</array>
+		</dict>
+		<key>buildHeaderDatabase</key>
 		<dict>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>constant.numeric</string>
+					<string>string.quoted.double.dxl</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Sublime build time suffix</string>
+			<string>Error in the build output</string>
 			<key>match</key>
-			<string>^\[Finished in ([0-9]+\.[0-9]+)s\]$</string>
+			<string>^DOORS Database: (.*)</string>
 			<key>name</key>
-			<string>string</string>
+			<string>keyword.other.header.dxl</string>
+		</dict>
+		<key>buildHeaderExecution</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Error in the build output</string>
+			<key>match</key>
+			<string>^Code Execution: (.*)</string>
+			<key>name</key>
+			<string>keyword.other.header.dxl</string>
+		</dict>
+		<key>buildHeaderModule</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Error in the build output</string>
+			<key>match</key>
+			<string>^Current Module:(?: (\[[^\]]+\]) (.*))?</string>
+			<key>name</key>
+			<string>keyword.other.header.dxl</string>
+		</dict>
+		<key>buildHeaderParse</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Error in the build output</string>
+			<key>match</key>
+			<string>^Parse Duration: ([0-9]+) (milliseconds)</string>
+			<key>name</key>
+			<string>keyword.other.header.dxl</string>
+		</dict>
+		<key>buildHeaderPath</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.dxl</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Error in the build output</string>
+			<key>match</key>
+			<string>([^;]*);?([^;]*;?)?</string>
+			<key>name</key>
+			<string>string.quoted.double.dxl</string>
+		</dict>
+		<key>buildHeaderPaths</key>
+		<dict>
+			<key>begin</key>
+			<string>^Relitive Paths: ?</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>keyword.other.header.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderPath</string>
+				</dict>
+			</array>
+		</dict>
+		<key>buildHeaderUser</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Error in the build output</string>
+			<key>match</key>
+			<string>^Active Account: (.*)</string>
+			<key>name</key>
+			<string>keyword.other.header.dxl</string>
 		</dict>
 		<key>outputError</key>
 		<dict>
@@ -68,6 +218,23 @@
 			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
 			<key>name</key>
 			<string>sublimelinter.outline.warning.dxl</string>
+		</dict>
+		<key>runDuration</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Sublime build time suffix</string>
+			<key>match</key>
+			<string>^\[Finished in ([0-9]+\.[0-9]+)s\]$</string>
+			<key>name</key>
+			<string>string</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>

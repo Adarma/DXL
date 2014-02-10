@@ -5,17 +5,79 @@ uuid: 2E90FEC0-85C6-11E3-BAA7-0800200C9A66
 
 patterns:
 - include: '#buildAbandoned'
-- include: '#buildTime'
+- include: '#buildHeader'
+- include: '#runDuration'
 - include: '#outputError'
 - include: '#outputWarning'
 
 repository:
+  buildHeader:
+    patterns:
+    - include: '#buildHeaderExecution'
+    - include: '#buildHeaderParse'
+    - include: '#buildHeaderPaths'
+    - include: '#buildHeaderDatabase'
+    - include: '#buildHeaderModule'
+    - include: '#buildHeaderUser'
+
+  buildHeaderExecution:
+    comment: Error in the build output
+    name: keyword.other.header.dxl
+    match: '^Code Execution: (.*)'
+    captures:
+      '1': {name: string.quoted.double.dxl}
+
+  buildHeaderParse:
+    comment: Error in the build output
+    name: keyword.other.header.dxl
+    match: '^Parse Duration: ([0-9]+) (milliseconds)'
+    captures:
+      '1': {name: constant.numeric.dxl}
+      '2': {name: string.quoted.double.dxl}
+
+  buildHeaderPaths:
+    name: keyword.other.header.dxl
+    begin: '^Relitive Paths: ?'
+    end: '$'
+    patterns:
+    - include: '#buildHeaderPath'
+
+  buildHeaderPath:
+    comment: Error in the build output
+    name: string.quoted.double.dxl
+    match: '([^;]*);?([^;]*;?)?'
+    captures:
+      '1': {name: string.quoted.double.dxl}
+      '2': {name: constant.numeric.dxl}
+
+  buildHeaderDatabase:
+    comment: Error in the build output
+    name: keyword.other.header.dxl
+    match: '^DOORS Database: (.*)'
+    captures:
+      '1': {name: string.quoted.double.dxl}
+
+  buildHeaderModule:
+    comment: Error in the build output
+    name: keyword.other.header.dxl
+    match: '^Current Module:(?: (\[[^\]]+\]) (.*))?'
+    captures:
+      '1': {name: constant.numeric.dxl}
+      '2': {name: string.quoted.double.dxl}
+
+  buildHeaderUser:
+    comment: Error in the build output
+    name: keyword.other.header.dxl
+    match: '^Active Account: (.*)'
+    captures:
+      '1': {name: string.quoted.double.dxl}
+
   buildAbandoned:
     comment: Error in the build output
     name: sublimelinter.outline.illegal.dxl
     match: ^'DOORSLOGFILE'.*
 
-  buildTime:
+  runDuration:
     comment: Sublime build time suffix
     name: string
     match: '^\[Finished in ([0-9]+\.[0-9]+)s\]$'
