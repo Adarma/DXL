@@ -55,6 +55,10 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#whitespace</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#comments</string>
 				</dict>
 				<dict>
@@ -115,6 +119,18 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variable</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#typeDoors</string>
 				</dict>
 				<dict>
@@ -136,10 +152,6 @@
 				<dict>
 					<key>include</key>
 					<string>#logical</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#constant</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -266,594 +278,1103 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#constantArchive</string>
+					<string>#constant_Arrow__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantArchiveType</string>
+					<string>#constant_AttrBaseType</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantAttribute</string>
+					<string>#constant_Clipboard__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantButtonArrow</string>
+					<string>#constant_Codepages__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantCharacterSet</string>
+					<string>#constant_ConfCachePolicy</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantClipboardFormat</string>
+					<string>#constant_ConfType</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantClipboardType</string>
+					<string>#constant_DBE</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantCodePage</string>
+					<string>#constant_Database__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantColourActual</string>
+					<string>#constant_DdcMode</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantColourLogical</string>
+					<string>#constant_DiscussionFilterType</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantColourReal</string>
+					<string>#constant_DiscussionStatus</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantConfig</string>
+					<string>#constant_DisplaySchemes</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantCurrent</string>
+					<string>#constant_ExternalLinkBehaviour</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantDatabase</string>
+					<string>#constant_ExternalLinkDirection</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantExternal</string>
+					<string>#constant_Fonts__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantFont</string>
+					<string>#constant_GroupList</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantHistory</string>
+					<string>#constant_HeaderEvent</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantIcon</string>
+					<string>#constant_HistoryType</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantInfo</string>
+					<string>#constant_HttpVerb</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantInPlace</string>
+					<string>#constant_Icon</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantKey</string>
+					<string>#constant_IconID</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantKeyModifier</string>
+					<string>#constant_InPlaceBox__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantLanguage</string>
+					<string>#constant_InPlaceEditEvent</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantLink</string>
+					<string>#constant_LdapItemList</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantListview</string>
+					<string>#constant_LinkFilter</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantLocale</string>
+					<string>#constant_Locales__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantMapping</string>
+					<string>#constant_LoginPolicy</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantMenu</string>
+					<string>#constant_MA_End__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantPermission</string>
+					<string>#constant_MA_StdCombo__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantPicture</string>
+					<string>#constant_MA_StdItem__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantRun</string>
+					<string>#constant_MA_StdMenu__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantSeverity</string>
+					<string>#constant_RecentModule__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantStandardIcon</string>
+					<string>#constant_Regexp</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantStandardItem</string>
+					<string>#constant_Script__</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantStandardMenu</string>
+					<string>#constant_ScrollEvent</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantStyle</string>
+					<string>#constant_ScrollSide</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantTreeview</string>
+					<string>#constant_Sensitivity</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantTriggerEvent</string>
+					<string>#constant_Stream</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantTriggerLevel</string>
+					<string>#constant_ToolType</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantTriggerModifier</string>
+					<string>#constant_TriggerStatus</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantTriggerStatus</string>
+					<string>#constant_UserClass</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantTriggerTime</string>
+					<string>#constant_UserList</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantType</string>
+					<string>#constant_UserNotifyList</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantUser</string>
+					<string>#constant_ZipType</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#constantUserClass</string>
+					<string>#constant_bool</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#whitespace</string>
+					<string>#constant_char</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_char_Key</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_CharacterSet</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ClipboardFormat</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ClipboardType</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_CodePage</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ColourActual</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ColourLogical</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ColourReal</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ColourScheme</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ColourSize</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Column</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Edit</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_FilterType</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Font</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Format</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Info</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_KeyModifier</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Language</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_LineSpacing</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_LinkLimit</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_ListView</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Lock</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Mapping</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Proof</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Run</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Severity</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_StatusBar</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_Style</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_int_TreeView</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_real</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_string_Array</string>
 				</dict>
 			</array>
 		</dict>
-		<key>constantArchive</key>
-		<dict>
-			<key>comment</key>
-			<string>allBaselines noBaselines</string>
-			<key>match</key>
-			<string>\b(?:all|no)Baselines\b</string>
-			<key>name</key>
-			<string>constant.perm.archive.dxl</string>
-		</dict>
-		<key>constantArchiveType</key>
-		<dict>
-			<key>comment</key>
-			<string>zipModule5Archive zipModuleArchive zipNotArchive zipPre3ModuleArchive zipPre3ProjectArchive zipPre5ModuleArchive zipPre5ProjectArchive zipProject5Archive zipProjectArchive zipUserList5Archive zipUserListArchive</string>
-			<key>match</key>
-			<string>\bzip(?:Module5?|Not|Pr(?:e(?:3(?:Module|Project)|5(?:Module|Project))|oject5?)|UserList5?)Archive\b</string>
-			<key>name</key>
-			<string>constant.perm.archivetype.dxl</string>
-		</dict>
-		<key>constantAttribute</key>
-		<dict>
-			<key>comment</key>
-			<string>changeBars date default description dxl hidden history inherit multi type</string>
-			<key>match</key>
-			<string>\b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\b</string>
-			<key>name</key>
-			<string>constant.perm.attribute.dxl</string>
-		</dict>
-		<key>constantButtonArrow</key>
+		<key>constant_Arrow__</key>
 		<dict>
 			<key>comment</key>
 			<string>topLeftArrow upArrow topRightArrow leftArrow allWaysArrow rightArrow bottomLeftArrow downArrow bottomRightArrow leftRightArrow upDownArrow</string>
 			<key>match</key>
 			<string>\b(?:allWays|bottom(?:Lef|Righ)t|down|left(?:Right)?|right|top(?:Lef|Righ)t|up(?:Down)?)Arrow\b</string>
 			<key>name</key>
-			<string>constant.perm.arrow.dxl</string>
+			<string>constant.perm.Arrow__.dxl</string>
 		</dict>
-		<key>constantCharacterSet</key>
-		<dict>
-			<key>comment</key>
-			<string>charsetAnsi charsetEastEurope charsetGreek charsetHebrew charsetRussian charsetSymbol charsetTurkish</string>
-			<key>match</key>
-			<string>\bcharset(?:Ansi|EastEurope|Greek|Hebrew|Russian|Symbol|Turkish)\b</string>
-			<key>name</key>
-			<string>constant.perm.characterset.dxl</string>
-		</dict>
-		<key>constantClipboardFormat</key>
-		<dict>
-			<key>comment</key>
-			<string>CF_BITMAP CF_DIB CF_HDROP CF_MAX CF_METAFILEPICT CF_OEMTEXT</string>
-			<key>match</key>
-			<string>\bCF_(?:BITMAP|DIB|HDROP|M(?:AX|ETAFILEPICT)|OEMTEXT)\b</string>
-			<key>name</key>
-			<string>constant.perm.clipboardformat.dxl</string>
-		</dict>
-		<key>constantClipboardType</key>
-		<dict>
-			<key>comment</key>
-			<string>TYMED_ENHMF TYMED_GDI TYMED_HGLOBAL</string>
-			<key>match</key>
-			<string>\bTYMED_(?:ENHMF|GDI|HGLOBAL)\b</string>
-			<key>name</key>
-			<string>constant.perm.clipboardtype.dxl</string>
-		</dict>
-		<key>constantCodePage</key>
-		<dict>
-			<key>comment</key>
-			<string>CP_CHS CP_CHT CP_JAP CP_KOR CP_LATIN1 CP_UNICODE CP_UTF16_BE CP_UTF16_LE CP_UTF8</string>
-			<key>match</key>
-			<string>\bCP_(?:CH[ST]|JAP|KOR|LATIN1|U(?:NICODE|TF(?:16_[BL]E|8)))\b</string>
-			<key>name</key>
-			<string>constant.perm.codepage.dxl</string>
-		</dict>
-		<key>constantColourActual</key>
-		<dict>
-			<key>comment</key>
-			<string>colorBlack colorBlue colorBrown colorCyan colorDarkTurquoise colorGreen colorGrey colorGrey77 colorGrey82 colorLightBlue colorMagenta colorMaroon colorMediumLightBlue colorOptionsItem colorOrange colorPink colorRed colorRedGrey colorWhite colorYellow</string>
-			<key>match</key>
-			<string>\bcolor(?:B(?:l(?:ack|ue)|rown)|Cyan|DarkTurquoise|Gre(?:en|y(?:77|82)|y)|LightBlue|M(?:a(?:genta|roon)|ediumLightBlue)|O(?:ptionsItem|range)|Pink|Red(?:Grey)?|White|Yellow)\b</string>
-			<key>name</key>
-			<string>constant.perm.colour.dxl</string>
-		</dict>
-		<key>constantColourLogical</key>
-		<dict>
-			<key>comment</key>
-			<string>logical0IndicatorColor logical100IndicatorColor logical11IndicatorColor logical22IndicatorColor logical33IndicatorColor logical44IndicatorColor logical55IndicatorColor logical66IndicatorColor logical77IndicatorColor logical88IndicatorColor logicalCurrentBackgroundColor logicalCurrentCellBackgroundColor logicalCurrentObjectOutline logicalDataTextColor logicalDefaultColor logicalDeletedTextColor logicalGraphicsBackgroundColor logicalGraphicsBoxColor logicalGraphicsBoxEdgeColor logicalGraphicsCurrentColor logicalGraphicsElideBoxColor logicalGraphicsLinkColor logicalGraphicsSelectedColor logicalGraphicsShadeColor logicalGraphicsTextColor logicalGridLines logicalHighIndicatorColor logicalHighlightURLColor logicalInPlaceBackgroundColor logicalInPlaceTextColor logicalLinkCurrentBackgroundColor logicalLinkDataTextColor logicalLinkPageBackgroundColor logicalLinksInIndicatorColor logicalLinksOutIndicatorColor logicalLinkTextBackgroundColor logicalLinkTitleBackgroundColor logicalLowIndicatorColor logicalMediumIndicatorColor logicalPageBackgroundColor logicalPageBackgroundFilterColor logicalPageBackgroundFilterSortColor logicalPageBackgroundSortColor logicalPartitionInReadTextColor logicalPartitionInWriteTextColor logicalPartitionOutTextColor logicalPrintPreviewBackgroundColor logicalPrintPreviewPageColor logicalPrintPreviewShadeColor logicalPrintPreviewTextColor logicalReadOnlyTextBackgroundColor logicalReadOnlyTextColor logicalSelectedTextColor logicalTextBackgroundColor logicalTitleBackgroundColor logicalTitleBackgroundColor logicalTitleTextColor logicalUnlockedTextBackgroundColor logicalUser1Color logicalUser2Color logicalUser3Color logicalUser4Color logicalUser5Color</string>
-			<key>match</key>
-			<string>\blogical(?:0IndicatorColor|1(?:00|1)IndicatorColor|22IndicatorColor|33IndicatorColor|44IndicatorColor|55IndicatorColor|66IndicatorColor|77IndicatorColor|88IndicatorColor|Current(?:BackgroundColor|CellBackgroundColor|ObjectOutline)|D(?:ataTex|e(?:faul|letedTex))tColor|Gr(?:aphics(?:B(?:ackground|ox(?:Edge)?)|Current|ElideBox|Link|S(?:elected|hade)|Text)Color|idLines)|High(?:Indicator|lightURL)Color|InPlace(?:Background|Text)Color|L(?:ink(?:CurrentBackground|DataText|PageBackground|T(?:ext|itle)Background|s(?:In|Out)Indicator)|owIndicator)Color|MediumIndicatorColor|P(?:a(?:geBackground(?:Filter(?:Sort)?|Sort)?|rtition(?:In(?:Read|Write)|Out)Text)|rintPreview(?:Background|Page|Shade|Text))Color|ReadOnlyText(?:Background)?Color|SelectedTextColor|T(?:extBackground|itle(?:Background|Text))Color|U(?:nlockedTextBackground|ser[12345])Color)\b</string>
-			<key>name</key>
-			<string>constant.perm.colour.dxl</string>
-		</dict>
-		<key>constantColourReal</key>
-		<dict>
-			<key>comment</key>
-			<string>realColor_Black realColor_Blue realColor_Brown realColor_Cyan realColor_Dark_Turquoise realColor_Firebrick realColor_Green realColor_Grey11 realColor_Grey22 realColor_Grey33 realColor_Grey44 realColor_Grey55 realColor_Grey66 realColor_Grey77 realColor_Grey82 realColor_Light_Blue realColor_Light_Blue2 realColor_Lime_Green realColor_Magenta realColor_Maroon realColor_Navy realColor_NewGrey1 realColor_NewGrey2 realColor_NewGrey3 realColor_NewGrey4 realColor_Orange realColor_Peru realColor_Pink realColor_Purple realColor_Red realColor_Red_Grey realColor_Rosy_Brown realColor_Sea_Green realColor_SplashScreenBlue realColor_Thistle realColor_White realColor_Yellow</string>
-			<key>match</key>
-			<string>\brealColor_(?:B(?:l(?:ack|ue)|rown)|Cyan|Dark_Turquoise|Firebrick|Gre(?:en|y(?:11|22|33|44|55|66|77|82))|Li(?:ght_Blue2?|me_Green)|Ma(?:genta|roon)|N(?:avy|ewGrey[1234])|Orange|P(?:eru|ink|urple)|R(?:ed(?:_Grey)?|osy_Brown)|S(?:ea_Green|plashScreenBlue)|Thistle|White|Yellow)\b</string>
-			<key>name</key>
-			<string>constant.perm.colour.dxl</string>
-		</dict>
-		<key>constantConfig</key>
-		<dict>
-			<key>comment</key>
-			<string>confSystem confSysUser confTemp confUser</string>
-			<key>match</key>
-			<string>\bconf(?:Sys(?:User|tem)|Temp|User)\b</string>
-			<key>name</key>
-			<string>constant.perm.config.dxl</string>
-		</dict>
-		<key>constantCurrent</key>
-		<dict>
-			<key>comment</key>
-			<string>attrDXLName obj</string>
-			<key>match</key>
-			<string>\b(?:attrDXLName|obj|)\b</string>
-			<key>name</key>
-			<string>variable.language.dxl</string>
-		</dict>
-		<key>constantDatabase</key>
-		<dict>
-			<key>comment</key>
-			<string>database dbExplorer</string>
-			<key>match</key>
-			<string>\bd(?:atabase|bExplorer)\b</string>
-			<key>name</key>
-			<string>constant.perm.database.dxl</string>
-		</dict>
-		<key>constantExternal</key>
-		<dict>
-			<key>comment</key>
-			<string>inward none openAsURL outward</string>
-			<key>match</key>
-			<string>\b(?:inward|none|o(?:penAsURL|utward))\b</string>
-			<key>name</key>
-			<string>constant.perm.external.dxl</string>
-		</dict>
-		<key>constantFont</key>
-		<dict>
-			<key>comment</key>
-			<string>availableFonts GraphicsFont HeadingsFont TextFont</string>
-			<key>match</key>
-			<string>\b(?:GraphicsFont|HeadingsFont|TextFont|availableFonts)\b</string>
-			<key>name</key>
-			<string>constant.perm.font.dxl</string>
-		</dict>
-		<key>constantHistory</key>
-		<dict>
-			<key>comment</key>
-			<string>acceptModule baselineModule changeOLE clipCopyObject clipCutObject clipMoveObject copyObject createAttr createLink createModule createObject createType cutOLE deleteAttr deleteLink deleteObject deleteType insertOLE modifyAttr modifyLink modifyObject modifyType partitionModule pasteOLE purgeObject readLocked rejoinModule removeOLE returnModule unDeleteObject unknown</string>
-			<key>match</key>
-			<string>\b(?:acceptModule|baselineModule|c(?:hangeOLE|lip(?:C(?:opy|ut)|Move)Object|opyObject|reate(?:Attr|Link|Module|Object|Type)|utOLE)|delete(?:Attr|Link|Object|Type)|insertOLE|modify(?:Attr|Link|Object|Type)|p(?:a(?:rtitionModule|steOLE)|urgeObject)|re(?:adLocked|joinModule|moveOLE|turnModule)|un(?:DeleteObject|known))\b</string>
-			<key>name</key>
-			<string>constant.perm.history.dxl</string>
-		</dict>
-		<key>constantIcon</key>
-		<dict>
-			<key>comment</key>
-			<string>iconAuthenticatingUser iconDatabase iconDatabase iconDescriptive iconDescriptiveCut iconDescriptiveDeleted iconFolder iconFolderCut iconFolderDeleted iconFolderOpen iconFolderOpenDeleted iconFormal iconFormalCut iconFormalDeleted iconGroup iconGroupDisabled iconLink iconLinkCut iconLinkDeleted iconNone iconProject iconProjectCut iconProjectDeleted iconProjectOpen iconProjectOpenDeleted iconReadOnly iconUser iconUserDisabled</string>
-			<key>match</key>
-			<string>\bicon(?:AuthenticatingUser|D(?:atabase|escriptive(?:Cut|Deleted)?)|Fo(?:lder(?:Cut|Deleted|Open(?:Deleted)?)?|rmal(?:Cut|Deleted)?)|Group(?:Disabled)?|Link(?:Cut|Deleted)?|None|Project(?:Cut|Deleted|Open(?:Deleted)?)?|ReadOnly|User(?:Disabled)?)\b</string>
-			<key>name</key>
-			<string>constant.perm.icon.dxl</string>
-		</dict>
-		<key>constantInPlace</key>
-		<dict>
-			<key>comment</key>
-			<string>inPlaceChoice inPlaceString inPlaceText inPlaceTextChange inPlaceTextFilled</string>
-			<key>match</key>
-			<string>\binPlace(?:Choice|String|Text(?:Change|Filled)?)\b</string>
-			<key>name</key>
-			<string>constant.perm.inPlace.dxl</string>
-		</dict>
-		<key>constantInfo</key>
-		<dict>
-			<key>comment</key>
-			<string>infoBuildDate infoBuildNumber infoServerVersion infoSupportId infoSupportPassword infoVersion</string>
-			<key>match</key>
-			<string>\binfo(?:Build(?:Date|Number)|S(?:erverVersion|upport(?:Passwor|I)d)|Version)\b</string>
-			<key>name</key>
-			<string>constant.perm.info.dxl</string>
-		</dict>
-		<key>constantKey</key>
-		<dict>
-			<key>comment</key>
-			<string>keyF12 keyF11 keyF10 keyF9 keyF8 keyF7 keyF6 keyF5 keyF4 keyF3 keyF2 keyF1 keyHelp keyRight keyLeft keyDown keyUp keyPageDown keyPageUp keyEnd keyHome keyDelete keyInsert keyEscape</string>
-			<key>match</key>
-			<string>\bkey(?:D(?:elete|own)|E(?:nd|scape)|F(?:1[012]|[123456789])|H(?:elp|ome)|Insert|Left|Page(?:Down|Up)|Right|Up)\b</string>
-			<key>name</key>
-			<string>constant.perm.key.dxl</string>
-		</dict>
-		<key>constantKeyModifier</key>
-		<dict>
-			<key>comment</key>
-			<string>modKeyNone modKeyCtrl modKeyShift</string>
-			<key>match</key>
-			<string>\bmodKey(?:Ctrl|None|Shift)\b</string>
-			<key>name</key>
-			<string>constant.perm.keymodifier.dxl</string>
-		</dict>
-		<key>constantLanguage</key>
-		<dict>
-			<key>comment</key>
-			<string>Afrikaans Catalan Czech Danish Dutch French German Greek Italian NorwegianBokmal NorwegianNynorsk PortugueseBrazil PortugueseEurope Russian Spanish Swedish UKEnglish USEnglish</string>
-			<key>match</key>
-			<string>\b(?:Afrikaans|C(?:atalan|zech)|D(?:anis|utc)h|French|G(?:erman|reek)|Italian|Norwegian(?:Bokmal|Nynorsk)|Portuguese(?:Brazil|Europe)|Russian|S(?:pan|wed)ish|U[KS]English)\b</string>
-			<key>name</key>
-			<string>constant.perm.language.dxl</string>
-		</dict>
-		<key>constantLink</key>
-		<dict>
-			<key>comment</key>
-			<string>linkFilterBoth linkFilterIncoming linkFilterOutgoing</string>
-			<key>match</key>
-			<string>\blinkFilter(?:Both|Incoming|Outgoing)\b</string>
-			<key>name</key>
-			<string>constant.perm.link.dxl</string>
-		</dict>
-		<key>constantListview</key>
-		<dict>
-			<key>comment</key>
-			<string>listViewOptionCheckboxes listViewOptionMultiselect listViewOptionSortText</string>
-			<key>match</key>
-			<string>\blistViewOption(?:Checkboxes|Multiselect|SortText)\b</string>
-			<key>name</key>
-			<string>constant.perm.listview.dxl</string>
-		</dict>
-		<key>constantLocale</key>
-		<dict>
-			<key>comment</key>
-			<string>installedLocales supportedLocales</string>
-			<key>match</key>
-			<string>\b(?:install|support)edLocales\b</string>
-			<key>name</key>
-			<string>constant.perm.locale.dxl</string>
-		</dict>
-		<key>constantMapping</key>
-		<dict>
-			<key>comment</key>
-			<string>menuAvailable_ menuAvailableChecked_ menuInvisible_ menuUnavailable_</string>
-			<key>match</key>
-			<string>\bmenu(?:Available(?:Checked)?|Invisible|Unavailable)_\b</string>
-			<key>name</key>
-			<string>constant.perm.mapping.dxl</string>
-		</dict>
-		<key>constantMenu</key>
-		<dict>
-			<key>comment</key>
-			<string>menu buttonbar popup linksetCombo viewCombo helpCombo</string>
-			<key>match</key>
-			<string>\b(?:buttonbar|helpCombo|linksetCombo|menu|popup|viewCombo)\b</string>
-			<key>name</key>
-			<string>constant.perm.menu.dxl</string>
-		</dict>
-		<key>constantPermission</key>
-		<dict>
-			<key>comment</key>
-			<string>change control create delete modify none read write</string>
-			<key>match</key>
-			<string>\b(?:c(?:hange|ontrol|reate)|delete|modify|none|read|write)\b</string>
-			<key>name</key>
-			<string>constant.perm.permission.dxl</string>
-		</dict>
-		<key>constantPicture</key>
-		<dict>
-			<key>comment</key>
-			<string>formatBMP formatDIB formatEPSF formatPNG formatUNKNOWN formatWMF</string>
-			<key>match</key>
-			<string>\bformat(?:BMP|DIB|EPSF|PNG|UNKNOWN|WMF)\b</string>
-			<key>name</key>
-			<string>constant.perm.picture.dxl</string>
-		</dict>
-		<key>constantRun</key>
-		<dict>
-			<key>comment</key>
-			<string>syswaitINFINITE_</string>
-			<key>match</key>
-			<string>\bsyswaitINFINITE_\b</string>
-			<key>name</key>
-			<string>constant.perm.run.dxl</string>
-		</dict>
-		<key>constantSeverity</key>
-		<dict>
-			<key>comment</key>
-			<string>msgError msgInfo msgQuery msgWarning</string>
-			<key>match</key>
-			<string>\bmsg(?:Error|Info|Query|Warning)\b</string>
-			<key>name</key>
-			<string>constant.perm.severity.dxl</string>
-		</dict>
-		<key>constantStandardIcon</key>
-		<dict>
-			<key>comment</key>
-			<string>levelAllIcon level1Icon level2Icon level3Icon level4Icon level5Icon level6Icon level7Icon level8Icon level9Icon level10Icon dispGraphicsIcon dispOutlineIcon dispFilterIcon dispSortIcon createObjSameIcon createObjDownIcon deleteObjIcon columnInsertIcon columnEditIcon columnRemoveIcon justifyLeftIcon justifyRightIcon justifyCenterIcon justifyFullIcon folderOpenIcon folderNewIcon folderCloseIcon projOpenIcon projNewIcon projCloseIcon editUsersIcon createModIcon editModIcon shareModIcon readModIcon copyModIcon deleteModIcon createLinkIcon editLinkIcon deleteLinkIcon matrixModeIcon startLinkIcon endLinkIcon createLinksetIcon createFormalModIcon createLinkModIcon deleteLinksetIcon editHeadingIcon editTextIcon extractObjIcon extractOneDownIcon showMarkedObjsIcon spellcheckIcon undeleteModIcon increaseLevelIcon decreaseLevelIcon noIcon yesIcon wordIcon projWizIcon viewWizIcon layWizIcon repWizIcon repManIcon tableCreateIcon tableInsertRowIcon tableInsertColIcon tableSetBordersIcon textBold textItalic textUnderline textStrikeThrough saveIcon printIcon propertiesIcon copyIcon cutIcon pasteIcon deleteIcon</string>
-			<key>match</key>
-			<string>\b(?:c(?:o(?:lumn(?:Edit|Insert|Remove)|py(?:Mod)?)|reate(?:FormalMod|Link(?:Mod|set)?|Mod|Obj(?:Down|Same))|ut)Icon|d(?:e(?:creaseLevel|lete(?:Link(?:set)?|Mod|Obj)?)|isp(?:Filter|Graphics|Outline|Sort))Icon|e(?:dit(?:Heading|Link|Mod|Text|Users)|ndLink|xtractO(?:bj|neDown))Icon|folder(?:Close|New|Open)Icon|increaseLevelIcon|justify(?:Center|Full|Left|Right)Icon|l(?:ayWiz|evel(?:10|All|[123456789]))Icon|matrixModeIcon|noIcon|p(?:aste|r(?:int|o(?:j(?:Close|New|Open|Wiz)|perties)))Icon|re(?:adMod|p(?:Man|Wiz))Icon|s(?:ave|h(?:areMod|owMarkedObjs)|pellcheck|tartLink)Icon|t(?:able(?:Create|Insert(?:Col|Row)|SetBorders)Icon|ext(?:Bold|Italic|StrikeThrough|Underline))|undeleteModIcon|viewWizIcon|wordIcon|yesIcon)\b</string>
-			<key>name</key>
-			<string>constant.perm.standardicon.dxl</string>
-		</dict>
-		<key>constantStandardItem</key>
-		<dict>
-			<key>comment</key>
-			<string>OLECutItem OLECopyItem OLEPasteItem OLEPasteSpecialItem OLEClearItem OLEInsertItem OLERemoveItem OLEVerbItem attrDefItem attrTypeItem clipCutItem clipCopyFlatItem clipCopyHierItem clipPasteItem clipPasteDownItem clipClearItem columnCreateItem columnEditItem columnDeleteItem columnLeftJustifyItem columnRightJustifyItem columnCenterJustifyItem columnFullJustifyItem columnUseInGraphicsItem columnUseAsToolTipsItem dispGraphicsItem dispOutlineItem dispFilterDescendantsItem dispFilteringItem dispSortingItem dispDeletionItem dispReqOnlyItem dispFilterParentsItem dispGraphicsLinksItem dispGraphicsToolTipsItem dispLevelAllItem dispLevel1Item dispLevel2Item dispLevel3Item dispLevel4Item dispLevel5Item dispLevel6Item dispLevel7Item dispLevel8Item dispLevel9Item dispLevel10Item editDXLItem editUsersItem EXIT_Item extractSetupItem extractSameItem extractDownItem filterItem helpContentsItem helpSearchItem helpIndexItem helpHelpItem helpProjManItem helpFormalItem helpDescriptiveItem helpLinkItem helpAboutItem inplaceRejectItem inplaceAcceptItem inplaceHeadingItem inplaceTextItem inplaceAttrItem inplaceResetAttrItem linkCreateItem linkEditItem linkDeleteItem linkSourceItem linkTargetItem linkMatrixItem linkGraphicsItem linksetCreateItem linksetDeleteItem linksetRefreshItem modAccessItem modAttrEditItem modBaselineItem modCloseItem modHistoryItem modLayoutItem modPrintItem modSaveItem modDowngradeItem modPrintPreviewItem objAccessItem objCompressItem objUncompressItem objCompressionItem objCopyItem objCopyDownItem objCreateItem objCreateDownItem objDeleteItem objUndeleteItem objPurgeItem objEditItem objHistoryItem objMoveItem objMoveDownItem objLockItem colorOptionsItem fontOptionsItem optionsSaveItem optionsRestoreItem optionsDefaultsItem pictureItem createProjectItem openProjectItem deleteProjectItem undeleteProjectItem purgeProjectItem duplicateProjectItem closeProjectItem projectAttrItem unlockModulesItem purgeModulesItem projectArchiveItem projectRestoreItem createFormalModuleItem createLinkModuleItem createDescriptiveModuleItem openModuleEditItem openModuleShareItem openModuleReadItem deleteModuleItem undeleteModuleItem purgeModuleItem duplicateModuleItem renameModuleItem archiveModuleItem restoreModuleItem showFormalModulesItem showLinkModulesItem showDescriptiveModulesItem showDeletedModulesItem showDeletedProjectsItem sortNameItem sortTypeItem sortDescriptionItem selectItem deselectItem sortItem spellCheckItem undoItem redoItem viewCreateItem viewShowItem viewDeleteItem</string>
-			<key>match</key>
-			<string>\b(?:EXIT_|OLE(?:C(?:lear|opy|ut)|Insert|Paste(?:Special)?|Remove|Verb)|a(?:rchiveModule|ttr(?:Def|Type))|c(?:l(?:ip(?:C(?:lear|opy(?:Flat|Hier)|ut)|Paste(?:Down)?)|oseProject)|ol(?:orOptions|umn(?:C(?:enterJustify|reate)|Delete|Edit|FullJustify|LeftJustify|RightJustify|Use(?:AsToolTip|InGraphic)s))|reate(?:DescriptiveModule|FormalModule|LinkModule|Project))|d(?:e(?:lete(?:Module|Project)|select)|isp(?:Deletion|Filter(?:Descendants|Parents|ing)|Graphics(?:Links|ToolTips)?|Level(?:10|All|[123456789])|Outline|ReqOnly|Sorting)|uplicate(?:Module|Project))|e(?:dit(?:DXL|Users)|xtract(?:Down|S(?:ame|etup)))|f(?:ilter|ontOptions)|help(?:About|Contents|Descriptive|Formal|Help|Index|Link|ProjMan|Search)|inplace(?:A(?:ccept|ttr)|Heading|Re(?:ject|setAttr)|Text)|link(?:Create|Delete|Edit|Graphics|Matrix|Source|Target|set(?:Create|Delete|Refresh))|mod(?:A(?:ccess|ttrEdit)|Baseline|Close|Downgrade|History|Layout|Print(?:Preview)?|Save)|o(?:bj(?:Access|C(?:o(?:mpress(?:ion)?|py(?:Down)?)|reate(?:Down)?)|Delete|Edit|History|Lock|Move(?:Down)?|Purge|Un(?:compress|delete))|p(?:en(?:Module(?:Edit|Read|Share)|Project)|tions(?:Defaults|Restore|Save)))|p(?:icture|roject(?:A(?:rchive|ttr)|Restore)|urge(?:Modules?|Project))|re(?:do|nameModule|storeModule)|s(?:elect|how(?:De(?:leted(?:Module|Project)|scriptiveModule)|FormalModule|LinkModule)s|ort(?:Description|Name|Type)?|pellCheck)|un(?:d(?:elete(?:Module|Project)|o)|lockModules)|view(?:Create|Delete|Show))Item\b</string>
-			<key>name</key>
-			<string>constant.perm.standarditem.dxl</string>
-		</dict>
-		<key>constantStandardMenu</key>
-		<dict>
-			<key>comment</key>
-			<string>clipCopyMenu clipPasteMenu clipboardMenu projectMenu moduleMenu editMenu oleMenu viewMenu objectMenu linkMenu linksetMenu attributeMenu columnMenu extractMenu toolsMenu usersMenu optionsMenu helpMenu objCopyMenu objCreateMenu objMoveMenu objUnlockMenu</string>
-			<key>match</key>
-			<string>\b(?:attribute|c(?:lip(?:Copy|Paste|board)|olumn)|e(?:di|xtrac)t|help|link(?:set)?|module|o(?:bj(?:C(?:opy|reate)|Move|Unlock|ect)|le|ptions)|project|tools|users|view)Menu\b</string>
-			<key>name</key>
-			<string>constant.perm.standardmenu.dxl</string>
-		</dict>
-		<key>constantStyle</key>
-		<dict>
-			<key>comment</key>
-			<string>styleAutoparent styleCentered styleCentred styleFixed styleFloating styleNoBorder styleStandard styleThemed</string>
-			<key>match</key>
-			<string>\bstyle(?:Autoparent|Cente?red|F(?:ixed|loating)|NoBorder|Standard|Themed)\b</string>
-			<key>name</key>
-			<string>constant.perm.style.dxl</string>
-		</dict>
-		<key>constantTreeview</key>
-		<dict>
-			<key>comment</key>
-			<string>treeViewOptionSorted</string>
-			<key>match</key>
-			<string>\btreeViewOptionSorted\b</string>
-			<key>name</key>
-			<string>constant.perm.treeview.dxl</string>
-		</dict>
-		<key>constantTriggerEvent</key>
-		<dict>
-			<key>comment</key>
-			<string>close create drag drop edit modify open read save sync write</string>
-			<key>match</key>
-			<string>\b(?:c(?:los|reat)e|dr(?:ag|op)|edit|modify|open|read|s(?:ave|ync)|write)\b</string>
-			<key>name</key>
-			<string>constant.perm.triggerevent.dxl</string>
-		</dict>
-		<key>constantTriggerLevel</key>
-		<dict>
-			<key>comment</key>
-			<string>attribute comment discussion module object project</string>
-			<key>match</key>
-			<string>\b(?:attribute|comment|discussion|module|object|project)\b</string>
-			<key>name</key>
-			<string>constant.perm.triggerlevel.dxl</string>
-		</dict>
-		<key>constantTriggerModifier</key>
-		<dict>
-			<key>comment</key>
-			<string>post pre</string>
-			<key>match</key>
-			<string>\bp(?:ost|re)\b</string>
-			<key>name</key>
-			<string>constant.perm.triggermodifier.dxl</string>
-		</dict>
-		<key>constantTriggerStatus</key>
-		<dict>
-			<key>comment</key>
-			<string>trigError trigPreConFail trigPreConPass trigRunOK</string>
-			<key>match</key>
-			<string>\btrig(?:Error|PreCon(?:Fail|Pass)|RunOK)\b</string>
-			<key>name</key>
-			<string>constant.perm.triggerstatus.dxl</string>
-		</dict>
-		<key>constantTriggerTime</key>
-		<dict>
-			<key>comment</key>
-			<string>all descriptive formal link</string>
-			<key>match</key>
-			<string>\b(?:all|descriptive|formal|link)\b</string>
-			<key>name</key>
-			<string>constant.perm.triggermodifier.dxl</string>
-		</dict>
-		<key>constantType</key>
+		<key>constant_AttrBaseType</key>
 		<dict>
 			<key>comment</key>
 			<string>attrDate attrEnumeration attrInteger attrReal attrString attrText attrUsername</string>
 			<key>match</key>
 			<string>\battr(?:Date|Enumeration|Integer|Real|String|Text|Username)\b</string>
 			<key>name</key>
-			<string>constant.perm.type.dxl</string>
+			<string>constant.perm.AttrBaseType.dxl</string>
 		</dict>
-		<key>constantUser</key>
+		<key>constant_Clipboard__</key>
 		<dict>
 			<key>comment</key>
-			<string>groupList userList userNotifyList</string>
+			<string>clipboard</string>
 			<key>match</key>
-			<string>\b(?:group|user(?:Notify)?)List\b</string>
+			<string>\bclipboard\b</string>
 			<key>name</key>
-			<string>constant.perm.user.dxl</string>
+			<string>constant.perm.Clipboard__.dxl</string>
 		</dict>
-		<key>constantUserClass</key>
+		<key>constant_Codepages__</key>
+		<dict>
+			<key>comment</key>
+			<string>installedCodepages supportedCodepages</string>
+			<key>match</key>
+			<string>\b(?:install|support)edCodepages\b</string>
+			<key>name</key>
+			<string>constant.perm.Codepages__.dxl</string>
+		</dict>
+		<key>constant_ConfCachePolicy</key>
+		<dict>
+			<key>comment</key>
+			<string>cacheFull cacheHalf cacheNone</string>
+			<key>match</key>
+			<string>\bcache(?:Full|Half|None)\b</string>
+			<key>name</key>
+			<string>constant.perm.ConfCachePolicy.dxl</string>
+		</dict>
+		<key>constant_ConfType</key>
+		<dict>
+			<key>comment</key>
+			<string>confProjUser confSystem confSysUser confTemp confUser</string>
+			<key>match</key>
+			<string>\bconf(?:ProjUser|Sys(?:User|tem)|Temp|User)\b</string>
+			<key>name</key>
+			<string>constant.perm.conftype.dxl</string>
+		</dict>
+		<key>constant_DBE</key>
+		<dict>
+			<key>comment</key>
+			<string>sep</string>
+			<key>match</key>
+			<string>\bsep\b</string>
+			<key>name</key>
+			<string>constant.perm.DBE.dxl</string>
+		</dict>
+		<key>constant_Database__</key>
+		<dict>
+			<key>comment</key>
+			<string>database</string>
+			<key>match</key>
+			<string>\bdatabase\b</string>
+			<key>name</key>
+			<string>constant.perm.Database__.dxl</string>
+		</dict>
+		<key>constant_DdcMode</key>
+		<dict>
+			<key>comment</key>
+			<string>ddcByAttribute ddcByObject ddcFullModule ddcNone ddcReadOnly</string>
+			<key>match</key>
+			<string>\bddc(?:By(?:Attribute|Object)|FullModule|None|ReadOnly)\b</string>
+			<key>name</key>
+			<string>constant.perm.DdcMode.dxl</string>
+		</dict>
+		<key>constant_DiscussionFilterType</key>
+		<dict>
+			<key>comment</key>
+			<string>AllDiscussions ClosedDiscussions DiscussionsActiveWithinBaseline DiscussionsClosedInBaseline DiscussionsOpenedInBaseline OpenDiscussions OpenedInOrAfterBaseline OpenedInOrBeforeBaseline</string>
+			<key>match</key>
+			<string>\b(?:AllDiscussions|ClosedDiscussions|Discussions(?:ActiveWithi|ClosedI|OpenedI)nBaseline|Open(?:Discussions|edInOr(?:After|Before)Baseline))\b</string>
+			<key>name</key>
+			<string>constant.perm.DiscussionFilterType.dxl</string>
+		</dict>
+		<key>constant_DiscussionStatus</key>
+		<dict>
+			<key>comment</key>
+			<string>Closed Open</string>
+			<key>match</key>
+			<string>\b(?:Closed|Open)\b</string>
+			<key>name</key>
+			<string>constant.perm.DiscussionStatus.dxl</string>
+		</dict>
+		<key>constant_DisplaySchemes</key>
+		<dict>
+			<key>comment</key>
+			<string>displaySchemes</string>
+			<key>match</key>
+			<string>\bdisplaySchemes\b</string>
+			<key>name</key>
+			<string>constant.perm.DisplaySchemes.dxl</string>
+		</dict>
+		<key>constant_ExternalLinkBehaviour</key>
+		<dict>
+			<key>comment</key>
+			<string>none openAsURL</string>
+			<key>match</key>
+			<string>\b(?:none|openAsURL)\b</string>
+			<key>name</key>
+			<string>constant.perm.ExternalLinkBehaviour.dxl</string>
+		</dict>
+		<key>constant_ExternalLinkDirection</key>
+		<dict>
+			<key>comment</key>
+			<string>inward outward</string>
+			<key>match</key>
+			<string>\b(?:in|out)ward\b</string>
+			<key>name</key>
+			<string>constant.perm.ExternalLinkDirection.dxl</string>
+		</dict>
+		<key>constant_Fonts__</key>
+		<dict>
+			<key>comment</key>
+			<string>availableFonts</string>
+			<key>match</key>
+			<string>\bavailableFonts\b</string>
+			<key>name</key>
+			<string>constant.perm.Fonts__.dxl</string>
+		</dict>
+		<key>constant_GroupList</key>
+		<dict>
+			<key>comment</key>
+			<string>groupList</string>
+			<key>match</key>
+			<string>\bgroupList\b</string>
+			<key>name</key>
+			<string>constant.perm.GroupList.dxl</string>
+		</dict>
+		<key>constant_HeaderEvent</key>
+		<dict>
+			<key>comment</key>
+			<string>headerEdit headerReorder headerResize headerSelect</string>
+			<key>match</key>
+			<string>\bheader(?:Edit|Re(?:order|size)|Select)\b</string>
+			<key>name</key>
+			<string>constant.perm.HeaderEvent.dxl</string>
+		</dict>
+		<key>constant_HistoryType</key>
+		<dict>
+			<key>comment</key>
+			<string>acceptModule baselineModule changeOLE clipCopyObject clipCutObject clipMoveObject commentModule commentObject copyObject createAttr createLink createModule createObject createType cutOLE deleteAttr deleteLink deleteObject deleteType insertOLE modifyAttr modifyLink modifyObject modifyType moveObject partitionModule pasteOLE purgeObject readLocked rejoinModule removeOLE returnModule synchronizeModule unDeleteObject unknown</string>
+			<key>match</key>
+			<string>\b(?:acceptModule|baselineModule|c(?:hangeOLE|lip(?:C(?:opy|ut)|Move)Object|o(?:mment(?:Module|Object)|pyObject)|reate(?:Attr|Link|Module|Object|Type)|utOLE)|delete(?:Attr|Link|Object|Type)|insertOLE|mo(?:dify(?:Attr|Link|Object|Type)|veObject)|p(?:a(?:rtitionModule|steOLE)|urgeObject)|re(?:adLocked|joinModule|moveOLE|turnModule)|synchronizeModule|un(?:DeleteObject|known))\b</string>
+			<key>name</key>
+			<string>constant.perm.HistoryType.dxl</string>
+		</dict>
+		<key>constant_HttpVerb</key>
+		<dict>
+			<key>comment</key>
+			<string>HttpDelete HttpGet HttpHead HttpPost HttpPut</string>
+			<key>match</key>
+			<string>\bHttp(?:Delete|Get|Head|P(?:os|u)t)\b</string>
+			<key>name</key>
+			<string>constant.perm.HttpVerb.dxl</string>
+		</dict>
+		<key>constant_Icon</key>
+		<dict>
+			<key>comment</key>
+			<string>iconAuthenticatingUser iconCompareBaseline iconCopyBaseline iconCreateBaseline iconDatabase iconDeleteBaseline iconDescriptive iconDescriptiveCut iconDescriptiveDeleted iconExternalLinkIn iconExternalLinkOut iconFind iconFindNext iconFindPrevious iconFolder iconFolderCut iconFolderDeleted iconFolderOpen iconFolderOpenDeleted iconFormal iconFormalCut iconFormalDeleted iconGroup iconGroupDisabled iconLink iconLinkCut iconLinkDeleted iconLinkIn iconLinkOut iconLinkProperties iconNewExtLink iconNone iconProject iconProjectCut iconProjectDeleted iconProjectOpen iconProjectOpenDeleted iconReadOnly iconUser iconUserDisabled iconUserDisabledKey iconUserKey iconViewBaseline</string>
+			<key>match</key>
+			<string>\bicon(?:AuthenticatingUser|C(?:o(?:mpare|py)|reate)Baseline|D(?:atabase|e(?:leteBaseline|scriptive(?:Cut|Deleted)?))|ExternalLink(?:In|Out)|F(?:ind(?:Next|Previous)?|o(?:lder(?:Cut|Deleted|Open(?:Deleted)?)?|rmal(?:Cut|Deleted)?))|Group(?:Disabled)?|Link(?:Cut|Deleted|In|Out|Properties)?|N(?:ewExtLink|one)|Project(?:Cut|Deleted|Open(?:Deleted)?)?|ReadOnly|User(?:Disabled(?:Key)?|Key)?|ViewBaseline)\b</string>
+			<key>name</key>
+			<string>constant.perm.Icon.dxl</string>
+		</dict>
+		<key>constant_IconID</key>
+		<dict>
+			<key>comment</key>
+			<string>addToFavoritesIcon autoIndentMainColumnIcon clearStartIcon columnEditIcon columnInsertIcon columnRemoveIcon copyIcon copyModIcon createFormalModIcon createLinkIcon createLinkModIcon createLinksetIcon createModIcon createObjDownIcon createObjSameIcon cutIcon decreaseLevelIcon deleteIcon deleteLinkIcon deleteLinksetIcon deleteModIcon deleteObjIcon demoteObjectIcon dispFilterIcon dispGraphicsIcon dispOutlineIcon dispSortIcon editHeadingIcon editLinkIcon editModIcon editTextIcon editUsersIcon endLinkIcon explorerIcon extractObjIcon extractOneDownIcon filterDialogIcon filterReapplyIcon folderCloseIcon folderNewIcon folderOpenIcon gotoIcon increaseLevelIcon justifyCenterIcon justifyFullIcon justifyLeftIcon justifyRightIcon layWizIcon level10Icon level1Icon level2Icon level3Icon level4Icon level5Icon level6Icon level7Icon level8Icon level9Icon levelAllIcon linkFromStartIcon linkToStartIcon matrixModeIcon noIcon pasteIcon printIcon projCloseIcon projNewIcon projOpenIcon projWizIcon promoteObjectIcon propertiesIcon readModIcon repManIcon repWizIcon saveIcon shareModIcon showMarkedObjsIcon spellcheckIcon startLinkIcon startNewLinkIcon swapHeadingTextIcon tableCreateIcon tableInsertColIcon tableInsertRowIcon tableSetBordersIcon textBold textBullet textItalic textLessIndent textMoreIndent textStrikeThrough textUnderline undeleteModIcon viewWizIcon wordIcon yesIcon</string>
+			<key>match</key>
+			<string>\b(?:a(?:ddToFavorites|utoIndentMainColumn)Icon|c(?:learStart|o(?:lumn(?:Edit|Insert|Remove)|py(?:Mod)?)|reate(?:FormalMod|Link(?:Mod|set)?|Mod|Obj(?:Down|Same))|ut)Icon|d(?:e(?:creaseLevel|lete(?:Link(?:set)?|Mod|Obj)?|moteObject)|isp(?:Filter|Graphics|Outline|Sort))Icon|e(?:dit(?:Heading|Link|Mod|Text|Users)|ndLink|x(?:plorer|tractO(?:bj|neDown)))Icon|f(?:ilter(?:Dialog|Reapply)|older(?:Close|New|Open))Icon|gotoIcon|increaseLevelIcon|justify(?:Center|Full|Left|Right)Icon|l(?:ayWiz|evel(?:10|All|[123456789])|ink(?:From|To)Start)Icon|matrixModeIcon|noIcon|p(?:aste|r(?:int|o(?:j(?:Close|New|Open|Wiz)|moteObject|perties)))Icon|re(?:adMod|p(?:Man|Wiz))Icon|s(?:ave|h(?:areMod|owMarkedObjs)|pellcheck|tart(?:New)?Link|wapHeadingText)Icon|t(?:able(?:Create|Insert(?:Col|Row)|SetBorders)Icon|ext(?:B(?:old|ullet)|Italic|LessIndent|MoreIndent|StrikeThrough|Underline))|undeleteModIcon|viewWizIcon|wordIcon|yesIcon)\b</string>
+			<key>name</key>
+			<string>constant.perm.IconID.dxl</string>
+		</dict>
+		<key>constant_InPlaceBox__</key>
+		<dict>
+			<key>comment</key>
+			<string>inPlaceChoice inPlaceString inPlaceText</string>
+			<key>match</key>
+			<string>\binPlace(?:Choice|String|Text)\b</string>
+			<key>name</key>
+			<string>constant.perm.InPlaceBox__.dxl</string>
+		</dict>
+		<key>constant_InPlaceEditEvent</key>
+		<dict>
+			<key>comment</key>
+			<string>inPlaceTextChange inPlaceTextFilled</string>
+			<key>match</key>
+			<string>\binPlaceText(?:Change|Filled)\b</string>
+			<key>name</key>
+			<string>constant.perm.InPlaceEditEvent.dxl</string>
+		</dict>
+		<key>constant_LdapItemList</key>
+		<dict>
+			<key>comment</key>
+			<string>ldapGroupList ldapUserList</string>
+			<key>match</key>
+			<string>\bldap(?:Group|User)List\b</string>
+			<key>name</key>
+			<string>constant.perm.LdapItemList.dxl</string>
+		</dict>
+		<key>constant_LinkFilter</key>
+		<dict>
+			<key>comment</key>
+			<string>linkFilterBoth linkFilterIncoming linkFilterOutgoing</string>
+			<key>match</key>
+			<string>\blinkFilter(?:Both|Incoming|Outgoing)\b</string>
+			<key>name</key>
+			<string>constant.perm.LinkFilter.dxl</string>
+		</dict>
+		<key>constant_Locales__</key>
+		<dict>
+			<key>comment</key>
+			<string>installedLocales supportedLocales</string>
+			<key>match</key>
+			<string>\b(?:install|support)edLocales\b</string>
+			<key>name</key>
+			<string>constant.perm.Locales__.dxl</string>
+		</dict>
+		<key>constant_LoginPolicy</key>
+		<dict>
+			<key>comment</key>
+			<string>viaDOORSLogin viaSystemLogin</string>
+			<key>match</key>
+			<string>\bvia(?:DOORS|System)Login\b</string>
+			<key>name</key>
+			<string>constant.perm.LoginPolicy.dxl</string>
+		</dict>
+		<key>constant_MA_End__</key>
+		<dict>
+			<key>comment</key>
+			<string>menu buttonbar popup</string>
+			<key>match</key>
+			<string>\b(?:buttonbar|menu|popup)\b</string>
+			<key>name</key>
+			<string>constant.perm.MA_End__.dxl</string>
+		</dict>
+		<key>constant_MA_StdCombo__</key>
+		<dict>
+			<key>comment</key>
+			<string>helpCombo levelCombo linksetCombo viewCombo</string>
+			<key>match</key>
+			<string>\b(?:help|l(?:evel|inkset)|view)Combo\b</string>
+			<key>name</key>
+			<string>constant.perm.MA_StdCombo__.dxl</string>
+		</dict>
+		<key>constant_MA_StdItem__</key>
+		<dict>
+			<key>comment</key>
+			<string>archiveModuleItem attrDefItem attrTypeItem browseDXLItem clipClearItem clipCopyFlatItem clipCopyHierItem clipCopyUrl clipCutItem clipPasteDownItem clipPasteItem closeProjectItem colorOptionsItem columnAutoIndentMainColumnItem columnCenterJustifyItem columnCreateItem columnDeleteItem columnEditItem columnFullJustifyItem columnLeftJustifyItem columnRightJustifyItem columnUseAsToolTipsItem columnUseInGraphicsItem createDescriptiveModuleItem createFormalModuleItem createLinkModuleItem createProjectItem deleteModuleItem deleteProjectItem deselectItem dispDecLevelItem dispDeletionItem dispFilterDescendantsItem dispFilteringItem dispFilterParentsItem dispFilterTablesItem dispGraphicsItem dispGraphicsLinksItem dispGraphicsToolTipsItem dispIncLevelItem dispLevel10Item dispLevel1Item dispLevel2Item dispLevel3Item dispLevel4Item dispLevel5Item dispLevel6Item dispLevel7Item dispLevel8Item dispLevel9Item dispLevelAllItem dispLinkIndicatorsItem dispOutlineItem dispReqOnlyItem dispShowPicturesItem dispShowTablesItem dispSortingItem duplicateModuleItem duplicateProjectItem editDXLItem editUsersItem EXIT_Item extractDownItem extractSameItem extractSetupItem filterItem fontOptionsItem helpAboutItem helpContentsItem helpDescriptiveItem helpFormalItem helpHelpItem helpIndexItem helpLinkItem helpProjManItem helpSearchItem inplaceAcceptItem inplaceAttrItem inplaceHeadingItem inplaceRejectItem inplaceResetAttrItem inplaceTextBoldItem inplaceTextBulletItem inplaceTextDecreaseIndentItem inplaceTextIncreaseIndentItem inplaceTextItalicItem inplaceTextItem inplaceTextStrikeThruItem inplaceTextUnderlineItem linkClearStartItem linkCompleteFromItem linkCompleteToItem linkCreateItem linkDeleteItem linkEditItem linkGotoStartItem linkGraphicsItem linkGraphicsToggleItem linkMatrixItem linkRemoveItem linksetCreateItem linksetDeleteItem linksetRefreshItem linkSourceItem linkStartItem linkTargetItem modAccessItem modAttrEditItem modBaselineItem modCloseItem modDowngradeItem modHistoryItem modLayoutItem modPageSetupItem modPrintItem modPrintPreviewItem modSaveItem objAccessItem objCompressionItem objCompressItem objCopyDownItem objCopyItem objCreateDownItem objCreateItem objDeleteItem objDemoteItem objDiscardUnlockAllItem objDiscardUnlockItem objEditItem objHistoryItem objLockItem objMoveDownItem objMoveItem objMultiPurgeItem objPromoteItem objPurgeItem objSaveUnlockAllItem objSaveUnlockItem objUncompressItem objUndeleteItem OLEClearItem OLECopyItem OLECutItem OLEInsertItem OLEPasteItem OLEPasteSpecialItem OLERemoveItem OLEVerbItem openModuleEditItem openModuleReadItem openModuleShareItem openProjectItem optionsBrowserItem optionsDefaultsItem optionsNetworkMonitorItem optionsRestoreItem optionsSaveItem partitionAcceptItem partitionRejoinItem partitionReturnItem pictureItem projDefLinkModuleItem projectArchiveItem projectAttrItem projectPartitionItem projectRecoverItem projectRestoreItem purgeModuleItem purgeModulesItem purgeProjectItem redoItem renameModuleItem restoreModuleItem selectItem setUserNameItem showDeletedModulesItem showDeletedProjectsItem showDescriptiveModulesItem showFormalModulesItem showLinkModulesItem sortDescriptionItem sortItem sortNameItem sortTypeItem spellCheckItem tableAppendCellItem tableAppendColItem tableAppendRowItem tableBordersItem tableCreateDownItem tableCreateItem tableDeleteCellItem tableDeleteColItem tableDeleteItem tableDeleteRowItem tableDispOptsItem tableInsertCellItem tableInsertColItem tableInsertRowItem tableOptionCellItem tableOptionColItem tableOptionRowItem tableUndeleteCellItem tableUndeleteColItem tableUndeleteItem tableUndeleteRowItem undeleteModuleItem undeleteProjectItem undoItem undoItemCut undoItemDelete undoItemModify undoItemUndelete unlockModulesItem viewCreateItem viewDeleteItem viewItem viewLargeIconItem viewListItem viewReportItem viewShowItem viewSmallIconItem</string>
+			<key>match</key>
+			<string>\b(?:EXIT_Item|OLE(?:C(?:lear|opy|ut)|Insert|Paste(?:Special)?|Remove|Verb)Item|a(?:rchiveModule|ttr(?:Def|Type))Item|browseDXLItem|c(?:l(?:ip(?:C(?:learItem|opy(?:FlatItem|HierItem|Url)|utItem)|Paste(?:Down)?Item)|oseProjectItem)|ol(?:orOptions|umn(?:AutoIndentMainColumn|C(?:enterJustify|reate)|Delete|Edit|FullJustify|LeftJustify|RightJustify|Use(?:AsToolTip|InGraphic)s))Item|reate(?:DescriptiveModule|FormalModule|LinkModule|Project)Item)|d(?:e(?:lete(?:Module|Project)|select)|isp(?:De(?:cLevel|letion)|Filter(?:Descendants|Parents|Tables|ing)|Graphics(?:Links|ToolTips)?|IncLevel|L(?:evel(?:10|All|[123456789])|inkIndicators)|Outline|ReqOnly|S(?:how(?:Pictur|Tabl)es|orting))|uplicate(?:Module|Project))Item|e(?:dit(?:DXL|Users)|xtract(?:Down|S(?:ame|etup)))Item|f(?:ilter|ontOptions)Item|help(?:About|Contents|Descriptive|Formal|Help|Index|Link|ProjMan|Search)Item|inplace(?:A(?:ccept|ttr)|Heading|Re(?:ject|setAttr)|Text(?:B(?:old|ullet)|DecreaseIndent|I(?:ncreaseIndent|talic)|StrikeThru|Underline)?)Item|link(?:C(?:learStart|omplete(?:From|To)|reate)|Delete|Edit|G(?:otoStart|raphics(?:Toggle)?)|Matrix|Remove|S(?:ource|tart)|Target|set(?:Create|Delete|Refresh))Item|mod(?:A(?:ccess|ttrEdit)|Baseline|Close|Downgrade|History|Layout|P(?:ageSetup|rint(?:Preview)?)|Save)Item|o(?:bj(?:Access|C(?:o(?:mpress(?:ion)?|py(?:Down)?)|reate(?:Down)?)|D(?:e(?:le|mo)te|iscardUnlock(?:All)?)|Edit|History|Lock|M(?:ove(?:Down)?|ultiPurge)|P(?:romot|urg)e|SaveUnlock(?:All)?|Un(?:compress|delete))|p(?:en(?:Module(?:Edit|Read|Share)|Project)|tions(?:Browser|Defaults|NetworkMonitor|Restore|Save)))Item|p(?:artition(?:Accept|Re(?:joi|tur)n)|icture|roj(?:DefLinkModule|ect(?:A(?:rchive|ttr)|Partition|Re(?:cover|store)))|urge(?:Modules?|Project))Item|re(?:do|nameModule|storeModule)Item|s(?:e(?:lect|tUserName)|how(?:De(?:leted(?:Module|Project)|scriptiveModule)|FormalModule|LinkModule)s|ort(?:Description|Name|Type)?|pellCheck)Item|table(?:Append(?:C(?:el|o)l|Row)|Borders|Create(?:Down)?|D(?:elete(?:C(?:el|o)l|Row)?|ispOpts)|Insert(?:C(?:el|o)l|Row)|Option(?:C(?:el|o)l|Row)|Undelete(?:C(?:el|o)l|Row)?)Item|un(?:d(?:elete(?:Module|Project)Item|oItem(?:Cut|Delete|Modify|Undelete)?)|lockModulesItem)|view(?:Create|Delete|L(?:argeIcon|ist)|Report|S(?:how|mallIcon))?Item)\b</string>
+			<key>name</key>
+			<string>constant.perm.MA_StdItem__.dxl</string>
+		</dict>
+		<key>constant_MA_StdMenu__</key>
+		<dict>
+			<key>comment</key>
+			<string>attributeMenu clipboardMenu clipCopyMenu clipPasteMenu columnMenu editMenu extractMenu helpMenu linkMenu linksetMenu moduleMenu objCopyMenu objCreateMenu objectMenu objMoveMenu objUnlockMenu oleMenu optionsMenu projectMenu projectPartitionMenu tableCellMenu tableColMenu tableMenu tableRowMenu toolsMenu usersMenu viewMenu</string>
+			<key>match</key>
+			<string>\b(?:attribute|c(?:lip(?:Copy|Paste|board)|olumn)|e(?:di|xtrac)t|help|link(?:set)?|module|o(?:bj(?:C(?:opy|reate)|Move|Unlock|ect)|le|ptions)|project(?:Partition)?|t(?:able(?:C(?:el|o)l|Row)?|ools)|users|view)Menu\b</string>
+			<key>name</key>
+			<string>constant.perm.MA_StdMenu__.dxl</string>
+		</dict>
+		<key>constant_RecentModule__</key>
+		<dict>
+			<key>comment</key>
+			<string>recentModules</string>
+			<key>match</key>
+			<string>\brecentModules\b</string>
+			<key>name</key>
+			<string>constant.perm.RecentModule__.dxl</string>
+		</dict>
+		<key>constant_Regexp</key>
+		<dict>
+			<key>comment</key>
+			<string>URL</string>
+			<key>match</key>
+			<string>\bURL\b</string>
+			<key>name</key>
+			<string>constant.perm.Regexp.dxl</string>
+		</dict>
+		<key>constant_Script__</key>
+		<dict>
+			<key>comment</key>
+			<string>dxlScript</string>
+			<key>match</key>
+			<string>\bdxlScript\b</string>
+			<key>name</key>
+			<string>constant.perm.Script__.dxl</string>
+		</dict>
+		<key>constant_ScrollEvent</key>
+		<dict>
+			<key>comment</key>
+			<string>scrollDown scrollPageDown scrollPageUp scrollToEnd scrollToHome scrollToPos scrollUp</string>
+			<key>match</key>
+			<string>\bscroll(?:Down|Page(?:Down|Up)|To(?:End|Home|Pos)|Up)\b</string>
+			<key>name</key>
+			<string>constant.perm.ScrollEvent.dxl</string>
+		</dict>
+		<key>constant_ScrollSide</key>
+		<dict>
+			<key>comment</key>
+			<string>horizontal vertical</string>
+			<key>match</key>
+			<string>\b(?:horizont|vertic)al\b</string>
+			<key>name</key>
+			<string>constant.perm.ScrollSide.dxl</string>
+		</dict>
+		<key>constant_Sensitivity</key>
+		<dict>
+			<key>comment</key>
+			<string>ddbAvailable ddbChecked ddbInvisible ddbUnavailable</string>
+			<key>match</key>
+			<string>\bddb(?:Available|Checked|Invisible|Unavailable)\b</string>
+			<key>name</key>
+			<string>constant.perm.Sensitivity.dxl</string>
+		</dict>
+		<key>constant_Stream</key>
+		<dict>
+			<key>comment</key>
+			<string>cerr cin cout out</string>
+			<key>match</key>
+			<string>\b(?:c(?:err|in|out)|out)\b</string>
+			<key>name</key>
+			<string>constant.perm.Stream.dxl</string>
+		</dict>
+		<key>constant_ToolType</key>
+		<dict>
+			<key>comment</key>
+			<string>toolButton toolCombo toolEditableCombo toolRadio toolSpacer toolToggle</string>
+			<key>match</key>
+			<string>\btool(?:Button|Combo|EditableCombo|Radio|Spacer|Toggle)\b</string>
+			<key>name</key>
+			<string>constant.perm.ToolType.dxl</string>
+		</dict>
+		<key>constant_TriggerStatus</key>
+		<dict>
+			<key>comment</key>
+			<string>trigError trigPreConFail trigPreConPass trigRunOK</string>
+			<key>match</key>
+			<string>\btrig(?:Error|PreCon(?:Fail|Pass)|RunOK)\b</string>
+			<key>name</key>
+			<string>constant.perm.TriggerStatus.dxl</string>
+		</dict>
+		<key>constant_UserClass</key>
 		<dict>
 			<key>comment</key>
 			<string>administrator custom databaseManager projectManager standard</string>
 			<key>match</key>
 			<string>\b(?:administrator|custom|databaseManager|projectManager|standard)\b</string>
 			<key>name</key>
-			<string>constant.perm.userclass.dxl</string>
+			<string>constant.perm.UserClass.dxl</string>
+		</dict>
+		<key>constant_UserList</key>
+		<dict>
+			<key>comment</key>
+			<string>userList</string>
+			<key>match</key>
+			<string>\buserList\b</string>
+			<key>name</key>
+			<string>constant.perm.UserList.dxl</string>
+		</dict>
+		<key>constant_UserNotifyList</key>
+		<dict>
+			<key>comment</key>
+			<string>userNotifyList</string>
+			<key>match</key>
+			<string>\buserNotifyList\b</string>
+			<key>name</key>
+			<string>constant.perm.UserNotifyList.dxl</string>
+		</dict>
+		<key>constant_ZipType</key>
+		<dict>
+			<key>comment</key>
+			<string>zipModule5Archive zipModule6aArchive zipModule6Archive zipModule7Archive zipModule8Archive zipModuleArchive zipNotArchive zipPre3ModuleArchive zipPre3ProjectArchive zipPre5ModuleArchive zipPre5ProjectArchive zipProject5Archive zipProject6aArchive zipProject6Archive zipProject7Archive zipProject8Archive zipProjectArchive zipUserList5Archive zipUserList6aArchive zipUserList6Archive zipUserList7Archive zipUserList8Archive zipUserListArchive</string>
+			<key>match</key>
+			<string>\bzip(?:Module(?:6a|[5678])?|Not|Pr(?:e(?:3(?:Module|Project)|5(?:Module|Project))|oject(?:6a|[5678])?)|UserList(?:6a|[5678])?)Archive\b</string>
+			<key>name</key>
+			<string>constant.perm.ZipType.dxl</string>
+		</dict>
+		<key>constant_bool</key>
+		<dict>
+			<key>comment</key>
+			<string>ignoreReadOnly spellingFirst</string>
+			<key>match</key>
+			<string>\b(?:ignoreReadOnly|spellingFirst)\b</string>
+			<key>name</key>
+			<string>constant.perm.bool.dxl</string>
+		</dict>
+		<key>constant_char</key>
+		<dict>
+			<key>comment</key>
+			<string>ddbNone ddbToggle</string>
+			<key>match</key>
+			<string>\bddb(?:Non|Toggl)e\b</string>
+			<key>name</key>
+			<string>constant.perm.char.dxl</string>
+		</dict>
+		<key>constant_char_Key</key>
+		<dict>
+			<key>comment</key>
+			<string>keyF12 keyF11 keyF10 keyF9 keyF8 keyF7 keyF6 keyF5 keyF4 keyF3 keyF2 keyF1 keyHelp keyRight keyLeft keyDown keyUp keyPageDown keyPageUp keyEnd keyHome keyDelete keyInsert keyEscape</string>
+			<key>match</key>
+			<string>\bkey(?:D(?:elete|own)|E(?:nd|scape)|F(?:1[012]|[123456789])|H(?:elp|ome)|Insert|Left|Page(?:Down|Up)|Right|Up)\b</string>
+			<key>name</key>
+			<string>constant.perm.char.key.dxl</string>
+		</dict>
+		<key>constant_function</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#constant_function_AttrSetVal__</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_function_Permission</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_function_trigEvent_</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_function_trigLevel_</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_function_trigLevelMod_</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant_function_trigType_</string>
+				</dict>
+			</array>
+		</dict>
+		<key>constant_function_AttrSetVal__</key>
+		<dict>
+			<key>comment</key>
+			<string>changeBars date default description dxl hidden history inherit multi type</string>
+			<key>match</key>
+			<string>\b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\b</string>
+			<key>name</key>
+			<string>constant.perm.function.AttrSetVal__.dxl</string>
+		</dict>
+		<key>constant_function_Permission</key>
+		<dict>
+			<key>comment</key>
+			<string>change control create delete modify none read write</string>
+			<key>match</key>
+			<string>\b(?:c(?:hange|ontrol|reate)|delete|modify|none|read|write)\b</string>
+			<key>name</key>
+			<string>constant.perm.function.Permission.dxl</string>
+		</dict>
+		<key>constant_function_trigEvent_</key>
+		<dict>
+			<key>comment</key>
+			<string>close create drag drop edit modify open read save sync write</string>
+			<key>match</key>
+			<string>\b(?:c(?:los|reat)e|dr(?:ag|op)|edit|modify|open|read|s(?:ave|ync)|write)\b</string>
+			<key>name</key>
+			<string>constant.perm.function.trigEvent_.dxl</string>
+		</dict>
+		<key>constant_function_trigLevelMod_</key>
+		<dict>
+			<key>comment</key>
+			<string>all descriptive formal link</string>
+			<key>match</key>
+			<string>\b(?:all|descriptive|formal|link)\b</string>
+			<key>name</key>
+			<string>constant.perm.function.trigLevelMod_.dxl</string>
+		</dict>
+		<key>constant_function_trigLevel_</key>
+		<dict>
+			<key>comment</key>
+			<string>attribute comment discussion module object project</string>
+			<key>match</key>
+			<string>\b(?:attribute|comment|discussion|module|object|project)\b</string>
+			<key>name</key>
+			<string>constant.perm.function.trigLevel_.dxl</string>
+		</dict>
+		<key>constant_function_trigType_</key>
+		<dict>
+			<key>comment</key>
+			<string>post pre</string>
+			<key>match</key>
+			<string>\bp(?:ost|re)\b</string>
+			<key>name</key>
+			<string>constant.perm.function.triggermodifier.dxl</string>
+		</dict>
+		<key>constant_int_CharacterSet</key>
+		<dict>
+			<key>comment</key>
+			<string>charsetAnsi charsetEastEurope charsetGreek charsetHebrew charsetRussian charsetSymbol charsetTurkish</string>
+			<key>match</key>
+			<string>\bcharset(?:Ansi|EastEurope|Greek|Hebrew|Russian|Symbol|Turkish)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.CharacterSet.dxl</string>
+		</dict>
+		<key>constant_int_ClipboardFormat</key>
+		<dict>
+			<key>comment</key>
+			<string>CF_BITMAP CF_DIB CF_DIBV5 CF_DIF CF_ENHMETAFILE CF_HDROP CF_LOCALE CF_MAX CF_METAFILEPICT CF_OEMTEXT CF_PALETTE CF_PENDATA CF_RIFF CF_SYLK CF_TEXT CF_TIFF CF_UNICODETEXT CF_WAVE</string>
+			<key>match</key>
+			<string>\bCF_(?:BITMAP|DI(?:BV5|[BF])|ENHMETAFILE|HDROP|LOCALE|M(?:AX|ETAFILEPICT)|OEMTEXT|P(?:ALETTE|ENDATA)|RIFF|SYLK|T(?:EXT|IFF)|UNICODETEXT|WAVE)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ClipboardFormat.dxl</string>
+		</dict>
+		<key>constant_int_ClipboardType</key>
+		<dict>
+			<key>comment</key>
+			<string>TYMED_ENHMF TYMED_FILE TYMED_GDI TYMED_HGLOBAL TYMED_ISTORAGE TYMED_ISTREAM TYMED_MFPICT</string>
+			<key>match</key>
+			<string>\bTYMED_(?:ENHMF|FILE|GDI|HGLOBAL|IST(?:ORAGE|REAM)|MFPICT)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ClipboardType.dxl</string>
+		</dict>
+		<key>constant_int_CodePage</key>
+		<dict>
+			<key>comment</key>
+			<string>CP_CHS CP_CHT CP_JAP CP_KOR CP_LATIN1 CP_UNICODE CP_UTF16_BE CP_UTF16_LE CP_UTF8</string>
+			<key>match</key>
+			<string>\bCP_(?:CH[ST]|JAP|KOR|LATIN1|U(?:NICODE|TF(?:16_[BL]E|8)))\b</string>
+			<key>name</key>
+			<string>constant.perm.int.CodePage.dxl</string>
+		</dict>
+		<key>constant_int_ColourActual</key>
+		<dict>
+			<key>comment</key>
+			<string>colorBlack colorBlue colorBrown colorCyan colorDarkTurquoise colorGreen colorGrey colorGrey77 colorGrey82 colorLightBlue colorMagenta colorMaroon colorMediumLightBlue colorOptionsItem colorOrange colorPink colorRed colorRedGrey colorWhite colorYellow</string>
+			<key>match</key>
+			<string>\bcolor(?:B(?:l(?:ack|ue)|rown)|Cyan|DarkTurquoise|Gre(?:en|y(?:77|82)|y)|LightBlue|M(?:a(?:genta|roon)|ediumLightBlue)|O(?:ptionsItem|range)|Pink|Red(?:Grey)?|White|Yellow)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ColourActual.dxl</string>
+		</dict>
+		<key>constant_int_ColourLogical</key>
+		<dict>
+			<key>comment</key>
+			<string>logical0IndicatorColor logical100IndicatorColor logical11IndicatorColor logical22IndicatorColor logical33IndicatorColor logical44IndicatorColor logical55IndicatorColor logical66IndicatorColor logical77IndicatorColor logical88IndicatorColor logicalCurrentBackgroundColor logicalCurrentCellBackgroundColor logicalCurrentObjectOutline logicalDataTextColor logicalDefaultColor logicalDeletedTextColor logicalGUIDefaultColor logicalGraphicsBackgroundColor logicalGraphicsBoxColor logicalGraphicsBoxEdgeColor logicalGraphicsCurrentColor logicalGraphicsElideBoxColor logicalGraphicsLinkColor logicalGraphicsSelectedColor logicalGraphicsShadeColor logicalGraphicsTextColor logicalGridLines logicalHighIndicatorColor logicalHighlightURLColor logicalInPlaceBackgroundColor logicalInPlaceTextColor logicalLinkCurrentBackgroundColor logicalLinkDataTextColor logicalLinkPageBackgroundColor logicalLinkTextBackgroundColor logicalLinkTitleBackgroundColor logicalLinksInIndicatorColor logicalLinksOutIndicatorColor logicalLinksStartIndicatorColor logicalLowIndicatorColor logicalMediumIndicatorColor logicalPageBackgroundColor logicalPageBackgroundFilterColor logicalPageBackgroundFilterSortColor logicalPageBackgroundSortColor logicalPartitionInReadTextColor logicalPartitionInWriteTextColor logicalPartitionOutTextColor logicalPrintPreviewBackgroundColor logicalPrintPreviewPageColor logicalPrintPreviewShadeColor logicalPrintPreviewTextColor logicalReadOnlyTextBackgroundColor logicalReadOnlyTextColor logicalSelectedTextColor logicalTextBackgroundColor logicalTitleBackgroundColor logicalTitleBackgroundColorSelected logicalTitleTextColor logicalUnlockedTextBackgroundColor logicalUser1Color logicalUser2Color logicalUser3Color logicalUser4Color logicalUser5Color</string>
+			<key>match</key>
+			<string>\blogical(?:0IndicatorColor|1(?:00|1)IndicatorColor|22IndicatorColor|33IndicatorColor|44IndicatorColor|55IndicatorColor|66IndicatorColor|77IndicatorColor|88IndicatorColor|Current(?:BackgroundColor|CellBackgroundColor|ObjectOutline)|D(?:ataTex|e(?:faul|letedTex))tColor|G(?:UIDefaultColor|r(?:aphics(?:B(?:ackground|ox(?:Edge)?)|Current|ElideBox|Link|S(?:elected|hade)|Text)Color|idLines))|High(?:Indicator|lightURL)Color|InPlace(?:Background|Text)Color|L(?:ink(?:CurrentBackground|DataText|PageBackground|T(?:ext|itle)Background|s(?:In|Out|Start)Indicator)|owIndicator)Color|MediumIndicatorColor|P(?:a(?:geBackground(?:Filter(?:Sort)?|Sort)?|rtition(?:In(?:Read|Write)|Out)Text)|rintPreview(?:Background|Page|Shade|Text))Color|ReadOnlyText(?:Background)?Color|SelectedTextColor|T(?:extBackgroundColor|itle(?:BackgroundColor(?:Selected)?|TextColor))|U(?:nlockedTextBackground|ser[12345])Color)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ColourLogical.dxl</string>
+		</dict>
+		<key>constant_int_ColourReal</key>
+		<dict>
+			<key>comment</key>
+			<string>realColor_Black realColor_Blue realColor_Brown realColor_Cyan realColor_Dark_Turquoise realColor_Firebrick realColor_Green realColor_Grey11 realColor_Grey22 realColor_Grey33 realColor_Grey44 realColor_Grey55 realColor_Grey66 realColor_Grey77 realColor_Grey82 realColor_Light_Blue realColor_Light_Blue2 realColor_Lime_Green realColor_Magenta realColor_Maroon realColor_Navy realColor_NewGrey1 realColor_NewGrey2 realColor_NewGrey3 realColor_NewGrey4 realColor_Orange realColor_Peru realColor_Pink realColor_Purple realColor_Red realColor_Red_Grey realColor_Rosy_Brown realColor_Sea_Green realColor_SplashScreenBlue realColor_Thistle realColor_White realColor_Yellow</string>
+			<key>match</key>
+			<string>\brealColor_(?:B(?:l(?:ack|ue)|rown)|Cyan|Dark_Turquoise|Firebrick|Gre(?:en|y(?:11|22|33|44|55|66|77|82))|Li(?:ght_Blue2?|me_Green)|Ma(?:genta|roon)|N(?:avy|ewGrey[1234])|Orange|P(?:eru|ink|urple)|R(?:ed(?:_Grey)?|osy_Brown)|S(?:ea_Green|plashScreenBlue)|Thistle|White|Yellow)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ColourReal.dxl</string>
+		</dict>
+		<key>constant_int_ColourScheme</key>
+		<dict>
+			<key>comment</key>
+			<string>highContrastBlackColorScheme highContrastBlackColourScheme highContrastOneColorScheme highContrastOneColourScheme highContrastTwoColorScheme highContrastTwoColourScheme highContrastWhiteColorScheme highContrastWhiteColourScheme internationalModernDOORSColorScheme internationalModernDOORSColourScheme internationalOriginalDOORSColorScheme internationalOriginalDOORSColourScheme modernDOORSColorScheme modernDOORSColourScheme originalDOORSColorScheme originalDOORSColourScheme</string>
+			<key>match</key>
+			<string>\b(?:highContrast(?:BlackColou?|OneColou?|TwoColou?|WhiteColou?)|international(?:ModernDOORSColou?|OriginalDOORSColou?)|modernDOORSColou?|originalDOORSColou?)rScheme\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ColourScheme.dxl</string>
+		</dict>
+		<key>constant_int_ColourSize</key>
+		<dict>
+			<key>comment</key>
+			<string>maxColor maxColour minColor minColour</string>
+			<key>match</key>
+			<string>\bm(?:axColou?|inColou?)r\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ColourSize.dxl</string>
+		</dict>
+		<key>constant_int_Column</key>
+		<dict>
+			<key>comment</key>
+			<string>columnsFilled columnsTable columnsUnmarked</string>
+			<key>match</key>
+			<string>\bcolumns(?:Filled|Table|Unmarked)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Column.dxl</string>
+		</dict>
+		<key>constant_int_Edit</key>
+		<dict>
+			<key>comment</key>
+			<string>Clear Copy Cut Paste Undo</string>
+			<key>match</key>
+			<string>\b(?:C(?:lear|opy|ut)|Paste|Undo)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Edit.dxl</string>
+		</dict>
+		<key>constant_int_FilterType</key>
+		<dict>
+			<key>comment</key>
+			<string>filterTypeAnd filterTypeNot filterTypeOr</string>
+			<key>match</key>
+			<string>\bfilterType(?:And|Not|Or)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.FilterType.dxl</string>
+		</dict>
+		<key>constant_int_Font</key>
+		<dict>
+			<key>comment</key>
+			<string>GraphicsFont HeadingsFont TextFont</string>
+			<key>match</key>
+			<string>\b(?:Graphics|Headings|Text)Font\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Font.dxl</string>
+		</dict>
+		<key>constant_int_Format</key>
+		<dict>
+			<key>comment</key>
+			<string>formatBMP formatBMZ formatBook formatColumns formatDIB formatEMF formatEMZ formatEPSF formatGIF formatJFIF formatJPE formatJPEG formatJPG formatPNG formatPNG_ formatRLE formatTIF formatTIFF formatUNKNOWN formatWMF formatWMZ</string>
+			<key>match</key>
+			<string>\bformat(?:B(?:M[PZ]|ook)|Columns|DIB|E(?:M[FZ]|PSF)|GIF|J(?:FIF|P(?:EG|[EG]))|PNG_?|RLE|TIFF?|UNKNOWN|WM[FZ])\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Format.dxl</string>
+		</dict>
+		<key>constant_int_Info</key>
+		<dict>
+			<key>comment</key>
+			<string>infoBuildDate infoBuildNumber infoServerVersion infoSupportId infoSupportPassword infoVersion</string>
+			<key>match</key>
+			<string>\binfo(?:Build(?:Date|Number)|S(?:erverVersion|upport(?:Passwor|I)d)|Version)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Info.dxl</string>
+		</dict>
+		<key>constant_int_KeyModifier</key>
+		<dict>
+			<key>comment</key>
+			<string>modKeyNone modKeyCtrl modKeyShift</string>
+			<key>match</key>
+			<string>\bmodKey(?:Ctrl|None|Shift)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.KeyModifier.dxl</string>
+		</dict>
+		<key>constant_int_Language</key>
+		<dict>
+			<key>comment</key>
+			<string>Afrikaans Catalan Czech Danish Dutch French German Greek Italian NorwegianBokmal NorwegianNynorsk PortugueseBrazil PortugueseEurope Russian Spanish Swedish UKEnglish USEnglish</string>
+			<key>match</key>
+			<string>\b(?:Afrikaans|C(?:atalan|zech)|D(?:anis|utc)h|French|G(?:erman|reek)|Italian|Norwegian(?:Bokmal|Nynorsk)|Portuguese(?:Brazil|Europe)|Russian|S(?:pan|wed)ish|U[KS]English)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Language.dxl</string>
+		</dict>
+		<key>constant_int_LineSpacing</key>
+		<dict>
+			<key>comment</key>
+			<string>onePointFive single</string>
+			<key>match</key>
+			<string>\b(?:onePointFiv|singl)e\b</string>
+			<key>name</key>
+			<string>constant.perm.int.LineSpacing.dxl</string>
+		</dict>
+		<key>constant_int_LinkLimit</key>
+		<dict>
+			<key>comment</key>
+			<string>manyToMany manyToOne oneToMany oneToOne</string>
+			<key>match</key>
+			<string>\b(?:manyTo(?:Many|One)|oneTo(?:Many|One))\b</string>
+			<key>name</key>
+			<string>constant.perm.int.LinkLimit.dxl</string>
+		</dict>
+		<key>constant_int_ListView</key>
+		<dict>
+			<key>comment</key>
+			<string>listViewOptionCheckboxes listViewOptionMultiselect listViewOptionSortText</string>
+			<key>match</key>
+			<string>\blistViewOption(?:Checkboxes|Multiselect|SortText)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.ListView.dxl</string>
+		</dict>
+		<key>constant_int_Lock</key>
+		<dict>
+			<key>comment</key>
+			<string>lockRemoved lockShare lockWrite</string>
+			<key>match</key>
+			<string>\block(?:Removed|Share|Write)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Lock.dxl</string>
+		</dict>
+		<key>constant_int_Mapping</key>
+		<dict>
+			<key>comment</key>
+			<string>menuAvailable_ menuAvailableChecked_ menuInvisible_ menuUnavailable_</string>
+			<key>match</key>
+			<string>\bmenu(?:Available(?:Checked)?|Invisible|Unavailable)_\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Mapping.dxl</string>
+		</dict>
+		<key>constant_int_Proof</key>
+		<dict>
+			<key>comment</key>
+			<string>clientDictionary databaseDictionary databaseSpellingOptions formalGrammar fullProof informalGrammar quickProof spellingOnly standardGrammar userSpellingOptions</string>
+			<key>match</key>
+			<string>\b(?:clientDictionary|database(?:Dictionary|SpellingOptions)|f(?:ormalGrammar|ullProof)|informalGrammar|quickProof|s(?:pellingOnly|tandardGrammar)|userSpellingOptions)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Proof.dxl</string>
+		</dict>
+		<key>constant_int_Run</key>
+		<dict>
+			<key>comment</key>
+			<string>syswaitINFINITE_ syswaitPIPEFAULT_ syswaitPROCESSERROR_ syswaitSUCCESS_ syswaitTIMEOUT_</string>
+			<key>match</key>
+			<string>\bsyswait(?:INFINITE|P(?:IPEFAULT|ROCESSERROR)|SUCCESS|TIMEOUT)_\b</string>
+			<key>name</key>
+			<string>constant.perm.int.run.dxl</string>
+		</dict>
+		<key>constant_int_Severity</key>
+		<dict>
+			<key>comment</key>
+			<string>msgError msgError_ msgInfo msgInfo_ msgQuery msgQuery_ msgWarning msgWarning_</string>
+			<key>match</key>
+			<string>\bmsg(?:Error|Info|Query|Warning)_?\b</string>
+			<key>name</key>
+			<string>constant.perm.int.severity.dxl</string>
+		</dict>
+		<key>constant_int_StatusBar</key>
+		<dict>
+			<key>comment</key>
+			<string>ddbFullStatus ddbNoSelection</string>
+			<key>match</key>
+			<string>\bddb(?:FullStatus|NoSelection)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.StatusBar.dxl</string>
+		</dict>
+		<key>constant_int_Style</key>
+		<dict>
+			<key>comment</key>
+			<string>styleAllowMinimise styleAllowMinimise_ styleAllowMinimize styleAllowMinimize_ styleAutoparent styleAutoVScroll styleCentered styleCentered_ styleCentred styleCentred_ styleFixed styleFixed_ styleFloating styleFloating_ styleIsCloseBtn styleIsDefault styleNoBorder styleNoBorder_ styleStandard styleStandard_ styleStandardButton styleStandardInternalButton styleStandardSize styleSubWindow styleThemed</string>
+			<key>match</key>
+			<string>\bstyle(?:A(?:llowMinimi(?:se_?|ze_?)|uto(?:VScroll|parent))|Cent(?:ered_?|red_?)|F(?:ixed_?|loating_?)|Is(?:CloseBtn|Default)|NoBorder_?|S(?:tandard(?:Button|InternalButton|Size|_)?|ubWindow)|Themed)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.Style.dxl</string>
+		</dict>
+		<key>constant_int_TreeView</key>
+		<dict>
+			<key>comment</key>
+			<string>treeViewOptionNoIcons treeViewOptionSorted</string>
+			<key>match</key>
+			<string>\btreeViewOption(?:NoIcons|Sorted)\b</string>
+			<key>name</key>
+			<string>constant.perm.int.TreeView.dxl</string>
+		</dict>
+		<key>constant_real</key>
+		<dict>
+			<key>comment</key>
+			<string>pi</string>
+			<key>match</key>
+			<string>\bpi\b</string>
+			<key>name</key>
+			<string>constant.perm.real.dxl</string>
+		</dict>
+		<key>constant_string</key>
+		<dict>
+			<key>comment</key>
+			<string>DXLLibraryVersion READ_ONLY databaseName dbName resource</string>
+			<key>match</key>
+			<string>\b(?:DXLLibraryVersion|READ_ONLY|d(?:atabase|b)Name|resource)\b</string>
+			<key>name</key>
+			<string>constant.perm.string.dxl</string>
+		</dict>
+		<key>constant_string_Array</key>
+		<dict>
+			<key>comment</key>
+			<string>dummy</string>
+			<key>match</key>
+			<string>\bdummy\b</string>
+			<key>name</key>
+			<string>constant.perm.string.array.dxl</string>
 		</dict>
 		<key>continuation</key>
 		<dict>
@@ -909,14 +1430,14 @@
 		<key>functionCallPerm</key>
 		<dict>
 			<key>match</key>
-			<string>\s*\b(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|after|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|before|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|change|charOf|characterSet|charsetDefault|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|codepointOf|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|control|convertFromCodepage|convertToCodepage|copyFile|copyPassword|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|first|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|ldapGroupsForUser|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|loadUserRecord|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|modify|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|previous|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|purgeObjects_|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|sectionNeedsSaved|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sibling|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undelete|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|values|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warningBox|wcharOf|when|who|width|win32SystemWait_|write)(?=\()</string>
+			<string>\s*\b(allBaselines|noBaselines|HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|after|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|before|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|change|charOf|characterSet|charsetDefault|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|codepointOf|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|control|convertFromCodepage|convertToCodepage|copyFile|copyPassword|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|first|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|ldapGroupsForUser|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|loadUserRecord|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|modify|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|previous|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|purgeObjects_|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|sectionNeedsSaved|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sibling|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undelete|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|values|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warningBox|wcharOf|when|who|width|win32SystemWait_|write)(?=\()</string>
 			<key>name</key>
 			<string>support.function.perm.dxl</string>
 		</dict>
 		<key>functionDeclaration</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\()</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+([&amp;\*])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\?]|:=|by|default|do|if|for|sizeof|while|\[\]|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;&gt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?|_(?:\+\+|--)|\([\*&amp;]\))))\s*(?=\()</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -1051,7 +1572,7 @@
 		<key>functionDefinition</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:^|(?&lt;=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*\s*&amp;?\s*[,\[\(\)])</string>
+			<string>(?:^|(?&lt;=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+([&amp;\*])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\?]|:=|by|default|do|if|for|sizeof|while|\[\]|!=?|%=?|&amp;[&amp;=]?|\*=?|\+[\+=]?|-[-=&gt;]?|\.\.?|/=?|&lt;(?:&lt;=|-&gt;|[-=&lt;&gt;/?])?|=[=&gt;]?|&gt;(?:&gt;=|[=&gt;/?])?|\^[=\^]?|\|[=\|]?|_(?:\+\+|--)|\([\*&amp;]\))))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*\s*[&amp;\*]?\s*[,\[\(\)])</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -1086,7 +1607,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?&lt;=\))\s*(\[\s*\])?</string>
+			<string>(?&lt;!\:\:\([/*&amp;]\))(?&lt;=\))\s*(\[\s*\])?</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -1133,13 +1654,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\s+&amp;</string>
+					<string>\s+[&amp;\*]</string>
 					<key>name</key>
 					<string>invalid.illegal.byref.dxl</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>&amp;</string>
+					<string>[&amp;\*]</string>
 					<key>name</key>
 					<string>variable.other.byref.dxl</string>
 				</dict>
@@ -1578,9 +2099,9 @@
 		<key>typeDoors</key>
 		<dict>
 			<key>comment</key>
-			<string>_k _x _y AccessRec ArchiveInclusionDescriptor ArchiveItem Array Attachment Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Bitmap Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE Discussion DiscussionFilter DiscussionStatus DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink ExternalLinkBehaviour ExternalLinkDirection Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent IntegrityCheckItem IntegrityItemType Item Justification Language Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList LoginPolicy MA_StdItem__ MA_StdMenu__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object ObjectRef__ OleAutoArgs OleAutoObj PageLayout PartitionAttribute PartitionDefinition PartitionFile PartitionLinkset PartitionModule PartitionPermission PartitionView Permission ProblemItem Project Regexp RichText RichTextParagraph RifDefinition Sensitivity Skip Sort Stat Stream TableBorderPosition TableBorderStyle Template trigEvent_ Trigger trigLevel_ trigLevelDesc_ trigLevelMod_ trigType_ User UserClass UserList UserNotifyList View ViewDef</string>
+			<string>_* _a _b _c _d _f _k _m _n _w _x _xr _xx _y AccessRec ADABool_ ADADefault_ ADAString_ ADAType_ ADMABool_ ADMAString_ AgentElement_ AllAttrDef_ AllAttrDefVal__ AllAttrType_ AllBaselineSet_ AllBaselineSetDefinition_ AllFolder_ AllItem_ AllModule_ AllObj__ AllObject_ AllProject_ AllRoot__ AllView_ AlternativeWord ArchiveData ArchiveInclusionDescriptor ArchiveItem ArchiveItemElementB_ ArchiveItemElementS_ ArchiveItemElementZ_ Array ArraySect__ Arrow__ ATABaseType_ ATABool_ ATADesc_ ATAEnumColour_ ATAEnumColours_ ATAEnumDesc_ ATAEnumDescs_ ATAEnumSize_ ATAEnumString_ ATAEnumStrings_ ATAEnumValue_ ATAEnumValues_ ATAName_ ATARangeValue_ Attachment Attr__ AttrBarsVal__ AttrBaseType AttrDateVal__ AttrDef AttrDef__ AttrDefVal__ AttrDescVal__ AttrDxlVal__ AttrHideVal__ AttrHistVal__ AttrInhVal__ AttrLocaleVal__ AttrMultiVal__ AttrTop__ AttrType AttrType__ Baseline BaselineSet BaselineSetDefinition Before__ Below__ Binary__ Bitmap Buffer Clipboard__ ClipboardLock CMS_Message CMS_MessageConsumer Codepages__ Column Comment CommentBool_ CommentDate_ CommentDiscussion_ CommentModVer_ CommentStatus_ CommentString_ CommentUser_ ConfCachePolicy ConfDirectory__ ConfStream ConfType ControlledResource__ Database__ Date DB DBE DbPropertiesCache DdcMode DebugVar DialogDefaults Dictionary Directory__ DiscDate_ DiscModVer_ DiscStatus_ DiscString_ DiscUser_ Discussion DiscussionFilter DiscussionFilterType DiscussionStatus DisplaySchemes Document__ DOM_Document_ DOM_Element_ DropEvent DropEventBool_ DropEventDBE_ DropEventInt_ DropEventString_ DxlObject DxlObjectLHS EachInLinkRef__ EmbeddedOleObject Entire__ ExternalLink ExternalLinkBehaviour ExternalLinkDirection ExtLinkRef__ Fattr_ Filter FilteredLdapGroupListRef__ FilteredLdapUserListRef__ FilteredLdapUserRef__ Folder FolderRef__ Fonts__ glueOn1__ glueOn2__ GrammarRules Group GroupElement_ GroupList GroupRef__ HABool_ HADate_ HAInt_ HAString_ HAType_ HAValue_ HeaderEvent History HistorySession HistoryType HttpBody HttpBody_ HttpBodyInt_ HttpBodyString_ HttpHeader HttpHeader_ HttpHeaderEntry HttpHeaderEntryString_ HttpResponse HttpResponseBool_ HttpResponseInt_ HttpVerb Icon IconID InLinkRef__ InPartition InPartString_ InPlaceBox__ InPlaceEditEvent IntegrityCheckItem IntegrityItemType IntegrityProblem IntegrityResultsData IPC Item Justification Language Languages__ Last__ LdapItem LdapItemList LdapItemString_ Link LinkFilter LinkModuleDescriptor LinkRef Linkset Locale Locales__ Lock LockElement_ LockList LockRef__ LoginPolicy LongDateFormats__ MA_End__ MA_StdCombo__ MA_StdItem__ MA_StdMenu__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion MsgExt OAuthConsumer OAuthConsumerBool_ OAuthConsumerString_ Object ObjectRef__ OleAutoArgs OleAutoObj OSLCCatalogServiceProvider OSLCCatalogServiceProviderString_ OSLCLinkType OSLCLinkTypeBool_ OSLCLinkTypeString_ OSLCServer OSLCServerBool_ OSLCServerString_ OSLCServiceProvider OSLCServiceProviderDialog OSLCServiceProviderDialog_ OSLCServiceProviderDialogBool_ OSLCServiceProviderDialogInt_ OSLCServiceProviderDialogs OSLCServiceProviderDialogs_ OSLCServiceProviderDialogString_ OSLCServiceProviderString_ OutLinkRef__ OutPartition OutPartString_ PageLayout PageLayouts_ PartAttrString_ PartDefString_ PartFileString_ PartitionAttribute PartitionDefinition PartitionFile PartitionLinkset PartitionModule PartitionPermission PartitionView PartModString_ PartViewString_ Permission Picture__ ProblemItem Project Range_ RecentModule__ Regexp ReservedName__ RichText RichTextParagraph RifDefinition RifDefinitionBool_ RifDefinitionProject_ RifDefinitionString_ RifExportPackage RifExportRecord RifExportRecordDate_ RifExportRecordDef_ RifExportRecordString_ RifExportRecordUser_ RifImport RifImportBool_ RifImportDate_ RifImportDef_ RifImportFolder_ RifImportFolderInfo RifImportFolderInfoString_ RifImportModuleInfo RifImportModuleInfoString_ RifImportPackage RifImportPackageString_ RifImportUser_ RifModuleDefinition RifModuleDefinitionBool_ RifModuleDefinitionDdcMode_ RifModuleDefinitionInt_ RifModuleDefinitionString_ RifModuleDefinitionVersion_ Root__ RowRef__ RTF_buffer__ RTF_buffer_No_Ole__ RTF_buffer_With_Ole__ RTF_string__ RTFCharset_ RTFEmbeddedOLE_ RTFInt_ RTFString_ RTFText_ Script__ Scroll__ ScrollDest__ ScrollEvent ScrollSide ScrollUpDown__ Sensitivity SessionModule_ SessionObject_ ShortDateFormats__ Sibling__ SignatureEntry SignatureInfo SignatureInfoSpecifier__ Skip Sort SpellingAlternatives__ SpellingError SpellingErrors__ SpellingOptions Stat Stream Symbolic__ TableBorderPosition TableBorderStyle TableRef__ Template TemplateB__ TokenReader TokenWriter ToolType trigEvent_ Trigger TriggerStatus trigLevel_ trigLevelDesc_ trigLevelMod_ trigType_ User UserClass UserElement_ UserList UserNotifyList UserRef__ View ViewDef Views_ Window__ ZipType</string>
 			<key>match</key>
-			<string>\b(?:A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)\b</string>
+			<string>\b(?:A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)\b</string>
 			<key>name</key>
 			<string>support.type.doors.dxl</string>
 		</dict>
@@ -1593,16 +2114,53 @@
 			<key>name</key>
 			<string>storage.type.dxl</string>
 		</dict>
+		<key>variable</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#variable_Current</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variable_Database</string>
+				</dict>
+			</array>
+		</dict>
+		<key>variable_Current</key>
+		<dict>
+			<key>comment</key>
+			<string>attrDXLName obj</string>
+			<key>match</key>
+			<string>\b(?:attrDXLName|obj|)\b</string>
+			<key>name</key>
+			<string>constant.perm.current.dxl</string>
+		</dict>
+		<key>variable_Database</key>
+		<dict>
+			<key>comment</key>
+			<string>database dbExplorer</string>
+			<key>match</key>
+			<string>\bd(?:atabase|bExplorer)\b</string>
+			<key>name</key>
+			<string>constant.perm.database.dxl</string>
+		</dict>
 		<key>variablesDeclaration</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\s+([\*&amp;])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\s*(?=$|[,;=\n\[]|//|/\*)</string>
+			<string>(?:^|(?&lt;=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\s+(?:([\*&amp;])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))|\(\s*([\*&amp;])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\))\s*(?=$|[,;=\n\[]|//|/\*)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>storage.modifier.dxl</string>
+				</dict>
+				<key>10</key>
+				<dict>
+					<key>name</key>
+					<string>variable.dxl</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -1633,6 +2191,16 @@
 				<dict>
 					<key>name</key>
 					<string>variable.dxl</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>variable.other.pointer.dxl</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.keyword.dxl</string>
 				</dict>
 			</dict>
 			<key>end</key>

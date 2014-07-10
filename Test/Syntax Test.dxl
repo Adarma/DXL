@@ -9,8 +9,8 @@
 
 /* single line block */
 
-trigLevelMod_
-trigLevel_
+trigLevelMod_ oTrigLevelMod
+trigLevel_  oTrigLevel
 
 void functionWithLineComment()
 // Here is the comment
@@ -632,6 +632,13 @@ FormatText("UpPeR", LowerCase)
 FormatText("UpPeR", UpperCase)
 
 
+// Archive
+allBaselines()
+noBaselines()
+
+// Dxl
+obj
+attrDXLName
 
 // Constants
 
@@ -653,10 +660,6 @@ dbExplorer
 // Treeview
 treeViewOptionSorted
 
-// Dxl
-obj
-attrDXLName
-
 // Permission
 change
 control
@@ -667,9 +670,6 @@ none
 read
 write
 
-// Archive
-allBaselines
-noBaselines
 
 // Archive Type
 zipModule5Archive

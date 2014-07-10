@@ -1,5 +1,5 @@
 
-#include <C:\Portable\Sublime Text 2.0.2\Data\Packages\DXL\Test\Debug Test.inc>
+#include <C:\!ADAM!\Portable\Sublime Text Build 3 (GIT Dev)\Data\Packages\DXL\Test\Debug Test.inc>
 
 // print "Allocation Test\n"
 Array oArray = create(1, 1)
@@ -12,7 +12,7 @@ delete(oBuffer)
 delete(oArray)
 // print "End Test\n"
 
-halt
+// halt
 
 Allocate();sleep_(150)
 

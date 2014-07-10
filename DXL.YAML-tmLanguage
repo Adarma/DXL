@@ -20,6 +20,7 @@ repository:
 
   blockStatements:
     patterns:
+    - include: '#whitespace'
     - include: '#comments'
     - include: '#continuation'
     - include: '#literalBoolean'
@@ -35,13 +36,15 @@ repository:
     - include: '#functionCallPerm'
     - include: '#functionCallCustom'
     - include: '#typeFundamental'
+    - include: '#constant'
+    - include: '#constant_function'
+    - include: '#variable'
     - include: '#typeDoors'
     - include: '#typeCustom'
     - include: '#controlFlow'
     - include: '#controlFlowBreak'
     - include: '#reservedKeyword'
     - include: '#logical'
-    - include: '#constant'
     - include: '#property'
     - include: '#propertyAccessDot'
     - include: '#propertyAccessPtr'
@@ -85,130 +88,358 @@ repository:
 
   constant:
     patterns:
-    - include: '#constantArchive'
-    - include: '#constantArchiveType'
-    - include: '#constantAttribute'
-    - include: '#constantButtonArrow'
-    - include: '#constantCharacterSet'
-    - include: '#constantClipboardFormat'
-    - include: '#constantClipboardType'
-    - include: '#constantCodePage'
-    - include: '#constantColourActual'
-    - include: '#constantColourLogical'
-    - include: '#constantColourReal'
-    - include: '#constantConfig'
-    - include: '#constantCurrent'
-    - include: '#constantDatabase'
-    - include: '#constantExternal'
-    - include: '#constantFont'
-    - include: '#constantHistory'
-    - include: '#constantIcon'
-    - include: '#constantInfo'
-    - include: '#constantInPlace'
-    - include: '#constantKey'
-    - include: '#constantKeyModifier'
-    - include: '#constantLanguage'
-    - include: '#constantLink'
-    - include: '#constantListview'
-    - include: '#constantLocale'
-    - include: '#constantMapping'
-    - include: '#constantMenu'
-    - include: '#constantPermission'
-    - include: '#constantPicture'
-    - include: '#constantRun'
-    - include: '#constantSeverity'
-    - include: '#constantStandardIcon'
-    - include: '#constantStandardItem'
-    - include: '#constantStandardMenu'
-    - include: '#constantStyle'
-    - include: '#constantTreeview'
-    - include: '#constantTriggerEvent'
-    - include: '#constantTriggerLevel'
-    - include: '#constantTriggerModifier'
-    - include: '#constantTriggerStatus'
-    - include: '#constantTriggerTime'
-    - include: '#constantType'
-    - include: '#constantUser'
-    - include: '#constantUserClass'
-    - include: '#whitespace'
+    - include: '#constant_Arrow__'
+    - include: '#constant_AttrBaseType'
+    - include: '#constant_Clipboard__'
+    - include: '#constant_Codepages__'
+    - include: '#constant_ConfCachePolicy'
+    - include: '#constant_ConfType'
+    - include: '#constant_DBE'
+    - include: '#constant_Database__'
+    - include: '#constant_DdcMode'
+    - include: '#constant_DiscussionFilterType'
+    - include: '#constant_DiscussionStatus'
+    - include: '#constant_DisplaySchemes'
+    - include: '#constant_ExternalLinkBehaviour'
+    - include: '#constant_ExternalLinkDirection'
+    - include: '#constant_Fonts__'
+    - include: '#constant_GroupList'
+    - include: '#constant_HeaderEvent'
+    - include: '#constant_HistoryType'
+    - include: '#constant_HttpVerb'
+    - include: '#constant_Icon'
+    - include: '#constant_IconID'
+    - include: '#constant_InPlaceBox__'
+    - include: '#constant_InPlaceEditEvent'
+    - include: '#constant_LdapItemList'
+    - include: '#constant_LinkFilter'
+    - include: '#constant_Locales__'
+    - include: '#constant_LoginPolicy'
+    - include: '#constant_MA_End__'
+    - include: '#constant_MA_StdCombo__'
+    - include: '#constant_MA_StdItem__'
+    - include: '#constant_MA_StdMenu__'
+    - include: '#constant_RecentModule__'
+    - include: '#constant_Regexp'
+    - include: '#constant_Script__'
+    - include: '#constant_ScrollEvent'
+    - include: '#constant_ScrollSide'
+    - include: '#constant_Sensitivity'
+    - include: '#constant_Stream'
+    - include: '#constant_ToolType'
+    - include: '#constant_TriggerStatus'
+    - include: '#constant_UserClass'
+    - include: '#constant_UserList'
+    - include: '#constant_UserNotifyList'
+    - include: '#constant_ZipType'
+    - include: '#constant_bool'
+    - include: '#constant_char'
+    - include: '#constant_char_Key'
+    - include: '#constant_int_CharacterSet'
+    - include: '#constant_int_ClipboardFormat'
+    - include: '#constant_int_ClipboardType'
+    - include: '#constant_int_CodePage'
+    - include: '#constant_int_ColourActual'
+    - include: '#constant_int_ColourLogical'
+    - include: '#constant_int_ColourReal'
+    - include: '#constant_int_ColourScheme'
+    - include: '#constant_int_ColourSize'
+    - include: '#constant_int_Column'
+    - include: '#constant_int_Edit'
+    - include: '#constant_int_FilterType'
+    - include: '#constant_int_Font'
+    - include: '#constant_int_Format'
+    - include: '#constant_int_Info'
+    - include: '#constant_int_KeyModifier'
+    - include: '#constant_int_Language'
+    - include: '#constant_int_LineSpacing'
+    - include: '#constant_int_LinkLimit'
+    - include: '#constant_int_ListView'
+    - include: '#constant_int_Lock'
+    - include: '#constant_int_Mapping'
+    - include: '#constant_int_Proof'
+    - include: '#constant_int_Run'
+    - include: '#constant_int_Severity'
+    - include: '#constant_int_StatusBar'
+    - include: '#constant_int_Style'
+    - include: '#constant_int_TreeView'
+    - include: '#constant_real'
+    - include: '#constant_string'
+    - include: '#constant_string_Array'
 
-  constantArchive:
-    comment: allBaselines noBaselines
-    name: constant.perm.archive.dxl
-    match: \b(?:all|no)Baselines\b
-
-  constantArchiveType:
-    comment: zipModule5Archive zipModuleArchive zipNotArchive zipPre3ModuleArchive
-      zipPre3ProjectArchive zipPre5ModuleArchive zipPre5ProjectArchive zipProject5Archive
-      zipProjectArchive zipUserList5Archive zipUserListArchive
-    name: constant.perm.archivetype.dxl
-    match: \bzip(?:Module5?|Not|Pr(?:e(?:3(?:Module|Project)|5(?:Module|Project))|oject5?)|UserList5?)Archive\b
-
-  constantAttribute:
-    comment: changeBars date default description dxl hidden history inherit multi
-      type
-    name: constant.perm.attribute.dxl
-    match: \b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\b
-
-  constantButtonArrow:
+  constant_Arrow__:
     comment: topLeftArrow upArrow topRightArrow leftArrow allWaysArrow rightArrow
       bottomLeftArrow downArrow bottomRightArrow leftRightArrow upDownArrow
-    name: constant.perm.arrow.dxl
+    name: constant.perm.Arrow__.dxl
     match: \b(?:allWays|bottom(?:Lef|Righ)t|down|left(?:Right)?|right|top(?:Lef|Righ)t|up(?:Down)?)Arrow\b
 
-  constantCharacterSet:
+  constant_AttrBaseType:
+    comment: attrDate attrEnumeration attrInteger attrReal attrString attrText attrUsername
+    name: constant.perm.AttrBaseType.dxl
+    match: \battr(?:Date|Enumeration|Integer|Real|String|Text|Username)\b
+
+  constant_Clipboard__:
+    comment: clipboard
+    name: constant.perm.Clipboard__.dxl
+    match: \bclipboard\b
+
+  constant_Codepages__:
+    comment: installedCodepages supportedCodepages
+    name: constant.perm.Codepages__.dxl
+    match: \b(?:install|support)edCodepages\b
+
+  constant_ConfCachePolicy:
+    comment: cacheFull cacheHalf cacheNone
+    name: constant.perm.ConfCachePolicy.dxl
+    match: \bcache(?:Full|Half|None)\b
+
+  constant_ConfType:
+    comment: confProjUser confSystem confSysUser confTemp confUser
+    name: constant.perm.conftype.dxl
+    match: \bconf(?:ProjUser|Sys(?:User|tem)|Temp|User)\b
+
+  constant_DBE:
+    comment: sep
+    name: constant.perm.DBE.dxl
+    match: \bsep\b
+
+  constant_Database__:
+    comment: database
+    name: constant.perm.Database__.dxl
+    match: \bdatabase\b
+
+  constant_DdcMode:
+    comment: ddcByAttribute ddcByObject ddcFullModule ddcNone ddcReadOnly
+    name: constant.perm.DdcMode.dxl
+    match: \bddc(?:By(?:Attribute|Object)|FullModule|None|ReadOnly)\b
+
+  constant_DiscussionFilterType:
+    comment: AllDiscussions ClosedDiscussions DiscussionsActiveWithinBaseline DiscussionsClosedInBaseline DiscussionsOpenedInBaseline OpenDiscussions OpenedInOrAfterBaseline OpenedInOrBeforeBaseline
+    name: constant.perm.DiscussionFilterType.dxl
+    match: \b(?:AllDiscussions|ClosedDiscussions|Discussions(?:ActiveWithi|ClosedI|OpenedI)nBaseline|Open(?:Discussions|edInOr(?:After|Before)Baseline))\b
+
+  constant_DiscussionStatus:
+    comment: Closed Open
+    name: constant.perm.DiscussionStatus.dxl
+    match: \b(?:Closed|Open)\b
+
+  constant_DisplaySchemes:
+    comment: displaySchemes
+    name: constant.perm.DisplaySchemes.dxl
+    match: \bdisplaySchemes\b
+
+  constant_ExternalLinkBehaviour:
+    comment: none openAsURL
+    name: constant.perm.ExternalLinkBehaviour.dxl
+    match: \b(?:none|openAsURL)\b
+
+  constant_ExternalLinkDirection:
+    comment: inward outward
+    name: constant.perm.ExternalLinkDirection.dxl
+    match: \b(?:in|out)ward\b
+
+  constant_Fonts__:
+    comment: availableFonts
+    name: constant.perm.Fonts__.dxl
+    match: \bavailableFonts\b
+
+  constant_GroupList:
+    comment: groupList
+    name: constant.perm.GroupList.dxl
+    match: \bgroupList\b
+
+  constant_HeaderEvent:
+    comment: headerEdit headerReorder headerResize headerSelect
+    name: constant.perm.HeaderEvent.dxl
+    match: \bheader(?:Edit|Re(?:order|size)|Select)\b
+
+  constant_HistoryType:
+    comment: acceptModule baselineModule changeOLE clipCopyObject clipCutObject clipMoveObject commentModule commentObject copyObject createAttr createLink createModule createObject createType cutOLE deleteAttr deleteLink deleteObject deleteType insertOLE modifyAttr modifyLink modifyObject modifyType moveObject partitionModule pasteOLE purgeObject readLocked rejoinModule removeOLE returnModule synchronizeModule unDeleteObject unknown
+    name: constant.perm.HistoryType.dxl
+    match: \b(?:acceptModule|baselineModule|c(?:hangeOLE|lip(?:C(?:opy|ut)|Move)Object|o(?:mment(?:Module|Object)|pyObject)|reate(?:Attr|Link|Module|Object|Type)|utOLE)|delete(?:Attr|Link|Object|Type)|insertOLE|mo(?:dify(?:Attr|Link|Object|Type)|veObject)|p(?:a(?:rtitionModule|steOLE)|urgeObject)|re(?:adLocked|joinModule|moveOLE|turnModule)|synchronizeModule|un(?:DeleteObject|known))\b
+
+  constant_HttpVerb:
+    comment: HttpDelete HttpGet HttpHead HttpPost HttpPut
+    name: constant.perm.HttpVerb.dxl
+    match: \bHttp(?:Delete|Get|Head|P(?:os|u)t)\b
+
+  constant_Icon:
+    comment: iconAuthenticatingUser iconCompareBaseline iconCopyBaseline iconCreateBaseline iconDatabase iconDeleteBaseline iconDescriptive iconDescriptiveCut iconDescriptiveDeleted iconExternalLinkIn iconExternalLinkOut iconFind iconFindNext iconFindPrevious iconFolder iconFolderCut iconFolderDeleted iconFolderOpen iconFolderOpenDeleted iconFormal iconFormalCut iconFormalDeleted iconGroup iconGroupDisabled iconLink iconLinkCut iconLinkDeleted iconLinkIn iconLinkOut iconLinkProperties iconNewExtLink iconNone iconProject iconProjectCut iconProjectDeleted iconProjectOpen iconProjectOpenDeleted iconReadOnly iconUser iconUserDisabled iconUserDisabledKey iconUserKey iconViewBaseline
+    name: constant.perm.Icon.dxl
+    match: \bicon(?:AuthenticatingUser|C(?:o(?:mpare|py)|reate)Baseline|D(?:atabase|e(?:leteBaseline|scriptive(?:Cut|Deleted)?))|ExternalLink(?:In|Out)|F(?:ind(?:Next|Previous)?|o(?:lder(?:Cut|Deleted|Open(?:Deleted)?)?|rmal(?:Cut|Deleted)?))|Group(?:Disabled)?|Link(?:Cut|Deleted|In|Out|Properties)?|N(?:ewExtLink|one)|Project(?:Cut|Deleted|Open(?:Deleted)?)?|ReadOnly|User(?:Disabled(?:Key)?|Key)?|ViewBaseline)\b
+
+  constant_IconID:
+    comment: addToFavoritesIcon autoIndentMainColumnIcon clearStartIcon columnEditIcon columnInsertIcon columnRemoveIcon copyIcon copyModIcon createFormalModIcon createLinkIcon createLinkModIcon createLinksetIcon createModIcon createObjDownIcon createObjSameIcon cutIcon decreaseLevelIcon deleteIcon deleteLinkIcon deleteLinksetIcon deleteModIcon deleteObjIcon demoteObjectIcon dispFilterIcon dispGraphicsIcon dispOutlineIcon dispSortIcon editHeadingIcon editLinkIcon editModIcon editTextIcon editUsersIcon endLinkIcon explorerIcon extractObjIcon extractOneDownIcon filterDialogIcon filterReapplyIcon folderCloseIcon folderNewIcon folderOpenIcon gotoIcon increaseLevelIcon justifyCenterIcon justifyFullIcon justifyLeftIcon justifyRightIcon layWizIcon level10Icon level1Icon level2Icon level3Icon level4Icon level5Icon level6Icon level7Icon level8Icon level9Icon levelAllIcon linkFromStartIcon linkToStartIcon matrixModeIcon noIcon pasteIcon printIcon projCloseIcon projNewIcon projOpenIcon projWizIcon promoteObjectIcon propertiesIcon readModIcon repManIcon repWizIcon saveIcon shareModIcon showMarkedObjsIcon spellcheckIcon startLinkIcon startNewLinkIcon swapHeadingTextIcon tableCreateIcon tableInsertColIcon tableInsertRowIcon tableSetBordersIcon textBold textBullet textItalic textLessIndent textMoreIndent textStrikeThrough textUnderline undeleteModIcon viewWizIcon wordIcon yesIcon
+    name: constant.perm.IconID.dxl
+    match: \b(?:a(?:ddToFavorites|utoIndentMainColumn)Icon|c(?:learStart|o(?:lumn(?:Edit|Insert|Remove)|py(?:Mod)?)|reate(?:FormalMod|Link(?:Mod|set)?|Mod|Obj(?:Down|Same))|ut)Icon|d(?:e(?:creaseLevel|lete(?:Link(?:set)?|Mod|Obj)?|moteObject)|isp(?:Filter|Graphics|Outline|Sort))Icon|e(?:dit(?:Heading|Link|Mod|Text|Users)|ndLink|x(?:plorer|tractO(?:bj|neDown)))Icon|f(?:ilter(?:Dialog|Reapply)|older(?:Close|New|Open))Icon|gotoIcon|increaseLevelIcon|justify(?:Center|Full|Left|Right)Icon|l(?:ayWiz|evel(?:10|All|[123456789])|ink(?:From|To)Start)Icon|matrixModeIcon|noIcon|p(?:aste|r(?:int|o(?:j(?:Close|New|Open|Wiz)|moteObject|perties)))Icon|re(?:adMod|p(?:Man|Wiz))Icon|s(?:ave|h(?:areMod|owMarkedObjs)|pellcheck|tart(?:New)?Link|wapHeadingText)Icon|t(?:able(?:Create|Insert(?:Col|Row)|SetBorders)Icon|ext(?:B(?:old|ullet)|Italic|LessIndent|MoreIndent|StrikeThrough|Underline))|undeleteModIcon|viewWizIcon|wordIcon|yesIcon)\b
+
+  constant_InPlaceBox__:
+    comment: inPlaceChoice inPlaceString inPlaceText
+    name: constant.perm.InPlaceBox__.dxl
+    match: \binPlace(?:Choice|String|Text)\b
+
+  constant_InPlaceEditEvent:
+    comment: inPlaceTextChange inPlaceTextFilled
+    name: constant.perm.InPlaceEditEvent.dxl
+    match: \binPlaceText(?:Change|Filled)\b
+
+  constant_LdapItemList:
+    comment: ldapGroupList ldapUserList
+    name: constant.perm.LdapItemList.dxl
+    match: \bldap(?:Group|User)List\b
+
+  constant_LinkFilter:
+    comment: linkFilterBoth linkFilterIncoming linkFilterOutgoing
+    name: constant.perm.LinkFilter.dxl
+    match: \blinkFilter(?:Both|Incoming|Outgoing)\b
+
+  constant_Locales__:
+    comment: installedLocales supportedLocales
+    name: constant.perm.Locales__.dxl
+    match: \b(?:install|support)edLocales\b
+
+  constant_LoginPolicy:
+    comment: viaDOORSLogin viaSystemLogin
+    name: constant.perm.LoginPolicy.dxl
+    match: \bvia(?:DOORS|System)Login\b
+
+  constant_MA_End__:
+    comment: menu buttonbar popup
+    name: constant.perm.MA_End__.dxl
+    match: \b(?:buttonbar|menu|popup)\b
+
+  constant_MA_StdCombo__:
+    comment: helpCombo levelCombo linksetCombo viewCombo
+    name: constant.perm.MA_StdCombo__.dxl
+    match: \b(?:help|l(?:evel|inkset)|view)Combo\b
+
+  constant_MA_StdItem__:
+    comment: archiveModuleItem attrDefItem attrTypeItem browseDXLItem clipClearItem clipCopyFlatItem clipCopyHierItem clipCopyUrl clipCutItem clipPasteDownItem clipPasteItem closeProjectItem colorOptionsItem columnAutoIndentMainColumnItem columnCenterJustifyItem columnCreateItem columnDeleteItem columnEditItem columnFullJustifyItem columnLeftJustifyItem columnRightJustifyItem columnUseAsToolTipsItem columnUseInGraphicsItem createDescriptiveModuleItem createFormalModuleItem createLinkModuleItem createProjectItem deleteModuleItem deleteProjectItem deselectItem dispDecLevelItem dispDeletionItem dispFilterDescendantsItem dispFilteringItem dispFilterParentsItem dispFilterTablesItem dispGraphicsItem dispGraphicsLinksItem dispGraphicsToolTipsItem dispIncLevelItem dispLevel10Item dispLevel1Item dispLevel2Item dispLevel3Item dispLevel4Item dispLevel5Item dispLevel6Item dispLevel7Item dispLevel8Item dispLevel9Item dispLevelAllItem dispLinkIndicatorsItem dispOutlineItem dispReqOnlyItem dispShowPicturesItem dispShowTablesItem dispSortingItem duplicateModuleItem duplicateProjectItem editDXLItem editUsersItem EXIT_Item extractDownItem extractSameItem extractSetupItem filterItem fontOptionsItem helpAboutItem helpContentsItem helpDescriptiveItem helpFormalItem helpHelpItem helpIndexItem helpLinkItem helpProjManItem helpSearchItem inplaceAcceptItem inplaceAttrItem inplaceHeadingItem inplaceRejectItem inplaceResetAttrItem inplaceTextBoldItem inplaceTextBulletItem inplaceTextDecreaseIndentItem inplaceTextIncreaseIndentItem inplaceTextItalicItem inplaceTextItem inplaceTextStrikeThruItem inplaceTextUnderlineItem linkClearStartItem linkCompleteFromItem linkCompleteToItem linkCreateItem linkDeleteItem linkEditItem linkGotoStartItem linkGraphicsItem linkGraphicsToggleItem linkMatrixItem linkRemoveItem linksetCreateItem linksetDeleteItem linksetRefreshItem linkSourceItem linkStartItem linkTargetItem modAccessItem modAttrEditItem modBaselineItem modCloseItem modDowngradeItem modHistoryItem modLayoutItem modPageSetupItem modPrintItem modPrintPreviewItem modSaveItem objAccessItem objCompressionItem objCompressItem objCopyDownItem objCopyItem objCreateDownItem objCreateItem objDeleteItem objDemoteItem objDiscardUnlockAllItem objDiscardUnlockItem objEditItem objHistoryItem objLockItem objMoveDownItem objMoveItem objMultiPurgeItem objPromoteItem objPurgeItem objSaveUnlockAllItem objSaveUnlockItem objUncompressItem objUndeleteItem OLEClearItem OLECopyItem OLECutItem OLEInsertItem OLEPasteItem OLEPasteSpecialItem OLERemoveItem OLEVerbItem openModuleEditItem openModuleReadItem openModuleShareItem openProjectItem optionsBrowserItem optionsDefaultsItem optionsNetworkMonitorItem optionsRestoreItem optionsSaveItem partitionAcceptItem partitionRejoinItem partitionReturnItem pictureItem projDefLinkModuleItem projectArchiveItem projectAttrItem projectPartitionItem projectRecoverItem projectRestoreItem purgeModuleItem purgeModulesItem purgeProjectItem redoItem renameModuleItem restoreModuleItem selectItem setUserNameItem showDeletedModulesItem showDeletedProjectsItem showDescriptiveModulesItem showFormalModulesItem showLinkModulesItem sortDescriptionItem sortItem sortNameItem sortTypeItem spellCheckItem tableAppendCellItem tableAppendColItem tableAppendRowItem tableBordersItem tableCreateDownItem tableCreateItem tableDeleteCellItem tableDeleteColItem tableDeleteItem tableDeleteRowItem tableDispOptsItem tableInsertCellItem tableInsertColItem tableInsertRowItem tableOptionCellItem tableOptionColItem tableOptionRowItem tableUndeleteCellItem tableUndeleteColItem tableUndeleteItem tableUndeleteRowItem undeleteModuleItem undeleteProjectItem undoItem undoItemCut undoItemDelete undoItemModify undoItemUndelete unlockModulesItem viewCreateItem viewDeleteItem viewItem viewLargeIconItem viewListItem viewReportItem viewShowItem viewSmallIconItem
+    name: constant.perm.MA_StdItem__.dxl
+    match: \b(?:EXIT_Item|OLE(?:C(?:lear|opy|ut)|Insert|Paste(?:Special)?|Remove|Verb)Item|a(?:rchiveModule|ttr(?:Def|Type))Item|browseDXLItem|c(?:l(?:ip(?:C(?:learItem|opy(?:FlatItem|HierItem|Url)|utItem)|Paste(?:Down)?Item)|oseProjectItem)|ol(?:orOptions|umn(?:AutoIndentMainColumn|C(?:enterJustify|reate)|Delete|Edit|FullJustify|LeftJustify|RightJustify|Use(?:AsToolTip|InGraphic)s))Item|reate(?:DescriptiveModule|FormalModule|LinkModule|Project)Item)|d(?:e(?:lete(?:Module|Project)|select)|isp(?:De(?:cLevel|letion)|Filter(?:Descendants|Parents|Tables|ing)|Graphics(?:Links|ToolTips)?|IncLevel|L(?:evel(?:10|All|[123456789])|inkIndicators)|Outline|ReqOnly|S(?:how(?:Pictur|Tabl)es|orting))|uplicate(?:Module|Project))Item|e(?:dit(?:DXL|Users)|xtract(?:Down|S(?:ame|etup)))Item|f(?:ilter|ontOptions)Item|help(?:About|Contents|Descriptive|Formal|Help|Index|Link|ProjMan|Search)Item|inplace(?:A(?:ccept|ttr)|Heading|Re(?:ject|setAttr)|Text(?:B(?:old|ullet)|DecreaseIndent|I(?:ncreaseIndent|talic)|StrikeThru|Underline)?)Item|link(?:C(?:learStart|omplete(?:From|To)|reate)|Delete|Edit|G(?:otoStart|raphics(?:Toggle)?)|Matrix|Remove|S(?:ource|tart)|Target|set(?:Create|Delete|Refresh))Item|mod(?:A(?:ccess|ttrEdit)|Baseline|Close|Downgrade|History|Layout|P(?:ageSetup|rint(?:Preview)?)|Save)Item|o(?:bj(?:Access|C(?:o(?:mpress(?:ion)?|py(?:Down)?)|reate(?:Down)?)|D(?:e(?:le|mo)te|iscardUnlock(?:All)?)|Edit|History|Lock|M(?:ove(?:Down)?|ultiPurge)|P(?:romot|urg)e|SaveUnlock(?:All)?|Un(?:compress|delete))|p(?:en(?:Module(?:Edit|Read|Share)|Project)|tions(?:Browser|Defaults|NetworkMonitor|Restore|Save)))Item|p(?:artition(?:Accept|Re(?:joi|tur)n)|icture|roj(?:DefLinkModule|ect(?:A(?:rchive|ttr)|Partition|Re(?:cover|store)))|urge(?:Modules?|Project))Item|re(?:do|nameModule|storeModule)Item|s(?:e(?:lect|tUserName)|how(?:De(?:leted(?:Module|Project)|scriptiveModule)|FormalModule|LinkModule)s|ort(?:Description|Name|Type)?|pellCheck)Item|table(?:Append(?:C(?:el|o)l|Row)|Borders|Create(?:Down)?|D(?:elete(?:C(?:el|o)l|Row)?|ispOpts)|Insert(?:C(?:el|o)l|Row)|Option(?:C(?:el|o)l|Row)|Undelete(?:C(?:el|o)l|Row)?)Item|un(?:d(?:elete(?:Module|Project)Item|oItem(?:Cut|Delete|Modify|Undelete)?)|lockModulesItem)|view(?:Create|Delete|L(?:argeIcon|ist)|Report|S(?:how|mallIcon))?Item)\b
+
+  constant_MA_StdMenu__:
+    comment: attributeMenu clipboardMenu clipCopyMenu clipPasteMenu columnMenu editMenu extractMenu helpMenu linkMenu linksetMenu moduleMenu objCopyMenu objCreateMenu objectMenu objMoveMenu objUnlockMenu oleMenu optionsMenu projectMenu projectPartitionMenu tableCellMenu tableColMenu tableMenu tableRowMenu toolsMenu usersMenu viewMenu
+    name: constant.perm.MA_StdMenu__.dxl
+    match: \b(?:attribute|c(?:lip(?:Copy|Paste|board)|olumn)|e(?:di|xtrac)t|help|link(?:set)?|module|o(?:bj(?:C(?:opy|reate)|Move|Unlock|ect)|le|ptions)|project(?:Partition)?|t(?:able(?:C(?:el|o)l|Row)?|ools)|users|view)Menu\b
+
+  constant_RecentModule__:
+    comment: recentModules
+    name: constant.perm.RecentModule__.dxl
+    match: \brecentModules\b
+
+  constant_Regexp:
+    comment: URL
+    name: constant.perm.Regexp.dxl
+    match: \bURL\b
+
+  constant_Script__:
+    comment: dxlScript
+    name: constant.perm.Script__.dxl
+    match: \bdxlScript\b
+
+  constant_ScrollEvent:
+    comment: scrollDown scrollPageDown scrollPageUp scrollToEnd scrollToHome scrollToPos scrollUp
+    name: constant.perm.ScrollEvent.dxl
+    match: \bscroll(?:Down|Page(?:Down|Up)|To(?:End|Home|Pos)|Up)\b
+
+  constant_ScrollSide:
+    comment: horizontal vertical
+    name: constant.perm.ScrollSide.dxl
+    match: \b(?:horizont|vertic)al\b
+
+  constant_Sensitivity:
+    comment: ddbAvailable ddbChecked ddbInvisible ddbUnavailable
+    name: constant.perm.Sensitivity.dxl
+    match: \bddb(?:Available|Checked|Invisible|Unavailable)\b
+
+  constant_Stream:
+    comment: cerr cin cout out
+    name: constant.perm.Stream.dxl
+    match: \b(?:c(?:err|in|out)|out)\b
+
+  constant_ToolType:
+    comment: toolButton toolCombo toolEditableCombo toolRadio toolSpacer toolToggle
+    name: constant.perm.ToolType.dxl
+    match: \btool(?:Button|Combo|EditableCombo|Radio|Spacer|Toggle)\b
+
+  constant_TriggerStatus:
+    comment: trigError trigPreConFail trigPreConPass trigRunOK
+    name: constant.perm.TriggerStatus.dxl
+    match: \btrig(?:Error|PreCon(?:Fail|Pass)|RunOK)\b
+
+  constant_UserClass:
+    comment: administrator custom databaseManager projectManager standard
+    name: constant.perm.UserClass.dxl
+    match: \b(?:administrator|custom|databaseManager|projectManager|standard)\b
+
+  constant_UserList:
+    comment: userList
+    name: constant.perm.UserList.dxl
+    match: \buserList\b
+
+  constant_UserNotifyList:
+    comment: userNotifyList
+    name: constant.perm.UserNotifyList.dxl
+    match: \buserNotifyList\b
+
+  constant_ZipType:
+    comment: zipModule5Archive zipModule6aArchive zipModule6Archive zipModule7Archive zipModule8Archive zipModuleArchive zipNotArchive zipPre3ModuleArchive zipPre3ProjectArchive zipPre5ModuleArchive zipPre5ProjectArchive zipProject5Archive zipProject6aArchive zipProject6Archive zipProject7Archive zipProject8Archive zipProjectArchive zipUserList5Archive zipUserList6aArchive zipUserList6Archive zipUserList7Archive zipUserList8Archive zipUserListArchive
+    name: constant.perm.ZipType.dxl
+    match: \bzip(?:Module(?:6a|[5678])?|Not|Pr(?:e(?:3(?:Module|Project)|5(?:Module|Project))|oject(?:6a|[5678])?)|UserList(?:6a|[5678])?)Archive\b
+
+  constant_bool:
+    comment: ignoreReadOnly spellingFirst
+    name: constant.perm.bool.dxl
+    match: \b(?:ignoreReadOnly|spellingFirst)\b
+
+  constant_char:
+    comment: ddbNone ddbToggle
+    name: constant.perm.char.dxl
+    match: \bddb(?:Non|Toggl)e\b
+
+  constant_char_Key:
+    comment: keyF12 keyF11 keyF10 keyF9 keyF8 keyF7 keyF6 keyF5 keyF4 keyF3 keyF2
+      keyF1 keyHelp keyRight keyLeft keyDown keyUp keyPageDown keyPageUp keyEnd keyHome
+      keyDelete keyInsert keyEscape
+    name: constant.perm.char.key.dxl
+    match: \bkey(?:D(?:elete|own)|E(?:nd|scape)|F(?:1[012]|[123456789])|H(?:elp|ome)|Insert|Left|Page(?:Down|Up)|Right|Up)\b
+
+  constant_int_CharacterSet:
     comment: charsetAnsi charsetEastEurope charsetGreek charsetHebrew charsetRussian
       charsetSymbol charsetTurkish
-    name: constant.perm.characterset.dxl
+    name: constant.perm.int.CharacterSet.dxl
     match: \bcharset(?:Ansi|EastEurope|Greek|Hebrew|Russian|Symbol|Turkish)\b
 
-  constantClipboardFormat:
-    comment: CF_BITMAP CF_DIB CF_HDROP CF_MAX CF_METAFILEPICT CF_OEMTEXT
-    name: constant.perm.clipboardformat.dxl
-    match: \bCF_(?:BITMAP|DIB|HDROP|M(?:AX|ETAFILEPICT)|OEMTEXT)\b
+  constant_int_ClipboardFormat:
+    comment: CF_BITMAP CF_DIB CF_DIBV5 CF_DIF CF_ENHMETAFILE CF_HDROP CF_LOCALE CF_MAX CF_METAFILEPICT CF_OEMTEXT CF_PALETTE CF_PENDATA CF_RIFF CF_SYLK CF_TEXT CF_TIFF CF_UNICODETEXT CF_WAVE
+    name: constant.perm.int.ClipboardFormat.dxl
+    match: \bCF_(?:BITMAP|DI(?:BV5|[BF])|ENHMETAFILE|HDROP|LOCALE|M(?:AX|ETAFILEPICT)|OEMTEXT|P(?:ALETTE|ENDATA)|RIFF|SYLK|T(?:EXT|IFF)|UNICODETEXT|WAVE)\b
 
-  constantClipboardType:
-    comment: TYMED_ENHMF TYMED_GDI TYMED_HGLOBAL
-    name: constant.perm.clipboardtype.dxl
-    match: \bTYMED_(?:ENHMF|GDI|HGLOBAL)\b
+  constant_int_ClipboardType:
+    comment: TYMED_ENHMF TYMED_FILE TYMED_GDI TYMED_HGLOBAL TYMED_ISTORAGE TYMED_ISTREAM TYMED_MFPICT
+    name: constant.perm.int.ClipboardType.dxl
+    match: \bTYMED_(?:ENHMF|FILE|GDI|HGLOBAL|IST(?:ORAGE|REAM)|MFPICT)\b
 
-  constantCodePage:
+  constant_int_CodePage:
     comment: CP_CHS CP_CHT CP_JAP CP_KOR CP_LATIN1 CP_UNICODE CP_UTF16_BE CP_UTF16_LE
       CP_UTF8
-    name: constant.perm.codepage.dxl
+    name: constant.perm.int.CodePage.dxl
     match: \bCP_(?:CH[ST]|JAP|KOR|LATIN1|U(?:NICODE|TF(?:16_[BL]E|8)))\b
 
-  constantColourActual:
+  constant_int_ColourActual:
     comment: colorBlack colorBlue colorBrown colorCyan colorDarkTurquoise colorGreen
       colorGrey colorGrey77 colorGrey82 colorLightBlue colorMagenta colorMaroon colorMediumLightBlue
       colorOptionsItem colorOrange colorPink colorRed colorRedGrey colorWhite colorYellow
-    name: constant.perm.colour.dxl
+    name: constant.perm.int.ColourActual.dxl
     match: \bcolor(?:B(?:l(?:ack|ue)|rown)|Cyan|DarkTurquoise|Gre(?:en|y(?:77|82)|y)|LightBlue|M(?:a(?:genta|roon)|ediumLightBlue)|O(?:ptionsItem|range)|Pink|Red(?:Grey)?|White|Yellow)\b
 
-  constantColourLogical:
-    comment: logical0IndicatorColor logical100IndicatorColor logical11IndicatorColor
-      logical22IndicatorColor logical33IndicatorColor logical44IndicatorColor logical55IndicatorColor
-      logical66IndicatorColor logical77IndicatorColor logical88IndicatorColor logicalCurrentBackgroundColor
-      logicalCurrentCellBackgroundColor logicalCurrentObjectOutline logicalDataTextColor
-      logicalDefaultColor logicalDeletedTextColor logicalGraphicsBackgroundColor logicalGraphicsBoxColor
-      logicalGraphicsBoxEdgeColor logicalGraphicsCurrentColor logicalGraphicsElideBoxColor
-      logicalGraphicsLinkColor logicalGraphicsSelectedColor logicalGraphicsShadeColor
-      logicalGraphicsTextColor logicalGridLines logicalHighIndicatorColor logicalHighlightURLColor
-      logicalInPlaceBackgroundColor logicalInPlaceTextColor logicalLinkCurrentBackgroundColor
-      logicalLinkDataTextColor logicalLinkPageBackgroundColor logicalLinksInIndicatorColor
-      logicalLinksOutIndicatorColor logicalLinkTextBackgroundColor logicalLinkTitleBackgroundColor
-      logicalLowIndicatorColor logicalMediumIndicatorColor logicalPageBackgroundColor
-      logicalPageBackgroundFilterColor logicalPageBackgroundFilterSortColor logicalPageBackgroundSortColor
-      logicalPartitionInReadTextColor logicalPartitionInWriteTextColor logicalPartitionOutTextColor
-      logicalPrintPreviewBackgroundColor logicalPrintPreviewPageColor logicalPrintPreviewShadeColor
-      logicalPrintPreviewTextColor logicalReadOnlyTextBackgroundColor logicalReadOnlyTextColor
-      logicalSelectedTextColor logicalTextBackgroundColor logicalTitleBackgroundColor
-      logicalTitleBackgroundColor logicalTitleTextColor logicalUnlockedTextBackgroundColor
-      logicalUser1Color logicalUser2Color logicalUser3Color logicalUser4Color logicalUser5Color
-    name: constant.perm.colour.dxl
-    match: \blogical(?:0IndicatorColor|1(?:00|1)IndicatorColor|22IndicatorColor|33IndicatorColor|44IndicatorColor|55IndicatorColor|66IndicatorColor|77IndicatorColor|88IndicatorColor|Current(?:BackgroundColor|CellBackgroundColor|ObjectOutline)|D(?:ataTex|e(?:faul|letedTex))tColor|Gr(?:aphics(?:B(?:ackground|ox(?:Edge)?)|Current|ElideBox|Link|S(?:elected|hade)|Text)Color|idLines)|High(?:Indicator|lightURL)Color|InPlace(?:Background|Text)Color|L(?:ink(?:CurrentBackground|DataText|PageBackground|T(?:ext|itle)Background|s(?:In|Out)Indicator)|owIndicator)Color|MediumIndicatorColor|P(?:a(?:geBackground(?:Filter(?:Sort)?|Sort)?|rtition(?:In(?:Read|Write)|Out)Text)|rintPreview(?:Background|Page|Shade|Text))Color|ReadOnlyText(?:Background)?Color|SelectedTextColor|T(?:extBackground|itle(?:Background|Text))Color|U(?:nlockedTextBackground|ser[12345])Color)\b
+  constant_int_ColourLogical:
+    comment: logical0IndicatorColor logical100IndicatorColor logical11IndicatorColor logical22IndicatorColor logical33IndicatorColor logical44IndicatorColor logical55IndicatorColor logical66IndicatorColor logical77IndicatorColor logical88IndicatorColor logicalCurrentBackgroundColor logicalCurrentCellBackgroundColor logicalCurrentObjectOutline logicalDataTextColor logicalDefaultColor logicalDeletedTextColor logicalGUIDefaultColor logicalGraphicsBackgroundColor logicalGraphicsBoxColor logicalGraphicsBoxEdgeColor logicalGraphicsCurrentColor logicalGraphicsElideBoxColor logicalGraphicsLinkColor logicalGraphicsSelectedColor logicalGraphicsShadeColor logicalGraphicsTextColor logicalGridLines logicalHighIndicatorColor logicalHighlightURLColor logicalInPlaceBackgroundColor logicalInPlaceTextColor logicalLinkCurrentBackgroundColor logicalLinkDataTextColor logicalLinkPageBackgroundColor logicalLinkTextBackgroundColor logicalLinkTitleBackgroundColor logicalLinksInIndicatorColor logicalLinksOutIndicatorColor logicalLinksStartIndicatorColor logicalLowIndicatorColor logicalMediumIndicatorColor logicalPageBackgroundColor logicalPageBackgroundFilterColor logicalPageBackgroundFilterSortColor logicalPageBackgroundSortColor logicalPartitionInReadTextColor logicalPartitionInWriteTextColor logicalPartitionOutTextColor logicalPrintPreviewBackgroundColor logicalPrintPreviewPageColor logicalPrintPreviewShadeColor logicalPrintPreviewTextColor logicalReadOnlyTextBackgroundColor logicalReadOnlyTextColor logicalSelectedTextColor logicalTextBackgroundColor logicalTitleBackgroundColor logicalTitleBackgroundColorSelected logicalTitleTextColor logicalUnlockedTextBackgroundColor logicalUser1Color logicalUser2Color logicalUser3Color logicalUser4Color logicalUser5Color
+    name: constant.perm.int.ColourLogical.dxl
+    match: \blogical(?:0IndicatorColor|1(?:00|1)IndicatorColor|22IndicatorColor|33IndicatorColor|44IndicatorColor|55IndicatorColor|66IndicatorColor|77IndicatorColor|88IndicatorColor|Current(?:BackgroundColor|CellBackgroundColor|ObjectOutline)|D(?:ataTex|e(?:faul|letedTex))tColor|G(?:UIDefaultColor|r(?:aphics(?:B(?:ackground|ox(?:Edge)?)|Current|ElideBox|Link|S(?:elected|hade)|Text)Color|idLines))|High(?:Indicator|lightURL)Color|InPlace(?:Background|Text)Color|L(?:ink(?:CurrentBackground|DataText|PageBackground|T(?:ext|itle)Background|s(?:In|Out|Start)Indicator)|owIndicator)Color|MediumIndicatorColor|P(?:a(?:geBackground(?:Filter(?:Sort)?|Sort)?|rtition(?:In(?:Read|Write)|Out)Text)|rintPreview(?:Background|Page|Shade|Text))Color|ReadOnlyText(?:Background)?Color|SelectedTextColor|T(?:extBackgroundColor|itle(?:BackgroundColor(?:Selected)?|TextColor))|U(?:nlockedTextBackground|ser[12345])Color)\b
 
-  constantColourReal:
+  constant_int_ColourReal:
     comment: realColor_Black realColor_Blue realColor_Brown realColor_Cyan realColor_Dark_Turquoise
       realColor_Firebrick realColor_Green realColor_Grey11 realColor_Grey22 realColor_Grey33
       realColor_Grey44 realColor_Grey55 realColor_Grey66 realColor_Grey77 realColor_Grey82
@@ -217,237 +448,186 @@ repository:
       realColor_NewGrey4 realColor_Orange realColor_Peru realColor_Pink realColor_Purple
       realColor_Red realColor_Red_Grey realColor_Rosy_Brown realColor_Sea_Green realColor_SplashScreenBlue
       realColor_Thistle realColor_White realColor_Yellow
-    name: constant.perm.colour.dxl
+    name: constant.perm.int.ColourReal.dxl
     match: \brealColor_(?:B(?:l(?:ack|ue)|rown)|Cyan|Dark_Turquoise|Firebrick|Gre(?:en|y(?:11|22|33|44|55|66|77|82))|Li(?:ght_Blue2?|me_Green)|Ma(?:genta|roon)|N(?:avy|ewGrey[1234])|Orange|P(?:eru|ink|urple)|R(?:ed(?:_Grey)?|osy_Brown)|S(?:ea_Green|plashScreenBlue)|Thistle|White|Yellow)\b
 
-  constantConfig:
-    comment: confSystem confSysUser confTemp confUser
-    name: constant.perm.config.dxl
-    match: \bconf(?:Sys(?:User|tem)|Temp|User)\b
+  constant_int_ColourScheme:
+    comment: highContrastBlackColorScheme highContrastBlackColourScheme highContrastOneColorScheme highContrastOneColourScheme highContrastTwoColorScheme highContrastTwoColourScheme highContrastWhiteColorScheme highContrastWhiteColourScheme internationalModernDOORSColorScheme internationalModernDOORSColourScheme internationalOriginalDOORSColorScheme internationalOriginalDOORSColourScheme modernDOORSColorScheme modernDOORSColourScheme originalDOORSColorScheme originalDOORSColourScheme
+    name: constant.perm.int.ColourScheme.dxl
+    match: \b(?:highContrast(?:BlackColou?|OneColou?|TwoColou?|WhiteColou?)|international(?:ModernDOORSColou?|OriginalDOORSColou?)|modernDOORSColou?|originalDOORSColou?)rScheme\b
 
-  constantCurrent:
-    comment: attrDXLName obj
-    name: variable.language.dxl
-    match: \b(?:attrDXLName|obj|)\b
+  constant_int_ColourSize:
+    comment: maxColor maxColour minColor minColour
+    name: constant.perm.int.ColourSize.dxl
+    match: \bm(?:axColou?|inColou?)r\b
 
-  constantDatabase:
-    comment: database dbExplorer
-    name: constant.perm.database.dxl
-    match: \bd(?:atabase|bExplorer)\b
+  constant_int_Column:
+    comment: columnsFilled columnsTable columnsUnmarked
+    name: constant.perm.int.Column.dxl
+    match: \bcolumns(?:Filled|Table|Unmarked)\b
 
-  constantExternal:
-    comment: inward none openAsURL outward
-    name: constant.perm.external.dxl
-    match: \b(?:inward|none|o(?:penAsURL|utward))\b
+  constant_int_Edit:
+    comment: Clear Copy Cut Paste Undo
+    name: constant.perm.int.Edit.dxl
+    match: \b(?:C(?:lear|opy|ut)|Paste|Undo)\b
 
-  constantFont:
-    comment: availableFonts GraphicsFont HeadingsFont TextFont
-    name: constant.perm.font.dxl
-    match: \b(?:GraphicsFont|HeadingsFont|TextFont|availableFonts)\b
+  constant_int_FilterType:
+    comment: filterTypeAnd filterTypeNot filterTypeOr
+    name: constant.perm.int.FilterType.dxl
+    match: \bfilterType(?:And|Not|Or)\b
 
-  constantHistory:
-    comment: acceptModule baselineModule changeOLE clipCopyObject clipCutObject clipMoveObject
-      copyObject createAttr createLink createModule createObject createType cutOLE
-      deleteAttr deleteLink deleteObject deleteType insertOLE modifyAttr modifyLink
-      modifyObject modifyType partitionModule pasteOLE purgeObject readLocked rejoinModule
-      removeOLE returnModule unDeleteObject unknown
-    name: constant.perm.history.dxl
-    match: \b(?:acceptModule|baselineModule|c(?:hangeOLE|lip(?:C(?:opy|ut)|Move)Object|opyObject|reate(?:Attr|Link|Module|Object|Type)|utOLE)|delete(?:Attr|Link|Object|Type)|insertOLE|modify(?:Attr|Link|Object|Type)|p(?:a(?:rtitionModule|steOLE)|urgeObject)|re(?:adLocked|joinModule|moveOLE|turnModule)|un(?:DeleteObject|known))\b
+  constant_int_Font:
+    comment: GraphicsFont HeadingsFont TextFont
+    name: constant.perm.int.Font.dxl
+    match: \b(?:Graphics|Headings|Text)Font\b
 
-  constantIcon:
-    comment: iconAuthenticatingUser iconDatabase iconDatabase iconDescriptive iconDescriptiveCut
-      iconDescriptiveDeleted iconFolder iconFolderCut iconFolderDeleted iconFolderOpen
-      iconFolderOpenDeleted iconFormal iconFormalCut iconFormalDeleted iconGroup iconGroupDisabled
-      iconLink iconLinkCut iconLinkDeleted iconNone iconProject iconProjectCut iconProjectDeleted
-      iconProjectOpen iconProjectOpenDeleted iconReadOnly iconUser iconUserDisabled
-    name: constant.perm.icon.dxl
-    match: \bicon(?:AuthenticatingUser|D(?:atabase|escriptive(?:Cut|Deleted)?)|Fo(?:lder(?:Cut|Deleted|Open(?:Deleted)?)?|rmal(?:Cut|Deleted)?)|Group(?:Disabled)?|Link(?:Cut|Deleted)?|None|Project(?:Cut|Deleted|Open(?:Deleted)?)?|ReadOnly|User(?:Disabled)?)\b
+  constant_int_Format:
+    comment: formatBMP formatBMZ formatBook formatColumns formatDIB formatEMF formatEMZ formatEPSF formatGIF formatJFIF formatJPE formatJPEG formatJPG formatPNG formatPNG_ formatRLE formatTIF formatTIFF formatUNKNOWN formatWMF formatWMZ
+    name: constant.perm.int.Format.dxl
+    match: \bformat(?:B(?:M[PZ]|ook)|Columns|DIB|E(?:M[FZ]|PSF)|GIF|J(?:FIF|P(?:EG|[EG]))|PNG_?|RLE|TIFF?|UNKNOWN|WM[FZ])\b
 
-  constantInPlace:
-    comment: inPlaceChoice inPlaceString inPlaceText inPlaceTextChange inPlaceTextFilled
-    name: constant.perm.inPlace.dxl
-    match: \binPlace(?:Choice|String|Text(?:Change|Filled)?)\b
-
-  constantInfo:
+  constant_int_Info:
     comment: infoBuildDate infoBuildNumber infoServerVersion infoSupportId infoSupportPassword
       infoVersion
-    name: constant.perm.info.dxl
+    name: constant.perm.int.Info.dxl
     match: \binfo(?:Build(?:Date|Number)|S(?:erverVersion|upport(?:Passwor|I)d)|Version)\b
 
-  constantKey:
-    comment: keyF12 keyF11 keyF10 keyF9 keyF8 keyF7 keyF6 keyF5 keyF4 keyF3 keyF2
-      keyF1 keyHelp keyRight keyLeft keyDown keyUp keyPageDown keyPageUp keyEnd keyHome
-      keyDelete keyInsert keyEscape
-    name: constant.perm.key.dxl
-    match: \bkey(?:D(?:elete|own)|E(?:nd|scape)|F(?:1[012]|[123456789])|H(?:elp|ome)|Insert|Left|Page(?:Down|Up)|Right|Up)\b
-
-  constantKeyModifier:
+  constant_int_KeyModifier:
     comment: modKeyNone modKeyCtrl modKeyShift
-    name: constant.perm.keymodifier.dxl
+    name: constant.perm.int.KeyModifier.dxl
     match: \bmodKey(?:Ctrl|None|Shift)\b
 
-  constantLanguage:
+  constant_int_Language:
     comment: Afrikaans Catalan Czech Danish Dutch French German Greek Italian NorwegianBokmal
       NorwegianNynorsk PortugueseBrazil PortugueseEurope Russian Spanish Swedish UKEnglish
       USEnglish
-    name: constant.perm.language.dxl
+    name: constant.perm.int.Language.dxl
     match: \b(?:Afrikaans|C(?:atalan|zech)|D(?:anis|utc)h|French|G(?:erman|reek)|Italian|Norwegian(?:Bokmal|Nynorsk)|Portuguese(?:Brazil|Europe)|Russian|S(?:pan|wed)ish|U[KS]English)\b
 
-  constantLink:
-    comment: linkFilterBoth linkFilterIncoming linkFilterOutgoing
-    name: constant.perm.link.dxl
-    match: \blinkFilter(?:Both|Incoming|Outgoing)\b
+  constant_int_LineSpacing:
+    comment: onePointFive single
+    name: constant.perm.int.LineSpacing.dxl
+    match: \b(?:onePointFiv|singl)e\b
 
-  constantListview:
+  constant_int_LinkLimit:
+    comment: manyToMany manyToOne oneToMany oneToOne
+    name: constant.perm.int.LinkLimit.dxl
+    match: \b(?:manyTo(?:Many|One)|oneTo(?:Many|One))\b
+
+  constant_int_ListView:
     comment: listViewOptionCheckboxes listViewOptionMultiselect listViewOptionSortText
-    name: constant.perm.listview.dxl
+    name: constant.perm.int.ListView.dxl
     match: \blistViewOption(?:Checkboxes|Multiselect|SortText)\b
 
-  constantLocale:
-    comment: installedLocales supportedLocales
-    name: constant.perm.locale.dxl
-    match: \b(?:install|support)edLocales\b
+  constant_int_Lock:
+    comment: lockRemoved lockShare lockWrite
+    name: constant.perm.int.Lock.dxl
+    match: \block(?:Removed|Share|Write)\b
 
-  constantMapping:
+  constant_int_Mapping:
     comment: menuAvailable_ menuAvailableChecked_ menuInvisible_ menuUnavailable_
-    name: constant.perm.mapping.dxl
+    name: constant.perm.int.Mapping.dxl
     match: \bmenu(?:Available(?:Checked)?|Invisible|Unavailable)_\b
 
-  constantMenu:
-    comment: menu buttonbar popup linksetCombo viewCombo helpCombo
-    name: constant.perm.menu.dxl
-    match: \b(?:buttonbar|helpCombo|linksetCombo|menu|popup|viewCombo)\b
+  constant_int_Proof:
+    comment: clientDictionary databaseDictionary databaseSpellingOptions formalGrammar fullProof informalGrammar quickProof spellingOnly standardGrammar userSpellingOptions
+    name: constant.perm.int.Proof.dxl
+    match: \b(?:clientDictionary|database(?:Dictionary|SpellingOptions)|f(?:ormalGrammar|ullProof)|informalGrammar|quickProof|s(?:pellingOnly|tandardGrammar)|userSpellingOptions)\b
 
-  constantPermission:
+  constant_int_Run:
+    comment: syswaitINFINITE_ syswaitPIPEFAULT_ syswaitPROCESSERROR_ syswaitSUCCESS_ syswaitTIMEOUT_
+    name: constant.perm.int.run.dxl
+    match: \bsyswait(?:INFINITE|P(?:IPEFAULT|ROCESSERROR)|SUCCESS|TIMEOUT)_\b
+
+  constant_int_Severity:
+    comment: msgError msgError_ msgInfo msgInfo_ msgQuery msgQuery_ msgWarning msgWarning_
+    name: constant.perm.int.severity.dxl
+    match: \bmsg(?:Error|Info|Query|Warning)_?\b
+
+  constant_int_StatusBar:
+    comment: ddbFullStatus ddbNoSelection
+    name: constant.perm.int.StatusBar.dxl
+    match: \bddb(?:FullStatus|NoSelection)\b
+
+  constant_int_Style:
+    comment: styleAllowMinimise styleAllowMinimise_ styleAllowMinimize styleAllowMinimize_ styleAutoparent styleAutoVScroll styleCentered styleCentered_ styleCentred styleCentred_ styleFixed styleFixed_ styleFloating styleFloating_ styleIsCloseBtn styleIsDefault styleNoBorder styleNoBorder_ styleStandard styleStandard_ styleStandardButton styleStandardInternalButton styleStandardSize styleSubWindow styleThemed
+    name: constant.perm.int.Style.dxl
+    match: \bstyle(?:A(?:llowMinimi(?:se_?|ze_?)|uto(?:VScroll|parent))|Cent(?:ered_?|red_?)|F(?:ixed_?|loating_?)|Is(?:CloseBtn|Default)|NoBorder_?|S(?:tandard(?:Button|InternalButton|Size|_)?|ubWindow)|Themed)\b
+
+  constant_int_TreeView:
+    comment: treeViewOptionNoIcons treeViewOptionSorted
+    name: constant.perm.int.TreeView.dxl
+    match: \btreeViewOption(?:NoIcons|Sorted)\b
+
+  constant_real:
+    comment: pi
+    name: constant.perm.real.dxl
+    match: \bpi\b
+
+  constant_string:
+    comment: DXLLibraryVersion READ_ONLY databaseName dbName resource
+    name: constant.perm.string.dxl
+    match: \b(?:DXLLibraryVersion|READ_ONLY|d(?:atabase|b)Name|resource)\b
+
+  constant_string_Array:
+    comment: dummy
+    name: constant.perm.string.array.dxl
+    match: \bdummy\b
+
+  constant_function_AttrSetVal__:
+    comment: changeBars date default description dxl hidden history inherit multi
+      type
+    name: constant.perm.function.AttrSetVal__.dxl
+    match: \b(?:changeBars|d(?:ate|e(?:fault|scription)|xl)|hi(?:dden|story)|inherit|multi|type)\b
+
+  constant_function:
+    patterns:
+    - include: '#constant_function_AttrSetVal__'
+    - include: '#constant_function_Permission'
+    - include: '#constant_function_trigEvent_'
+    - include: '#constant_function_trigLevel_'
+    - include: '#constant_function_trigLevelMod_'
+    - include: '#constant_function_trigType_'
+
+  constant_function_Permission:
     comment: change control create delete modify none read write
-    name: constant.perm.permission.dxl
+    name: constant.perm.function.Permission.dxl
     match: \b(?:c(?:hange|ontrol|reate)|delete|modify|none|read|write)\b
 
-  constantPicture:
-    comment: formatBMP formatDIB formatEPSF formatPNG formatUNKNOWN formatWMF
-    name: constant.perm.picture.dxl
-    match: \bformat(?:BMP|DIB|EPSF|PNG|UNKNOWN|WMF)\b
-
-  constantRun:
-    comment: syswaitINFINITE_
-    name: constant.perm.run.dxl
-    match: \bsyswaitINFINITE_\b
-
-  constantSeverity:
-    comment: msgError msgInfo msgQuery msgWarning
-    name: constant.perm.severity.dxl
-    match: \bmsg(?:Error|Info|Query|Warning)\b
-
-  constantStandardIcon:
-    comment: levelAllIcon level1Icon level2Icon level3Icon level4Icon level5Icon level6Icon
-      level7Icon level8Icon level9Icon level10Icon dispGraphicsIcon dispOutlineIcon
-      dispFilterIcon dispSortIcon createObjSameIcon createObjDownIcon deleteObjIcon
-      columnInsertIcon columnEditIcon columnRemoveIcon justifyLeftIcon justifyRightIcon
-      justifyCenterIcon justifyFullIcon folderOpenIcon folderNewIcon folderCloseIcon
-      projOpenIcon projNewIcon projCloseIcon editUsersIcon createModIcon editModIcon
-      shareModIcon readModIcon copyModIcon deleteModIcon createLinkIcon editLinkIcon
-      deleteLinkIcon matrixModeIcon startLinkIcon endLinkIcon createLinksetIcon createFormalModIcon
-      createLinkModIcon deleteLinksetIcon editHeadingIcon editTextIcon extractObjIcon
-      extractOneDownIcon showMarkedObjsIcon spellcheckIcon undeleteModIcon increaseLevelIcon
-      decreaseLevelIcon noIcon yesIcon wordIcon projWizIcon viewWizIcon layWizIcon
-      repWizIcon repManIcon tableCreateIcon tableInsertRowIcon tableInsertColIcon
-      tableSetBordersIcon textBold textItalic textUnderline textStrikeThrough saveIcon
-      printIcon propertiesIcon copyIcon cutIcon pasteIcon deleteIcon
-    name: constant.perm.standardicon.dxl
-    match: \b(?:c(?:o(?:lumn(?:Edit|Insert|Remove)|py(?:Mod)?)|reate(?:FormalMod|Link(?:Mod|set)?|Mod|Obj(?:Down|Same))|ut)Icon|d(?:e(?:creaseLevel|lete(?:Link(?:set)?|Mod|Obj)?)|isp(?:Filter|Graphics|Outline|Sort))Icon|e(?:dit(?:Heading|Link|Mod|Text|Users)|ndLink|xtractO(?:bj|neDown))Icon|folder(?:Close|New|Open)Icon|increaseLevelIcon|justify(?:Center|Full|Left|Right)Icon|l(?:ayWiz|evel(?:10|All|[123456789]))Icon|matrixModeIcon|noIcon|p(?:aste|r(?:int|o(?:j(?:Close|New|Open|Wiz)|perties)))Icon|re(?:adMod|p(?:Man|Wiz))Icon|s(?:ave|h(?:areMod|owMarkedObjs)|pellcheck|tartLink)Icon|t(?:able(?:Create|Insert(?:Col|Row)|SetBorders)Icon|ext(?:Bold|Italic|StrikeThrough|Underline))|undeleteModIcon|viewWizIcon|wordIcon|yesIcon)\b
-
-  constantStandardItem:
-    comment: OLECutItem OLECopyItem OLEPasteItem OLEPasteSpecialItem OLEClearItem
-      OLEInsertItem OLERemoveItem OLEVerbItem attrDefItem attrTypeItem clipCutItem
-      clipCopyFlatItem clipCopyHierItem clipPasteItem clipPasteDownItem clipClearItem
-      columnCreateItem columnEditItem columnDeleteItem columnLeftJustifyItem columnRightJustifyItem
-      columnCenterJustifyItem columnFullJustifyItem columnUseInGraphicsItem columnUseAsToolTipsItem
-      dispGraphicsItem dispOutlineItem dispFilterDescendantsItem dispFilteringItem
-      dispSortingItem dispDeletionItem dispReqOnlyItem dispFilterParentsItem dispGraphicsLinksItem
-      dispGraphicsToolTipsItem dispLevelAllItem dispLevel1Item dispLevel2Item dispLevel3Item
-      dispLevel4Item dispLevel5Item dispLevel6Item dispLevel7Item dispLevel8Item dispLevel9Item
-      dispLevel10Item editDXLItem editUsersItem EXIT_Item extractSetupItem extractSameItem
-      extractDownItem filterItem helpContentsItem helpSearchItem helpIndexItem helpHelpItem
-      helpProjManItem helpFormalItem helpDescriptiveItem helpLinkItem helpAboutItem
-      inplaceRejectItem inplaceAcceptItem inplaceHeadingItem inplaceTextItem inplaceAttrItem
-      inplaceResetAttrItem linkCreateItem linkEditItem linkDeleteItem linkSourceItem
-      linkTargetItem linkMatrixItem linkGraphicsItem linksetCreateItem linksetDeleteItem
-      linksetRefreshItem modAccessItem modAttrEditItem modBaselineItem modCloseItem
-      modHistoryItem modLayoutItem modPrintItem modSaveItem modDowngradeItem modPrintPreviewItem
-      objAccessItem objCompressItem objUncompressItem objCompressionItem objCopyItem
-      objCopyDownItem objCreateItem objCreateDownItem objDeleteItem objUndeleteItem
-      objPurgeItem objEditItem objHistoryItem objMoveItem objMoveDownItem objLockItem
-      colorOptionsItem fontOptionsItem optionsSaveItem optionsRestoreItem optionsDefaultsItem
-      pictureItem createProjectItem openProjectItem deleteProjectItem undeleteProjectItem
-      purgeProjectItem duplicateProjectItem closeProjectItem projectAttrItem unlockModulesItem
-      purgeModulesItem projectArchiveItem projectRestoreItem createFormalModuleItem
-      createLinkModuleItem createDescriptiveModuleItem openModuleEditItem openModuleShareItem
-      openModuleReadItem deleteModuleItem undeleteModuleItem purgeModuleItem duplicateModuleItem
-      renameModuleItem archiveModuleItem restoreModuleItem showFormalModulesItem showLinkModulesItem
-      showDescriptiveModulesItem showDeletedModulesItem showDeletedProjectsItem sortNameItem
-      sortTypeItem sortDescriptionItem selectItem deselectItem sortItem spellCheckItem
-      undoItem redoItem viewCreateItem viewShowItem viewDeleteItem
-    name: constant.perm.standarditem.dxl
-    match: \b(?:EXIT_|OLE(?:C(?:lear|opy|ut)|Insert|Paste(?:Special)?|Remove|Verb)|a(?:rchiveModule|ttr(?:Def|Type))|c(?:l(?:ip(?:C(?:lear|opy(?:Flat|Hier)|ut)|Paste(?:Down)?)|oseProject)|ol(?:orOptions|umn(?:C(?:enterJustify|reate)|Delete|Edit|FullJustify|LeftJustify|RightJustify|Use(?:AsToolTip|InGraphic)s))|reate(?:DescriptiveModule|FormalModule|LinkModule|Project))|d(?:e(?:lete(?:Module|Project)|select)|isp(?:Deletion|Filter(?:Descendants|Parents|ing)|Graphics(?:Links|ToolTips)?|Level(?:10|All|[123456789])|Outline|ReqOnly|Sorting)|uplicate(?:Module|Project))|e(?:dit(?:DXL|Users)|xtract(?:Down|S(?:ame|etup)))|f(?:ilter|ontOptions)|help(?:About|Contents|Descriptive|Formal|Help|Index|Link|ProjMan|Search)|inplace(?:A(?:ccept|ttr)|Heading|Re(?:ject|setAttr)|Text)|link(?:Create|Delete|Edit|Graphics|Matrix|Source|Target|set(?:Create|Delete|Refresh))|mod(?:A(?:ccess|ttrEdit)|Baseline|Close|Downgrade|History|Layout|Print(?:Preview)?|Save)|o(?:bj(?:Access|C(?:o(?:mpress(?:ion)?|py(?:Down)?)|reate(?:Down)?)|Delete|Edit|History|Lock|Move(?:Down)?|Purge|Un(?:compress|delete))|p(?:en(?:Module(?:Edit|Read|Share)|Project)|tions(?:Defaults|Restore|Save)))|p(?:icture|roject(?:A(?:rchive|ttr)|Restore)|urge(?:Modules?|Project))|re(?:do|nameModule|storeModule)|s(?:elect|how(?:De(?:leted(?:Module|Project)|scriptiveModule)|FormalModule|LinkModule)s|ort(?:Description|Name|Type)?|pellCheck)|un(?:d(?:elete(?:Module|Project)|o)|lockModules)|view(?:Create|Delete|Show))Item\b
-
-  constantStandardMenu:
-    comment: clipCopyMenu clipPasteMenu clipboardMenu projectMenu moduleMenu editMenu
-      oleMenu viewMenu objectMenu linkMenu linksetMenu attributeMenu columnMenu extractMenu
-      toolsMenu usersMenu optionsMenu helpMenu objCopyMenu objCreateMenu objMoveMenu
-      objUnlockMenu
-    name: constant.perm.standardmenu.dxl
-    match: \b(?:attribute|c(?:lip(?:Copy|Paste|board)|olumn)|e(?:di|xtrac)t|help|link(?:set)?|module|o(?:bj(?:C(?:opy|reate)|Move|Unlock|ect)|le|ptions)|project|tools|users|view)Menu\b
-
-  constantStyle:
-    comment: styleAutoparent styleCentered styleCentred styleFixed styleFloating styleNoBorder
-      styleStandard styleThemed
-    name: constant.perm.style.dxl
-    match: \bstyle(?:Autoparent|Cente?red|F(?:ixed|loating)|NoBorder|Standard|Themed)\b
-
-  constantTreeview:
-    comment: treeViewOptionSorted
-    name: constant.perm.treeview.dxl
-    match: \btreeViewOptionSorted\b
-
-  constantTriggerEvent:
+  constant_function_trigEvent_:
     comment: close create drag drop edit modify open read save sync write
-    name: constant.perm.triggerevent.dxl
+    name: constant.perm.function.trigEvent_.dxl
     match: \b(?:c(?:los|reat)e|dr(?:ag|op)|edit|modify|open|read|s(?:ave|ync)|write)\b
 
-  constantTriggerLevel:
+  constant_function_trigLevel_:
     comment: attribute comment discussion module object project
-    name: constant.perm.triggerlevel.dxl
+    name: constant.perm.function.trigLevel_.dxl
     match: \b(?:attribute|comment|discussion|module|object|project)\b
 
-  constantTriggerModifier:
-    comment: post pre
-    name: constant.perm.triggermodifier.dxl
-    match: \bp(?:ost|re)\b
-
-  constantTriggerStatus:
-    comment: trigError trigPreConFail trigPreConPass trigRunOK
-    name: constant.perm.triggerstatus.dxl
-    match: \btrig(?:Error|PreCon(?:Fail|Pass)|RunOK)\b
-
-  constantTriggerTime:
+  constant_function_trigLevelMod_:
     comment: all descriptive formal link
-    name: constant.perm.triggermodifier.dxl
+    name: constant.perm.function.trigLevelMod_.dxl
     match: \b(?:all|descriptive|formal|link)\b
 
-  constantType:
-    comment: attrDate attrEnumeration attrInteger attrReal attrString attrText attrUsername
-    name: constant.perm.type.dxl
-    match: \battr(?:Date|Enumeration|Integer|Real|String|Text|Username)\b
+  constant_function_trigType_:
+    comment: post pre
+    name: constant.perm.function.triggermodifier.dxl
+    match: \bp(?:ost|re)\b
 
-  constantUser:
-    comment: groupList userList userNotifyList
-    name: constant.perm.user.dxl
-    match: \b(?:group|user(?:Notify)?)List\b
+  variable:
+    patterns:
+    - include: '#variable_Current'
+    - include: '#variable_Database'
 
-  constantUserClass:
-    comment: administrator custom databaseManager projectManager standard
-    name: constant.perm.userclass.dxl
-    match: \b(?:administrator|custom|databaseManager|projectManager|standard)\b
+  variable_Current:
+    comment: attrDXLName obj
+    name: constant.perm.current.dxl
+    match: \b(?:attrDXLName|obj|)\b
+
+  variable_Database:
+    comment: database dbExplorer
+    name: constant.perm.database.dxl
+    match: \bd(?:atabase|bExplorer)\b
 
   continuation:
     comment: Line continuation
@@ -477,11 +657,11 @@ repository:
 
   functionCallPerm:
     name: support.function.perm.dxl
-    match: \s*\b(HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|after|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|before|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|change|charOf|characterSet|charsetDefault|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|codepointOf|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|control|convertFromCodepage|convertToCodepage|copyFile|copyPassword|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|first|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|ldapGroupsForUser|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|loadUserRecord|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|modify|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|previous|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|purgeObjects_|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|sectionNeedsSaved|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sibling|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undelete|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|values|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warningBox|wcharOf|when|who|width|win32SystemWait_|write)(?=\()
+    match: \s*\b(allBaselines|noBaselines|HTMLToPlainText|HTMLToRichText|accept|ack|acknowledge|activateURL|active|addAcceleratorKey|addAwayLinkset|addBaselines|addFilter|addLinkModuleDescriptor|addLinkset|addMember|addMenu|addModule|addUser|addr_|after|all|ancestors|annotation|ansi|append|appendCell|appendColumn|appendRow|apply|applyTextFormattingToParagraph|archive|assignIcons|attrName|attrdef|attribute|backSlasher|background|baseWin|baseline|baselineExists|baselineInfo|baselineSet|baselined|batchMode|before|below|beside|binary|bitmap|block|body|box|bringToFront|busy|button|callStdItem_|canControl|canCreate|canDelete|canLock|canModify|canOpenFile|canRead|canUnlock|canWrite|canvas|cell|centered|centred|change|charOf|characterSet|charsetDefault|checkBox|checkConnect|checkDN|checkDXL|choice|cistrcmp|clear|clearDefaultViewForModule|clearDefaultViewForUser|client|clipClear|clipCopy|clipCut|clipLastOp|clipPaste|clipUndo|clipboardFormatName|close|codepageName|codepointOf|color|colour|column|combine|confAppend|confCopyFile|confDeleteDirectory|confDeleteFile|confDirectory|confDownloadFile|confFileExists|confMkdir|confRead|confRenameFile|confUploadFile|confWrite|confirm|contains|containsOle|contents|control|convertFromCodepage|convertToCodepage|copyFile|copyPassword|copyPictureObject|copyToClipboard|create|createButtonBar|createCombo|createDropCallback|createEditableCombo|createElement_|createItem|createMenu|createPrivate|createPublic|createString|current|currentANSIcodepage|currentColumn|currentDirectory|currentView|cutRichText|data|dateAndTime|dateOf|dateOnly|decodeResourceURL|decodeURL|decryptBuffer__|defaultTableAttribute|delete|deleteCell|deleteColumn|deleteFile|deleteMember|deletePicture|deleteRow|deleteTable|descendants|description|destroy|diff|directory|disable|disconnect|display|displayRich|displayRichWithColor|displayRichWithColour|document|doorsInfo|doorsVersion|doorsname|downgrade|downgradeShare|draw|drawIcon|dropDataAvailable|droppedAttrOLETextAvailable|droppedAttrRichTextAvailable|droppedAttrTextAvailable|droppedAttributeOLEText|droppedAttributeRichText|droppedAttributeText|droppedList|droppedString|dxlHere|dxlNumformat|dxlStrformat|echo|edit|editor|empty|enable|enableDefaultTableAttribute|encryptBuffer__|end|ensureUserRecordLoaded|entire|errorBox|escape|evalTop_|eval_|event|excludeCurrent|excludeLeaves|excludes|exists|existsGroup|existsUser|exportAttributeToFile|exportPicture|exportRTFString|field|fileName|filterTables|filtering|find|findByID|findGroupRDNFromName|findPlainText|findRichText|findUserInfoFromDN|findUserRDNFromLoginName|findUserRDNFromName|first|firstNonSpace|flush|flushDeletions|folder|font|formal|formalStatus|frame|fromBase64_|full|fullName|get|getAddressAttribute|getAttribute|getBorderSize|getBoundedUnicode|getCanvas|getCaptionHeight|getCellAlignment|getCellShowChangeBars|getCellShowLinkArrows|getCellWidth|getCheck|getColumnBottom|getColumnTop|getColumnValue|getDatabaseIdentifier|getDatabaseMailServer|getDatabaseName|getDateFormat|getDef|getDefaultViewForModule|getDefaultViewForUser|getDescription|getDescriptionAttribute|getDisplayPath|getDocumentBuffer_|getDocumentElement_|getDoorsBindNameDN|getDoorsGroupGroupDN|getDoorsGroupRoot|getDoorsUserGroupDN|getDoorsUserRoot|getDoorsUsernameAttribute|getElementName_|getElementText_|getElement_|getEmailAttribute|getFontSettings|getGroupMemberAttribute|getGroupNameAttribute|getGroupObjectClass|getIcon|getInPlaceColumnIndex|getInnerHTML|getInnerText|getLdapServerName|getLinkModuleDescriptorsExclusive|getLocksInDatabase|getLocksInFolder|getLocksInModule|getLoginNameAttribute|getMandatory|getMostRecentBaseline|getName|getOleWidthHeight|getOverridable|getParent|getParentFolder|getParentProject|getPictFormat|getPictWidthHeight|getPort|getPortNo|getPos|getProperties|getRealColorName|getRealColorOptionForTypes|getRealColourIcon|getRealColourName|getRealColourOptionForTypes|getRealPath|getRegistry|getResourceURL|getResourceURLConfigOptions|getRootOfPath|getRow|getSelectedCol|getSelectedItem|getSelectedListItemNames|getSelection|getShowTableAcrossModule|getSize|getSortColumn|getSourceName|getSourceVersion|getStringAttribute_|getTDSSOToken|getTable|getTargetName|getTelephoneAttribute|getTickCount_|getTitle|getURL|getUseLdap|getVal|getXML|getenv|gluedHelp|gotoObject|graphics|hardDelete|hasAttribute_|hasChildElements_|hasDefPermission|hasFocus|hasInPlace|hasLinks|hasNoLinks|hasPermission|hasValPermission|hash|height|help|helpOn|helpOnEx|hide|hideExplorer|htmlEdit|htmlText|htmlView|id|identifier|inClipboard|inPlaceChoiceAdd|inPlaceCopy|inPlaceCut|inPlaceGet|inPlaceMove|inPlacePaste|inPlaceReset|inPlaceSet|inPlaceShow|inPlaceTextHeight|inactive|includeCurrent|includeLeaves|includes|includesTime|infoBox|inherited|inheritedDef|inheritedVal|inplaceDisable|inplaceEditOff|inplaceEditing|inplaceEnable|inplaceEnabled|insert|insertCell|insertColumn|insertDroppedPicture|insertPictureFileAfter|insertRow|installed|intOf|invokeHTML|ipcHostname|isAccessInherited|isAccessInheritedDef|isAccessInheritedVal|isAnyBaselineSetOpen|isAttribute|isBaseline|isBaselinePresent|isBatch|isDefault|isDefaultURL|isDeleted|isDiscussionColumn|isEdit|isFiltered|isFirstObjectInDXLSet|isLastObjectInDXLSet|isLocked|isLockedByUser|isLockedClosed|isMember|isNull|isOleObjectSelected|isOpen|isOutline|isRanged|isRead|isRichText|isSelected|isShare|isUsed|isValidInt|isValidName|isViewModified|isVisible|isalnum|isalpha|isascii|iscntrl|isdigit|isgraph|islower|isprint|ispunct|isspace|isupper|isxdigit|item|itemClipboardIsEmpty|itemFromID|justify|key|kind|label|language|last|lastError|lastModifiedTime|lastSelectedModule_|ldapGroupsForUser|leaf|left|leftAligned|length|level|levelModifier|linksVisible|list|listView|load|loadDirectory|loadLdapConfig|loadUserRecord|locale|lock|lower|main|major|match|matches|member|menuBar|messageBox|minor|mkdir|modified|modify|module|moduleVersion|move|multiList|name|new|next|nextMajor|nextMinor|noElems|noError|notNull|null|number|object|of|ok|oleActivate|oleCloseAutoObject|oleCopy|oleCount|oleCreateAutoObject|oleCut|oleDeactivate|oleDelete|oleGet|oleGetAutoObject|oleGetResult|oleInsert|oleIsObject|oleMethod|oleOpen|olePaste|olePasteLink|olePut|oleResetSize|oleRtf|oleSaveBitmap|oleSetResult|open|opposite|outline|outlining|overrideTableAttribute|parent|parseXMLBuffer_|parseXMLString_|pasteToEditbox|path|pictureCopy|plainText|platform|previous|priority|probeAttr_|probeRichAttr_|progressCancelled|progressMessage|progressRange|progressStart|progressStep|progressStop|project|purge|purgeObjects_|put|query|radioBox|raise|random|read|readFile|ready|realBackground|realColor|realColour|realOf|realize|rectangle|recv|refresh|refreshDBExplorer|regexp|regexp2|region|registeredFormat|regular|reject|release|remove|removeLinkModuleDescriptor|removeModule|removeUnlistedRichText|rename|renameFile|replaceRichText|reserved|resumeDXLTracing_|return_|richClip|richField|richText|richTextFragment|richTextNoOle|richTextWithOle|richtext_identifier|right|rootName_|row|rtfSubString|safeHTMLBuffer|save|saveClipboardBitmapToFile|saveDirectory|saveDroppedPicture|saveLdapConfig|saveUserRecord|saved|scope|search|sectionNeedsSaved|select|selected|send|sendEMailMessage|sendEMailNotification|separator|server|session|set|setAddressAttribute|setAllCellsAlignment|setAllCellsBorder|setAllCellsShowChangeBars|setAllCellsShowLinkArrows|setAllCellsWidth|setAnnotation|setAttrFromHTML|setAttribute|setBaseWindowContext|setCellAlignment|setCellBorder|setCellShowChangeBars|setCellShowLinkArrows|setCellWidth|setCenteredSize|setCentredSize|setCheck|setColumnAlignment|setColumnShowChangeBars|setColumnShowLinkArrows|setColumnWidth|setDXLWindowAsParent|setDebugCallback_|setDebugging_|setDef|setDefault|setDefaultViewForModule|setDefaultViewForUser|setDescription|setDescriptionAttribute|setDiscussionColumn|setDoorsBindNameDN|setDoorsBindPassword|setDoorsBindPasswordDB|setDoorsGroupGroupDN|setDoorsGroupRoot|setDoorsUserGroupDN|setDoorsUserRoot|setDoorsUsernameAttribute|setDropList|setDropString|setEmailAttribute|setExtraHeightShare|setExtraWidthShare|setFocus|setFromBuffer|setGroupMemberAttribute|setGroupNameAttribute|setGroupObjectClass|setHTML|setInnerHTML|setInnerText|setLdapServerName|setLinkModuleDescriptorsExclusive|setLoginNameAttribute|setMandatory|setMaxValue|setMinValue|setOverridable|setParent|setPortNo|setPos|setRealColorOptionForTypes|setRealColourOptionForTypes|setRegistry|setRichClip|setRowWidth|setShowDeletedItems|setShowTableAcrossModule|setSize|setSortColumn|setStringAttribute_|setTelephoneAttribute|setTitle|setURL|setUseLdap|setVal|setempty|setenv|setlower|setupper|share|show|showDeletedObjects|showExplorer|showOlePropertiesDialog|showPictures|showTables|showing|showingExplorer|sibling|sizeof|sleep_|softDelete|sort|sorting|source|sourceAbsNo|sourceVersion|specific|specificDef|specificVal|splitter|stacked|start|startConfiguringMenus|startDXLTracing_|startTimer|stopConfiguringMenus|stopDXLTracing_|stopTimer|stored|stringOf|suffix|suspendDXLTracing_|symbolToUnicode|system|tab|table|tableContents|target|targetAbsNo|targetVersion|tempFileName|tempStringOf|text|timer|title|toBase64_|toTable|today|toggle|toolBar|toolBarComboAdd|toolBarComboCount|toolBarComboCutCopySelectedText|toolBarComboDelete|toolBarComboEmpty|toolBarComboGetEditBoxSelection|toolBarComboGetItem|toolBarComboGetSelection|toolBarComboInsert|toolBarComboPasteText|toolBarComboSelect|toolBarMove|toolBarShow|toolBarVisible|top|topMost|treeView|trigEvent_|trigLevelDesc_|trigLevel_|trigType_|trigger|type|typeName|undelete|undeleteCell|undeleteColumn|undeleteRow|undeleteTable|unicodeString|uniqueID|unixerror|unload|unlock|unlockDiscardAll|unlockDiscardSection|unlockSaveAll|unlockSaveSection|unsaved|unset|unsetAll|unsetAllDef|unsetAllVal|unsetDef|unsetVal|updateGroupList|updateToolBars|updateUserList|upper|useAncestors|useAutoIndentation|useColumns|useCompression|useCurrent|useDefaultTableAttribute|useDescendants|useFilterTables|useFiltering|useGraphics|useGraphicsColumn|useLevel|useOutlining|useRTFColour|useSelection|useShowDeleted|useShowExplorer|useShowLinkIndicators|useShowLinks|useShowPictures|useShowTables|useSorting|useTooltipColumn|useWindows|user|userLocale|username|utf8|validateDOORSURL|value|values|version|versionID|versionString|verticalCheckBox|verticalRadioBox|view|views|warningBox|wcharOf|when|who|width|win32SystemWait_|write)(?=\()
 
   functionDeclaration:
     name: meta.function.dxl
-    begin: (?:^|(?<=[;\{\}]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\*=?|\+[\+=]?|-[-=>]?|\.\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\()
+    begin: (?:^|(?<=[;\{\}]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+([&\*])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\?]|:=|by|default|do|if|for|sizeof|while|\[\]|!=?|%=?|&[&=]?|\*=?|\+[\+=]?|-[-=>]?|\.\.?|/=?|<(?:<=|->|[-=<>/?])?|=[=>]?|>(?:>=|[=>/?])?|\^[=\^]?|\|[=\|]?|_(?:\+\+|--)|\([\*&]\))))\s*(?=\()
     beginCaptures:
       '1': {name: storage.type.fundimental.dxl}
       '2': {name: support.type.doors.dxl}
@@ -523,7 +703,7 @@ repository:
 
   functionDefinition:
     name: meta.function.forwardDeclaration.dxl
-    begin: (?:^|(?<=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+(\*)?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\]|:=|by|sizeof|!=?|%=?|&[&=]?|\*=?|\+[\+=]?|-[-=>]?|\.\.?|/=?|<(?:<=|->|[-=</?])?|=[=>]?|>(?:>=|[=>/?])?|\^[=\^]?|\|[=\|]?)))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*\s*&?\s*[,\[\(\)])
+    begin: (?:^|(?<=[;,\{\}\(\)]))\s*\b(?:(bool|char|int|real|string|void)|(A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\b\s+([&\*])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*|::(?:[~$@\\\?]|:=|by|default|do|if|for|sizeof|while|\[\]|!=?|%=?|&[&=]?|\*=?|\+[\+=]?|-[-=>]?|\.\.?|/=?|<(?:<=|->|[-=<>/?])?|=[=>]?|>(?:>=|[=>/?])?|\^[=\^]?|\|[=\|]?|_(?:\+\+|--)|\([\*&]\))))\s*(?=\(\s*[a-zA-Z_][a-zA-Z_0-9]*\s*[&\*]?\s*[,\[\(\)])
     beginCaptures:
       '1': {name: storage.type.fundimental.dxl}
       '2': {name: support.type.doors.dxl}
@@ -531,7 +711,7 @@ repository:
       '4': {name: variable.other.pointer.dxl}
       '5': {name: invalid.illegal.keyword.dxl}
       '6': {name: entity.name.functionDefinition.dxl}
-    end: (?<=\))\s*(\[\s*\])?
+    end: (?<!\:\:\([/*&]\))(?<=\))\s*(\[\s*\])?
     endCaptures:
       '1': {name: variable.other.array.dxl}
     patterns:
@@ -547,9 +727,9 @@ repository:
     - include: '#typeCustom'
     - include: '#functionDefinitionArgument'
     - name: invalid.illegal.byref.dxl
-      match: \s+&
+      match: \s+[&\*]
     - name: variable.other.byref.dxl
-      match: '&'
+      match: '[&\*]'
     - name: variable.other.array.dxl
       match: \s*\[\s*\]
     - name: meta.argument.separator.dxl
@@ -738,9 +918,9 @@ repository:
       '2': {name: storage.type.custom.dxl}
 
   typeDoors:
-    comment: _k _x _y AccessRec ArchiveInclusionDescriptor ArchiveItem Array Attachment Attr__ AttrBaseType AttrDef AttrDef__ AttrType Baseline BaselineSet BaselineSetDefinition Bitmap Buffer ClipboardLock Column Comment ConfStream ConfType Date DB DBE Discussion DiscussionFilter DiscussionStatus DOM_Document_ DOM_Element_ DropEvent DxlObject DxlObjectLHS EmbeddedOleObject ExternalLink ExternalLinkBehaviour ExternalLinkDirection Filter Folder Group GroupList History HistorySession HistoryType Icon IconID InPlaceEditEvent IntegrityCheckItem IntegrityItemType Item Justification Language Link LinkModuleDescriptor LinkRef Linkset Locale Lock LockList LoginPolicy MA_StdItem__ MA_StdMenu__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion Object ObjectRef__ OleAutoArgs OleAutoObj PageLayout PartitionAttribute PartitionDefinition PartitionFile PartitionLinkset PartitionModule PartitionPermission PartitionView Permission ProblemItem Project Regexp RichText RichTextParagraph RifDefinition Sensitivity Skip Sort Stat Stream TableBorderPosition TableBorderStyle Template trigEvent_ Trigger trigLevel_ trigLevelDesc_ trigLevelMod_ trigType_ User UserClass UserList UserNotifyList View ViewDef
+    comment: _* _a _b _c _d _f _k _m _n _w _x _xr _xx _y AccessRec ADABool_ ADADefault_ ADAString_ ADAType_ ADMABool_ ADMAString_ AgentElement_ AllAttrDef_ AllAttrDefVal__ AllAttrType_ AllBaselineSet_ AllBaselineSetDefinition_ AllFolder_ AllItem_ AllModule_ AllObj__ AllObject_ AllProject_ AllRoot__ AllView_ AlternativeWord ArchiveData ArchiveInclusionDescriptor ArchiveItem ArchiveItemElementB_ ArchiveItemElementS_ ArchiveItemElementZ_ Array ArraySect__ Arrow__ ATABaseType_ ATABool_ ATADesc_ ATAEnumColour_ ATAEnumColours_ ATAEnumDesc_ ATAEnumDescs_ ATAEnumSize_ ATAEnumString_ ATAEnumStrings_ ATAEnumValue_ ATAEnumValues_ ATAName_ ATARangeValue_ Attachment Attr__ AttrBarsVal__ AttrBaseType AttrDateVal__ AttrDef AttrDef__ AttrDefVal__ AttrDescVal__ AttrDxlVal__ AttrHideVal__ AttrHistVal__ AttrInhVal__ AttrLocaleVal__ AttrMultiVal__ AttrTop__ AttrType AttrType__ Baseline BaselineSet BaselineSetDefinition Before__ Below__ Binary__ Bitmap Buffer Clipboard__ ClipboardLock CMS_Message CMS_MessageConsumer Codepages__ Column Comment CommentBool_ CommentDate_ CommentDiscussion_ CommentModVer_ CommentStatus_ CommentString_ CommentUser_ ConfCachePolicy ConfDirectory__ ConfStream ConfType ControlledResource__ Database__ Date DB DBE DbPropertiesCache DdcMode DebugVar DialogDefaults Dictionary Directory__ DiscDate_ DiscModVer_ DiscStatus_ DiscString_ DiscUser_ Discussion DiscussionFilter DiscussionFilterType DiscussionStatus DisplaySchemes Document__ DOM_Document_ DOM_Element_ DropEvent DropEventBool_ DropEventDBE_ DropEventInt_ DropEventString_ DxlObject DxlObjectLHS EachInLinkRef__ EmbeddedOleObject Entire__ ExternalLink ExternalLinkBehaviour ExternalLinkDirection ExtLinkRef__ Fattr_ Filter FilteredLdapGroupListRef__ FilteredLdapUserListRef__ FilteredLdapUserRef__ Folder FolderRef__ Fonts__ glueOn1__ glueOn2__ GrammarRules Group GroupElement_ GroupList GroupRef__ HABool_ HADate_ HAInt_ HAString_ HAType_ HAValue_ HeaderEvent History HistorySession HistoryType HttpBody HttpBody_ HttpBodyInt_ HttpBodyString_ HttpHeader HttpHeader_ HttpHeaderEntry HttpHeaderEntryString_ HttpResponse HttpResponseBool_ HttpResponseInt_ HttpVerb Icon IconID InLinkRef__ InPartition InPartString_ InPlaceBox__ InPlaceEditEvent IntegrityCheckItem IntegrityItemType IntegrityProblem IntegrityResultsData IPC Item Justification Language Languages__ Last__ LdapItem LdapItemList LdapItemString_ Link LinkFilter LinkModuleDescriptor LinkRef Linkset Locale Locales__ Lock LockElement_ LockList LockRef__ LoginPolicy LongDateFormats__ MA_End__ MA_StdCombo__ MA_StdItem__ MA_StdMenu__ ModName_ Module ModuleProperties ModuleRef__ ModuleVersion MsgExt OAuthConsumer OAuthConsumerBool_ OAuthConsumerString_ Object ObjectRef__ OleAutoArgs OleAutoObj OSLCCatalogServiceProvider OSLCCatalogServiceProviderString_ OSLCLinkType OSLCLinkTypeBool_ OSLCLinkTypeString_ OSLCServer OSLCServerBool_ OSLCServerString_ OSLCServiceProvider OSLCServiceProviderDialog OSLCServiceProviderDialog_ OSLCServiceProviderDialogBool_ OSLCServiceProviderDialogInt_ OSLCServiceProviderDialogs OSLCServiceProviderDialogs_ OSLCServiceProviderDialogString_ OSLCServiceProviderString_ OutLinkRef__ OutPartition OutPartString_ PageLayout PageLayouts_ PartAttrString_ PartDefString_ PartFileString_ PartitionAttribute PartitionDefinition PartitionFile PartitionLinkset PartitionModule PartitionPermission PartitionView PartModString_ PartViewString_ Permission Picture__ ProblemItem Project Range_ RecentModule__ Regexp ReservedName__ RichText RichTextParagraph RifDefinition RifDefinitionBool_ RifDefinitionProject_ RifDefinitionString_ RifExportPackage RifExportRecord RifExportRecordDate_ RifExportRecordDef_ RifExportRecordString_ RifExportRecordUser_ RifImport RifImportBool_ RifImportDate_ RifImportDef_ RifImportFolder_ RifImportFolderInfo RifImportFolderInfoString_ RifImportModuleInfo RifImportModuleInfoString_ RifImportPackage RifImportPackageString_ RifImportUser_ RifModuleDefinition RifModuleDefinitionBool_ RifModuleDefinitionDdcMode_ RifModuleDefinitionInt_ RifModuleDefinitionString_ RifModuleDefinitionVersion_ Root__ RowRef__ RTF_buffer__ RTF_buffer_No_Ole__ RTF_buffer_With_Ole__ RTF_string__ RTFCharset_ RTFEmbeddedOLE_ RTFInt_ RTFString_ RTFText_ Script__ Scroll__ ScrollDest__ ScrollEvent ScrollSide ScrollUpDown__ Sensitivity SessionModule_ SessionObject_ ShortDateFormats__ Sibling__ SignatureEntry SignatureInfo SignatureInfoSpecifier__ Skip Sort SpellingAlternatives__ SpellingError SpellingErrors__ SpellingOptions Stat Stream Symbolic__ TableBorderPosition TableBorderStyle TableRef__ Template TemplateB__ TokenReader TokenWriter ToolType trigEvent_ Trigger TriggerStatus trigLevel_ trigLevelDesc_ trigLevelMod_ trigType_ User UserClass UserElement_ UserList UserNotifyList UserRef__ View ViewDef Views_ Window__ ZipType
     name: support.type.doors.dxl
-    match: \b(?:A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)\b
+    match: \b(?:A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)\b
 
   typeFundamental:
     comment: Fundamental Types
@@ -749,7 +929,7 @@ repository:
 
   variablesDeclaration:
     name: declaration.variable.dxl
-    begin: (?:^|(?<=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:ccessRec|r(?:chiveI(?:nclusionDescriptor|tem)|ray)|tt(?:achment|r(?:BaseType|Def(?:__)?|Type|__)))|B(?:aseline(?:Set(?:Definition)?)?|itmap|uffer)|C(?:lipboardLock|o(?:lumn|mment|nf(?:Stream|Type)))|D(?:BE|OM_(?:Docu|Ele)ment_|ate|iscussion(?:Filter|Status)?|ropEvent|xlObject(?:LHS)?|B)|E(?:mbeddedOleObject|xternalLink(?:Behaviour|Direction)?)|F(?:ilt|old)er|Group(?:List)?|History(?:Session|Type)?|I(?:con(?:ID)?|n(?:PlaceEditEvent|tegrity(?:CheckItem|ItemType))|tem)|Justification|L(?:anguage|ink(?:ModuleDescriptor|Ref|set)?|o(?:c(?:ale|kList|k)|ginPolicy))|M(?:A_Std(?:Item|Menu)__|od(?:Name_|ule(?:Properties|Ref__|Version)?))|O(?:bject(?:Ref__)?|leAuto(?:Args|Obj))|P(?:a(?:geLayout|rtition(?:Attribute|Definition|File|Linkset|Module|Permission|View))|ermission|ro(?:blemItem|ject))|R(?:egexp|i(?:chText(?:Paragraph)?|fDefinition))|S(?:ensitivity|kip|ort|t(?:at|ream))|T(?:ableBorder(?:Position|Style)|emplate|rigger)|User(?:Class|List|NotifyList)?|View(?:Def)?|_[kxy]|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\s+([\*&])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\s*(?=$|[,;=\n\[]|//|/\*)
+    begin: (?:^|(?<=[;\{\}]))\s*\b(const|static)?\b\s*\b(?:(bool|char|int|real|string)|(A(?:D(?:A(?:Bool|Default|String|Type)|MA(?:Bool|String))_|TA(?:B(?:aseType|ool)|Desc|Enum(?:Colours?|Descs?|S(?:ize|trings?)|Values?)|Name|RangeValue)_|ccessRec|gentElement_|l(?:l(?:Attr(?:Def(?:Val_)?|Type)|BaselineSet(?:Definition)?|Folder|Item|Module|Obj(?:ect|_)|Project|Root_|View)_|ternativeWord)|r(?:chive(?:Data|I(?:nclusionDescriptor|tem(?:Element[BSZ]_)?))|r(?:ay(?:Sect__)?|ow__))|tt(?:achment|r(?:Ba(?:rsVal__|seType)|D(?:ateVal__|e(?:f(?:Val)?__|scVal__|f)|xlVal__)|Hi(?:de|st)Val__|InhVal__|LocaleVal__|MultiVal__|T(?:op__|ype(?:__)?)|__)))|B(?:aseline(?:Set(?:Definition)?)?|e(?:fore|low)__|i(?:nary__|tmap)|uffer)|C(?:MS_Message(?:Consumer)?|lipboard(?:Lock|__)|o(?:depages__|lumn|mment(?:Bool_|D(?:ate|iscussion)_|ModVer_|St(?:atus|ring)_|User_)?|n(?:f(?:CachePolicy|Directory__|Stream|Type)|trolledResource__)))|D(?:BE|OM_(?:Docu|Ele)ment_|at(?:abase__|e)|bPropertiesCache|dcMode|ebugVar|i(?:alogDefaults|ctionary|rectory__|s(?:c(?:Date_|ModVer_|St(?:atus|ring)_|User_|ussion(?:Filter(?:Type)?|Status)?)|playSchemes))|ocument__|ropEvent(?:Bool_|DBE_|Int_|String_)?|xlObject(?:LHS)?|B)|E(?:achInLinkRef__|mbeddedOleObject|ntire__|xt(?:LinkRef__|ernalLink(?:Behaviour|Direction)?))|F(?:attr_|ilter(?:edLdap(?:GroupList|User(?:List)?)Ref__)?|o(?:lder(?:Ref__)?|nts__))|Gr(?:ammarRules|oup(?:Element_|List|Ref__)?)|H(?:A(?:Bool|Date|Int|String|Type|Value)_|eaderEvent|istory(?:Session|Type)?|ttp(?:Body(?:Int_|String_|_)?|Header(?:Entry(?:String_)?|_)?|Response(?:Bool_|Int_)?|Verb))|I(?:PC|con(?:ID)?|n(?:LinkRef__|P(?:art(?:String_|ition)|lace(?:Box__|EditEvent))|tegrity(?:CheckItem|ItemType|Problem|ResultsData))|tem)|Justification|L(?:a(?:nguage(?:s__)?|st__)|dapItem(?:List|String_)?|ink(?:Filter|ModuleDescriptor|Ref|set)?|o(?:c(?:ale(?:s__)?|k(?:Element_|List|Ref__)|k)|ginPolicy|ngDateFormats__))|M(?:A_(?:End|Std(?:Combo|Item|Menu))__|od(?:Name_|ule(?:Properties|Ref__|Version)?)|sgExt)|O(?:AuthConsumer(?:Bool_|String_)?|SLC(?:CatalogServiceProvider(?:String_)?|LinkType(?:Bool_|String_)?|Serv(?:er(?:Bool_|String_)?|iceProvider(?:Dialog(?:Bool_|Int_|String_|s_|[_s])?|String_)?))|bject(?:Ref__)?|leAuto(?:Args|Obj)|ut(?:LinkRef__|Part(?:String_|ition)))|P(?:a(?:geLayout(?:s_)?|rt(?:AttrString_|DefString_|FileString_|ModString_|ViewString_|ition(?:Attribute|Definition|File|Linkset|Module|Permission|View)))|ermission|icture__|ro(?:blemItem|ject))|R(?:TF(?:Charset|EmbeddedOLE|Int|String|Text|_(?:buffer(?:_(?:No|With)_Ole)?|string)_)_|ange_|e(?:centModule__|gexp|servedName__)|i(?:chText(?:Paragraph)?|f(?:Definition(?:Bool_|Project_|String_)?|Export(?:Package|Record(?:D(?:ate|ef)_|String_|User_)?)|Import(?:Bool_|D(?:ate|ef)_|Folder(?:Info(?:String_)?|_)|ModuleInfo(?:String_)?|Package(?:String_)?|User_)?|ModuleDefinition(?:Bool_|DdcMode_|Int_|String_|Version_)?))|o(?:ot|wRef)__)|S(?:cr(?:ipt__|oll(?:Dest__|Event|Side|UpDown__|__))|e(?:nsitivity|ssion(?:Module|Object)_)|hortDateFormats__|i(?:bling__|gnature(?:Entry|Info(?:Specifier__)?))|kip|ort|pelling(?:Alternatives__|Error(?:s__)?|Options)|t(?:at|ream)|ymbolic__)|T(?:able(?:Border(?:Position|Style)|Ref__)|emplate(?:B__)?|o(?:ken(?:Read|Writ)er|olType)|rigger(?:Status)?)|User(?:Class|Element_|List|NotifyList|Ref__)?|View(?:Def|s_)?|Window__|ZipType|_(?:x[rx]|[\*abcdfkmnwxy])|glueOn[12]__|trig(?:Event|Level(?:Desc|Mod)?|Type)_)|([A-Z]+))\s+(?:([\*&])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))|\(\s*([\*&])?(?:(case|default|enum|switch|union)|([a-zA-Z_][a-zA-Z_0-9]*))\))\s*(?=$|[,;=\n\[]|//|/\*)
     beginCaptures:
       '1': {name: storage.modifier.dxl}
       '2': {name: storage.type.fundimental.dxl}
@@ -758,6 +938,9 @@ repository:
       '5': {name: variable.other.pointer.dxl}
       '6': {name: invalid.illegal.keyword.dxl}
       '7': {name: variable.dxl}
+      '8': {name: variable.other.pointer.dxl}
+      '9': {name: invalid.illegal.keyword.dxl}
+      '10': {name: variable.dxl}
     end: (?=$|[;=\n]|//|/\*)
     endCaptures:
       '0': {name: declaration.variable.end.dxl}
