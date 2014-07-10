@@ -99,7 +99,6 @@ Licence:
 pragma encoding, "UTF-8"
 XFLAGS_ &= ~AutoDeclare_
 
-const int Debug_Version = 1
 
 //==================================== GLOBAL VARIABLES ===================================\\
 
@@ -293,8 +292,8 @@ void Debug_Private_Initialize(DxlObject oDxlObject)
 	setDebugging_(false)
 
 	// Default Log Files
-	string CallTraceFilePath = "c:\\DxlCallTrace.log"
-	string AllocationsFilePath = "c:\\DxlAllocations.log"
+	string CallTraceFilePath = "C:\\!LOGS!\\DxlCallTrace.log"
+	string AllocationsFilePath = "C:\\!LOGS!\\DxlAllocations.log"
 
 	// Create and Clear the Log Files
 	Stream TimeElapsedStream = write(CallTraceFilePath)

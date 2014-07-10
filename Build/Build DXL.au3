@@ -35,7 +35,7 @@ Licence:
 Opt("WinSearchChildren", 1)   ;0=no, 1=search children also
 Opt("MustDeclareVars", 1)     ;0=no, 1=yes
 
-#include <File.au3>			; For: _TempFile()
+#include <File.au3>			; For: _PathFull(), _PathSplit
 
 Local $oErrorHandler = ObjEvent("AutoIt.Error","ComErrorHandler")    ; Initialize a COM error handler
 ; This is my custom defined error handler
@@ -70,11 +70,15 @@ If @Compiled Then
 	$DxlMode = $CmdLine[2]
 EndIf
 
-If $DxlMode = "ShowErrors" Then
 
-	; We don't require DOORS to be running
-	Local $LogFile = GetDoorsLogFile()
-	Local $LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
+Local $LogFile = GetDoorsLogFile()
+
+Local $szDrive, $szDir, $szFName, $szExt
+_PathSplit($LogFile, $szDrive, $szDir, $szFName, $szExt)
+Local $LogFolder = $szDrive & $szDir
+Local $LastLogFile = $LogFolder & $szFName & " Last.log"
+
+If $DxlMode = "ShowErrors" Then
 
 	; Pipe the last errors from code invoked via Sublime Text
 	Local $LastLogFileHandle = FileOpen($LastLogFile, 0)
@@ -97,7 +101,6 @@ If $DxlMode = "ShowErrors" Then
 Else
 
 	; We require 'DOORSLOGFILE' to be defined in order to pipe Errors and Warnings
-	Local $LogFile = GetDoorsLogFile()
 	If Not $LogFile Then
 		ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @LF)
 		Exit
@@ -150,7 +153,7 @@ Else
 	EndIf
 
 	; File to 'print' to
-	Local $OutFile = _TempFile()
+	Local $OutFile = $LogFolder & "DxlPrint.log"
 
 	; Find the Relitive Base Paths for DOORS
 	Local $BasePathsString = ""
@@ -206,8 +209,6 @@ Else
 		; Initialize
 		Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
 
-		Local $LastLogFile = StringTrimRight($LogFile, 4) & " Last.log"
-
 		Local $LogFileHandle = FileOpen($LogFile, 0)
 		Local $OldLogFileText = FileRead($LogFileHandle)
 		FileClose($LogFileHandle)
@@ -224,19 +225,19 @@ Else
 		; Set File to pipe the output from
 		Local $PipeFilePath = $OutFile
 		If StringLeft($DxlMode, 16) = "TraceAllocations" Then
-			$PipeFilePath = "C:\\DxlAllocations.log"
+			$PipeFilePath = $LogFolder & "DxlAllocations.log"
 			ConsoleWrite("Allocations:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 14) = "TraceExecution" Then
-			$PipeFilePath = "C:\\DxlCallTrace.log"
+			$PipeFilePath = $LogFolder & "DxlCallTrace.log"
 			ConsoleWrite("Execution:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 11) = "TraceDelays" Then
-			$PipeFilePath = "C:\\DxlCallTrace.log"
+			$PipeFilePath = $LogFolder & "DxlCallTrace.log"
 			ConsoleWrite("Delays:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 14) = "TraceVariables" Then
-			$PipeFilePath = "C:\\DxlVariables.log"
+			$PipeFilePath = $LogFolder & "DxlVariables.log"
 			ConsoleWrite("Variables:" & @LF)
 		EndIf
 
@@ -424,9 +425,6 @@ Else
 		EndIf
 
 	EndIf
-
-	; Delete output file
-	FileDelete($OutFile)
 
 	$ObjDoors = 0
 	ConsoleWrite(@LF)

@@ -36,6 +36,7 @@ Opt("WinSearchChildren", 1)		;0=no, 1=search children also
 Opt("MustDeclareVars", 1)		;0=no, 1=yes
 ;~ Opt("RunErrorsFatal", 0)		;1=fatal, 0=silent set @error is in the script
 
+#include <File.au3>			; For: _PathFull(), _PathSplit
 
 Local $oErrorHandler = ObjEvent("AutoIt.Error","ComErrorHandler")    ; Initialize a COM error handler
 ; This is my custom defined error handler
@@ -76,14 +77,14 @@ Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
 
 Local $EscapedOutFile = StringReplace($OutFile, "\", "\\")
 Local $PrintRepurposeCode =  "// Repurpose Print" & @LF & _
-	"Stream SublimeText2_PrintStream = write(""" & $EscapedOutFile & """, CP_UTF8)" & @LF & _
-	"void SublimeText2_DxlPrint(string s) { print(s) }" & @LF & _
+	"Stream SublimeText_PrintStream = write(""" & $EscapedOutFile & """, CP_UTF8)" & @LF & _
+	"void SublimeText_OriginalPrint(string s) { print(s) }" & @LF & _
 	"void print(string s)" & @LF & _
 	"{" & @LF & _
-	@TAB & "if(" & StringLower($DxlOpen) & ") { SublimeText2_DxlPrint(s) }" & @LF & _
+	@TAB & "if(" & StringLower($DxlOpen) & ") { SublimeText_OriginalPrint(s) }" & @LF & _
 	@TAB & "if(!null(s)) {" & @LF & _
-	@TAB & @TAB & "SublimeText2_PrintStream << s" & @LF & _
-	@TAB & @TAB & "flush(SublimeText2_PrintStream)" & @LF & _
+	@TAB & @TAB & "SublimeText_PrintStream << s" & @LF & _
+	@TAB & @TAB & "flush(SublimeText_PrintStream)" & @LF & _
 	@TAB & "}" & @LF & _
 	"}" & @LF & _
 	'void print(bool b)		{ print(b "\n") }' & @LF & _
@@ -176,15 +177,21 @@ Switch $DxlMode
 		$Code = $Code & $IncludeString & @LF
 		$Code = $Code & 'Debug_Cleanup();' & @LF
 		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
-	Case "TraceVariables", "TraceVariablesVerbose"
+    Case "TraceVariables", "TraceVariablesVerbose"
+		
+		Local $szDrive, $szDir, $szFName, $szExt
+		_PathSplit($OutFile, $szDrive, $szDir, $szFName, $szExt)
+		Local $TraceFile = $szDrive & $szDir & "DxlVariables.log"
+		Local $EscapedTraceFile = StringReplace($TraceFile, "\", "\\")
+		
 		; Trace DXL
-		$Code = 'startDXLTracing_("C:\\DxlVariables.log");' & @LF
+		$Code = 'startDXLTracing_("' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
 		$Code = $Code & 'stopDXLTracing_();' & @LF
 		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 EndSwitch
 
-;~ Local $PostfixCode = @LF & "close(SublimeText2_PrintStream)" & @LF
+;~ Local $PostfixCode = @LF & "close(SublimeText_PrintStream)" & @LF
 ;~ Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $IncludeString & $PostfixCode
 ;~ Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 
