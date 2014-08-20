@@ -60,10 +60,11 @@ repository:
   buildHeaderModule:
     comment: Error in the build output
     name: keyword.other.header.dxl
-    match: '^Current Module:(?: (\[[^\]]+\]) (.*))?'
+    match: '^Current Module:(?: (\[[^\]]+\]) (.*) (\[[^\]]+\]))?'
     captures:
       '1': {name: constant.numeric.dxl}
       '2': {name: string.quoted.double.dxl}
+      '3': {name: constant.numeric.dxl}
 
   buildHeaderUser:
     comment: Error in the build output

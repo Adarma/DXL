@@ -56,7 +56,7 @@ Endfunc
 
 
 ; Check if any Arguments were passed
-If $CmdLine[0] < 4 Then
+If $CmdLine[0] < 8 Then
 	MsgBox(0, "Wrong Parameters", "Wrong Parameters: " & $CmdLine[0])
 	Exit
 EndIf
@@ -64,8 +64,12 @@ EndIf
 ; Get Arguments
 Local $ScriptFile = $CmdLine[1]
 Local $ModuleFullName = $CmdLine[2]
-Local $OutFile = $CmdLine[3]
-Local $DxlMode = $CmdLine[4]
+Local $IsBaseline = $CmdLine[3]
+Local $Major = $CmdLine[4]
+Local $Minor = $CmdLine[5]
+Local $Suffix = $CmdLine[6]
+Local $OutFile = $CmdLine[7]
+Local $DxlMode = $CmdLine[8]
 
 Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
 
@@ -98,9 +102,15 @@ If $ModuleFullName <> "" Then
 	; Set the current module
 	$SetModuleCode = "// Set Module" & @LF & _
 		'{' & @LF & _
-		@TAB & 'Item oItem = item("' & $ModuleFullName & '"); ' & @LF & _
+		@TAB & 'Item oItem = item("' & $ModuleFullName & '");' & @LF & _
 		@TAB & 'if(!null(oItem)) {' & @LF & _
 		@TAB & @TAB & 'Module oModule = module(oItem);' & @LF & _
+		@TAB & @TAB & 'if (' & $IsBaseline & ') {' & @LF & _
+		@TAB & @TAB & @TAB & 'ModName_ oModName = module("' & $ModuleFullName & '");' & @LF & _
+		@TAB & @TAB & @TAB & 'Baseline oBaseline = baseline(' & $Major & ', ' & $Minor & ', "' & $Suffix & '");' & @LF & _
+		@TAB & @TAB & @TAB & 'ModuleVersion oModuleVersion = moduleVersion(oModName, oBaseline);' & @LF & _
+		@TAB & @TAB & @TAB & 'oModule = data(oModuleVersion);' & @LF & _
+		@TAB & @TAB & '}' & @LF & _
 		@TAB & @TAB & 'if(!null(oModule)) {' & @LF & _
 		@TAB & @TAB & @TAB & '(current ModuleRef__) = oModule;' & @LF & _
 		@TAB & @TAB & '}' & @LF & _
@@ -115,7 +125,8 @@ Local $ContextCode = "// Print DXL Context" & @LF & _
 	@TAB & 'if(null(oModule)) {' & @LF & _
 	@TAB & @TAB & 'print("Current Module:\n");' & @LF & _
 	@TAB & '} else {' & @LF & _
-	@TAB & @TAB & 'print("Current Module: [" (type(oModule)) "] " (fullName(oModule)) "\n");' & @LF & _
+	@TAB & @TAB & 'string sBaseline = isBaseline(oModule) ? versionString(moduleVersion(oModule)) : "current";' & @LF & _
+	@TAB & @TAB & 'print("Current Module: [" (type(oModule)) "] " (fullName(oModule)) " [" sBaseline "]\n");' & @LF & _
 	@TAB & '}' & @LF & _
 	@TAB & 'User oUser = find();' & @LF & _
 	@TAB & 'string sUserName = oUser.name;' & @LF & _

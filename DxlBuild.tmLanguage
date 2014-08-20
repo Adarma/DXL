@@ -116,11 +116,16 @@
 					<key>name</key>
 					<string>string.quoted.double.dxl</string>
 				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.dxl</string>
+				</dict>
 			</dict>
 			<key>comment</key>
 			<string>Error in the build output</string>
 			<key>match</key>
-			<string>^Current Module:(?: (\[[^\]]+\]) (.*))?</string>
+			<string>^Current Module:(?: (\[[^\]]+\]) (.*) (\[[^\]]+\]))?</string>
 			<key>name</key>
 			<string>keyword.other.header.dxl</string>
 		</dict>

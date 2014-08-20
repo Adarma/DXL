@@ -120,12 +120,16 @@ Else
 	Local $ModuleFullName = ""
 	Local $ModuleType = ""
 	Local $ModuleHwnd = 0
+	Local $IsBaseline = "false"
+	Local $Major = 0
+	Local $Minor = 0
+	Local $Suffix = ""
 
 	; We require DOORS to be running
 	Local $DoorsRunning = $DxlOpen
 	If Not $DxlOpen Then
 		; Get Active DOORS Window details (ByRef)
-		$DoorsRunning = GetActiveDoorsWindowDetails($ModuleFullName, $ModuleType, $ModuleHwnd) ; MAKE SURE IT IS CHILD OF COM DATABASE
+		$DoorsRunning = GetActiveDoorsWindowDetails($ModuleFullName, $ModuleType, $ModuleHwnd, $IsBaseline, $Major, $Minor, $Suffix) ; MAKE SURE IT IS CHILD OF COM DATABASE
 	EndIf
 
 	If Not $DoorsRunning Then
@@ -157,7 +161,7 @@ Else
 
 	; Find the Relitive Base Paths for DOORS
 	Local $BasePathsString = ""
-	ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
+	ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
 	Sleep(100)
 	While _FileInUse($OutFile, 1) = 1
 		Sleep(50)
@@ -214,7 +218,7 @@ Else
 		FileClose($LogFileHandle)
 
 		; Run the DXL - Invoked by a separate process so this one can pipe the output back
-		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
+		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
 		Sleep($ParseTime + 500)
 
 		; Error Window Titles
@@ -468,7 +472,7 @@ Func GetActiveSublimeTextWindow()
 	Return $ActiveSublimeWindow
 EndFunc
 
-Func GetActiveDoorsWindowDetails(ByRef $ModuleFullName, Byref $ModuleType, ByRef $ModuleHwnd)
+Func GetActiveDoorsWindowDetails(ByRef $ModuleFullName, Byref $ModuleType, ByRef $ModuleHwnd, ByRef $IsBaseline, ByRef $Major, ByRef $Minor, ByRef $Suffix)
 	; Find Last Active DOORS Window - Explorer or Module
 	Local $DoorsRunning = false
 	$ModuleFullName = ""
@@ -489,13 +493,22 @@ Func GetActiveDoorsWindowDetails(ByRef $ModuleFullName, Byref $ModuleType, ByRef
 			EndIf
 
 			; Detect Open Formal Modules from their titles
-			Local $DoorsModule = StringRegExp($DoorsWindows[$i][0], "^'(.+)' current .+ in (.+) \((Formal|Link) module\) - DOORS$", 1)
+			Local $DoorsModule = StringRegExp($DoorsWindows[$i][0], "^'(.+)' (current|baseline) ([0-9]+)\.([0-9]+)( \([^)]+\))? in (.+) \((Formal|Link) module\) - DOORS$", 1)
 
-			If (UBound($DoorsModule) == 3) Then
+			If (UBound($DoorsModule) == 7) Then
 				$DoorsRunning = True
 				Local $ModuleName = $DoorsModule[0]
-				Local $FolderName = $DoorsModule[1]
-				$ModuleType = $DoorsModule[2]
+				Local $Baseline = $DoorsModule[1]
+				If ($Baseline == "baseline") Then
+				   $IsBaseline = "true"
+				Else
+				   $IsBaseline = "false"
+				EndIf
+				$Major = $DoorsModule[2]
+				$Minor = $DoorsModule[3]
+				$Suffix = $DoorsModule[4]
+				Local $FolderName = $DoorsModule[5]
+				$ModuleType = $DoorsModule[6]
 				$ModuleFullName = $FolderName & "/" & $ModuleName
 				$ModuleHwnd = $DoorsWindows[$i][1]
 				ExitLoop
