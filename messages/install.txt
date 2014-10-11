@@ -1,0 +1,25 @@
+
+               ██████╗ ██╗  ██╗██╗
+               ██╔══██╗╚██╗██╔╝██║
+               ██║  ██║ ╚███╔╝ ██║
+               ██║  ██║ ██╔██╗ ██║
+               ██████╔╝██╔╝ ██╗███████╗
+               ╚═════╝ ╚═╝  ╚═╝╚══════╝
+
+--~~~====##### DOORS EXTENSION LANGUAGE #####====~~~--
+
+
+Welcome to the DXL package for Sublime Text 3.
+
+This is a language package for Sublime Text 3.
+It adds support for the DOORS eXtension Language.
+
+
+                 * *** FEATURES *** *
+
+DXL Syntax Highlighting
+DXL Code Snippets
+Run DXL Build Configuration
+Jump to DXL Keyword in Help
+Monokai DXL Colour Scheme
+DXL Linter for SublimeLinter
