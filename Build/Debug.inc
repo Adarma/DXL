@@ -292,8 +292,19 @@ void Debug_Private_Initialize(DxlObject oDxlObject)
 	setDebugging_(false)
 
 	// Default Log Files
-	string CallTraceFilePath = "C:\\!LOGS!\\DxlCallTrace.log"
-	string AllocationsFilePath = "C:\\!LOGS!\\DxlAllocations.log"
+	string CallTraceFilePath = "C:\\DxlCallTrace.log"
+	string AllocationsFilePath = "C:\\DxlAllocations.log"
+
+	// Log Files in same folder as DOORSLOGFILE if possible
+	string sLogFile = getenv("DOORSLOGFILE")
+	int iOffset, iLength
+	if (findPlainText(sLogFile, "\\", iOffset, iLength, true, true)) {
+		CallTraceFilePath = sLogFile[0:iOffset] "DxlCallTrace.log"
+		AllocationsFilePath = sLogFile[0:iOffset] "DxlAllocations.log"
+	} else if (findPlainText(sLogFile, "/", iOffset, iLength, true, true)) {
+		CallTraceFilePath = sLogFile[0:iOffset] "DxlCallTrace.log"
+		AllocationsFilePath = sLogFile[0:iOffset] "DxlAllocations.log"
+	}
 
 	// Create and Clear the Log Files
 	Stream TimeElapsedStream = write(CallTraceFilePath)
