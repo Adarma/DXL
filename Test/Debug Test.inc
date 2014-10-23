@@ -1,3 +1,4 @@
+pragma encoding, "UTF-8"
 
 // print("Include\n")
 

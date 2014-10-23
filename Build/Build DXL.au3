@@ -1,4 +1,4 @@
-﻿#cs ----------------------------------------------------------------------------
+#cs ----------------------------------------------------------------------------
 
 Author:
 	Adam Cadamally
@@ -41,7 +41,7 @@ Local $oErrorHandler = ObjEvent("AutoIt.Error","ComErrorHandler")    ; Initializ
 ; This is my custom defined error handler
 Func ComErrorHandler($oMyError)
 	Return
-	ConsoleWrite("We intercepted a COM Error !"    & @LF  & @LF & _
+	WriteUnicode("We intercepted a COM Error !"    & @LF  & @LF & _
              "err.description is: " & @TAB & $oMyError.description  & @LF & _
              "err.windescription:"   & @TAB & $oMyError.windescription & @LF & _
              "err.number is: "       & @TAB & hex($oMyError.number,8)  & @LF & _
@@ -61,15 +61,16 @@ Local $DxlMode = "Run"
 If @Compiled Then
 	; Check if Arguments were passed correctly
 	If $CmdLine[0] < 2 Then
-		ConsoleWrite("Wrong Parameters" & @LF)
+		WriteUnicode("Wrong Parameters" & @LF)
 		Exit
 	EndIf
 
 	; Get Full File Path from Arguments
 	$ScriptFile = $CmdLine[1]
 	$DxlMode = $CmdLine[2]
+Else
+	WriteUnicode("Check Unicode: öÊãt ♠♣♥♦ ♪♫ ♀♂" & @LF)
 EndIf
-
 
 Local $LogFile = GetDoorsLogFile()
 
@@ -81,20 +82,20 @@ Local $LastLogFile = $LogFolder & $szFName & " Last.log"
 If $DxlMode = "ShowErrors" Then
 
 	; Pipe the last errors from code invoked via Sublime Text
-	Local $LastLogFileHandle = FileOpen($LastLogFile, 0)
+	Local $LastLogFileHandle = FileOpen($LastLogFile, $FO_READ)
 	Local $LastLogFileText = FileRead($LastLogFileHandle)
 	If StringLen($LastLogFileText) > 0 Then
-		ConsoleWrite(@LF & "Last Error Log:" & @LF)
-		ConsoleWrite($LastLogFileText & @LF)
+		WriteUnicode(@LF & "Last Error Log:" & @LF)
+		WriteUnicode($LastLogFileText & @LF)
 	EndIf
 	FileClose($LastLogFileHandle)
 
 	; Pipe the full error log to get errors in code not invoked via Sublime Text
-	Local $LogFileHandle = FileOpen($LogFile, 0)
+	Local $LogFileHandle = FileOpen($LogFile, $FO_READ)
 	Local $LogFileText = FileRead($LogFileHandle)
 	If StringLen($LogFileText) > 0 Then
-		ConsoleWrite(@LF & "Full Error Log:" & @LF)
-		ConsoleWrite($LogFileText & @LF)
+		WriteUnicode(@LF & "Full Error Log:" & @LF)
+		WriteUnicode($LogFileText & @LF)
 	EndIf
 	FileClose($LogFileHandle)
 
@@ -102,7 +103,7 @@ Else
 
 	; We require 'DOORSLOGFILE' to be defined in order to pipe Errors and Warnings
 	If Not $LogFile Then
-		ConsoleWrite("'DOORSLOGFILE' is not defined for Warning and Error logging" & @LF)
+		WriteUnicode("'DOORSLOGFILE' is not defined for Warning and Error logging" & @LF)
 		Exit
 	EndIf
 
@@ -133,7 +134,7 @@ Else
 	EndIf
 
 	If Not $DoorsRunning Then
-		ConsoleWrite("DOORS is not running!" & @LF)
+		WriteUnicode("DOORS is not running!" & @LF)
 		Exit
 	EndIf
 
@@ -141,37 +142,38 @@ Else
 	Local $ObjDoors = ObjCreate("DOORS.application")
 
 	If @error Then
-		ConsoleWrite("Failed to connect to DOORS." & @LF & "Error Code: " & Hex(@error, 8) & @LF)
+		WriteUnicode("Failed to connect to DOORS." & @LF & "Error Code: " & Hex(@error, 8) & @LF)
 		Exit
 	EndIf
 
 	If Not IsObj($ObjDoors) Then
-		ConsoleWrite("Failed to connect to DOORS.")
+		WriteUnicode("Failed to connect to DOORS.")
 		Exit
 	EndIf
 
 	If $DxlOpen Then
-		ConsoleWrite("Code Execution: 'DXL Interaction' window" & @LF)
+		WriteUnicode("Code Execution: 'DXL Interaction' window" & @LF)
 	Else
-		ConsoleWrite("Code Execution: COM" & @LF)
+		WriteUnicode("Code Execution: COM" & @LF)
 	EndIf
 
 	; File to 'print' to
 	Local $OutFile = $LogFolder & "DxlPrint.log"
 
 	; Find the Relitive Base Paths for DOORS
+	ClearFile($OutFile)
 	Local $BasePathsString = ""
 	ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
 	Sleep(100)
 	While _FileInUse($OutFile, 1) = 1
 		Sleep(50)
 	WEnd
-	Local $OutFileHandle = FileOpen($OutFile, 0)
+	Local $OutFileHandle = FileOpen($OutFile, $FO_READ)
 	If $OutFileHandle = -1 Then
-		ConsoleWrite("Relitive Paths: " & "Failed to get Base Paths" & @LF)
+		WriteUnicode("Relitive Paths: " & "Failed to get Base Paths" & @LF)
 	Else
 		Local $BasePathsString = StringReplace(FileRead($OutFileHandle), "/", "\")
-		ConsoleWrite("Relitive Paths: " & $BasePathsString & @LF)
+		WriteUnicode("Relitive Paths: " & $BasePathsString & @LF)
 	EndIf
 	FileClose($OutFileHandle)
 	Local $BasePathsArray = StringSplit($BasePathsString, ';', 1)
@@ -189,21 +191,21 @@ Else
 	$ObjDoors.runStr($TestCode)
 	$ParseTime = TimerDiff($ParseTime)
 	$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
-	ConsoleWrite("Parse Duration: " & $ParseTime & " milliseconds" & @LF)
+	WriteUnicode("Parse Duration: " & $ParseTime & " milliseconds" & @LF)
 
 	Local $DXLOutputText = $ObjDoors.Result
 	If $DXLOutputText <> "" Then
-		ConsoleWrite("Parse Errors:" & @LF)
+		WriteUnicode("Parse Errors:" & @LF)
 		Local $OutputLines = stringsplit($DXLOutputText, @CRLF, 0)
 		Local $LineIndex
 		For $LineIndex = 1 To $OutputLines[0]
 			If $OutputLines[$LineIndex] = "" Then
 				; Don't pipe last empty line
 				If $LineIndex < $OutputLines[0] Then
-					ConsoleWrite($OutputLines[$LineIndex] & @LF)
+					WriteUnicode($OutputLines[$LineIndex] & @LF)
 				EndIf
 			Else
-				ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+				WriteUnicode(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
 			EndIf
 		Next
 	Else
@@ -213,11 +215,12 @@ Else
 		; Initialize
 		Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
 
-		Local $LogFileHandle = FileOpen($LogFile, 0)
+		Local $LogFileHandle = FileOpen($LogFile, $FO_READ)
 		Local $OldLogFileText = FileRead($LogFileHandle)
 		FileClose($LogFileHandle)
 
 		; Run the DXL - Invoked by a separate process so this one can pipe the output back
+		ClearFile($OutFile)
 		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
 		Sleep($ParseTime + 500)
 
@@ -230,19 +233,19 @@ Else
 		Local $PipeFilePath = $OutFile
 		If StringLeft($DxlMode, 16) = "TraceAllocations" Then
 			$PipeFilePath = $LogFolder & "DxlAllocations.log"
-			ConsoleWrite("Allocations:" & @LF)
+			WriteUnicode("Allocations:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 14) = "TraceExecution" Then
 			$PipeFilePath = $LogFolder & "DxlCallTrace.log"
-			ConsoleWrite("Execution:" & @LF)
+			WriteUnicode("Execution:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 11) = "TraceDelays" Then
 			$PipeFilePath = $LogFolder & "DxlCallTrace.log"
-			ConsoleWrite("Delays:" & @LF)
+			WriteUnicode("Delays:" & @LF)
 		EndIf
 		If StringLeft($DxlMode, 14) = "TraceVariables" Then
 			$PipeFilePath = $LogFolder & "DxlVariables.log"
-			ConsoleWrite("Variables:" & @LF)
+			WriteUnicode("Variables:" & @LF)
 		EndIf
 
 		; While running, pipe the output
@@ -284,9 +287,9 @@ Else
 			EndIf
 
 			; Pipe the new output
-			Local $OutFileHandle = FileOpen($PipeFilePath, 0)
+			Local $OutFileHandle = FileOpen($PipeFilePath, $FO_READ)
 			If $OutFileHandle = -1 Then
-				ConsoleWrite("Unable to get DOORS Output" & @LF)
+				WriteUnicode("Unable to get DOORS Output" & @LF)
 				ExitLoop
 			Else
 				Local $OutputText = FileRead($OutFileHandle)
@@ -298,7 +301,7 @@ Else
 						If $OutputLines[$LineIndex] = "" Then
 							; Don't pipe empty line from Trace
 							If StringLeft($DxlMode, 5) <> "Trace" and $LineIndex < $OutputLines[0] Then
-								ConsoleWrite($OutputLines[$LineIndex] & @LF)
+								WriteUnicode($OutputLines[$LineIndex] & @LF)
 							EndIf
 						Else
 							If StringLeft($DxlMode, 5) = "Trace" Then
@@ -306,12 +309,12 @@ Else
 								If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
 									If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
 										If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-											ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+											WriteUnicode(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
 										EndIf
 									EndIf
 								EndIf
 							Else
-								ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+								WriteUnicode(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
 							EndIf
 						EndIf
 					Next
@@ -336,9 +339,9 @@ Else
 		EndIf
 
 		; Pipe the remaining output
-		Local $OutFileHandle = FileOpen($PipeFilePath, 0)
+		Local $OutFileHandle = FileOpen($PipeFilePath, $FO_READ)
 		If $OutFileHandle = -1 Then
-			ConsoleWrite("Unable to get DOORS Output" & @LF)
+			WriteUnicode("Unable to get DOORS Output" & @LF)
 		Else
 			Local $OutputText = FileRead($OutFileHandle)
 			Local $NewText = StringTrimLeft($OutputText, StringLen($OldOutputText))
@@ -349,7 +352,7 @@ Else
 					If $OutputLines[$LineIndex] = "" Then
 						; Don't pipe empty line from Trace
 						If StringLeft($DxlMode, 5) <> "Trace" Then
-							ConsoleWrite($OutputLines[$LineIndex] & @LF)
+							WriteUnicode($OutputLines[$LineIndex] & @LF)
 						EndIf
 					Else
 						If StringLeft($DxlMode, 5) = "Trace" Then
@@ -357,12 +360,12 @@ Else
 							If StringLeft($OutputLines[$LineIndex], 1) = "<" Then
 								If StringLeft($OutputLines[$LineIndex], 6) <> "<Line:" Then
 									If $TraceAllLines Or StringLeft($OutputLines[$LineIndex], StringLen($ScriptFile) + 2) = "<" & $ScriptFile & ":" Then
-										ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+										WriteUnicode(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
 									EndIf
 								EndIf
 							EndIf
 						Else
-							ConsoleWrite(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
+							WriteUnicode(AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex]) & @LF)
 						EndIf
 					EndIf
 				Next
@@ -374,42 +377,42 @@ Else
 		; Report Closed Error Popups
 		If $RuntimeError Or WinExists($RuntimeErrorWindow) Then
 			ControlClick($RuntimeErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
-			ConsoleWrite(@LF)
-			ConsoleWrite("++++++++++++++++++" & @LF)
-			ConsoleWrite("+ Runtime Error! +" & @LF)
-			ConsoleWrite("++++++++++++++++++" & @LF)
+			WriteUnicode(@LF)
+			WriteUnicode("++++++++++++++++++" & @LF)
+			WriteUnicode("+ Runtime Error! +" & @LF)
+			WriteUnicode("++++++++++++++++++" & @LF)
 		EndIf
 		If $DiagnosticLog Or (WinExists($DiagnosticLogWindow) And BitAnd(WinGetState($DiagnosticLogWindow), 2)) Then
 			ControlClick($DiagnosticLogWindow, "", "[CLASS:Button; INSTANCE:1]")
-			ConsoleWrite(@LF)
-			ConsoleWrite("******************" & @LF)
-			ConsoleWrite("* Diagnostic Log *" & @LF)
-			ConsoleWrite("******************" & @LF)
+			WriteUnicode(@LF)
+			WriteUnicode("******************" & @LF)
+			WriteUnicode("* Diagnostic Log *" & @LF)
+			WriteUnicode("******************" & @LF)
 		EndIf
 		If $CppError Or WinExists($CppErrorWindow) Then
 			ControlClick($CppErrorWindow, "", "[CLASS:Button; INSTANCE:1]")
-			ConsoleWrite(@LF)
-			ConsoleWrite("##################" & @LF)
-			ConsoleWrite("# MS V C++ Error #" & @LF)
-			ConsoleWrite("##################" & @LF)
+			WriteUnicode(@LF)
+			WriteUnicode("##################" & @LF)
+			WriteUnicode("# MS V C++ Error #" & @LF)
+			WriteUnicode("##################" & @LF)
 		EndIf
 
 		; Pipe Errors and Warnings
-		Local $LogFileHandle = FileOpen($LogFile, 0)
+		Local $LogFileHandle = FileOpen($LogFile, $FO_READ)
 		If $LogFileHandle = -1 Then
-			ConsoleWrite("Unable to get DOORS Errors" & @LF)
+			WriteUnicode("Unable to get DOORS Errors" & @LF)
 		Else
 			Local $LogFileText = FileRead($LogFileHandle)
 			Local $NewText = StringTrimLeft($LogFileText, StringLen($OldLogFileText))
 			If $NewText <> "" Then
 				; Save Error log containing just the last errors
-				Local $NewLogFileHandle = FileOpen($LastLogFile, 2)
-				ConsoleWrite(@LF & "Error Log:" & @LF)
+				Local $NewLogFileHandle = FileOpen($LastLogFile, $FO_OVERWRITE)
+				WriteUnicode(@LF & "Error Log:" & @LF)
 				Local $OutputLines = stringsplit($NewText, @CRLF, 1)
 				Local $LineIndex
 				For $LineIndex = 1 To $OutputLines[0]
 					Local $AbsoluteLine = AbsoluteLine($BasePathsArray, $OutputLines[$LineIndex])
-					ConsoleWrite($AbsoluteLine & @LF)
+					WriteUnicode($AbsoluteLine & @LF)
 					FileWrite($NewLogFileHandle, $AbsoluteLine)
 				Next
 				FileClose($NewLogFileHandle)
@@ -431,7 +434,7 @@ Else
 	EndIf
 
 	$ObjDoors = 0
-	ConsoleWrite(@LF)
+	WriteUnicode(@LF)
 
 EndIf
 
@@ -519,9 +522,8 @@ Func GetActiveDoorsWindowDetails(ByRef $ModuleFullName, Byref $ModuleType, ByRef
 EndFunc
 
 Func ClearFile($sFilename)
-    If FileExists($sFilename) Then
-		FileDelete($sFilename)
-		Local $FileHandle = FileOpen($sFilename, 2)
+	Local $FileHandle = FileOpen($sFilename, $FO_OVERWRITE)
+	If $FileHandle <> -1 Then
 		FileClose($FileHandle)
 	EndIf
 EndFunc
@@ -548,6 +550,17 @@ Func AbsoluteLine($BasePathsArray, $Line)
 		Return $Matches[0] &  $AbsolutePath & $Matches[2]
 	EndIf
 	Return $Line
+EndFunc
+
+Func Unicode2Ansi($sString = "")
+    ; Convert UTF8 to ANSI
+    Local Const $SF_ANSI = 1
+    Local Const $SF_UTF8 = 4
+    Return BinaryToString(StringToBinary($sString, $SF_UTF8), $SF_ANSI)
+EndFunc
+
+Func WriteUnicode($sString = "")
+    ConsoleWrite(Unicode2Ansi($sString))
 EndFunc
 
 ;===============================================================================

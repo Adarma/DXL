@@ -1,5 +1,32 @@
+pragma encoding, "UTF-8"
 
 #include <D:\!PORTABLE!\Sublime Text Build 3065 - GIT\Data\Packages\DXL\Test\Debug Test.inc>
+
+print(stringOf(dateAndTime(today()), userLocale(), "dddd, MMMM dd, yyyy") "\n")
+
+print("
+ĐεβÛʛ ᵺᶒ Ü∩Ì©öɖÊ ↔ ₳ȡɐɱʂ Iñtërnâtiônàližætiøn
+
+いろはにほへとちりぬるを
+Pchnąć w tę łódź jeża lub ośm skrzyń fig
+イロハニホヘト チリヌルヲ ワカヨタレソ ツネナラム
+Pijamalı hasta, yağız şoföre çabucak güvendi.
+В чащах юга жил бы цитрус? Да, но фальшивый экземпляр!
+เป็นมนุษย์สุดประเสริฐเลิศคุณค่า
+͡๏̯̮̮̃͡•̃).
+Units: $£€₤¢¥°µ
+Arrows: ←↑→↓↔↕↨
+Marks: ™©®
+Cards: ♠♣♥♦
+Gender: ♀♂
+Music: ♪♫
+Maths: +-±÷<>…′″⁄∞≈≠≡≤≥∂∆∑−∕∙√∞∩∫
+Fractions: ¼½¾⅓⅔⅛⅜⅝⅞
+Powers: ²³
+Greek: αβγδεζηθικλ
+Arabic: ۩۞۝
+Bullets: ■□▪▫○●
+")
 
 // print "Allocation Test\n"
 Array oArray = create(1, 1)
