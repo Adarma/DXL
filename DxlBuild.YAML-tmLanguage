@@ -9,6 +9,7 @@ patterns:
 - include: '#runDuration'
 - include: '#outputError'
 - include: '#outputWarning'
+- include: '#outputColoured'
 
 repository:
   buildHeader:
@@ -84,6 +85,45 @@ repository:
     match: '^\[Finished in ([0-9]+\.[0-9]+)s\]$'
     captures:
       '1': {name: constant.numeric}
+
+  outputColoured:
+    patterns:
+    - include: '#outputColouredBlue'
+    - include: '#outputColouredGreen'
+    - include: '#outputColouredOrange'
+    - include: '#outputColouredPurple'
+    - include: '#outputColouredRed'
+    - include: '#outputColouredYellow'
+
+  outputColouredBlue:
+    comment: Colour the output
+    name: storage.modifier.dxl
+    match: ^B:.*$
+
+  outputColouredGreen:
+    comment: Colour the output
+    name: support.function.perm.dxl
+    match: ^G:.*$
+
+  outputColouredOrange:
+    comment: Colour the output
+    name: comment.line.continuation.dxl
+    match: ^O:.*$
+
+  outputColouredPurple:
+    comment: Colour the output
+    name: constant.numeric.dxl
+    match: ^P:.*$
+
+  outputColouredRed:
+    comment: Colour the output
+    name: keyword.other.header.dxl
+    match: ^R:.*$
+
+  outputColouredYellow:
+    comment: Colour the output
+    name: string.quoted.double.dxl
+    match: ^Y:.*$
 
   outputError:
     comment: Error in the build output

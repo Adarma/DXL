@@ -26,6 +26,10 @@
 			<key>include</key>
 			<string>#outputWarning</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#outputColoured</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -205,6 +209,90 @@
 			<string>^Active Account: (.*)</string>
 			<key>name</key>
 			<string>keyword.other.header.dxl</string>
+		</dict>
+		<key>outputColoured</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#outputColouredBlue</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#outputColouredGreen</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#outputColouredOrange</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#outputColouredPurple</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#outputColouredRed</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#outputColouredYellow</string>
+				</dict>
+			</array>
+		</dict>
+		<key>outputColouredBlue</key>
+		<dict>
+			<key>comment</key>
+			<string>Colour the output</string>
+			<key>match</key>
+			<string>^B:.*$</string>
+			<key>name</key>
+			<string>storage.modifier.dxl</string>
+		</dict>
+		<key>outputColouredGreen</key>
+		<dict>
+			<key>comment</key>
+			<string>Colour the output</string>
+			<key>match</key>
+			<string>^G:.*$</string>
+			<key>name</key>
+			<string>support.function.perm.dxl</string>
+		</dict>
+		<key>outputColouredOrange</key>
+		<dict>
+			<key>comment</key>
+			<string>Colour the output</string>
+			<key>match</key>
+			<string>^O:.*$</string>
+			<key>name</key>
+			<string>comment.line.continuation.dxl</string>
+		</dict>
+		<key>outputColouredPurple</key>
+		<dict>
+			<key>comment</key>
+			<string>Colour the output</string>
+			<key>match</key>
+			<string>^P:.*$</string>
+			<key>name</key>
+			<string>constant.numeric.dxl</string>
+		</dict>
+		<key>outputColouredRed</key>
+		<dict>
+			<key>comment</key>
+			<string>Colour the output</string>
+			<key>match</key>
+			<string>^R:.*$</string>
+			<key>name</key>
+			<string>keyword.other.header.dxl</string>
+		</dict>
+		<key>outputColouredYellow</key>
+		<dict>
+			<key>comment</key>
+			<string>Colour the output</string>
+			<key>match</key>
+			<string>^Y:.*$</string>
+			<key>name</key>
+			<string>string.quoted.double.dxl</string>
 		</dict>
 		<key>outputError</key>
 		<dict>

@@ -5,6 +5,16 @@ pragma encoding, "UTF-8"
 print(stringOf(dateAndTime(today()), userLocale(), "dddd, MMMM dd, yyyy") "\n")
 
 print("
+Y: Yellow
+R: Red
+B: Blue
+G: Green
+P: Purple
+O: Orange
+W: White
+")
+
+print("
 ĐεβÛʛ ᵺᶒ Ü∩Ì©öɖÊ ↔ ₳ȡɐɱʂ Iñtërnâtiônàližætiøn
 
 いろはにほへとちりぬるを
