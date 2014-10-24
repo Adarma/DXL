@@ -103,7 +103,20 @@ Else
 
 	; We require 'DOORSLOGFILE' to be defined in order to pipe Errors and Warnings
 	If Not $LogFile Then
-		WriteUnicode("'DOORSLOGFILE' is not defined for Warning and Error logging" & @LF)
+		WriteUnicode("'DOORSLOGFILE' is not defined for Warning and Error logging" & @LF & @LF)
+		WriteUnicode("Unfortunatly it is not possible to toggle warning and error logging during a DOORS session." & @LF)
+		WriteUnicode("Changing the setting requires DOORS to be restarted." & @LF)
+		WriteUnicode("To send the warnings and errors to Sublime Text, logging is required." & @LF & @LF)
+		WriteUnicode("Logging may be enabled by setting a Value in the Registry Key:" & @LF)
+		WriteUnicode("HKCU\Software\Telelogic\DOORS\#.#\Config" & @LF)
+		WriteUnicode("The ValueName should be 'LOGFILE' of Type 'REG_SZ' with the Data set to a full file path." & @LF)
+		WriteUnicode("DOORS must be restarted for it to take effect." & @LF & @LF)
+		WriteUnicode("Unfortunatly this will redirect all warnings and errors to the file, not just dxl started via Sublime Text." & @LF)
+		WriteUnicode("You may display the log with F6, Build: DXL: Errors." & @LF & @LF)
+		WriteUnicode("Example Commandline to set the registry value:" & @LF)
+		WriteUnicode('reg add "HKCU\Software\Telelogic\DOORS\9.5\Config" /f /v "LOGFILE" /t REG_SZ /d "C:\DxlErrors.log"' & @LF & @LF)
+		WriteUnicode("Example Commandline to delete the registry value:" & @LF)
+		WriteUnicode('reg delete "HKCU\Software\Telelogic\DOORS\9.5\Config" /f /v "LOGFILE"' & @LF)
 		Exit
 	EndIf
 
