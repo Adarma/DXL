@@ -35,7 +35,7 @@
         { "cmd": ["$packages\\DXL\\Build\\Build DXL.exe", "$file", "ShowErrors"],
           "name": "DXL: Errors"
         },
-        { "cmd": ["$packages\\DXL\\Lint\\DxlLint.exe", "$file"],
+        { "cmd": ["$packages\\DXL\\Lint\\Dxl.exe", "$file"],
           "name": "DXL: Lint"
         }
     ]
