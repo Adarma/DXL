@@ -501,7 +501,7 @@ Func GetActiveDoorsWindowDetails(ByRef $ModuleFullName, Byref $ModuleType, ByRef
 		If $DoorsWindows[$i][0] <> "" And IsVisible($DoorsWindows[$i][1]) Then
 
 			; Detect Doors Explorer from the title
-			Local $DoorsExplorer = StringRegExp($DoorsWindows[$i][0], "^[^'].+: (/|\.{3}).+ - DOORS$", 0)
+			Local $DoorsExplorer = StringRegExp($DoorsWindows[$i][0], "^[^'].+: (/|\.{3}).* - DOORS$", 0)
 
 			If ($DoorsExplorer) Then
 				$DoorsRunning = True
