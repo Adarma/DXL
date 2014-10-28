@@ -1,6 +1,11 @@
 pragma encoding, "UTF-8"
 
 #include <D:\!PORTABLE!\Sublime Text Build 3065 - GIT\Data\Packages\DXL\Test\Debug Test.inc>
+void TestErrorsAndWarnings() {
+	print dxlHere() "\n"
+	warn "dxlHere"
+	error "dxlHere"
+}
 
 print(stringOf(dateAndTime(today()), userLocale(), "dddd, MMMM dd, yyyy") "\n")
 
@@ -13,6 +18,8 @@ P: Purple
 O: Orange
 W: White
 ")
+
+TestErrorsAndWarnings()
 
 print("
 ĐεβÛʛ ᵺᶒ Ü∩Ì©öɖÊ ↔ ₳ȡɐɱʂ Iñtërnâtiônàližætiøn

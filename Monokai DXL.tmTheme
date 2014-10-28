@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>name</key>
@@ -9,10 +9,24 @@
 		<dict>
 			<key>settings</key>
 			<dict>
+				<key>activeGuide</key>
+				<string>#9D550FB0</string>
 				<key>background</key>
 				<string>#1E1E1E</string>
+				<key>bracketContentsForeground</key>
+				<string>#F8F8F2A5</string>
+				<key>bracketContentsOptions</key>
+				<string>underline</string>
+				<key>bracketsForeground</key>
+				<string>#F8F8F2A5</string>
+				<key>bracketsOptions</key>
+				<string>underline</string>
 				<key>caret</key>
 				<string>#F8F8F0</string>
+				<key>findHighlight</key>
+				<string>#FFE792</string>
+				<key>findHighlightForeground</key>
+				<string>#000000</string>
 				<key>foreground</key>
 				<string>#F8F8F2</string>
 				<key>invisibles</key>
@@ -21,25 +35,8 @@
 				<string>#282828</string>
 				<key>selection</key>
 				<string>#363636</string>
-				<key>findHighlight</key>
-				<string>#FFE792</string>
-				<key>findHighlightForeground</key>
-				<string>#000000</string>
 				<key>selectionBorder</key>
 				<string>#222218</string>
-				<key>activeGuide</key>
-				<string>#9D550FB0</string>
-
-				<key>bracketsForeground</key>
-				<string>#F8F8F2A5</string>
-				<key>bracketsOptions</key>
-				<string>underline</string>
-
-				<key>bracketContentsForeground</key>
-				<string>#F8F8F2A5</string>
-				<key>bracketContentsOptions</key>
-				<string>underline</string>
-
 				<key>tagsOptions</key>
 				<string>stippled_underline</string>
 			</dict>
@@ -62,10 +59,10 @@
 			<string>comment.line.continuation</string>
 			<key>settings</key>
 			<dict>
-				<key>foreground</key>
-				<string>#FF8000</string>
 				<key>fontStyle</key>
 				<string>bold</string>
+				<key>foreground</key>
+				<string>#FF8000</string>
 			</dict>
 		</dict>
 		<dict>
@@ -90,7 +87,6 @@
 				<string>#AE81FF</string>
 			</dict>
 		</dict>
-
 		<dict>
 			<key>name</key>
 			<string>Built-in constant</string>
@@ -426,7 +422,6 @@
 				<string>#CFCFC2</string>
 			</dict>
 		</dict>
-
 		<dict>
 			<key>name</key>
 			<string>diff.header</string>
@@ -471,7 +466,6 @@
 				<string>#E6DB74</string>
 			</dict>
 		</dict>
-
 		<dict>
 			<key>scope</key>
 			<string>constant.numeric.line-number.find-in-files - match</string>
@@ -490,91 +484,44 @@
 				<string>#E6DB74</string>
 			</dict>
 		</dict>
-		<!--added for sublime-linter -->
 		<dict>
-		    <key>name</key>
-		    <string>SublimeLinter Annotations</string>
-		    <key>scope</key>
-		    <string>sublimelinter.annotations</string>
-		    <key>settings</key>
-		    <dict>
-		        <key>background</key>
-		        <string>#FFFFAA</string>
-		        <key>foreground</key>
-		        <string>#FFFFFF</string>
-		    </dict>
+			<key>name</key>
+			<string>Errors</string>
+			<key>scope</key>
+			<string>markup.build.error</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#D02000</string>
+				<key>foreground</key>
+				<string>#FFFFFF</string>
+			</dict>
 		</dict>
 		<dict>
-		    <key>name</key>
-		    <string>SublimeLinter Error Outline</string>
-		    <key>scope</key>
-		    <string>sublimelinter.outline.illegal</string>
-		    <key>settings</key>
-		    <dict>
-		        <key>background</key>
-		        <string>#FF4A52</string>
-		        <key>foreground</key>
-		        <string>#FFFFFF</string>
-		    </dict>
+			<key>name</key>
+			<string>Warnings</string>
+			<key>scope</key>
+			<string>markup.build.warning</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#DDB700</string>
+				<key>foreground</key>
+				<string>#000000</string>
+			</dict>
 		</dict>
 		<dict>
-		    <key>name</key>
-		    <string>SublimeLinter Error Underline</string>
-		    <key>scope</key>
-		    <string>sublimelinter.underline.illegal</string>
-		    <key>settings</key>
-		    <dict>
-		        <key>background</key>
-		        <string>#FF0000</string>
-		    </dict>
-		</dict>
-		<dict>
-		    <key>name</key>
-		    <string>SublimeLinter Warning Outline</string>
-		    <key>scope</key>
-		    <string>sublimelinter.outline.warning</string>
-		    <key>settings</key>
-		    <dict>
-		        <key>background</key>
-		        <string>#DF9400</string>
-		        <key>foreground</key>
-		        <string>#FFFFFF</string>
-		    </dict>
-		</dict>
-		<dict>
-		    <key>name</key>
-		    <string>SublimeLinter Warning Underline</string>
-		    <key>scope</key>
-		    <string>sublimelinter.underline.warning</string>
-		    <key>settings</key>
-		    <dict>
-		        <key>background</key>
-		        <string>#FF0000</string>
-		    </dict>
-		</dict>
-		<dict>
-		    <key>name</key>
-		    <string>SublimeLinter Violation Outline</string>
-		    <key>scope</key>
-		    <string>sublimelinter.outline.violation</string>
-		    <key>settings</key>
-		    <dict>
-		        <key>background</key>
-		        <string>#ffffff33</string>
-		        <key>foreground</key>
-		        <string>#FFFFFF</string>
-		    </dict>
-		</dict>
-		<dict>
-		    <key>name</key>
-		    <string>SublimeLinter Violation Underline</string>
-		    <key>scope</key>
-		    <string>sublimelinter.underline.violation</string>
-		    <key>settings</key>
-		    <dict>
-		        <key>background</key>
-		        <string>#FF0000</string>
-		    </dict>
+			<key>name</key>
+			<string>Backtrace</string>
+			<key>scope</key>
+			<string>markup.build.backtrace</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#282888</string>
+				<key>foreground</key>
+				<string>#FFFFFF</string>
+			</dict>
 		</dict>
 	</array>
 	<key>uuid</key>

@@ -28,6 +28,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#outputBacktrace</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#outputColoured</string>
 		</dict>
 	</array>
@@ -210,6 +214,15 @@
 			<key>name</key>
 			<string>keyword.other.header.dxl</string>
 		</dict>
+		<key>outputBacktrace</key>
+		<dict>
+			<key>comment</key>
+			<string>Warning in the build output</string>
+			<key>match</key>
+			<string>^(Backtrace:|\s?&lt;(?!Line:)(.*):([0-9]+)&gt; ?)</string>
+			<key>name</key>
+			<string>markup.build.backtrace.dxl</string>
+		</dict>
 		<key>outputColoured</key>
 		<dict>
 			<key>patterns</key>
@@ -299,18 +312,18 @@
 			<key>comment</key>
 			<string>Error in the build output</string>
 			<key>match</key>
-			<string>^(?:-?R?-[EF]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
+			<string>^(?:-?R?-[EF]- DXL: )&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
 			<key>name</key>
-			<string>sublimelinter.outline.illegal.dxl</string>
+			<string>markup.build.error.dxl</string>
 		</dict>
 		<key>outputWarning</key>
 		<dict>
 			<key>comment</key>
 			<string>Warning in the build output</string>
 			<key>match</key>
-			<string>^(?:-?R?-[W]- DXL: |\s)&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
+			<string>^(?:-?R?-[W]- DXL: )&lt;(?!Line:)(.*):([0-9]+)&gt; ?(?:.*)</string>
 			<key>name</key>
-			<string>sublimelinter.outline.warning.dxl</string>
+			<string>markup.build.warning.dxl</string>
 		</dict>
 		<key>runDuration</key>
 		<dict>

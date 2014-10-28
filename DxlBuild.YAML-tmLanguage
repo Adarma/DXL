@@ -9,6 +9,7 @@ patterns:
 - include: '#runDuration'
 - include: '#outputError'
 - include: '#outputWarning'
+- include: '#outputBacktrace'
 - include: '#outputColoured'
 
 repository:
@@ -86,6 +87,21 @@ repository:
     captures:
       '1': {name: constant.numeric}
 
+  outputError:
+    comment: Error in the build output
+    name: markup.build.error.dxl
+    match: '^(?:-?R?-[EF]- DXL: )<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
+
+  outputWarning:
+    comment: Warning in the build output
+    name: markup.build.warning.dxl
+    match: '^(?:-?R?-[W]- DXL: )<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
+
+  outputBacktrace:
+    comment: Warning in the build output
+    name: markup.build.backtrace.dxl
+    match: '^(Backtrace:|\s?<(?!Line:)(.*):([0-9]+)> ?)'
+
   outputColoured:
     patterns:
     - include: '#outputColouredBlue'
@@ -124,13 +140,3 @@ repository:
     comment: Colour the output
     name: string.quoted.double.dxl
     match: ^Y:.*$
-
-  outputError:
-    comment: Error in the build output
-    name: sublimelinter.outline.illegal.dxl
-    match: '^(?:-?R?-[EF]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
-
-  outputWarning:
-    comment: Warning in the build output
-    name: sublimelinter.outline.warning.dxl
-    match: '^(?:-?R?-[W]- DXL: |\s)<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
