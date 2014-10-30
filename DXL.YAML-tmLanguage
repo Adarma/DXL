@@ -25,6 +25,7 @@ repository:
     - include: '#continuation'
     - include: '#literalBoolean'
     - include: '#literalNumeric'
+    - include: '#literalFormat'
     - include: '#literalCharacter'
     - include: '#literalRegEx'
     - include: '#literalString'
@@ -778,13 +779,21 @@ repository:
         '1': {name: constant.character.escape.dxl}
         '2': {name: invalid.illegal.additional-character.dxl}
 
+  literalFormat:
+    name: string.format.dxl
+    begin: ((?<=dxlNumformat\()|(?<=dxlStrformat\()|(?<=Format =))\s*"
+    end: '"'
+    patterns:
+    - include: '#stringEscapedCharacters'
+    - include: '#stringFormatPlaceholder'
+
   literalNumeric:
     name: constant.numeric.dxl
     match: \b([-]?(0[xX][0-9a-fA-F]+)|([0-9]+\.?[0-9]*([eE][-]?[0-9]+)?))\b
 
   literalRegEx:
     name: string.regexp.dxl
-    begin: ((?<=matches\()|(?<=regexp2\()|(?<=Regexp =))\s*"
+    begin: ((?<=matches\()|(?<=regexp\()|(?<=regexp2\()|(?<=Regexp =))\s*"
     end: '"'
     patterns:
     - include: source.escapedregexp
@@ -799,7 +808,6 @@ repository:
       '0': {name: punctuation.definition.string.end.dxl}
     patterns:
     - include: '#stringEscapedCharacters'
-    - include: '#stringFormatPlaceholder'
 
   logical:
     name: keyword.language.dxl
@@ -902,6 +910,7 @@ repository:
         \d*           # Minimum field width
         (\.\d+)?      # Maximum precision
         [diouxXCcsp%] # Conversion type
+
     - name: invalid.illegal.placeholder.dxl
       match: '%'
 

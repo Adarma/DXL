@@ -75,6 +75,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#literalFormat</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#literalCharacter</string>
 				</dict>
 				<dict>
@@ -1807,6 +1811,26 @@
 				</dict>
 			</array>
 		</dict>
+		<key>literalFormat</key>
+		<dict>
+			<key>begin</key>
+			<string>((?&lt;=dxlNumformat\()|(?&lt;=dxlStrformat\()|(?&lt;=Format =))\s*"</string>
+			<key>end</key>
+			<string>"</string>
+			<key>name</key>
+			<string>string.format.dxl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#stringEscapedCharacters</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#stringFormatPlaceholder</string>
+				</dict>
+			</array>
+		</dict>
 		<key>literalNumeric</key>
 		<dict>
 			<key>match</key>
@@ -1817,7 +1841,7 @@
 		<key>literalRegEx</key>
 		<dict>
 			<key>begin</key>
-			<string>((?&lt;=matches\()|(?&lt;=regexp2\()|(?&lt;=Regexp =))\s*"</string>
+			<string>((?&lt;=matches\()|(?&lt;=regexp\()|(?&lt;=regexp2\()|(?&lt;=Regexp =))\s*"</string>
 			<key>end</key>
 			<string>"</string>
 			<key>name</key>
@@ -1859,10 +1883,6 @@
 				<dict>
 					<key>include</key>
 					<string>#stringEscapedCharacters</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#stringFormatPlaceholder</string>
 				</dict>
 			</array>
 		</dict>

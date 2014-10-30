@@ -139,8 +139,9 @@ void asd(void gghfgh, int fghfgh) {
 	return
 }
 
-// Regular Expressions
-Regexp oRegexp = regexp2(".*qwerty\\\\.[A-Z_0-9]+")
+// Regular Expressions: regexp, regexp2, matches or *Regexp =
+Regexp oRegexp1 = regexp(".*test+\\.[a-zA-Z_0-9]+")
+Regexp oRegexp2 = regexp2(".*qwerty\\\\.[A-Z_0-9]+")
 bool bMatch = matches("\\s*yes|no\\s*", "yes")
 string sRegexp = "^(?<=regexp2)\\b\\s*\\(?\"$"
 
@@ -335,6 +336,25 @@ false
 "value: %s is string"
 "value: %p is pointer"
 "value: %% is percent"
+dxlNumformat("value: %d is decimal", 1)
+dxlNumformat("value: %i is integer", 1)
+dxlNumformat("value: %o is octal", 1)
+dxlNumformat("value: %u is unsigned", 1)
+dxlNumformat("value: %x is hex", 1)
+dxlNumformat("value: %X is HEX", 1)
+dxlNumformat("value: %c is char", 1)
+dxlNumformat("value: %c is char", 1)
+dxlNumformat("value: %p is pointer", 1)
+dxlNumformat("value: %% is percent", 1)
+
+dxlStrformat("value: %s is string", "string")
+
+// Or assign to a variable ending in "Format"
+string sFormat = "value: %i is integer\nThis is valid %%,\tand this invalid %"
+string sString = "value: %i is integer,\nThis is valid %%,\tand this invalid %"
+
+string sStringFormat = "50% may be written as fifty percent"
+string sSimpleString = "50% may be written as fifty percent"
 
 // dxlObject property Access
 DxlObject oDxlObject = new()
