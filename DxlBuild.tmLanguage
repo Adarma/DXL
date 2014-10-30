@@ -256,54 +256,54 @@
 		<key>outputColouredBlue</key>
 		<dict>
 			<key>comment</key>
-			<string>Colour the output</string>
+			<string>Colour the output blue</string>
 			<key>match</key>
-			<string>^B:.*$</string>
+			<string>^[Bb]:.*$</string>
 			<key>name</key>
 			<string>storage.modifier.dxl</string>
 		</dict>
 		<key>outputColouredGreen</key>
 		<dict>
 			<key>comment</key>
-			<string>Colour the output</string>
+			<string>Colour the output green</string>
 			<key>match</key>
-			<string>^G:.*$</string>
+			<string>^[Gg]:.*$</string>
 			<key>name</key>
 			<string>support.function.perm.dxl</string>
 		</dict>
 		<key>outputColouredOrange</key>
 		<dict>
 			<key>comment</key>
-			<string>Colour the output</string>
+			<string>Colour the output orange</string>
 			<key>match</key>
-			<string>^O:.*$</string>
+			<string>^[Oo]:.*$</string>
 			<key>name</key>
 			<string>comment.line.continuation.dxl</string>
 		</dict>
 		<key>outputColouredPurple</key>
 		<dict>
 			<key>comment</key>
-			<string>Colour the output</string>
+			<string>Colour the output purple</string>
 			<key>match</key>
-			<string>^P:.*$</string>
+			<string>^[Pp]:.*$</string>
 			<key>name</key>
 			<string>constant.numeric.dxl</string>
 		</dict>
 		<key>outputColouredRed</key>
 		<dict>
 			<key>comment</key>
-			<string>Colour the output</string>
+			<string>Colour the output red</string>
 			<key>match</key>
-			<string>^R:.*$</string>
+			<string>^[Rr]:.*$</string>
 			<key>name</key>
 			<string>keyword.other.header.dxl</string>
 		</dict>
 		<key>outputColouredYellow</key>
 		<dict>
 			<key>comment</key>
-			<string>Colour the output</string>
+			<string>Colour the output yellow</string>
 			<key>match</key>
-			<string>^Y:.*$</string>
+			<string>^[Yy]:.*$</string>
 			<key>name</key>
 			<string>string.quoted.double.dxl</string>
 		</dict>

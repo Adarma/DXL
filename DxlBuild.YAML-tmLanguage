@@ -112,31 +112,31 @@ repository:
     - include: '#outputColouredYellow'
 
   outputColouredBlue:
-    comment: Colour the output
+    comment: Colour the output blue
     name: storage.modifier.dxl
-    match: ^B:.*$
+    match: ^[Bb]:.*$
 
   outputColouredGreen:
-    comment: Colour the output
+    comment: Colour the output green
     name: support.function.perm.dxl
-    match: ^G:.*$
+    match: ^[Gg]:.*$
 
   outputColouredOrange:
-    comment: Colour the output
+    comment: Colour the output orange
     name: comment.line.continuation.dxl
-    match: ^O:.*$
+    match: ^[Oo]:.*$
 
   outputColouredPurple:
-    comment: Colour the output
+    comment: Colour the output purple
     name: constant.numeric.dxl
-    match: ^P:.*$
+    match: ^[Pp]:.*$
 
   outputColouredRed:
-    comment: Colour the output
+    comment: Colour the output red
     name: keyword.other.header.dxl
-    match: ^R:.*$
+    match: ^[Rr]:.*$
 
   outputColouredYellow:
-    comment: Colour the output
+    comment: Colour the output yellow
     name: string.quoted.double.dxl
-    match: ^Y:.*$
+    match: ^[Yy]:.*$
