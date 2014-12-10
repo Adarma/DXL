@@ -176,7 +176,7 @@ Else
 	; Find the Relitive Base Paths for DOORS
 	ClearFile($OutFile)
 	Local $BasePathsString = ""
-	ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
+	ShellExecute("Run DXL.exe", '"" "' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & "RelitiveBasePaths", @ScriptDir)
 	Sleep(100)
 	While _FileInUse($OutFile, 1) = 1
 		Sleep(50)
@@ -191,22 +191,20 @@ Else
 	FileClose($OutFileHandle)
 	Local $BasePathsArray = StringSplit($BasePathsString, ';', 1)
 
+	; Extract //<Requires> directives
+	Local $Requires = LintRequires($ObjDoors, $ScriptFile)
+	; ConsoleWrite("Parse Requires: " & $Requires & @CRLF)
+
 	; Make the DXL include statement
-	Local $IncludeString = "#include <" & $ScriptFile & ">;" & @LF
+	Local $IncludeString = $Requires & "#include <" & $ScriptFile & ">;" & @LF
 
-	; Make the checkDXL string
-	Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
-	Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
-
-	; Test the code
+	; Lint the Code and Time It
 	Local $ParseTime = TimerInit()
-	$ObjDoors.Result = ""
-	$ObjDoors.runStr($TestCode)
+	Local $DXLOutputText = LintCode($ObjDoors, $IncludeString)
 	$ParseTime = TimerDiff($ParseTime)
 	$ParseTime = StringLeft($ParseTime, StringInStr($ParseTime, ".") -1)
 	WriteUnicode("Parse Duration: " & $ParseTime & " milliseconds" & @LF)
 
-	Local $DXLOutputText = $ObjDoors.Result
 	If $DXLOutputText <> "" Then
 		WriteUnicode("Parse Errors:" & @LF)
 		Local $OutputLines = stringsplit($DXLOutputText, @CRLF, 0)
@@ -234,7 +232,7 @@ Else
 
 		; Run the DXL - Invoked by a separate process so this one can pipe the output back
 		ClearFile($OutFile)
-		ShellExecute("Run DXL.exe", '"' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
+		ShellExecute("Run DXL.exe", '"' & $Requires & '" "' & $ScriptFile & '" "' & $ModuleFullName & '" ' & $IsBaseline & ' ' & $Major & ' ' & $Minor & ' "' & $Suffix & '" "' & $OutFile & '" ' & $DxlMode, @ScriptDir)
 		Sleep($ParseTime + 500)
 
 		; Error Window Titles
@@ -454,6 +452,91 @@ EndIf
 
 ; ******************************************************************************************************************* ;
 
+
+Func LintRequires($ObjDoors, $sFilePath)
+
+	Local $Requires = ''
+
+	; Open the file for reading and store the handle to a variable.
+	Local $FileHandle = FileOpen($sFilePath, 0)
+	If $FileHandle <> -1 Then
+
+		Local $LineNo = 0
+		While 1
+			Local $Require = GetNextRequire($FileHandle, $LineNo)
+			If $Require == '' Then ExitLoop
+
+			Local $DXLOutputText = LintCode($ObjDoors, $Requires & $Require)
+			If $DXLOutputText == '' Then
+				$Requires &= $Require & ";"
+				ConsoleWrite("Insert Require: " & $Require & @CRLF)
+			Else
+
+			   ; Check if file was found
+			   Local $Match = StringRegExp($DXLOutputText, "^-E- DXL: <Line:[0-9]+> (.*)" , 1)
+
+			   If @Error == 0 Then
+				  ConsoleWrite("-W- DXL: <" & $sFilePath & ":" & $LineNo & "> " & $Match[0] & @CRLF)
+			   Else
+				  Local $IncludeFile = StringMid($Require, 11, StringLen($Require) - 11)
+				  ConsoleWrite("-W- DXL: <" & $sFilePath & ":" & $LineNo & "> could not run include file (" & $IncludeFile & ") (Syntax errors in file)" & @CRLF)
+			   EndIf
+			EndIf
+		Wend
+
+		; Close the handle returned by FileOpen.
+		FileClose($FileHandle)
+
+	EndIf
+
+	Return $Requires
+
+EndFunc
+
+Func GetNextRequire($FileHandle, ByRef $LineNo)
+
+    Local $Regexp = '^//<([^>]+)>\s*(.*)$'
+	Local $Require = ''
+
+	While 1
+		; Read the fist line of the file using the handle returned by FileOpen.
+		Local $FileLine = FileReadLine($FileHandle)
+
+		If @error = -1 Then ExitLoop
+		$LineNo += 1
+
+		Local $MatchArray = StringRegExp($FileLine, $Regexp, 1)
+		If @error Then ExitLoop
+
+		 If $MatchArray[0] == "Requires" Then
+		   Local $IncludeMatchArray = StringRegExp($MatchArray[1], '^(#include ["<][^">]+[">])\s*(.*)$', 1)
+			If @error Then
+			   ConsoleWrite("-W- DXL: <Line:" & $LineNo & "> Invalid '//<Requires>' syntax: Expected '#include ' (" & $MatchArray[1] & ")" & @CRLF)
+			Else
+			   $Require = $IncludeMatchArray[0]
+			   ExitLoop
+			EndIf
+		 EndIf
+	Wend
+
+	Return $Require
+
+EndFunc
+
+Func LintCode($ObjDoors, $Include)
+
+	Local $EscapedInclude = StringReplace($Include, "\", "\\")
+	$EscapedInclude = StringReplace($EscapedInclude, '"', '\"')
+	Local $TestCode = 'oleSetResult(checkDXL("' & $EscapedInclude & '"))'
+
+	; Test the code
+	$ObjDoors.Result = ""
+	$ObjDoors.runStr($TestCode)
+
+	Local $DXLOutputText = $ObjDoors.Result
+	Return $DXLOutputText
+
+EndFunc
 
 Func GetDoorsLogFile()
 	Local $baseKey = "HKEY_CURRENT_USER\SOFTWARE\Telelogic\DOORS"

@@ -16,28 +16,22 @@ repository:
   buildHeader:
     patterns:
     - include: '#buildHeaderExecution'
-    - include: '#buildHeaderParse'
     - include: '#buildHeaderPaths'
+    - include: '#buildHeaderIncludes'
+    - include: '#buildHeaderParse'
     - include: '#buildHeaderDatabase'
     - include: '#buildHeaderModule'
     - include: '#buildHeaderUser'
 
   buildHeaderExecution:
-    comment: Error in the build output
+    comment: How the Code is Executed
     name: keyword.other.header.dxl
     match: '^Code Execution: (.*)'
     captures:
       '1': {name: string.quoted.double.dxl}
 
-  buildHeaderParse:
-    comment: Error in the build output
-    name: keyword.other.header.dxl
-    match: '^Parse Duration: ([0-9]+) (milliseconds)'
-    captures:
-      '1': {name: constant.numeric.dxl}
-      '2': {name: string.quoted.double.dxl}
-
   buildHeaderPaths:
+    comment: The Relitive base paths
     name: keyword.other.header.dxl
     begin: '^Relitive Paths: ?'
     end: '$'
@@ -45,22 +39,37 @@ repository:
     - include: '#buildHeaderPath'
 
   buildHeaderPath:
-    comment: Error in the build output
+    comment: A Relitive base path
     name: string.quoted.double.dxl
     match: '([^;]*);?([^;]*;?)?'
     captures:
       '1': {name: string.quoted.double.dxl}
       '2': {name: constant.numeric.dxl}
 
+  buildHeaderIncludes:
+    comment: #include extraced from //<Requires> directive
+    name: keyword.other.header.dxl
+    match: '^Insert Require: (.*)'
+    captures:
+      '1': {name: string.quoted.double.dxl}
+
+  buildHeaderParse:
+    comment: Time Taken to parse the includes and file
+    name: keyword.other.header.dxl
+    match: '^Parse Duration: ([0-9]+) (milliseconds)'
+    captures:
+      '1': {name: constant.numeric.dxl}
+      '2': {name: string.quoted.double.dxl}
+
   buildHeaderDatabase:
-    comment: Error in the build output
+    comment: The Database Name
     name: keyword.other.header.dxl
     match: '^DOORS Database: (.*)'
     captures:
       '1': {name: string.quoted.double.dxl}
 
   buildHeaderModule:
-    comment: Error in the build output
+    comment: The Current module
     name: keyword.other.header.dxl
     match: '^Current Module:(?: (\[[^\]]+\]) (.*) (\[[^\]]+\]))?'
     captures:
@@ -69,7 +78,7 @@ repository:
       '3': {name: constant.numeric.dxl}
 
   buildHeaderUser:
-    comment: Error in the build output
+    comment: The Current User Account
     name: keyword.other.header.dxl
     match: '^Active Account: (.*)'
     captures:
@@ -98,7 +107,7 @@ repository:
     match: '^(?:-?R?-[W]- DXL: )<(?!Line:)(.*):([0-9]+)> ?(?:.*)'
 
   outputBacktrace:
-    comment: Warning in the build output
+    comment: Backtrace of Errors and Warnings
     name: markup.build.backtrace.dxl
     match: '^(Backtrace:|\s?<(?!Line:)(.*):([0-9]+)> ?)'
 

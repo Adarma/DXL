@@ -1,0 +1,7 @@
+Preprocessor //<Requires> directives may be used at the top of the code.
+
+These should have the syntax:
+//<Requires>  #include <C:\path\to\an\include.inc>	// Optional comment to describe why it is required
+
+These includes are linted and run when executed from SublimeText.
+It allows you to easily work on inculdes which require other includes, when you don't use nested includes.

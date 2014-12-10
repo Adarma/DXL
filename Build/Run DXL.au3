@@ -56,28 +56,28 @@ Endfunc
 
 
 ; Check if any Arguments were passed
-If $CmdLine[0] < 8 Then
+If $CmdLine[0] < 9 Then
 	MsgBox(0, "Wrong Parameters", "Wrong Parameters: " & $CmdLine[0])
 	Exit
 EndIf
 
 ; Get Arguments
-Local $ScriptFile = $CmdLine[1]
-Local $ModuleFullName = $CmdLine[2]
-Local $IsBaseline = $CmdLine[3]
-Local $Major = $CmdLine[4]
-Local $Minor = $CmdLine[5]
-Local $Suffix = $CmdLine[6]
-Local $OutFile = $CmdLine[7]
-Local $DxlMode = $CmdLine[8]
+Local $Requires = $CmdLine[1]
+Local $ScriptFile = $CmdLine[2]
+Local $ModuleFullName = $CmdLine[3]
+Local $IsBaseline = $CmdLine[4]
+Local $Major = $CmdLine[5]
+Local $Minor = $CmdLine[6]
+Local $Suffix = $CmdLine[7]
+Local $OutFile = $CmdLine[8]
+Local $DxlMode = $CmdLine[9]
 
 Local $TraceAllLines = (StringRight($DxlMode, 7) = "Verbose")
 
 Local $DxlInteractionWindow = "DXL Interaction - DOORS"
 Local $DxlOpen = WinExists($DxlInteractionWindow) And BitAnd(WinGetState($DxlInteractionWindow), 2)
 
-Local $IncludeString = "#include <" & $ScriptFile & ">;" & @LF
-Local $EscapedInclude = StringReplace($IncludeString, "\", "\\")
+Local $IncludeString = $Requires & "#include <" & $ScriptFile & ">;" & @LF
 
 Local $EscapedOutFile = StringReplace($OutFile, "\", "\\")
 Local $PrintRepurposeCode =  "// Repurpose Print" & @LF & _
@@ -189,12 +189,12 @@ Switch $DxlMode
 		$Code = $Code & 'Debug_Cleanup();' & @LF
 		$FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
     Case "TraceVariables", "TraceVariablesVerbose"
-		
+
 		Local $szDrive, $szDir, $szFName, $szExt
 		_PathSplit($OutFile, $szDrive, $szDir, $szFName, $szExt)
 		Local $TraceFile = $szDrive & $szDir & "DxlVariables.log"
 		Local $EscapedTraceFile = StringReplace($TraceFile, "\", "\\")
-		
+
 		; Trace DXL
 		$Code = 'startDXLTracing_("' & $EscapedTraceFile & '");' & @LF
 		$Code = $Code & $IncludeString & @LF
@@ -207,16 +207,16 @@ EndSwitch
 ;~ Local $FullCode = $PrintRepurposeCode & $SetModuleCode & $ContextCode & $Code
 
 If $DxlOpen Then
-	
+
 	; Save the current code
 	Local $OldCode = ControlGetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]")
-	
+
 	; Write the code in DOORS window
 	ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $FullCode)
 
 	; Click the Run Button
 	ControlClick($DxlInteractionWindow, "", "[CLASS:Button; INSTANCE:8]")
-	
+
 	; Restore the saved code
 	ControlSetText($DxlInteractionWindow, "", "[CLASS:RICHEDIT50W; INSTANCE:2]", $OldCode)
 Else

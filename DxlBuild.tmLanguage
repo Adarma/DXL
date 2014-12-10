@@ -56,11 +56,15 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#buildHeaderParse</string>
+					<string>#buildHeaderPaths</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#buildHeaderPaths</string>
+					<string>#buildHeaderIncludes</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#buildHeaderParse</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -87,7 +91,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Error in the build output</string>
+			<string>The Database Name</string>
 			<key>match</key>
 			<string>^DOORS Database: (.*)</string>
 			<key>name</key>
@@ -104,9 +108,26 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Error in the build output</string>
+			<string>How the Code is Executed</string>
 			<key>match</key>
 			<string>^Code Execution: (.*)</string>
+			<key>name</key>
+			<string>keyword.other.header.dxl</string>
+		</dict>
+		<key>buildHeaderIncludes</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.dxl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<false/>
+			<key>match</key>
+			<string>^Insert Require: (.*)</string>
 			<key>name</key>
 			<string>keyword.other.header.dxl</string>
 		</dict>
@@ -131,7 +152,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Error in the build output</string>
+			<string>The Current module</string>
 			<key>match</key>
 			<string>^Current Module:(?: (\[[^\]]+\]) (.*) (\[[^\]]+\]))?</string>
 			<key>name</key>
@@ -153,7 +174,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Error in the build output</string>
+			<string>Time Taken to parse the includes and file</string>
 			<key>match</key>
 			<string>^Parse Duration: ([0-9]+) (milliseconds)</string>
 			<key>name</key>
@@ -175,7 +196,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Error in the build output</string>
+			<string>A Relitive base path</string>
 			<key>match</key>
 			<string>([^;]*);?([^;]*;?)?</string>
 			<key>name</key>
@@ -185,6 +206,8 @@
 		<dict>
 			<key>begin</key>
 			<string>^Relitive Paths: ?</string>
+			<key>comment</key>
+			<string>The Relitive base paths</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
@@ -208,7 +231,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Error in the build output</string>
+			<string>The Current User Account</string>
 			<key>match</key>
 			<string>^Active Account: (.*)</string>
 			<key>name</key>
@@ -217,7 +240,7 @@
 		<key>outputBacktrace</key>
 		<dict>
 			<key>comment</key>
-			<string>Warning in the build output</string>
+			<string>Backtrace of Errors and Warnings</string>
 			<key>match</key>
 			<string>^(Backtrace:|\s?&lt;(?!Line:)(.*):([0-9]+)&gt; ?)</string>
 			<key>name</key>

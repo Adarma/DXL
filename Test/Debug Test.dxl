@@ -1,6 +1,9 @@
+//<Requires> #include <D:\!PORTABLE!\Sublime Text Build 3065 - GIT\Data\Packages\DXL\Test\Debug Test.inc>
+
 pragma encoding, "UTF-8"
 
-#include <D:\!PORTABLE!\Sublime Text Build 3065 - GIT\Data\Packages\DXL\Test\Debug Test.inc>
+// #include <D:\!PORTABLE!\Sublime Text Build 3065 - GIT\Data\Packages\DXL\Test\Debug Test.inc>
+
 void TestErrorsAndWarnings() {
 	print dxlHere() "\n"
 	warn "dxlHere"
