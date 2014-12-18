@@ -59,3 +59,9 @@ class DxlKeywordHelpCommand(sublime_plugin.TextCommand):
             OpenDxlHelp(word)
         else:
             sublime.status_message("No Help Available")
+
+
+class CopyFileAsIncludeCommand(sublime_plugin.TextCommand):
+    def run(self, edit, change="", to=""):
+        sublime.set_clipboard('#include <' + self.view.file_name().replace(change, to) + '>')
+        sublime.status_message("Copied file path as #include")

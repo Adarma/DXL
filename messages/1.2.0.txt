@@ -1,0 +1,27 @@
+Added a Context Menu command "Copy File As Include".
+It will place the #include <..> statement for the current file on the clipboard.
+
+You may add additional menus or keybindings allowing you to modify the path that is copied.
+
+In the following example, the local git repo path is changed to a server path.
+Put this in 'Packages\User\Context.sublime-menu':
+
+[
+	{
+		"id": "ServerInclude",
+		"caption": "Copy Server File As Include",
+		"command": "copy_file_as_include",
+		"args": {"change": "C:\\GIT\\", "to": "\\\\SomeServer\\"}
+	}
+]
+
+The following example adds a shortcut key for the command
+Add this to 'Preferences >> Key Bindings - User':
+
+	{ "keys": ["ctrl+shift+c"], "command": "copy_file_as_include" }
+
+
+In the following example a shortcut key combination is added to copy with the drive letter changed.
+Add this to 'Preferences >> Key Bindings - User':
+
+	{ "keys": ["ctrl+shift+c"], "command": "copy_file_as_include", "args": { "change": "C:", "to": "Z:" } }

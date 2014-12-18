@@ -1,0 +1,7 @@
+[
+	{
+		"id": "DxlInclude",
+		"caption": "Copy File As Include",
+		"command": "copy_file_as_include"
+	}
+]
